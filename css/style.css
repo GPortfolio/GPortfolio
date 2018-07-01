@@ -25,12 +25,19 @@ a {
  */
 
 #app {
-    display: flex;
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
+}
+
+/*
+ * Header
+ */
+
+#header {
+    display: flex;
+    margin-bottom: 40px;
     background: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .ls {
@@ -62,7 +69,7 @@ a {
     width: 170px;
     height: 170px;
     line-height: 0;
-    border: 3px solid #fff;
+    border: 3px solid #b0b0b0;
     margin: 0 auto 20px;
     background: url('../images/profile/avatar.jpg');
     background-size: cover;
@@ -70,9 +77,13 @@ a {
 
 .ls__name {
     color: rgba(255, 255, 255, .87);
+    margin-bottom: 7px;
+}
+
+.ls__name > h1 {
+    margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 7px;
 }
 
 .ls__position {
@@ -82,15 +93,14 @@ a {
 
 .ls__separator {
     margin: 35px 0;
-    border-bottom: 1px solid #e7e7e7;
+    border-bottom: 1px solid #747474;
 }
 
 .ls__pdf > a {
-    display: inline-block;
-    padding: 10px 20px;
+    display: block;
+    padding: 10px 0;
     background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid #c9c9c9;
+    color: rgba(255, 255, 255, .9);
     transition: .2s;
 }
 
@@ -125,6 +135,45 @@ a {
 }
 
 /*
+ * Content
+ */
+
+#content {
+
+}
+
+.content__block {
+    padding: 20px;
+    border-top: none;
+    background: #fff;
+    margin-bottom: 30px;
+}
+
+.content__block:last-child {
+    margin-bottom: 0;
+}
+
+.content__block > h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.content__block > h2:after {
+    content: "";
+    display: block;
+    margin-top: 5px;
+    border: 3px solid #333;
+    width: 25px;
+}
+
+/* Projects */
+.projects {
+
+}
+
+/*
  * Helper
  */
 
@@ -143,4 +192,8 @@ a {
 
 .text--right {
     text-align: right;
+}
+
+.box--shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
 }
