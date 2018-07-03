@@ -1,0 +1,13 @@
+@import "~font-awesome/css/font-awesome.css";
+@import "~normalize.css/normalize.css";
+@import "global";
+@import "helper";
+@import "fonts";
+@import "header";
+@import "content";
+
+#app {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
