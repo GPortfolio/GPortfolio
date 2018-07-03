@@ -20,6 +20,20 @@ a {
     text-decoration: none;
 }
 
+/* inconsolata-regular - latin */
+@font-face {
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/inconsolata/inconsolata-v16-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Inconsolata Regular'), local('Inconsolata-Regular'),
+    url('../fonts/inconsolata/inconsolata-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/inconsolata/inconsolata-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/inconsolata/inconsolata-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/inconsolata/inconsolata-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/inconsolata/inconsolata-v16-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
+}
+
 /*
  * Main
  */
