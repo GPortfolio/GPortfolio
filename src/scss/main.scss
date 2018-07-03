@@ -1,0 +1,216 @@
+@import "~font-awesome/css/font-awesome.css";
+@import "~normalize.css/normalize.css";
+
+/*
+ * Global
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 50px 20px;
+  background: #f7f7f7;
+  font-family: 'Inconsolata', monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* inconsolata-regular - latin */
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inconsolata/inconsolata-v16-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Inconsolata Regular'), local('Inconsolata-Regular'),
+  url('../fonts/inconsolata/inconsolata-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/inconsolata/inconsolata-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/inconsolata/inconsolata-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('../fonts/inconsolata/inconsolata-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('../fonts/inconsolata/inconsolata-v16-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
+}
+
+/*
+ * Main
+ */
+
+#app {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*
+ * Header
+ */
+
+#header {
+  display: flex;
+  margin-bottom: 40px;
+  background: #fff;
+}
+
+.ls {
+  position: relative;
+  max-width: 300px;
+  width: 100%;
+  background: url('../images/pixabay/deer.jpg') no-repeat 50% 75%;
+  background-size: cover;
+  cursor: context-menu;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #232526;
+    background: linear-gradient(to top, rgba(65, 67, 69, .8), rgba(35, 37, 38, .8));
+  }
+}
+
+.ls__inner {
+  position: relative;
+  padding: 50px;
+}
+
+.ls__image {
+  width: 170px;
+  height: 170px;
+  line-height: 0;
+  border: 3px solid #b0b0b0;
+  margin: 0 auto 20px;
+  background: url('../images/profile/avatar.jpg');
+  background-size: cover;
+}
+
+.ls__name {
+  color: rgba(255, 255, 255, .87);
+  margin-bottom: 7px;
+}
+
+.ls__name > h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.ls__position {
+  color: rgba(255, 255, 255, .6);
+  font-size: 1rem;
+}
+
+.ls__separator {
+  margin: 35px 0;
+  border-bottom: 1px solid #747474;
+}
+
+.ls__pdf > a {
+  display: block;
+  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, .9);
+  transition: .2s;
+}
+
+.ls__pdf > a:hover {
+  background: rgba(255, 255, 255, .2);
+}
+
+.ls__social ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.ls__social li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.ls__social a {
+  color: #fff;
+  line-height: 0;
+  padding: 8px;
+  opacity: .8;
+  transition: .3s;
+}
+
+.ls__social a:hover {
+  opacity: 1;
+}
+
+.rs {
+  padding: 20px;
+  width: 100%;
+}
+
+/*
+ * Content
+ */
+
+#content {
+
+}
+
+.content__block {
+  padding: 20px;
+  border-top: none;
+  background: #fff;
+  margin-bottom: 30px;
+}
+
+.content__block:last-child {
+  margin-bottom: 0;
+}
+
+.content__block > h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.content__block > h2:after {
+  content: "";
+  display: block;
+  margin-top: 5px;
+  border: 3px solid #333;
+  width: 25px;
+}
+
+/* Projects */
+.projects {
+
+}
+
+/*
+ * Helper
+ */
+
+.img--full {
+  width: 100%;
+  height: 100%;
+}
+
+.radius--circle {
+  border-radius: 50%;
+}
+
+.text--center {
+  text-align: center;
+}
+
+.text--right {
+  text-align: right;
+}
+
+.box--shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
