@@ -49,7 +49,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.html',
-      title: 'Test'
+      name: 'Alexey Khrushch',
+      email: 'alexeykhr@outlook.com',
+      social: {
+        twitter: 'Alexeykhr_',
+        github: 'Alexeykhr',
+        linkedin: 'alexeykhr'
+      }
     }),
     new HtmlWebpackHarddiskPlugin()
   ]
