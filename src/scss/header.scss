@@ -12,7 +12,7 @@
   width: 100%;
   background: url('../images/pixabay/deer.jpg') no-repeat 50% 75%;
   background-size: cover;
-  cursor: context-menu;
+  cursor: default;
   &::before {
     content: "";
     position: absolute;
