@@ -26,6 +26,9 @@
   },
   "devDependencies": {
     "css-hot-loader": "^1.3.9",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
     "image-webpack-loader": "^4.3.1",

@@ -3,7 +3,6 @@
 <head>
   <title>Alexey Khrushch</title>
   <meta name="author" content="Alexey Khrushch, alexeykhr@outlook.com">
-  <link rel="stylesheet" href="dist/main.css">
 </head>
 <body>
 
@@ -13,7 +12,8 @@
       <div class="ls__inner text--center">
         <div class="ls__image radius--circle"></div>
         <div class="ls__name">
-          <h1>Alexey Khrushch</h1></div>
+          <h1>Alexey Khrushch</h1>
+        </div>
         <div class="ls__position">Web developer</div>
         <div class="ls__separator"></div>
         <div class="ls__pdf">
@@ -42,7 +42,7 @@
       </div>
     </aside>
     <div class="rs">
-      Description
+      Description <%= htmlWebpackPlugin.options.title %>
     </div>
   </header>
 
@@ -56,6 +56,5 @@
   </div>
 </div>
 
-<script src="dist/main.js"></script>
 </body>
 </html>
