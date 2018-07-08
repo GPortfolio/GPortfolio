@@ -2,6 +2,7 @@
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const userInformation = require('./src/userInformation')
 
 module.exports = {
   mode: 'development',
@@ -46,17 +47,10 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin('[name].css'),
-    new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin(Object.assign({}, userInformation, {
       filename: 'index.html',
-      template: './src/index.html',
-      name: 'Alexey Khrushch',
-      email: 'alexeykhr@outlook.com',
-      social: {
-        twitter: 'Alexeykhr_',
-        github: 'Alexeykhr',
-        linkedin: 'alexeykhr'
-      }
-    }),
+      template: './src/index.html'
+    })),
     new HtmlWebpackHarddiskPlugin()
   ]
 }
