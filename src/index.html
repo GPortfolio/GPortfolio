@@ -14,7 +14,7 @@
         <div class="ls__name">
           <h1><%= htmlWebpackPlugin.options.name %></h1>
         </div>
-        <div class="ls__position">Web developer</div>
+        <div class="ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="ls__separator"></div>
         <div class="ls__pdf">
           <a href="src/files/resume.pdf">Download PDF</a>
@@ -42,16 +42,22 @@
       </div>
     </aside>
     <div class="rs">
-      Description
+
     </div>
   </header>
 
   <div id="content">
     <div class="content__block projects box--shadow">
       <h2>Projects</h2>
+      <div class="filters">
+
+      </div>
     </div>
     <div class="content__block skills box--shadow">
-      <h2>Skills</h2>
+      <h2>Education</h2>
+      <!--<% for (const e of htmlWebpackPlugin.options.education) { %>-->
+      <!--<%= e.name %>-->
+      <!--<% } %>-->
     </div>
   </div>
 </div>
