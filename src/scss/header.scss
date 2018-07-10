@@ -12,7 +12,7 @@
   width: 100%;
   background: url('../images/pixabay/deer.jpg') no-repeat 50% 75%;
   background-size: cover;
-  cursor: context-menu;
+  cursor: default;
   &::before {
     content: "";
     position: absolute;
@@ -50,7 +50,7 @@
   }
 }
 
-.ls__position {
+.ls__profession {
   color: rgba(255, 255, 255, .6);
   font-size: 1rem;
 }
@@ -87,9 +87,9 @@
       padding: 8px;
       opacity: .8;
       transition: .3s;
-    }
-    &:hover {
-      opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

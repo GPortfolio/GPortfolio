@@ -1,5 +1,7 @@
 'use strict'
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const user = require('./src/user')
 const path = require('path')
 
 module.exports = {
@@ -12,21 +14,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader'
-      },
-      {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot|svg|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader'
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           {
-            loader: 'file-loader',
-            options: {
-              // publicPath: 'dist/'
-            }
+            loader: 'file-loader'
           },
           {
             loader: 'image-webpack-loader',
@@ -39,15 +34,22 @@ module.exports = {
       {
         test: /\.scss/,
         use: [
-          'css-hot-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.js$/,
+        loader: "babel-loader"
       }
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin('[name].css')
+    new MiniCssExtractPlugin('[name].css'),
+    new HtmlWebpackPlugin(Object.assign({}, user, {
+      filename: '../index.html',
+      template: './src/index.html'
+    }))
   ]
 }

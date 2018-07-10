@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Alexey Khrushch</title>
-  <meta name="author" content="Alexey Khrushch, alexeykhr@outlook.com">
-<link href="dist/main.css" rel="stylesheet"></head>
+  <title><%= htmlWebpackPlugin.options.name %></title>
+  <meta name="author" content="<%= htmlWebpackPlugin.options.name %>, <%= htmlWebpackPlugin.options.email %>">
+</head>
 <body>
 
 <div id="app">
@@ -12,9 +12,9 @@
       <div class="ls__inner text--center">
         <div class="ls__image radius--circle"></div>
         <div class="ls__name">
-          <h1>Alexey Khrushch</h1>
+          <h1><%= htmlWebpackPlugin.options.name %></h1>
         </div>
-        <div class="ls__profession">Web developer</div>
+        <div class="ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="ls__separator"></div>
         <div class="ls__pdf">
           <a href="src/files/resume.pdf">Download PDF</a>
@@ -23,17 +23,17 @@
         <div class="ls__social">
           <ul>
             <li>
-              <a href="https://twitter.com/Alexeykhr_" target="_blank" rel="noopener">
+              <a href="https://twitter.com/<%= htmlWebpackPlugin.options.social.twitter %>" target="_blank" rel="noopener">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/alexeykhr" target="_blank" rel="noopener">
+              <a href="https://www.linkedin.com/in/<%= htmlWebpackPlugin.options.social.linkedin %>" target="_blank" rel="noopener">
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/Alexeykhr" target="_blank" rel="noopener">
+              <a href="https://github.com/<%= htmlWebpackPlugin.options.social.github %>" target="_blank" rel="noopener">
                 <i class="fa fa-github" aria-hidden="true"></i>
               </a>
             </li>
@@ -55,12 +55,12 @@
     </div>
     <div class="content__block skills box--shadow">
       <h2>Education</h2>
-      <!---->
-      <!--Education 1-->
-      <!---->
+      <!--<% for (const e of htmlWebpackPlugin.options.education) { %>-->
+      <!--<%= e.name %>-->
+      <!--<% } %>-->
     </div>
   </div>
 </div>
 
-<script type="text/javascript" src="dist/main.js"></script></body>
+</body>
 </html>
