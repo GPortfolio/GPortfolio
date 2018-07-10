@@ -1,14 +1,14 @@
 'use strict'
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const user = require('./src/user')
+const path = require('path')
 
 module.exports = {
   mode: 'development',
   entry: ['./src/js/main.js', './src/scss/main.scss'],
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
   },
   module: {
@@ -48,9 +48,8 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin('[name].css'),
     new HtmlWebpackPlugin(Object.assign({}, user, {
-      filename: 'index.html',
+      filename: '../index.html',
       template: './src/index.html'
-    })),
-    new HtmlWebpackHarddiskPlugin()
+    }))
   ]
 }
