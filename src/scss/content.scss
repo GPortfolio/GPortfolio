@@ -13,17 +13,17 @@
     margin-bottom: 0;
   }
   > h2 {
-    margin: 0;
     font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
-  }
-  &:after {
-    content: "";
-    display: block;
-    margin-top: 5px;
-    border: 3px solid #333;
-    width: 25px;
+    margin: 0 0 20px;
+    &:after {
+      content: "";
+      display: block;
+      margin-top: 5px;
+      border: 3px solid #333;
+      width: 25px;
+    }
   }
 }
 
@@ -31,4 +31,29 @@
 
 .projects {
 
+}
+
+.projects__filters {
+  > ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    > li {
+      display: inline-block;
+      border: 1px solid rgba(0, 0, 0, .6);
+      padding: 5px 10px;
+      min-width: 70px;
+      text-align: center;
+      cursor: pointer;
+      transition: .3s;
+      &[clicked=true] {
+        background: rgba(0, 0, 0, .6);
+        color: rgba(255, 255, 255, .9);
+      }
+      &:hover {
+        background: rgba(0, 0, 0, .7);
+        color: rgba(255, 255, 255, .9);
+      }
+    }
+  }
 }

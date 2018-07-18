@@ -47,17 +47,29 @@
   </header>
 
   <div id="content">
-    <div class="content__block projects box--shadow">
-      <h2>Projects</h2>
-      <div class="filters">
-
-      </div>
-    </div>
     <div class="content__block skills box--shadow">
       <h2>Education</h2>
       <!---->
       <!--Education 1-->
       <!---->
+    </div>
+    <div class="content__block projects box--shadow">
+      <h2>Projects</h2>
+      <div class="projects__filters">
+        <!--TODO move to config file-->
+        <ul>
+          <li data-filter="open-source">Open Source</li>
+          <li data-filter="php">PHP</li>
+          <li data-filter="web">HTML / CSS / JS</li>
+          <li data-filter="vue">Vue</li>
+          <li data-filter="c#">C#</li>
+        </ul>
+      </div>
+      <div class="projects__list">
+        <a href="#" data-technologies="open-source, php, web">First</a>
+        <a href="#" data-technologies="vue, c#, web">Second</a>
+        <a href="#" data-technologies="open-source, c#, vue, web">Third</a>
+      </div>
     </div>
   </div>
 </div>
