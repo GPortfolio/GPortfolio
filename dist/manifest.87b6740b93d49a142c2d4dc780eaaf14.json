@@ -35,7 +35,7 @@
   "short_name": "A.K.",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "https://github.com/Alexeykhr/alexeykhr.github.io",
+  "start_url": "https://alexeykhr.github.io/",
   "description": "Portfolio by Alexey Khrushch",
   "background_color": "#fff",
   "theme_color": "#fff"

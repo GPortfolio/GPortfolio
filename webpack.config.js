@@ -59,7 +59,7 @@ module.exports = {
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'service-worker.js',
       minify: true,
-      navigateFallback: packageJson.homepage,
+      navigateFallback: packageJson.url,
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
     }),
     new WebpackPwaManifest({
@@ -69,7 +69,7 @@ module.exports = {
       description: packageJson.description,
       background_color: '#fff',
       theme_color: '#fff',
-      start_url: packageJson.homepage,
+      start_url: packageJson.url,
       icons: [{
           src: path.resolve('src/images/profile/avatar.jpg'),
           sizes: [96, 128, 192, 256, 384, 512]
