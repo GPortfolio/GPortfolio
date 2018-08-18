@@ -74,7 +74,7 @@ module.exports = {
       theme_color: '#fff',
       start_url: packageJson.url,
       icons: [{
-          src: path.resolve('src/images/profile/avatar.jpg'),
+          src: path.resolve('src/images/profile/avatar.png'),
           sizes: [96, 128, 192, 256, 384, 512]
         }
       ]
