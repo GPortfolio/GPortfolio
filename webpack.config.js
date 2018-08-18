@@ -9,10 +9,14 @@ const packageJson = require('./package')
 
 module.exports = {
   mode: 'development',
-  entry: ['./src/js/main.js', './src/scss/main.scss'],
+  entry: [
+    './src/js/main.js',
+    './src/scss/main.scss'
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: packageJson.url + 'dist/'
   },
   module: {
     rules: [
@@ -60,10 +64,9 @@ module.exports = {
       filename: 'service-worker.js',
       minify: true,
       navigateFallback: packageJson.url,
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /index\.html/]
     }),
     new WebpackPwaManifest({
-      publicPath: 'dist',
       name: 'Alexey Khrushch',
       short_name: 'A.K.',
       description: packageJson.description,
