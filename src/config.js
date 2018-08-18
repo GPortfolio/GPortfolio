@@ -1,7 +1,11 @@
 module.exports = {
-  name: 'Alexey Khrushch',
+  username: 'Alexeykhr',
+  first_name: 'Alexey',
+  last_name: 'Khrushch',
+  gender: 'Male',
   email: 'alexeykhr@outlook.com',
   profession: 'Web developer',
+  image: 'static/images/profile/avatar.png',
   about: '',
   social: {
     twitter: 'Alexeykhr_',

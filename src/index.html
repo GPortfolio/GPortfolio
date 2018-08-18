@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!--TODO Description, etc-->
-  <meta name="author" content="<%= htmlWebpackPlugin.options.name %>, <%= htmlWebpackPlugin.options.email %>">
-  <title><%= htmlWebpackPlugin.options.name %></title>
+  <title><%= htmlWebpackPlugin.options.full_name %></title>
+  <meta property="og:title" content="Portfolio by <%= htmlWebpackPlugin.options.full_name %>" />
+  <meta property="og:type" content="profile" />
+  <meta property="profile:first_name" content="<%= htmlWebpackPlugin.options.first_name %>" />
+  <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
+  <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
+  <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
+  <meta property="og:image" content="static/images/profile/avatar.png" />
 </head>
 <body>
 
@@ -15,28 +19,31 @@
       <div class="ls__inner text--center">
         <div class="ls__image radius--circle"></div>
         <div class="ls__name">
-          <h1><%= htmlWebpackPlugin.options.name %></h1>
+          <h1><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
         <div class="ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="ls__separator"></div>
         <div class="ls__pdf">
-          <a href="src/files/resume.pdf">Download PDF</a>
+          <a href="static/files/resume.pdf">Download CV</a>
         </div>
         <div class="ls__separator"></div>
         <div class="ls__social">
           <ul>
             <li>
-              <a href="https://twitter.com/<%= htmlWebpackPlugin.options.social.twitter %>" target="_blank" rel="noopener">
+              <a href="https://twitter.com/<%= htmlWebpackPlugin.options.social.twitter %>" title="Twitter"
+                 target="_blank" rel="noopener">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/<%= htmlWebpackPlugin.options.social.linkedin %>" target="_blank" rel="noopener">
+              <a href="https://www.linkedin.com/in/<%= htmlWebpackPlugin.options.social.linkedin %>" title="LinkedIn"
+                 target="_blank" rel="noopener">
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/<%= htmlWebpackPlugin.options.social.github %>" target="_blank" rel="noopener">
+              <a href="https://github.com/<%= htmlWebpackPlugin.options.social.github %>" title="Github"
+                 target="_blank" rel="noopener">
                 <i class="fa fa-github" aria-hidden="true"></i>
               </a>
             </li>

@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const user = require('./src/user')
+const user = require('./src/config')
 const path = require('path')
 const packageJson = require('./package')
 
@@ -58,7 +58,14 @@ module.exports = {
     new MiniCssExtractPlugin('[name].css'),
     new HtmlWebpackPlugin(Object.assign({}, user, {
       filename: './index.html',
-      template: './src/index.html'
+      template: './src/index.html',
+      full_name: `${user.first_name} ${user.last_name}`,
+      meta: {
+        author: packageJson.author,
+        meta: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+        description: `Portfolio by ${user.first_name} ${user.last_name}`,
+        robots: 'index, follow'
+      }
     })),
     new SWPrecacheWebpackPlugin({
       cacheId: 'alexey-khrushch',
@@ -75,13 +82,13 @@ module.exports = {
       filename: 'manifest.json',
       includeDirectory: true,
       name: 'Alexey Khrushch',
-      short_name: 'A.K.',
+      short_name: 'Alexey Khrushch',
       description: packageJson.description,
       background_color: '#fff',
       theme_color: '#fff',
       start_url: '/',
       icons: [{
-        src: path.resolve('src/images/profile/avatar.png'),
+        src: path.resolve('static/images/profile/avatar.png'),
         sizes: [96, 128, 192, 256, 384, 512],
         destination: 'dist/icons'
       }]
