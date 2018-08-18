@@ -15,10 +15,11 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "url": "https://alexeykhr.github.io/",
   "bugs": {
     "url": "https://github.com/Alexeykhr/alexeykhr.github.io/issues"
   },
-  "homepage": "https://github.com/Alexeykhr/alexeykhr.github.io",
+  "homepage": "https://github.com/Alexeykhr/alexeykhr.github.io#readme",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
