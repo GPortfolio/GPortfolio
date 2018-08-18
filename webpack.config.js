@@ -60,9 +60,16 @@ module.exports = {
       filename: './index.html',
       template: './src/index.html',
       full_name: `${user.first_name} ${user.last_name}`,
+      minify: {
+        collapseInlineTagWhitespace: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: true,
+        minifyURLs: true,
+        removeComments: true
+      },
       meta: {
         author: packageJson.author,
-        meta: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
         description: `Portfolio by ${user.first_name} ${user.last_name}`,
         robots: 'index, follow'
       }
@@ -82,7 +89,7 @@ module.exports = {
       filename: 'manifest.json',
       includeDirectory: true,
       name: 'Alexey Khrushch',
-      short_name: 'Alexey Khrushch',
+      short_name: 'CV A.K.',
       description: packageJson.description,
       background_color: '#fff',
       theme_color: '#fff',
