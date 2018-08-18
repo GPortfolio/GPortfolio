@@ -64,7 +64,11 @@ module.exports = {
       filename: 'service-worker.js',
       minify: true,
       navigateFallback: packageJson.url,
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /index\.html/]
+      staticFileGlobsIgnorePatterns: [
+        /\.map$/,
+        /asset-manifest\.json$/,
+        /index\.html$/
+      ]
     }),
     new WebpackPwaManifest({
       name: 'Alexey Khrushch',
