@@ -3,8 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const user = require('./src/config')
-const path = require('path')
+const config = require('./src/config')
 const packageJson = require('./package')
 
 module.exports = {
@@ -56,10 +55,10 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin('[name].css'),
-    new HtmlWebpackPlugin(Object.assign({}, user, {
+    new HtmlWebpackPlugin(Object.assign({}, config, {
       filename: './index.html',
       template: './src/index.html',
-      full_name: `${user.first_name} ${user.last_name}`,
+      full_name: `${config.first_name} ${config.last_name}`,
       minify: {
         collapseInlineTagWhitespace: true,
         collapseWhitespace: true,
@@ -70,12 +69,12 @@ module.exports = {
       meta: {
         author: packageJson.author,
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-        description: `Portfolio by ${user.first_name} ${user.last_name}`,
+        description: `Portfolio by ${config.first_name} ${config.last_name}`,
         robots: 'index, follow'
       }
     })),
     new SWPrecacheWebpackPlugin({
-      cacheId: 'alexey-khrushch',
+      cacheId: `${config.first_name.toLowerCase()}-${config.last_name.toLowerCase()}`,
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'sw.js',
       minify: true,
@@ -88,14 +87,14 @@ module.exports = {
     new WebpackPwaManifest({
       filename: 'manifest.json',
       includeDirectory: true,
-      name: 'Alexey Khrushch',
-      short_name: 'CV A.K.',
+      name: `${config.first_name} ${config.last_name}`,
+      short_name: `CV ${config.first_name.charAt(0)}.${config.last_name.charAt(0)}.`,
       description: packageJson.description,
-      background_color: '#fff',
-      theme_color: '#fff',
+      background_color: config.app_color,
+      theme_color: config.app_color,
       start_url: '/',
       icons: [{
-        src: path.resolve('static/images/profile/avatar.png'),
+        src: config.app_icon,
         sizes: [96, 128, 192, 256, 384, 512],
         destination: 'dist/icons'
       }]

@@ -1,4 +1,9 @@
 module.exports = {
+  // PWA
+  app_icon: 'static/images/profile/avatar.png',
+  app_color: '#fff',
+
+  // USER
   username: 'Alexeykhr',
   first_name: 'Alexey',
   last_name: 'Khrushch',
@@ -7,11 +12,11 @@ module.exports = {
   profession: 'Web developer',
   image: 'static/images/profile/avatar.png',
   about: '',
-  social: {
-    twitter: 'Alexeykhr_',
-    github: 'Alexeykhr',
-    linkedin: 'alexeykhr'
-  },
+  social_media: [
+    { name: 'Twitter', href: 'https://twitter.com/Alexeykhr_', icon: 'twitter' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/alexeykhr', icon: 'linkedin' },
+    { name: 'Github', href: 'https://github.com/Alexeykhr', icon: 'github' }
+  ],
   education: [
     {
       name: 'Kyiv national university of trade and economics (KNUTE)',

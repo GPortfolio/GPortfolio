@@ -9,7 +9,7 @@
   <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
   <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
   <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
-  <meta property="og:image" content="static/images/profile/avatar.png" />
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.image %>" />
 </head>
 <body>
 
@@ -29,24 +29,13 @@
         <div class="ls__separator"></div>
         <div class="ls__social">
           <ul>
-            <li>
-              <a href="https://twitter.com/<%= htmlWebpackPlugin.options.social.twitter %>" title="Twitter"
-                 target="_blank" rel="noopener">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/<%= htmlWebpackPlugin.options.social.linkedin %>" title="LinkedIn"
-                 target="_blank" rel="noopener">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/<%= htmlWebpackPlugin.options.social.github %>" title="Github"
-                 target="_blank" rel="noopener">
-                <i class="fa fa-github" aria-hidden="true"></i>
-              </a>
-            </li>
+            <% for (const media of htmlWebpackPlugin.options.social_media) { %>
+              <li>
+                <a href="<%= media.href %>" title="<%= media.name %>" target="_blank" rel="noopener">
+                  <i class="fa fa-<%= media.icon %>" aria-hidden="true"></i>
+                </a>
+              </li>
+            <% } %>
           </ul>
         </div>
       </div>
