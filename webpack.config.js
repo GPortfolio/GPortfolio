@@ -75,6 +75,7 @@ module.exports = {
       ]
     }),
     new WebpackPwaManifest({
+      publicPath: packageJson.url + 'dist',
       filename: 'manifest.json',
       includeDirectory: true,
       name: 'Alexey Khrushch',
