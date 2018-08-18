@@ -9,9 +9,33 @@ module.exports = {
     linkedin: 'alexeykhr'
   },
   education: [
-    { name: 'Education 1', degree: '', specialization: '', year: { receipt: 2016, ending: 2019 } }
+    {
+      name: 'Kyiv national university of trade and economics (KNUTE)',
+      degree: 'Bachelor',
+      specialization: 'Computer Software Engineering',
+      year: {
+        receipt: 2016,
+        ending: 2019
+      }
+    },
+    {
+      name: '',
+      degree: '',
+      specialization: '',
+      year: {
+        receipt: 0,
+        ending: 0
+      }
+    }
   ],
-  work: [
-    { name: '' }
+  projects: [
+    {
+      name: ''
+    }
+  ],
+  jobs: [
+    {
+      name: ''
+    }
   ]
 }

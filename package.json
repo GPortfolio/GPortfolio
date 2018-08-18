@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "alexey-khrushch",
   "version": "1.0.0",
   "description": "Portfolio by Alexey Khrushch",
   "private": true,
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Alexeykhr/alexeykhr.github.io/issues"
   },
-  "homepage": "https://github.com/Alexeykhr/alexeykhr.github.io#readme",
+  "homepage": "https://github.com/Alexeykhr/alexeykhr.github.io",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
@@ -37,8 +37,10 @@
     "node-sass": "^4.9.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "url-loader": "^1.1.1",
     "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-pwa-manifest": "^3.7.1"
   }
 }
