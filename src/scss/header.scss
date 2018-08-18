@@ -1,15 +1,12 @@
 #header {
-  display: flex;
   margin-bottom: 40px;
-  background: #fff;
 }
 
 /* Left side */
 
-.ls {
+.h-ls {
   position: relative;
   max-width: 300px;
-  width: 100%;
   background: url('../../static/images/pixabay/deer.jpg') no-repeat 50% 75%;
   background-size: cover;
   cursor: default;
@@ -25,47 +22,46 @@
   }
 }
 
-.ls__inner {
+.h-ls__inner {
   position: relative;
-  padding: 50px;
+  padding: 50px 50px 30px;
 }
 
-.ls__image {
+.h-ls__image {
   width: 170px;
   height: 170px;
   line-height: 0;
-  border: 3px solid #b0b0b0;
+  border: 3px solid #343536;
   margin: 0 auto 20px;
   background: url('../../static/images/profile/avatar.png') center;
   background-size: cover;
 }
 
-.ls__name {
+.h-ls__name {
   color: rgba(255, 255, 255, .87);
-  margin-bottom: 7px;
   > h1 {
     margin: 0;
     font-size: 1.5rem;
-    font-weight: bold;
   }
 }
 
-.ls__profession {
+.h-ls__profession {
   color: rgba(255, 255, 255, .6);
   font-size: 1rem;
 }
 
-.ls__separator {
+.h-ls__separator {
   margin: 35px 0;
   border-bottom: 1px solid #747474;
 }
 
-.ls__pdf {
+.h-ls__pdf {
   > a {
     display: block;
     padding: 10px 0;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, .1);
     color: rgba(255, 255, 255, .9);
+    border-radius: 10px;
     transition: .2s;
     &:hover {
       background: rgba(255, 255, 255, .2);
@@ -73,30 +69,32 @@
   }
 }
 
-.ls__social {
+.h-ls__social {
   ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 0;
+    margin: 0;
     list-style-type: none;
   }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-    a {
-      color: #fff;
-      line-height: 0;
-      padding: 8px;
-      opacity: .8;
-      transition: .3s;
-      &:hover {
-        opacity: 1;
-      }
+  a {
+    display: block;
+    color: #fff;
+    line-height: 0;
+    padding: 8px;
+    margin: 0 15px 20px;
+    opacity: .8;
+    transition: .3s;
+    &:hover {
+      opacity: 1;
     }
   }
 }
 
 /* Right side */
 
-.rs {
+.h-rs {
   padding: 20px;
   width: 100%;
 }

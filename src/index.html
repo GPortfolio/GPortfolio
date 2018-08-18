@@ -14,20 +14,20 @@
 <body>
 
 <div id="app">
-  <header id="header" class="box--shadow">
-    <aside class="ls">
-      <div class="ls__inner text--center">
-        <div class="ls__image radius--circle"></div>
-        <div class="ls__name">
-          <h1><%= htmlWebpackPlugin.options.full_name %></h1>
+  <header id="header" class="box--shadow display--flex color--white mb--40">
+    <aside class="h-ls width--100">
+      <div class="h-ls__inner text--center">
+        <div class="h-ls__image radius--circle"></div>
+        <div class="h-ls__name mb--5">
+          <h1 class="font--bold"><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
-        <div class="ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
-        <div class="ls__separator"></div>
-        <div class="ls__pdf">
+        <div class="h-ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
+        <div class="h-ls__separator"></div>
+        <div class="h-ls__pdf">
           <a href="static/files/resume.pdf">Download CV</a>
         </div>
-        <div class="ls__separator"></div>
-        <div class="ls__social">
+        <div class="h-ls__separator"></div>
+        <div class="h-ls__social">
           <ul>
             <% for (const media of htmlWebpackPlugin.options.social_media) { %>
               <li>
@@ -40,7 +40,7 @@
         </div>
       </div>
     </aside>
-    <div class="rs">
+    <div class="h-rs">
 
     </div>
   </header>
