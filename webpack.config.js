@@ -57,7 +57,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin('[name].css'),
     new HtmlWebpackPlugin(Object.assign({}, user, {
-      filename: '../index.html',
+      filename: './index.html',
       template: './src/index.html'
     })),
     new SWPrecacheWebpackPlugin({
@@ -68,8 +68,7 @@ module.exports = {
       navigateFallback: '/',
       staticFileGlobsIgnorePatterns: [
         /\.map$/,
-        /asset-manifest\.json$/,
-        /index\.html$/
+        /asset-manifest\.json$/
       ]
     }),
     new WebpackPwaManifest({
