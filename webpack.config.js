@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: packageJson.url + 'dist/'
+    publicPath: 'dist/'
   },
   module: {
     rules: [
@@ -28,7 +28,11 @@ module.exports = {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           {
-            loader: 'file-loader'
+            loader: 'file-loader',
+            options: {
+              outputPath: 'static/',
+              publicPath: 'static/'
+            }
           },
           {
             loader: 'image-webpack-loader',
@@ -61,7 +65,7 @@ module.exports = {
     new SWPrecacheWebpackPlugin({
       cacheId: 'alexey-khrushch',
       dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
+      filename: 'sw.js',
       minify: true,
       navigateFallback: packageJson.url,
       staticFileGlobsIgnorePatterns: [
@@ -71,6 +75,8 @@ module.exports = {
       ]
     }),
     new WebpackPwaManifest({
+      filename: 'manifest.json',
+      includeDirectory: true,
       name: 'Alexey Khrushch',
       short_name: 'A.K.',
       description: packageJson.description,
@@ -78,10 +84,10 @@ module.exports = {
       theme_color: '#fff',
       start_url: packageJson.url,
       icons: [{
-          src: path.resolve('src/images/profile/avatar.png'),
-          sizes: [96, 128, 192, 256, 384, 512]
-        }
-      ]
+        src: path.resolve('src/images/profile/avatar.png'),
+        sizes: [96, 128, 192, 256, 384, 512],
+        destination: 'icons'
+      }]
     })
   ]
 }
