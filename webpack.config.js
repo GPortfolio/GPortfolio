@@ -9,14 +9,12 @@ const packageJson = require('./package')
 
 module.exports = {
   mode: 'development',
-  entry: [
-    './src/js/main.js',
-    './src/scss/main.scss'
-  ],
+  entry: {
+    'dist/main': ['./src/js/main.js', './src/scss/main.scss']
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: 'dist/'
+    path: __dirname,
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -30,7 +28,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              outputPath: 'static/',
+              outputPath: 'dist/static/',
               publicPath: 'static/'
             }
           },
@@ -67,7 +65,7 @@ module.exports = {
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'sw.js',
       minify: true,
-      navigateFallback: packageJson.url,
+      navigateFallback: '/',
       staticFileGlobsIgnorePatterns: [
         /\.map$/,
         /asset-manifest\.json$/,
@@ -75,7 +73,6 @@ module.exports = {
       ]
     }),
     new WebpackPwaManifest({
-      publicPath: packageJson.url + 'dist',
       filename: 'manifest.json',
       includeDirectory: true,
       name: 'Alexey Khrushch',
@@ -83,11 +80,11 @@ module.exports = {
       description: packageJson.description,
       background_color: '#fff',
       theme_color: '#fff',
-      start_url: packageJson.url,
+      start_url: '/',
       icons: [{
         src: path.resolve('src/images/profile/avatar.png'),
         sizes: [96, 128, 192, 256, 384, 512],
-        destination: 'icons'
+        destination: 'dist/icons'
       }]
     })
   ]
