@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "alexey-khrushch",
   "version": "1.0.0",
   "description": "Portfolio by Alexey Khrushch",
   "private": true,
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Alexeykhr/portfolio.git"
+    "url": "git+https://github.com/Alexeykhr/alexeykhr.github.io.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Alexeykhr/portfolio/issues"
+    "url": "https://github.com/Alexeykhr/alexeykhr.github.io/issues"
   },
-  "homepage": "https://github.com/Alexeykhr/portfolio#readme",
+  "homepage": "https://github.com/Alexeykhr/alexeykhr.github.io",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
@@ -30,15 +30,17 @@
     "babel-preset-env": "^1.7.0",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
-    "hoek": "^5.0.3",
+    "hoek": "^5.0.4",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^4.3.1",
     "mini-css-extract-plugin": "^0.4.1",
-    "node-sass": "^4.9.2",
-    "sass-loader": "^7.0.3",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-pwa-manifest": "^3.7.1"
   }
 }

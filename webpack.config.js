@@ -1,8 +1,11 @@
 'use strict'
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 const user = require('./src/user')
 const path = require('path')
+const packageJson = require('./package')
 
 module.exports = {
   mode: 'development',
@@ -50,6 +53,28 @@ module.exports = {
     new HtmlWebpackPlugin(Object.assign({}, user, {
       filename: '../index.html',
       template: './src/index.html'
-    }))
+    })),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'alexey-khrushch',
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: 'service-worker.js',
+      minify: true,
+      navigateFallback: packageJson.homepage,
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+    }),
+    new WebpackPwaManifest({
+      publicPath: 'dist',
+      name: 'Alexey Khrushch',
+      short_name: 'A.K.',
+      description: packageJson.description,
+      background_color: '#fff',
+      theme_color: '#fff',
+      start_url: packageJson.homepage,
+      icons: [{
+          src: path.resolve('src/images/profile/avatar.jpg'),
+          sizes: [96, 128, 192, 256, 384, 512]
+        }
+      ]
+    })
   ]
 }

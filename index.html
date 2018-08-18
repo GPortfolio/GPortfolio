@@ -3,7 +3,7 @@
 <head>
   <title>Alexey Khrushch</title>
   <meta name="author" content="Alexey Khrushch, alexeykhr@outlook.com">
-<link href="dist/main.css" rel="stylesheet"></head>
+<meta name="theme-color" content="#fff" /><link rel="manifest" href="dist/manifest.cf7d8b4a02a4a50090d6433d7d88384e.json" /><link href="dist/main.css" rel="stylesheet"></head>
 <body>
 
 <div id="app">
@@ -47,17 +47,34 @@
   </header>
 
   <div id="content">
-    <div class="content__block projects box--shadow">
-      <h2>Projects</h2>
-      <div class="filters">
-
-      </div>
+    <div class="content__block jobs box--shadow">
+      <h2>Jobs</h2>
     </div>
     <div class="content__block skills box--shadow">
       <h2>Education</h2>
       <!---->
-      <!--Education 1-->
+      <!--Kyiv national university of trade and economics (KNUTE)-->
       <!---->
+      <!---->
+      <!---->
+    </div>
+    <div class="content__block projects box--shadow">
+      <h2>Projects</h2>
+      <div class="projects__filters">
+        <!--TODO move to config file-->
+        <ul>
+          <li data-filter="open-source">Open Source</li>
+          <li data-filter="php">PHP</li>
+          <li data-filter="web">HTML / CSS / JS</li>
+          <li data-filter="vue">Vue</li>
+          <li data-filter="c#">C#</li>
+        </ul>
+      </div>
+      <div class="projects__list">
+        <a href="#" data-technologies="open-source, php, web">First</a>
+        <a href="#" data-technologies="vue, c#, web">Second</a>
+        <a href="#" data-technologies="open-source, c#, vue, web">Third</a>
+      </div>
     </div>
   </div>
 </div>

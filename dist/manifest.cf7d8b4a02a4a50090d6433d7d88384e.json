@@ -1,0 +1,42 @@
+{
+  "icons": [
+    {
+      "src": "dist/icon_512x512.bc425d9c0a31bae9d9639f3cb3d03134.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "dist/icon_384x384.035ccfa1b62ade891f2edeedc9e6fcdd.jpeg",
+      "sizes": "384x384",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "dist/icon_256x256.5bccda1816d5a28ec958b2a564291cb0.jpeg",
+      "sizes": "256x256",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "dist/icon_192x192.4047643d9ff77b241106230d3f349214.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "dist/icon_128x128.d21869e4ba4e848ed5b178d7b02c1b73.jpeg",
+      "sizes": "128x128",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "dist/icon_96x96.d4b78592fcb8488416f28824d69f1f8b.jpeg",
+      "sizes": "96x96",
+      "type": "image/jpeg"
+    }
+  ],
+  "name": "Alexey Khrushch",
+  "short_name": "A.K.",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "https://github.com/Alexeykhr/alexeykhr.github.io",
+  "description": "Portfolio by Alexey Khrushch",
+  "background_color": "#fff",
+  "theme_color": "#fff"
+}
