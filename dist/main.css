@@ -2762,7 +2762,8 @@ a {
   /* Legacy iOS */ }
 
 #header {
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  background: #fff; }
 
 /* Left side */
 .h-ls {
@@ -2842,27 +2843,17 @@ a {
   padding: 20px;
   width: 100%; }
 
-/* General */
 .content__block {
-  padding: 20px;
-  border-top: none;
-  background: #fff;
   margin-bottom: 30px; }
   .content__block:last-child {
     margin-bottom: 0; }
   .content__block > h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin: 0 0 20px; }
-    .content__block > h2:after {
-      content: "";
-      display: block;
-      margin-top: 5px;
-      border: 3px solid #333;
-      width: 25px; }
+    margin: 0 0 20px;
+    text-align: center; }
 
-/* Projects */
 .projects__filters > ul {
   padding: 0;
   margin: 0;

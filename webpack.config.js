@@ -3,13 +3,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const config = require('./src/config')
+const config = require('./src/js/config')
 const packageJson = require('./package')
 
 module.exports = {
   mode: 'development',
   entry: {
-    'dist/main': ['./src/js/main.js', './src/scss/main.scss']
+    'dist/main': ['./src/js/index.js', './src/scss/index.scss']
   },
   output: {
     path: __dirname,
@@ -89,6 +89,8 @@ module.exports = {
     new WebpackPwaManifest({
       filename: 'manifest.json',
       includeDirectory: true,
+      orientation: 'any',
+      lang: 'en-US',
       name: `${config.first_name} ${config.last_name}`,
       short_name: `CV ${config.first_name.charAt(0)}.${config.last_name.charAt(0)}.`,
       description: packageJson.description,

@@ -33,9 +33,10 @@
   ],
   "name": "Alexey Khrushch",
   "short_name": "CV A.K.",
-  "orientation": "portrait",
+  "orientation": "any",
   "display": "standalone",
   "start_url": "/",
+  "lang": "en-US",
   "description": "Portfolio by Alexey Khrushch",
   "background_color": "#fff",
   "theme_color": "#fff"
