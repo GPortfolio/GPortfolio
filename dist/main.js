@@ -130,7 +130,7 @@ eval("\n\nvar _jquery = __webpack_require__(/*! jquery */ \"./node_modules/jquer
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _jquery = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\nvar _jquery2 = _interopRequireDefault(_jquery);\n\n__webpack_require__(/*! ./filter */ \"./src/js/filter.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nwindow.$ = window.jQuery = _jquery2.default;\n\n// Register service worker\nif ('serviceWorker' in navigator) {\n  navigator.serviceWorker.register('/sw.js');\n}\n\n//# sourceURL=webpack:///./src/js/main.js?");
+eval("\n\nvar _jquery = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\nvar _jquery2 = _interopRequireDefault(_jquery);\n\n__webpack_require__(/*! ./filter */ \"./src/js/filter.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nwindow.$ = window.jQuery = _jquery2.default;\n\n// Register service worker\nif ('serviceWorker' in navigator) {\n  navigator.serviceWorker.register('sw.js');\n}\n\n//# sourceURL=webpack:///./src/js/main.js?");
 
 /***/ }),
 

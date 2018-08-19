@@ -64,14 +64,16 @@ module.exports = {
         collapseWhitespace: true,
         preserveLineBreaks: true,
         minifyURLs: true,
-        removeComments: true
+        removeComments: true,
+        removeAttributeQuotes: true
       },
       meta: {
         author: packageJson.author,
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
         description: `Portfolio by ${config.first_name} ${config.last_name}`,
         robots: 'index, follow'
-      }
+      },
+      chunksSortMode: 'dependency'
     })),
     new SWPrecacheWebpackPlugin({
       cacheId: `${config.first_name.toLowerCase()}-${config.last_name.toLowerCase()}`,
