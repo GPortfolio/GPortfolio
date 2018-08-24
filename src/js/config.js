@@ -69,24 +69,24 @@ module.exports = {
     { name: 'Github', href: 'https://github.com/Alexeykhr', icon: 'github' }
   ],
 
-  /* TODO \/ */
-
+  /* TODO experience */
   experience: [{
     name: ''
   }],
 
+  /**
+   * School, college, university.
+   */
   education: [{
     name: 'Kyiv national university of trade and economics (KNUTE)',
-    degree: 'Bachelor',
+    degree: 'Bachelor\'s degree',
     specialization: 'Computer Software Engineering',
+    href: 'https://www.knteu.kiev.ua/',
+    image: 'static/images/logo/knteu.png',
     year: { receipt: 2016, ending: 2019 }
-  }, {
-    name: '',
-    degree: '',
-    specialization: '',
-    year: { receipt: 0, ending: 0 }
   }],
 
+  /* TODO projects */
   projects: [{
     name: ''
   }]

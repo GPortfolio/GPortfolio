@@ -41,9 +41,9 @@
       </div>
     </aside>
     <div class="h-rs">
-      <div class="h-rs__alert <%= htmlWebpackPlugin.options.find_job ? '' : 'display--none' %>">
-        Find a job
-      </div>
+      <% if (htmlWebpackPlugin.options.find_job) { %>
+        <div class="h-rs__alert">Find a job</div>
+      <% } %>
       <div class="h-rs-wrap">
         <div class="h-rs-wrap__about">
           <h2 class="h-rs-wrap__about__title">About me</h2>
@@ -89,12 +89,34 @@
         <!--<h2>Experience</h2>-->
       <!--</div>-->
     <!--</div>-->
-    <div class="content__block skills">
-      <div class="content__block__title">
+    <div class="content-block education">
+      <div class="content-block__title">
         <h2>Education</h2>
       </div>
-      <div class="content__block__content">
-
+      <div class="content-block__content">
+        <div class="education-list">
+          <% for (const education of htmlWebpackPlugin.options.education) { %>
+            <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank" rel="noopener">
+              <div class="education-item__image">
+                <img src="<%= education.image %>" alt="<%= education.name %>">
+              </div>
+              <div class="education-item-content">
+                <div class="education-item-content__title">
+                  <%= education.name %>
+                </div>
+                <div class="education-item-content__subtitle">
+                  <%= `${education.degree}, ${education.specialization}` %>
+                </div>
+                <div class="education-item-content__dates">
+                  <%= `${education.year.receipt} - ${education.year.ending}` %>
+                </div>
+              </div>
+              <div class="education-item__icon">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              </div>
+            </a>
+          <% } %>
+        </div>
       </div>
     </div>
     <!--<div class="content__block projects">-->
