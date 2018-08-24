@@ -38,6 +38,8 @@
 .h-ls__inner {
   position: relative;
   padding: 50px 50px 30px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .h-ls__image {
@@ -107,11 +109,22 @@
 /* Right side */
 
 .h-rs {
+  position: relative;
+  display: flex;
   padding: 20px;
   width: 100%;
   line-height: 1.5rem;
-  display: flex;
   flex-direction: column;
+}
+
+.h-rs__alert {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #f00;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .9rem;
 }
 
 .h-rs-wrap {
@@ -119,6 +132,9 @@
   > * {
     margin-bottom: 15px;
     overflow: auto;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -171,6 +187,7 @@
   font-size: .7rem;
   letter-spacing: 1px;
   font-weight: bold;
+  margin-top: 10px;
   > a {
     color: #08609f;
     opacity: .8;

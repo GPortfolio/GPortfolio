@@ -37,7 +37,7 @@
   "display": "standalone",
   "start_url": "/",
   "lang": "en-US",
-  "description": "Portfolio by Alexey Khrushch",
+  "description": "Generate a portfolio using webpack",
   "background_color": "#fff",
   "theme_color": "#fff"
 }
