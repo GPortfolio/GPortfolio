@@ -1,6 +1,11 @@
 module.exports = {
 
   /**
+   * Specify a valid URL address. Used in the Open graph and other important places*.
+   */
+  app_url: 'https://alexeykhr.github.io/',
+
+  /**
    * Progressive Web Apps (PWA).
    * @see https://developers.google.com/web/progressive-web-apps/
    */

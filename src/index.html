@@ -9,7 +9,7 @@
   <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
   <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
   <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options.image %>" />
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.image %>" />
 </head>
 <body>
 
@@ -96,7 +96,8 @@
       <div class="content-block__content">
         <div class="education-list">
           <% for (const education of htmlWebpackPlugin.options.education) { %>
-            <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank" rel="noopener">
+            <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank"
+               rel="noopener, nofollow">
               <div class="education-item__image">
                 <img src="<%= education.image %>" alt="<%= education.name %>">
               </div>
