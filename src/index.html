@@ -14,10 +14,10 @@
 <body>
 
 <div id="app">
-  <header id="header" class="box--shadow display--flex color--white mb--40">
+  <header id="header" class="box--shadow display--flex mb--40">
     <aside class="h-ls width--100">
       <div class="h-ls__inner text--center">
-        <div class="h-ls__image radius--circle"></div>
+        <div class="h-ls__image radius--circle box--shadow"></div>
         <div class="h-ls__name mb--5">
           <h1 class="font--bold"><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
@@ -41,7 +41,29 @@
       </div>
     </aside>
     <div class="h-rs">
-
+      <div class="h-rs__title">
+        <h2>About me</h2>
+      </div>
+      <div class="h-rs__content">
+        <div class="h-rs__content__text">
+          <% for (const p of htmlWebpackPlugin.options.about_me) { %>
+            <p><%= p %></p>
+          <% } %>
+        </div>
+        <div class="h-rs__skills">
+          <h2 class="h-rs__skills__title">Skills</h2>
+          <ul>
+            <% for (const li of htmlWebpackPlugin.options.skills) { %>
+              <li><%= li %></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+      <div class="h-rs__time">
+        <a href="<%= htmlWebpackPlugin.options.github_url %>" title="Github repository" target="_blank" rel="noopener">
+          Repository
+        </a>
+      </div>
     </div>
   </header>
 
@@ -56,7 +78,7 @@
       <!--<% } %>-->
     </div>
     <div class="content__block projects">
-      <h2>Projects</h2>
+      <h2>Own projects</h2>
       <div class="projects__filters">
         <!--TODO move to config file-->
         <ul>

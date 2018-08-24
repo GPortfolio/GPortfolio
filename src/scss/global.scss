@@ -14,10 +14,32 @@ body {
 
 a {
   text-decoration: none;
+  color: #f00;
+  transition: .2s;
+  outline: 0;
   &:hover {
     text-decoration: none;
-    outline: 0;
+    color: #333;
   }
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  background: #333;
+  margin: 10px 0;
+  padding: 3px 30px;
+  color: rgba(255, 255, 255, .95);
+  line-height: 1.5rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 ::-webkit-scrollbar {

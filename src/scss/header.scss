@@ -32,7 +32,6 @@
   width: 170px;
   height: 170px;
   line-height: 0;
-  border: 3px solid #343536;
   margin: 0 auto 20px;
   background: url('../../static/images/profile/avatar.png') center;
   background-size: cover;
@@ -98,4 +97,39 @@
 .h-rs {
   padding: 20px;
   width: 100%;
+  line-height: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.h-rs__content {
+  flex: 1;
+}
+
+.h-rs__content__text {
+  text-align: justify;
+  text-indent: 20px;
+}
+
+.h-rs__skills__title {
+  margin-bottom: 20px;
+}
+
+.h-rs__skills li {
+  display: inline-block;
+  padding: 5px 15px 2px;
+  border-bottom: 2px solid #333;
+  margin: 0 10px 10px 0;
+  min-width: 60px;
+  text-align: center;
+  font-weight: bold;
+  float: left;
+}
+
+.h-rs__time {
+  text-align: right;
+  text-transform: uppercase;
+  font-size: .7rem;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
