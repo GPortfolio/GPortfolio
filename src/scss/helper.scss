@@ -1,4 +1,9 @@
+@import "variables";
+
 // Color
+.color--primary {
+  color: $color-primary;
+}
 .color--white {
   color: #fff;
 }

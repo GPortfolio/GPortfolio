@@ -1,3 +1,5 @@
+@import "variables";
+
 * {
   box-sizing: border-box;
 }
@@ -38,7 +40,7 @@ ul {
 ::-webkit-scrollbar-thumb {
   width: 4px;
   height: 4px;
-  background-color: #374654;
+  background-color: $color-primary;
 }
 
 /* Responsive design */
@@ -46,5 +48,11 @@ ul {
 @media only screen and (max-width: 768px) {
   body {
     margin: 20px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  body {
+    margin: 0;
   }
 }

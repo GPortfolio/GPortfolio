@@ -14,7 +14,7 @@
 <body>
 
 <div id="app">
-  <header id="header" class="box--shadow display--flex mb--40">
+  <header id="header" class="box--shadow display--flex">
     <aside class="h-ls width--100">
       <div class="h-ls__inner text--center">
         <div class="h-ls__image radius--circle box--shadow"></div>
@@ -55,7 +55,7 @@
         </div>
         <div class="h-rs-wrap__skills">
           <h2 class="h-rs-wrap__skills__title">Skills</h2>
-          <ul class="font--bold cursor-context">
+          <ul class="font--bold">
             <% for (const skill of htmlWebpackPlugin.options.skills) { %>
               <li><%= skill %></li>
             <% } %>
@@ -63,7 +63,7 @@
         </div>
         <div class="h-rs-wrap__languages">
           <h2 class="h-rs-wrap__languages__title">Languages</h2>
-          <ul class="font--bold cursor-context">
+          <ul class="font--bold">
             <% for (const lang of htmlWebpackPlugin.options.languages) { %>
               <li>
                 <span class="name"><%= lang.name %></span>
@@ -83,17 +83,20 @@
     </div>
   </header>
 
-  <!--<div id="content">-->
+  <div id="content">
     <!--<div class="content__block experience">-->
       <!--<div class="content__block__title">-->
         <!--<h2>Experience</h2>-->
       <!--</div>-->
     <!--</div>-->
-    <!--<div class="content__block skills">-->
-      <!--<div class="content__block__title">-->
-        <!--<h2>Education</h2>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="content__block skills">
+      <div class="content__block__title">
+        <h2>Education</h2>
+      </div>
+      <div class="content__block__content">
+
+      </div>
+    </div>
     <!--<div class="content__block projects">-->
       <!--<div class="content__block__title">-->
         <!--<h2>Own projects</h2>-->
@@ -114,7 +117,7 @@
         <!--<a href="#" data-technologies="open-source, c#, vue, web">Third</a>-->
       <!--</div>-->
     <!--</div>-->
-  <!--</div>-->
+  </div>
 </div>
 
 </body>
