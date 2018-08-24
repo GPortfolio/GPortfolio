@@ -1,6 +1,18 @@
 #header {
   margin-bottom: 40px;
   background: #fff;
+  h2 {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    background: #333;
+    margin: 10px 0 15px;
+    padding: 3px 30px;
+    color: rgba(255, 255, 255, .95);
+    line-height: 1.5rem;
+  }
 }
 
 /* Left side */
@@ -33,7 +45,7 @@
   height: 170px;
   line-height: 0;
   margin: 0 auto 20px;
-  background: url('../../static/images/profile/avatar.png') center;
+  background: url('../../static/images/profile/avatar.jpg') center;
   background-size: cover;
 }
 
@@ -109,6 +121,13 @@
 .h-rs__content__text {
   text-align: justify;
   text-indent: 20px;
+  p {
+    margin: 5px 0 8px;
+  }
+}
+
+.h-rs__skills {
+  margin-top: 15px;
 }
 
 .h-rs__skills__title {
