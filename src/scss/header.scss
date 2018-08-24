@@ -8,7 +8,7 @@
     font-size: 1.1rem;
     border-radius: 10px;
     background: #333;
-    margin: 10px 0 15px;
+    margin: 0 0 15px;
     padding: 3px 30px;
     color: rgba(255, 255, 255, .95);
     line-height: 1.5rem;
@@ -178,5 +178,16 @@
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+/* Responsive design */
+
+@media only screen and (max-width: 768px) {
+  #header {
+    flex-direction: column;
+  }
+  .h-ls {
+    max-width: unset;
   }
 }
