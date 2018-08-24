@@ -1,10 +1,9 @@
 {
-  "name": "alexey-khrushch",
+  "name": "portfolio",
   "version": "1.0.0",
-  "description": "Portfolio by Alexey Khrushch",
+  "description": "Generate a portfolio using webpack",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -p --config webpack.config.js",
     "dev": "webpack --watch"
   },
