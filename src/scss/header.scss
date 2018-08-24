@@ -1,5 +1,6 @@
+@import "variables";
+
 #header {
-  margin-bottom: 40px;
   background: #fff;
   h2 {
     position: relative;
@@ -7,11 +8,13 @@
     text-transform: uppercase;
     font-size: 1.1rem;
     border-radius: 10px;
-    background: #333;
+    background: $color-primary;
     margin: 0 0 15px;
     padding: 3px 30px;
     color: rgba(255, 255, 255, .95);
     line-height: 1.5rem;
+    min-width: 150px;
+    text-align: center;
   }
 }
 
@@ -141,8 +144,9 @@
 .h-rs-wrap__about__content {
   text-align: justify;
   text-indent: 20px;
+  font-size: .9rem;
   p {
-    margin: 5px 0 8px;
+    margin: 5px 0;
   }
 }
 
@@ -152,11 +156,12 @@
   position: relative;
   display: inline-block;
   padding: 5px 15px 2px;
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid $color-primary;
   margin: 0 10px 10px 0;
   min-width: 70px;
   text-align: center;
   float: left;
+  color: $color-primary;
 }
 
 /* Languages */
@@ -189,11 +194,9 @@
   font-weight: bold;
   margin-top: 10px;
   > a {
-    color: #08609f;
-    opacity: .8;
-    transition: .1s;
+    color: #333;
     &:hover {
-      opacity: 1;
+      color: #f00;
     }
   }
 }

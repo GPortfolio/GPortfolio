@@ -13,7 +13,7 @@
 <meta name=theme-color content=#fff><link rel=manifest href=manifest.json><meta name=author content="Alexey Khrushch, alexeykhr@outlook.com"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=description content="Portfolio by Alexey Khrushch"><meta name=robots content="index, follow"><link href=dist/main.css rel=stylesheet></head>
 <body>
 <div id=app>
-<header id=header class="box--shadow display--flex mb--40">
+<header id=header class="box--shadow display--flex">
 <aside class="h-ls width--100">
 <div class="h-ls__inner text--center">
 <div class="h-ls__image radius--circle box--shadow"></div>
@@ -48,9 +48,6 @@
 </div>
 </aside>
 <div class=h-rs>
-<div class="h-rs__alert display--none">
-Find a job
-</div>
 <div class=h-rs-wrap>
 <div class=h-rs-wrap__about>
 <h2 class=h-rs-wrap__about__title>About me</h2>
@@ -61,7 +58,7 @@ Find a job
 </div>
 <div class=h-rs-wrap__skills>
 <h2 class=h-rs-wrap__skills__title>Skills</h2>
-<ul class="font--bold cursor-context">
+<ul class=font--bold>
 <li>PHP</li>
 <li>HTML</li>
 <li>CSS</li>
@@ -76,7 +73,7 @@ Find a job
 </div>
 <div class=h-rs-wrap__languages>
 <h2 class=h-rs-wrap__languages__title>Languages</h2>
-<ul class="font--bold cursor-context">
+<ul class=font--bold>
 <li>
 <span class=name>English</span>
 <span class="skill skill-elementary">Elementary</span>
@@ -99,6 +96,36 @@ Repository
 </div>
 </div>
 </header>
+<div id=content>
+<div class="content-block education">
+<div class=content-block__title>
+<h2>Education</h2>
+</div>
+<div class=content-block__content>
+<div class=education-list>
+<a href=https://www.knteu.kiev.ua/ class=education-item title="Kyiv national university of trade and economics (KNUTE)" target=_blank rel=noopener>
+<div class=education-item__image>
+<img src=static/images/logo/knteu.png alt="Kyiv national university of trade and economics (KNUTE)">
+</div>
+<div class=education-item-content>
+<div class=education-item-content__title>
+Kyiv national university of trade and economics (KNUTE)
+</div>
+<div class=education-item-content__subtitle>
+Bachelor's degree, Computer Software Engineering
+</div>
+<div class=education-item-content__dates>
+2016 - 2019
+</div>
+</div>
+<div class=education-item__icon>
+<i class="fa fa-chevron-right" aria-hidden=true></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
 </div>
 <script type=text/javascript src=dist/main.js></script></body>
 </html>
