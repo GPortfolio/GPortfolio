@@ -10,7 +10,7 @@
 ## Benefits
 
 - Webpack + babel
-- Progressive Web Apps (WPA)
+- Progressive Web Apps (PWA)
 - Only the most necessary dependencies
 - Generating html code (HtmlWebpackPlugin)
 - All information in one file (config.js)
