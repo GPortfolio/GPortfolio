@@ -24,6 +24,12 @@ module.exports = {
   find_job: false,
 
   /**
+   * Display link to Github repository.
+   * Homepage attribute in the package.json file.
+   */
+  display_repository: true,
+
+  /**
    * A little information about yourself (without tags, just text).
    * Each element of the array is wrapped in a <p>.
    */
@@ -84,5 +90,5 @@ module.exports = {
   projects: [{
     name: ''
   }]
-  
+
 }

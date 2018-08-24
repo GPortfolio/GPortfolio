@@ -73,11 +73,13 @@
           </ul>
         </div>
       </div>
-      <div class="h-rs__bottom">
-        <a href="<%= htmlWebpackPlugin.options.github_url %>" title="Github repository" target="_blank" rel="noopener">
-          Repository
-        </a>
-      </div>
+      <% if (htmlWebpackPlugin.options.display_repository) { %>
+        <div class="h-rs__bottom">
+          <a href="<%= htmlWebpackPlugin.options.github_url %>" title="Github repository" target="_blank" rel="noopener">
+            Repository
+          </a>
+        </div>
+      <% } %>
     </div>
   </header>
 
@@ -90,11 +92,6 @@
     <!--<div class="content__block skills">-->
       <!--<div class="content__block__title">-->
         <!--<h2>Education</h2>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="content__block languages">-->
-      <!--<div class="content__block__title">-->
-        <!--<h2>Languages</h2>-->
       <!--</div>-->
     <!--</div>-->
     <!--<div class="content__block projects">-->
