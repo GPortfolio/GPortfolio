@@ -59,6 +59,7 @@ module.exports = {
       filename: './index.html',
       template: './src/index.html',
       full_name: `${config.first_name} ${config.last_name}`,
+      github_url: packageJson.homepage,
       minify: {
         collapseInlineTagWhitespace: true,
         collapseWhitespace: true,

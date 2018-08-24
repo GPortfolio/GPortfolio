@@ -38,6 +38,8 @@
 .h-ls__inner {
   position: relative;
   padding: 50px 50px 30px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .h-ls__image {
@@ -130,6 +132,9 @@
   > * {
     margin-bottom: 15px;
     overflow: auto;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -182,6 +187,7 @@
   font-size: .7rem;
   letter-spacing: 1px;
   font-weight: bold;
+  margin-top: 10px;
   > a {
     color: #08609f;
     opacity: .8;
