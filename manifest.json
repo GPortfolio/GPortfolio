@@ -1,41 +1,42 @@
 {
   "icons": [
     {
-      "src": "dist/icons/icon_512x512.b8d42be49690b1a375b478d42904778d.png",
+      "src": "dist/icons/icon_512x512.fda18772595da0965da63851ab80d85f.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "dist/icons/icon_384x384.dae5949a41a69e55715750e395e41946.png",
+      "src": "dist/icons/icon_384x384.38187d15840a77b1a5a3c5376bff97d8.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "dist/icons/icon_256x256.1e5eb0af606808782a584070802043b5.png",
+      "src": "dist/icons/icon_256x256.9ec08160427e8a35b2289fc534aefee7.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "dist/icons/icon_192x192.d9b34c156cf4b8ab1baabb5cbe0a4336.png",
+      "src": "dist/icons/icon_192x192.66e341089efa13ab9e8d59079dd50aef.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "dist/icons/icon_128x128.95f99ea71dc37d1e53cc011efc6c9432.png",
+      "src": "dist/icons/icon_128x128.c9fe3350e27ebfcc3d63e748c8c7a2f5.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "dist/icons/icon_96x96.5f39d8ebe71a7e6efafee924ca7a8703.png",
+      "src": "dist/icons/icon_96x96.e026afd7302b202557efa6527e94c214.png",
       "sizes": "96x96",
       "type": "image/png"
     }
   ],
   "name": "Alexey Khrushch",
   "short_name": "CV A.K.",
-  "orientation": "portrait",
+  "orientation": "any",
   "display": "standalone",
   "start_url": "/",
+  "lang": "en-US",
   "description": "Portfolio by Alexey Khrushch",
   "background_color": "#fff",
   "theme_color": "#fff"

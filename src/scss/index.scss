@@ -4,10 +4,10 @@
 @import "helper";
 @import "fonts";
 @import "header";
-@import "content";
+@import "content/index";
 
 #app {
-  max-width: 1280px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
 }

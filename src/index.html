@@ -9,82 +9,112 @@
   <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
   <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
   <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
-  <meta property="og:image" content="static/images/profile/avatar.png" />
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.image %>" />
 </head>
 <body>
 
 <div id="app">
-  <header id="header" class="box--shadow">
-    <aside class="ls">
-      <div class="ls__inner text--center">
-        <div class="ls__image radius--circle"></div>
-        <div class="ls__name">
-          <h1><%= htmlWebpackPlugin.options.full_name %></h1>
+  <header id="header" class="box--shadow display--flex mb--40">
+    <aside class="h-ls width--100">
+      <div class="h-ls__inner text--center">
+        <div class="h-ls__image radius--circle box--shadow"></div>
+        <div class="h-ls__name mb--5">
+          <h1 class="font--bold"><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
-        <div class="ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
-        <div class="ls__separator"></div>
-        <div class="ls__pdf">
+        <div class="h-ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
+        <div class="h-ls__separator"></div>
+        <div class="h-ls__pdf">
           <a href="static/files/resume.pdf">Download CV</a>
         </div>
-        <div class="ls__separator"></div>
-        <div class="ls__social">
+        <div class="h-ls__separator"></div>
+        <div class="h-ls__social">
           <ul>
-            <li>
-              <a href="https://twitter.com/<%= htmlWebpackPlugin.options.social.twitter %>" title="Twitter"
-                 target="_blank" rel="noopener">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/<%= htmlWebpackPlugin.options.social.linkedin %>" title="LinkedIn"
-                 target="_blank" rel="noopener">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/<%= htmlWebpackPlugin.options.social.github %>" title="Github"
-                 target="_blank" rel="noopener">
-                <i class="fa fa-github" aria-hidden="true"></i>
-              </a>
-            </li>
+            <% for (const media of htmlWebpackPlugin.options.social_media) { %>
+              <li>
+                <a href="<%= media.href %>" title="<%= media.name %>" target="_blank" rel="noopener">
+                  <i class="fa fa-<%= media.icon %>" aria-hidden="true"></i>
+                </a>
+              </li>
+            <% } %>
           </ul>
         </div>
       </div>
     </aside>
-    <div class="rs">
-
+    <div class="h-rs">
+      <div class="h-rs-wrap">
+        <div class="h-rs-wrap__about">
+          <h2 class="h-rs-wrap__about__title">About me</h2>
+          <div class="h-rs-wrap__about__content">
+            <% for (const p of htmlWebpackPlugin.options.about_me) { %>
+              <p><%= p %></p>
+            <% } %>
+          </div>
+        </div>
+        <div class="h-rs-wrap__skills">
+          <h2 class="h-rs-wrap__skills__title">Skills</h2>
+          <ul class="font--bold cursor-context">
+            <% for (const skill of htmlWebpackPlugin.options.skills) { %>
+              <li><%= skill %></li>
+            <% } %>
+          </ul>
+        </div>
+        <div class="h-rs-wrap__languages">
+          <h2 class="h-rs-wrap__languages__title">Languages</h2>
+          <ul class="font--bold cursor-context">
+            <% for (const lang of htmlWebpackPlugin.options.languages) { %>
+              <li>
+                <span class="name"><%= lang.name %></span>
+                <span class="skill skill-<%= lang.skill.toLowerCase() %>"><%= lang.skill %></span>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+      <div class="h-rs__bottom">
+        <a href="<%= htmlWebpackPlugin.options.github_url %>" title="Github repository" target="_blank" rel="noopener">
+          Repository
+        </a>
+      </div>
     </div>
   </header>
 
-  <div id="content">
-    <div class="content__block jobs box--shadow">
-      <h2>Jobs</h2>
-    </div>
-    <div class="content__block skills box--shadow">
-      <h2>Education</h2>
-      <!--<% for (const e of htmlWebpackPlugin.options.education) { %>-->
-      <!--<%= e.name %>-->
-      <!--<% } %>-->
-    </div>
-    <div class="content__block projects box--shadow">
-      <h2>Projects</h2>
-      <div class="projects__filters">
-        <!--TODO move to config file-->
-        <ul>
-          <li data-filter="open-source">Open Source</li>
-          <li data-filter="php">PHP</li>
-          <li data-filter="web">HTML / CSS / JS</li>
-          <li data-filter="vue">Vue</li>
-          <li data-filter="c#">C#</li>
-        </ul>
-      </div>
-      <div class="projects__list">
-        <a href="#" data-technologies="open-source, php, web">First</a>
-        <a href="#" data-technologies="vue, c#, web">Second</a>
-        <a href="#" data-technologies="open-source, c#, vue, web">Third</a>
-      </div>
-    </div>
-  </div>
+  <!--<div id="content">-->
+    <!--<div class="content__block experience">-->
+      <!--<div class="content__block__title">-->
+        <!--<h2>Experience</h2>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="content__block skills">-->
+      <!--<div class="content__block__title">-->
+        <!--<h2>Education</h2>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="content__block languages">-->
+      <!--<div class="content__block__title">-->
+        <!--<h2>Languages</h2>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="content__block projects">-->
+      <!--<div class="content__block__title">-->
+        <!--<h2>Own projects</h2>-->
+      <!--</div>-->
+      <!--<div class="projects__filters">-->
+        <!--&lt;!&ndash;TODO move to config file&ndash;&gt;-->
+        <!--<ul>-->
+          <!--<li data-filter="open-source">Open Source</li>-->
+          <!--<li data-filter="php">PHP</li>-->
+          <!--<li data-filter="web">HTML / CSS / JS</li>-->
+          <!--<li data-filter="vue">Vue</li>-->
+          <!--<li data-filter="c#">C#</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+      <!--<div class="projects__list">-->
+        <!--<a href="#" data-technologies="open-source, php, web">First</a>-->
+        <!--<a href="#" data-technologies="vue, c#, web">Second</a>-->
+        <!--<a href="#" data-technologies="open-source, c#, vue, web">Third</a>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 </div>
 
 </body>

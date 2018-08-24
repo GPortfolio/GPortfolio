@@ -3,7 +3,7 @@
 }
 
 html {
-  height: 100%;
+  height: calc(100% + 1px);
 }
 
 body {
@@ -14,4 +14,29 @@ body {
 
 a {
   text-decoration: none;
+  color: #f00;
+  transition: .2s;
+  outline: 0;
+  &:hover {
+    text-decoration: none;
+    color: #333;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 4px;
+  height: 4px;
+  background-color: #374654;
 }
