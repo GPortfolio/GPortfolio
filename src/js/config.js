@@ -14,6 +14,7 @@ module.exports = {
   profession: 'Web developer',
   image: 'static/images/profile/avatar.jpg',
   github_url: packageJSON.homepage,
+  find_job: false,
   about_me: [
     'Hi, my name is Alexey Khrushch, I\'m from Ukraine. Now I practicing in SEMALT company, studying in KNUTE university ' +
     'and improving my knowledge on their projects in Github. I like developing my programming skills and I\'m not ' +

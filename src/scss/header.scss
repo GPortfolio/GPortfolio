@@ -107,11 +107,22 @@
 /* Right side */
 
 .h-rs {
+  position: relative;
+  display: flex;
   padding: 20px;
   width: 100%;
   line-height: 1.5rem;
-  display: flex;
   flex-direction: column;
+}
+
+.h-rs__alert {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #f00;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .9rem;
 }
 
 .h-rs-wrap {
