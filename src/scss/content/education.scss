@@ -15,12 +15,16 @@
       opacity: 1;
     }
   }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .education-item__image {
-  width: 80px;
-  min-width: 80px;
+  width: 100%;
+  max-width: 80px;
   height: auto;
+  max-height: 80px;
   margin-right: 30px;
   line-height: 0;
 }
@@ -55,4 +59,27 @@
   min-width: 40px;
   text-align: center;
   transition: .3s;
+}
+
+/* Responsive design */
+
+@media only screen and (max-width: 768px) {
+  .education-item__icon {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .education-item {
+    flex-direction: column;
+    border-left: 0;
+    border-right: 0;
+  }
+  .education-item__image {
+    margin: 0 0 20px;
+    max-width: 100px;
+  }
+  .education-item__icon {
+    display: none;
+  }
 }
