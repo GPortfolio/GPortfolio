@@ -41,25 +41,36 @@
       </div>
     </aside>
     <div class="h-rs">
-      <div class="h-rs__title">
-        <h2>About me</h2>
-      </div>
-      <div class="h-rs__content">
-        <div class="h-rs__content__text">
-          <% for (const p of htmlWebpackPlugin.options.about_me) { %>
-            <p><%= p %></p>
-          <% } %>
+      <div class="h-rs-wrap">
+        <div class="h-rs-wrap__about">
+          <h2 class="h-rs-wrap__about__title">About me</h2>
+          <div class="h-rs-wrap__about__content">
+            <% for (const p of htmlWebpackPlugin.options.about_me) { %>
+              <p><%= p %></p>
+            <% } %>
+          </div>
         </div>
-        <div class="h-rs__skills">
-          <h2 class="h-rs__skills__title">Skills</h2>
-          <ul>
-            <% for (const li of htmlWebpackPlugin.options.skills) { %>
-              <li><%= li %></li>
+        <div class="h-rs-wrap__skills">
+          <h2 class="h-rs-wrap__skills__title">Skills</h2>
+          <ul class="font--bold cursor-context">
+            <% for (const skill of htmlWebpackPlugin.options.skills) { %>
+              <li><%= skill %></li>
+            <% } %>
+          </ul>
+        </div>
+        <div class="h-rs-wrap__languages">
+          <h2 class="h-rs-wrap__languages__title">Languages</h2>
+          <ul class="font--bold cursor-context">
+            <% for (const lang of htmlWebpackPlugin.options.languages) { %>
+              <li>
+                <span class="name"><%= lang.name %></span>
+                <span class="skill skill-<%= lang.skill.toLowerCase() %>"><%= lang.skill %></span>
+              </li>
             <% } %>
           </ul>
         </div>
       </div>
-      <div class="h-rs__time">
+      <div class="h-rs__bottom">
         <a href="<%= htmlWebpackPlugin.options.github_url %>" title="Github repository" target="_blank" rel="noopener">
           Repository
         </a>
@@ -68,18 +79,20 @@
   </header>
 
   <div id="content">
-    <div class="content__block jobs">
+    <div class="content__block experience">
       <div class="content__block__title">
-        <h2>Jobs</h2>
+        <h2>Experience</h2>
       </div>
     </div>
     <div class="content__block skills">
       <div class="content__block__title">
         <h2>Education</h2>
       </div>
-      <!--<% for (const e of htmlWebpackPlugin.options.education) { %>-->
-      <!--<%= e.name %>-->
-      <!--<% } %>-->
+    </div>
+    <div class="content__block languages">
+      <div class="content__block__title">
+        <h2>Languages</h2>
+      </div>
     </div>
     <div class="content__block projects">
       <div class="content__block__title">

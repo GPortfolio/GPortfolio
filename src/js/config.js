@@ -23,6 +23,11 @@ module.exports = {
   skills: [
     'PHP', 'HTML', 'CSS', 'Javascript', 'jQuery', 'SQL', 'Git', 'Laravel', 'Vue.js', 'C#'
   ],
+  languages: [
+    { name: 'English', skill: 'Elementary' },
+    { name: 'Russian', skill: 'Native' },
+    { name: 'Ukrainian', skill: 'Native' }
+  ],
   social_media: [
     { name: 'Twitter', href: 'https://twitter.com/Alexeykhr_', icon: 'twitter' },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/alexeykhr', icon: 'linkedin' },

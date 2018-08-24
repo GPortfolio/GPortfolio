@@ -2759,6 +2759,9 @@ ul {
 .font--bold {
   font-weight: bold; }
 
+.cursor-context {
+  cursor: context-menu; }
+
 /* inconsolata-regular - latin */
 @font-face {
   font-family: 'Inconsolata';
@@ -2864,37 +2867,55 @@ ul {
   display: flex;
   flex-direction: column; }
 
-.h-rs__content {
+.h-rs-wrap {
   flex: 1; }
+  .h-rs-wrap > * {
+    margin-bottom: 15px;
+    overflow: auto; }
 
-.h-rs__content__text {
+.h-rs-wrap__about__content {
   text-align: justify;
   text-indent: 20px; }
-  .h-rs__content__text p {
+  .h-rs-wrap__about__content p {
     margin: 5px 0 8px; }
 
-.h-rs__skills {
-  margin-top: 15px; }
-
-.h-rs__skills__title {
-  margin-bottom: 20px; }
-
-.h-rs__skills li {
+/* Skills */
+.h-rs-wrap__skills li, .h-rs-wrap__languages li {
+  position: relative;
   display: inline-block;
   padding: 5px 15px 2px;
   border-bottom: 2px solid #333;
   margin: 0 10px 10px 0;
-  min-width: 60px;
+  min-width: 70px;
   text-align: center;
-  font-weight: bold;
   float: left; }
 
-.h-rs__time {
+/* Languages */
+.h-rs-wrap__languages li {
+  border: none; }
+
+.h-rs-wrap__languages .skill {
+  font-size: .7rem;
+  vertical-align: super;
+  color: #555; }
+  .h-rs-wrap__languages .skill.skill-elementary {
+    color: #f00; }
+  .h-rs-wrap__languages .skill.skill-native {
+    color: #2ba31c; }
+
+/* Bottom */
+.h-rs__bottom {
   text-align: right;
   text-transform: uppercase;
   font-size: .7rem;
   letter-spacing: 1px;
   font-weight: bold; }
+  .h-rs__bottom > a {
+    color: #08609f;
+    opacity: .8;
+    transition: .1s; }
+    .h-rs__bottom > a:hover {
+      opacity: 1; }
 
 #content h2 {
   display: inline-block;
