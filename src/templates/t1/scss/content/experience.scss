@@ -8,6 +8,7 @@
 .experience-item {
   padding: 20px;
   border-bottom: 1px solid #e7e7e7;
+  overflow: auto;
   &:last-child {
     border-bottom: none;
   }
@@ -23,7 +24,6 @@
 .experience-item-header__image {
   float: right;
   max-width: 150px;
-  max-height: 150px;
   margin: 0 0 0 15px;
   line-height: 0;
 }

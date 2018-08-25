@@ -22,9 +22,7 @@
 
 .education-item__image {
   width: 100%;
-  max-width: 80px;
-  height: auto;
-  max-height: 80px;
+  max-width: 100px;
   margin-right: 30px;
   line-height: 0;
 }
@@ -81,7 +79,6 @@
   }
   .education-item__image {
     margin: 0 0 20px;
-    max-width: 100px;
   }
   .education-item__icon {
     display: none;

@@ -124,7 +124,7 @@
   position: absolute;
   top: 25px;
   right: 25px;
-  color: #f00;
+  color: #c60a0a;
   text-transform: uppercase;
   font-weight: bold;
   font-size: .9rem;
@@ -176,9 +176,11 @@
   .skill {
     font-size: .7rem;
     vertical-align: super;
-    color: #555;
     &.skill-elementary {
       color: #d90000;
+    }
+    &.skill-intermediate {
+      color: #204e7a;
     }
     &.skill-native {
       color: #0e7d00;
