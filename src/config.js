@@ -40,6 +40,7 @@ module.exports = {
   email: 'alexeykhr@outlook.com',
   profession: 'Web developer',
   image: 'static/images/profile/avatar.jpg',
+  cv: 'static/files/cv.pdf',
 
   /**
    * Notify users about a job search.
