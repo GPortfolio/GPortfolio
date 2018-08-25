@@ -41,7 +41,7 @@ diffDate = (date1, date2) => {
         <div class="h-ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="h-ls__separator"></div>
         <div class="h-ls__pdf">
-          <a href="static/files/resume.pdf">Download CV</a>
+          <a href="<%= htmlWebpackPlugin.options.cv %>">Download CV</a>
         </div>
         <div class="h-ls__separator"></div>
         <div class="h-ls__social">
@@ -58,8 +58,8 @@ diffDate = (date1, date2) => {
       </div>
     </aside>
     <div class="h-rs">
-      <% if (htmlWebpackPlugin.options.find_job) { %>
-        <div class="h-rs__alert">Find a job</div>
+      <% if (htmlWebpackPlugin.options.looking_job) { %>
+        <div class="h-rs__alert">Looking a job</div>
       <% } %>
       <div class="h-rs-wrap">
         <div class="h-rs-wrap__about">

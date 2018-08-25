@@ -23,7 +23,7 @@
 .h-ls {
   position: relative;
   max-width: 300px;
-  background: url('../../static/images/pixabay/deer.jpg') no-repeat 50% 75%;
+  background: $background-image no-repeat 50% 75%;
   background-size: cover;
   cursor: default;
   &::before {
@@ -50,7 +50,7 @@
   height: 170px;
   line-height: 0;
   margin: 0 auto 20px;
-  background: url('../../static/images/profile/avatar.jpg') center;
+  background: $avatar-image center;
   background-size: cover;
 }
 
@@ -124,7 +124,7 @@
   position: absolute;
   top: 25px;
   right: 25px;
-  color: #f00;
+  color: #c60a0a;
   text-transform: uppercase;
   font-weight: bold;
   font-size: .9rem;
@@ -176,9 +176,11 @@
   .skill {
     font-size: .7rem;
     vertical-align: super;
-    color: #555;
     &.skill-elementary {
       color: #d90000;
+    }
+    &.skill-intermediate {
+      color: #204e7a;
     }
     &.skill-native {
       color: #0e7d00;
