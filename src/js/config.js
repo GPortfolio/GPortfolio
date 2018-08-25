@@ -77,9 +77,15 @@ module.exports = {
     { name: 'Github', href: 'https://github.com/Alexeykhr', icon: 'github' }
   ],
 
-  /* TODO experience */
+  /**
+   * dates.end - null (Present)
+   */
   experience: [{
-    name: ''
+    name: 'SEMALT',
+    image: 'static/images/logo/semalt.png',
+    position: 'Junior PHP Developer',
+    description: 'Development of internal projects',
+    dates: { start: new Date(2018, 7), end: null }
   }],
 
   /**

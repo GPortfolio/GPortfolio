@@ -14,6 +14,20 @@
 </head>
 <body>
 
+<%
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const humanizeDuration = require('humanize-duration')
+getDate = (date) => {
+  return months[date.getMonth() - 1] + ' ' + date.getFullYear()
+}
+diffDate = (date1, date2) => {
+  return humanizeDuration(date2.getTime() - date1.getTime(), {
+    units: ['y', 'mo'],
+    round: true
+  })
+}
+%>
+
 <div id="app">
   <header id="header" class="box--shadow display--flex">
     <aside class="h-ls width--100">
@@ -66,7 +80,7 @@
             <% for (const lang of htmlWebpackPlugin.options.languages) { %>
               <li>
                 <span class="name"><%= lang.name %></span>
-                <span class="skill skill-<%= lang.skill.toLowerCase() %>"><%= lang.skill %></span>
+                <span class="skill skill-<%= lang.skill.toLowerCase().replace(/\s/g, '_') %>"><%= lang.skill %></span>
               </li>
             <% } %>
           </ul>
@@ -83,11 +97,44 @@
   </header>
 
   <div id="content">
-    <!--<div class="content__block experience">-->
-      <!--<div class="content__block__title">-->
-        <!--<h2>Experience</h2>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="content-block experience">
+      <div class="content-block__title">
+        <h2>Experience</h2>
+      </div>
+      <div class="content-block__content">
+        <div class="experience-list">
+          <% for (const company of htmlWebpackPlugin.options.experience) { %>
+            <div class="experience-item">
+              <div class="experience-item-header">
+                <% if (company.image) { %>
+                  <div class="experience-item-header__image">
+                    <img src="<%= company.image %>" alt="<%= company.name %>">
+                  </div>
+                <% } %>
+                <div class="experience-item-header__position">
+                  <%= company.position %>
+                </div>
+                <div class="experience-item-header__name">
+                  <%= company.name %>
+                </div>
+                <div class="experience-item-header__dates">
+                  <%= getDate(company.dates.start) %> -
+
+                  <% if (company.dates.end) { %>
+                    <%= getDate(company.dates.end) + ' (' + diffDate(company.dates.start, company.dates.end) + ')' %>
+                  <% } else { %>
+                    Current
+                  <% } %>
+                </div>
+              </div>
+              <div class="experience-item__description">
+                <%= company.description %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
     <div class="content-block education">
       <div class="content-block__title">
         <h2>Education</h2>
