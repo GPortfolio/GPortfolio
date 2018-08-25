@@ -5,6 +5,13 @@
 module.exports = {
 
   /**
+   * Used template.
+   * @see templates folder
+   * @param {Number}
+   */
+  app_template: 1,
+
+  /**
    * Specify a valid URL address. Used in the Open graph and other important places*.
    */
   app_url: 'https://alexeykhr.github.io/',
@@ -64,7 +71,6 @@ module.exports = {
 
   /**
    * Knowledge of foreign languages (the skill is also used in css, for color).
-   * @example ../scss/header.scss (languages section)
    */
   languages: [
     { name: 'English', skill: 'Elementary' },

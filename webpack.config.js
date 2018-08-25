@@ -9,7 +9,10 @@ const config = require('./src/config')
 module.exports = {
   mode: 'development',
   entry: {
-    'dist/main': ['./src/js/index.js', './src/scss/index.scss']
+    'dist/main': [
+      `./src/templates/t${config.app_template}/js/index.js`,
+      `./src/templates/t${config.app_template}/scss/index.scss`
+    ]
   },
   output: {
     path: __dirname,
@@ -57,7 +60,7 @@ module.exports = {
     new MiniCssExtractPlugin('[name].css'),
     new HtmlWebpackPlugin(Object.assign({}, config, {
       filename: './index.html',
-      template: './src/index.html',
+      template: `./src/templates/t${config.app_template}/index.html`,
       full_name: `${config.first_name} ${config.last_name}`,
       github_url: packageJson.homepage,
       minify: {
