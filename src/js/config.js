@@ -14,7 +14,8 @@ module.exports = {
    * @see https://developers.google.com/web/progressive-web-apps/
    */
   app_icon: 'static/images/pixabay/resume.png',
-  app_color: '#fff',
+  app_theme: '#485e6c',
+  app_background: '#fff',
 
   /**
    * Basic information about the user + meta tags.
