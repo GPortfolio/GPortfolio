@@ -18,6 +18,12 @@ module.exports = {
   app_background: '#fff',
 
   /**
+   * The Open Graph protocol
+   * @see http://ogp.me/
+   */
+  opg_description: 'Portfolio by Alexey Khrushch. Experience, training, and also implemented projects',
+
+  /**
    * Basic information about the user + meta tags.
    */
   username: 'Alexeykhr',

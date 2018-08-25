@@ -6,11 +6,13 @@
   <link rel="icon" href="favicon.ico">
   <meta property="og:title" content="Portfolio by <%= htmlWebpackPlugin.options.full_name %>" />
   <meta property="og:type" content="profile" />
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.image %>" />
+  <meta property="og:url" content="<%= htmlWebpackPlugin.options.app_url %>" />
+  <meta property="og:description" content="<%= htmlWebpackPlugin.options.about_me %>" />
   <meta property="profile:first_name" content="<%= htmlWebpackPlugin.options.first_name %>" />
   <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
   <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
   <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.image %>" />
 </head>
 <body>
 
@@ -143,7 +145,7 @@ diffDate = (date1, date2) => {
         <div class="education-list">
           <% for (const education of htmlWebpackPlugin.options.education) { %>
             <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank"
-               rel="noopener, nofollow">
+               rel="noopener nofollow">
               <div class="education-item__image">
                 <img src="<%= education.image %>" alt="<%= education.name %>">
               </div>
