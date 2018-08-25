@@ -1,8 +1,7 @@
 {
-  "name": "portfolio",
+  "name": "wportfolio",
   "version": "1.0.0",
-  "description": "Generate a portfolio using webpack",
-  "private": true,
+  "description": "Generate a portfolio (Webpack, ES6, PWA)",
   "scripts": {
     "build": "webpack -p --config webpack.config.js",
     "dev": "webpack --watch"
@@ -11,7 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/Alexeykhr/alexeykhr.github.io.git"
   },
-  "keywords": [],
+  "keywords": [
+    "wportfolio", "portfolio", "cv", "resume"
+  ],
   "author": "Alexey Khrushch, alexeykhr@outlook.com",
   "license": "MIT",
   "bugs": {
@@ -28,6 +29,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
     "hoek": "^5.0.4",
