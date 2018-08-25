@@ -44,13 +44,17 @@
 }
 
 .education-item-content__title {
-  color: $color-primary;
   font-size: 1.1rem;
   font-weight: bold;
 }
 
+.education-item-content__subtitle {
+  color: #222;
+}
+
 .education-item-content__dates {
-  color: #777;
+  color: #666;
+  font-style: italic;
 }
 
 .education-item__icon {

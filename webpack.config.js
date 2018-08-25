@@ -95,8 +95,8 @@ module.exports = {
       name: `${config.first_name} ${config.last_name}`,
       short_name: `CV ${config.first_name.charAt(0)}.${config.last_name.charAt(0)}.`,
       description: packageJson.description,
-      background_color: config.app_color,
-      theme_color: config.app_color,
+      background_color: config.app_background,
+      theme_color: config.app_theme,
       start_url: '/',
       icons: [{
         src: config.app_icon,

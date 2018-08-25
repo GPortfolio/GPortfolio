@@ -14,7 +14,14 @@ module.exports = {
    * @see https://developers.google.com/web/progressive-web-apps/
    */
   app_icon: 'static/images/pixabay/resume.png',
-  app_color: '#fff',
+  app_theme: '#485e6c',
+  app_background: '#fff',
+
+  /**
+   * The Open Graph protocol
+   * @see http://ogp.me/
+   */
+  opg_description: 'Portfolio by Alexey Khrushch. Experience, training, and also implemented projects',
 
   /**
    * Basic information about the user + meta tags.

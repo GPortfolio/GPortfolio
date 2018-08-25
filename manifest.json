@@ -39,5 +39,5 @@
   "lang": "en-US",
   "description": "Generate a portfolio using webpack",
   "background_color": "#fff",
-  "theme_color": "#fff"
+  "theme_color": "#485e6c"
 }

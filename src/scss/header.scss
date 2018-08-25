@@ -170,15 +170,18 @@
   li {
     border: none;
   }
+  .name {
+    color: #222;
+  }
   .skill {
     font-size: .7rem;
     vertical-align: super;
     color: #555;
     &.skill-elementary {
-      color: #de3e3e;
+      color: #d90000;
     }
     &.skill-native {
-      color: #2ba31c;
+      color: #0e7d00;
     }
   }
 }
