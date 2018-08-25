@@ -1,4 +1,13 @@
+/*
+ * NOTE: Supports HTML.
+ */
+
 module.exports = {
+
+  /**
+   * Specify a valid URL address. Used in the Open graph and other important places*.
+   */
+  app_url: 'https://alexeykhr.github.io/',
 
   /**
    * Progressive Web Apps (PWA).
@@ -33,12 +42,11 @@ module.exports = {
    * A little information about yourself (without tags, just text).
    * Each element of the array is wrapped in a <p>.
    */
-  about_me: [
-    'Hi, my name is Alexey Khrushch, I\'m from Ukraine. Now I practicing in SEMALT company, studying in KNUTE university ' +
+  about_me:
+    '<p>Hi, my name is Alexey Khrushch, I\'m from Ukraine. Now I practicing in SEMALT company, studying in KNUTE university ' +
     'and improving my knowledge on their projects in Github. I like developing my programming skills and I\'m not ' +
-    'afraid of difficulties. You also can view source code this site on Github repository.',
-    'Love: IT, Traveling, Sport, Open Source and tea.'
-  ],
+    'afraid of difficulties. You also can view source code this site on Github repository.</p>' +
+    '<p>Love: IT, Traveling, Sport, Open Source and tea.</p>',
 
   /**
    * Programming languages, technologies.
@@ -69,9 +77,17 @@ module.exports = {
     { name: 'Github', href: 'https://github.com/Alexeykhr', icon: 'github' }
   ],
 
-  /* TODO experience */
+  /**
+   * For the date the plugin is used: humanizeDuration. Used only during build, does not fall into js.
+   * dates.end - null (Present)
+   * @see https://github.com/EvanHahn/HumanizeDuration.js
+   */
   experience: [{
-    name: ''
+    name: 'SEMALT',
+    image: 'static/images/logo/semalt.png',
+    position: 'Junior PHP Developer',
+    description: 'Development of internal projects',
+    dates: { start: new Date(2018, 7), end: null }
   }],
 
   /**
@@ -83,7 +99,7 @@ module.exports = {
     specialization: 'Computer Software Engineering',
     href: 'https://www.knteu.kiev.ua/',
     image: 'static/images/logo/knteu.png',
-    year: { receipt: 2016, ending: 2019 }
+    year: { start: 2016, end: 2019 }
   }],
 
   /* TODO projects */

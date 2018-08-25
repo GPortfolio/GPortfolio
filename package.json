@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Alexeykhr/alexeykhr.github.io#readme",
   "dependencies": {
     "font-awesome": "^4.7.0",
+    "humanize-duration": "^3.15.1",
     "jquery": "^3.3.1",
     "normalize.css": "^8.0.0"
   },

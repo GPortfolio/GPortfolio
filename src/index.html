@@ -3,15 +3,30 @@
 <head>
   <meta charset="utf-8">
   <title><%= htmlWebpackPlugin.options.full_name %></title>
+  <link rel="icon" href="favicon.ico">
   <meta property="og:title" content="Portfolio by <%= htmlWebpackPlugin.options.full_name %>" />
   <meta property="og:type" content="profile" />
   <meta property="profile:first_name" content="<%= htmlWebpackPlugin.options.first_name %>" />
   <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
   <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
   <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options.image %>" />
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.image %>" />
 </head>
 <body>
+
+<%
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const humanizeDuration = require('humanize-duration')
+getDate = (date) => {
+  return months[date.getMonth() - 1] + ' ' + date.getFullYear()
+}
+diffDate = (date1, date2) => {
+  return humanizeDuration(date2.getTime() - date1.getTime(), {
+    units: ['y', 'mo'],
+    round: true
+  })
+}
+%>
 
 <div id="app">
   <header id="header" class="box--shadow display--flex">
@@ -48,9 +63,7 @@
         <div class="h-rs-wrap__about">
           <h2 class="h-rs-wrap__about__title">About me</h2>
           <div class="h-rs-wrap__about__content">
-            <% for (const p of htmlWebpackPlugin.options.about_me) { %>
-              <p><%= p %></p>
-            <% } %>
+            <%= htmlWebpackPlugin.options.about_me %>
           </div>
         </div>
         <div class="h-rs-wrap__skills">
@@ -67,7 +80,7 @@
             <% for (const lang of htmlWebpackPlugin.options.languages) { %>
               <li>
                 <span class="name"><%= lang.name %></span>
-                <span class="skill skill-<%= lang.skill.toLowerCase() %>"><%= lang.skill %></span>
+                <span class="skill skill-<%= lang.skill.toLowerCase().replace(/\s/g, '_') %>"><%= lang.skill %></span>
               </li>
             <% } %>
           </ul>
@@ -84,11 +97,44 @@
   </header>
 
   <div id="content">
-    <!--<div class="content__block experience">-->
-      <!--<div class="content__block__title">-->
-        <!--<h2>Experience</h2>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="content-block experience">
+      <div class="content-block__title">
+        <h2>Experience</h2>
+      </div>
+      <div class="content-block__content">
+        <div class="experience-list">
+          <% for (const company of htmlWebpackPlugin.options.experience) { %>
+            <div class="experience-item">
+              <div class="experience-item-header">
+                <% if (company.image) { %>
+                  <div class="experience-item-header__image">
+                    <img src="<%= company.image %>" alt="<%= company.name %>">
+                  </div>
+                <% } %>
+                <div class="experience-item-header__position">
+                  <%= company.position %>
+                </div>
+                <div class="experience-item-header__name">
+                  <%= company.name %>
+                </div>
+                <div class="experience-item-header__dates">
+                  <%= getDate(company.dates.start) %> -
+
+                  <% if (company.dates.end) { %>
+                    <%= getDate(company.dates.end) + ' (' + diffDate(company.dates.start, company.dates.end) + ')' %>
+                  <% } else { %>
+                    Present
+                  <% } %>
+                </div>
+              </div>
+              <div class="experience-item__description">
+                <%= company.description %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
     <div class="content-block education">
       <div class="content-block__title">
         <h2>Education</h2>
@@ -96,7 +142,8 @@
       <div class="content-block__content">
         <div class="education-list">
           <% for (const education of htmlWebpackPlugin.options.education) { %>
-            <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank" rel="noopener">
+            <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank"
+               rel="noopener, nofollow">
               <div class="education-item__image">
                 <img src="<%= education.image %>" alt="<%= education.name %>">
               </div>
@@ -108,7 +155,7 @@
                   <%= `${education.degree}, ${education.specialization}` %>
                 </div>
                 <div class="education-item-content__dates">
-                  <%= `${education.year.receipt} - ${education.year.ending}` %>
+                  <%= `${education.year.start} - ${education.year.end}` %>
                 </div>
               </div>
               <div class="education-item__icon">

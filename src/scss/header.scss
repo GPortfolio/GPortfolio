@@ -10,7 +10,7 @@
     border-radius: 10px;
     background: $color-primary;
     margin: 0 0 15px;
-    padding: 3px 30px;
+    padding: 0 30px;
     color: rgba(255, 255, 255, .95);
     line-height: 1.5rem;
     min-width: 150px;
@@ -161,7 +161,6 @@
   min-width: 70px;
   text-align: center;
   float: left;
-  color: $color-primary;
 }
 
 /* Languages */
@@ -176,7 +175,7 @@
     vertical-align: super;
     color: #555;
     &.skill-elementary {
-      color: #f00;
+      color: #de3e3e;
     }
     &.skill-native {
       color: #2ba31c;
