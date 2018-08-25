@@ -78,7 +78,9 @@ module.exports = {
   ],
 
   /**
+   * For the date the plugin is used: humanizeDuration. Used only during build, does not fall into js.
    * dates.end - null (Present)
+   * @see https://github.com/EvanHahn/HumanizeDuration.js
    */
   experience: [{
     name: 'SEMALT',
