@@ -50,7 +50,9 @@ npm run dev
 ## TODO
 
 - [ ] Multiple templates
-- [ ] i18n
+- [ ] I18n
+- [ ] Common .js file
+- [ ] Projects section
 
 ## License
 
