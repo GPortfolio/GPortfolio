@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Alexeykhr/alexeykhr.github.io/blob/master/static/images/pixabay/resume.png" height="100">
+  <img src="https://github.com/WPortfolio/WPortfolio/blob/master/static/images/pixabay/resume.png" height="100">
 </p>
 <p align="center">
   <a href="https://alexeykhr.github.io/">Example: Portfolio by Alexey Khrushch (app_template: 1)</a>
