@@ -1,13 +1,15 @@
+@import "../../../base";
+
 /* inconsolata-regular - latin */
 @font-face {
   font-family: 'Inconsolata';
   font-style: normal;
   font-weight: 400;
-  src: url('../../../../static/fonts/inconsolata/inconsolata-v16-latin-regular.eot'); /* IE9 Compat Modes */
+  src: getUrl('static/fonts/inconsolata/inconsolata-v16-latin-regular.eot'); /* IE9 Compat Modes */
   src: local('Inconsolata Regular'), local('Inconsolata-Regular'),
-  url('../../../../static/fonts/inconsolata/inconsolata-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('../../../../static/fonts/inconsolata/inconsolata-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-  url('../../../../static/fonts/inconsolata/inconsolata-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
-  url('../../../../static/fonts/inconsolata/inconsolata-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-  url('../../../../static/fonts/inconsolata/inconsolata-v16-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
+  getUrl('static/fonts/inconsolata/inconsolata-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  getUrl('static/fonts/inconsolata/inconsolata-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  getUrl('static/fonts/inconsolata/inconsolata-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+  getUrl('static/fonts/inconsolata/inconsolata-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  getUrl('static/fonts/inconsolata/inconsolata-v16-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
 }

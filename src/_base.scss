@@ -1,7 +1,14 @@
 /*
+ * Do not touch, to fix the paths to the files.
+ */
+@function getUrl($uri) {
+  @return url('../../../../' + $uri);
+}
+
+/*
  * Used in all templates
  */
-// FIXME Path
-$avatar-image: url('../../../../static/images/profile/avatar.jpg');
 
-$background-image: url('../../../../static/images/pixabay/deer.jpg');
+$avatar-image: getUrl('static/images/profile/avatar.jpg');
+
+$background-image: getUrl('static/images/pixabay/deer.jpg');
