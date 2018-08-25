@@ -49,9 +49,7 @@
         <div class="h-rs-wrap__about">
           <h2 class="h-rs-wrap__about__title">About me</h2>
           <div class="h-rs-wrap__about__content">
-            <% for (const p of htmlWebpackPlugin.options.about_me) { %>
-              <p><%= p %></p>
-            <% } %>
+            <%= htmlWebpackPlugin.options.about_me %>
           </div>
         </div>
         <div class="h-rs-wrap__skills">
@@ -110,7 +108,7 @@
                   <%= `${education.degree}, ${education.specialization}` %>
                 </div>
                 <div class="education-item-content__dates">
-                  <%= `${education.year.receipt} - ${education.year.ending}` %>
+                  <%= `${education.year.start} - ${education.year.end}` %>
                 </div>
               </div>
               <div class="education-item__icon">

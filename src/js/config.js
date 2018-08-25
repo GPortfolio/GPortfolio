@@ -1,3 +1,7 @@
+/*
+ * NOTE: Supports HTML.
+ */
+
 module.exports = {
 
   /**
@@ -38,12 +42,11 @@ module.exports = {
    * A little information about yourself (without tags, just text).
    * Each element of the array is wrapped in a <p>.
    */
-  about_me: [
-    'Hi, my name is Alexey Khrushch, I\'m from Ukraine. Now I practicing in SEMALT company, studying in KNUTE university ' +
+  about_me:
+    '<p>Hi, my name is Alexey Khrushch, I\'m from Ukraine. Now I practicing in SEMALT company, studying in KNUTE university ' +
     'and improving my knowledge on their projects in Github. I like developing my programming skills and I\'m not ' +
-    'afraid of difficulties. You also can view source code this site on Github repository.',
-    'Love: IT, Traveling, Sport, Open Source and tea.'
-  ],
+    'afraid of difficulties. You also can view source code this site on Github repository.</p>' +
+    '<p>Love: IT, Traveling, Sport, Open Source and tea.</p>',
 
   /**
    * Programming languages, technologies.
@@ -88,7 +91,7 @@ module.exports = {
     specialization: 'Computer Software Engineering',
     href: 'https://www.knteu.kiev.ua/',
     image: 'static/images/logo/knteu.png',
-    year: { receipt: 2016, ending: 2019 }
+    year: { start: 2016, end: 2019 }
   }],
 
   /* TODO projects */
