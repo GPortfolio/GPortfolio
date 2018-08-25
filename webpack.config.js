@@ -3,8 +3,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const config = require('./src/js/config')
 const packageJson = require('./package')
+const config = require('./src/config')
 
 module.exports = {
   mode: 'development',

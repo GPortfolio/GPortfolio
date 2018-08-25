@@ -29,7 +29,7 @@
 }
 
 .experience-item-header__position {
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -51,6 +51,10 @@
 }
 
 @media only screen and (max-width: 425px) {
+  .experience-list {
+    border-left: 0;
+    border-right: 0;
+  }
   .experience-item-header__image {
     float: unset;
     margin: 0 auto 20px;
