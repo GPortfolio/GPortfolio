@@ -16,7 +16,7 @@ module.exports = {
    * @param {String} app_url - paste the full URL to your page.
    * @example https://your_login.github.io/, https://your_login.github.io/portfolio
    */
-  app_url: 'https://none.github.io/',
+  app_url: 'https://wportfolio.github.io/',
 
   /**
    * Progressive Web Apps (PWA).
@@ -61,6 +61,14 @@ module.exports = {
   display_repository: true,
 
   /**
+   * Display different sections on the site.
+   * @param {Boolean}
+   */
+  display_projects: true,
+  display_education: true,
+  display_experience: true,
+
+  /**
    * A little information about yourself.
    */
   about_me:
@@ -98,7 +106,7 @@ module.exports = {
     { name: 'Facebook', href: 'https://facebook.com/profile', icon: 'facebook', },
     { name: 'Twitter', href: 'https://twitter.com/profile', icon: 'twitter' },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/profile', icon: 'linkedin' },
-    { name: 'Reddit', href: 'https://reddit.com/', icon: 'reddit ' },
+    { name: 'Reddit', href: 'https://reddit.com/', icon: 'reddit' },
     { name: 'Dribbble', href: 'https://dribbble.com/', icon: 'dribbble' }
   ],
 
@@ -137,7 +145,7 @@ module.exports = {
   }],
 
   /**
-   * List of implemented projects.
+   * List of implemented projects with filters.
    */
   projects: {
     filters: [
@@ -190,6 +198,6 @@ module.exports = {
       filters: ['photshop', 'ai'],
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     }]
-  },
+  }
 
 }
