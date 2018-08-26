@@ -58,7 +58,7 @@ module.exports = {
    * @param {Boolean} display_repository
    * @see package.json - homepage attribute
    */
-  display_repository: false,
+  display_repository: true,
 
   /**
    * A little information about yourself.
@@ -84,7 +84,8 @@ module.exports = {
    */
   languages: [
     { name: 'English', skill: 'Native' },
-    { name: 'German', skill: 'Intermediate' }
+    { name: 'German', skill: 'Intermediate' },
+    { name: 'French', skill: 'Elementary' }
   ],
 
   /**
@@ -96,7 +97,9 @@ module.exports = {
   social_media: [
     { name: 'Facebook', href: 'https://facebook.com/profile', icon: 'facebook', },
     { name: 'Twitter', href: 'https://twitter.com/profile', icon: 'twitter' },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/profile', icon: 'linkedin' }
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/profile', icon: 'linkedin' },
+    { name: 'Reddit', href: 'https://reddit.com/', icon: 'reddit ' },
+    { name: 'Dribbble', href: 'https://dribbble.com/', icon: 'dribbble' }
   ],
 
   /**
@@ -133,9 +136,60 @@ module.exports = {
     year: { start: 2011, end: 2015 }
   }],
 
-  /* TODO projects */
-  projects: [{
-    name: ''
-  }]
+  /**
+   * List of implemented projects.
+   */
+  projects: {
+    filters: [
+      { name: 'Open Source', value: 'open-source' },
+      { name: 'Photoshop', value: 'photoshop' },
+      { name: 'HTML / CSS / JS', value: 'web' },
+      { name: 'Vue.js', value: 'vue' },
+      { name: 'Adobe Illustrator', value: 'ai' }
+    ],
+    items: [{
+      name: 'The standard Lorem Ipsum passage',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p1.png',
+      filters: ['open-source', 'web', 'ai'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    }, {
+      name: 'Section 1.10.32 of "de Finibus Bonorum et Malorum"',
+      href: null,
+      image: 'static/images/projects/p2.png',
+      filters: ['open-source', 'web', 'vue'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: '1914 translation by H. Rackham',
+      href: null,
+      image: 'static/images/projects/p3.png',
+      filters: ['open-source', 'photoshop', 'ai'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: 'Section 1.10.33 of "de Finibus Bonorum et Malorum"',
+      href: null,
+      image: 'static/images/projects/p4.png',
+      filters: ['photoshop'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: '1914 translation by H. Rackham',
+      href: null,
+      image: 'static/images/projects/p5.png',
+      filters: ['vue'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: 'Where can I get some?',
+      href: null,
+      image: 'static/images/projects/p6.png',
+      filters: ['web', 'vue'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: 'Lorem Ipsum',
+      href: null,
+      image: 'static/images/projects/p7.png',
+      filters: ['photshop', 'ai'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    }]
+  },
 
 }
