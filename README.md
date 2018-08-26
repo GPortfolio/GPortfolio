@@ -2,7 +2,7 @@
   <img src="https://github.com/WPortfolio/WPortfolio/blob/master/static/images/pixabay/resume.png" height="100">
 </p>
 <p align="center">
-  <a href="https://alexeykhr.github.io/">Example: Portfolio by Alexey Khrushch (app_template: 1)</a>
+  <a href="https://wportfolio.github.io/">Example (app_template: 1)</a>
 </p>
 
 > Generate a portfolio using webpack
