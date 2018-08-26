@@ -28,6 +28,9 @@ diffDate = (date1, date2) => {
     round: true
   })
 }
+safeQuotes = (str) => {
+  return str.replace(/"/g, '&quot;')
+}
 %>
 
 <div id="app">
@@ -48,7 +51,7 @@ diffDate = (date1, date2) => {
           <ul>
             <% for (const media of htmlWebpackPlugin.options.social_media) { %>
               <li>
-                <a href="<%= media.href %>" title="<%= media.name %>" target="_blank" rel="noopener">
+                <a href="<%= media.href %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
                   <i class="fa fa-<%= media.icon %>" aria-hidden="true"></i>
                 </a>
               </li>
@@ -111,7 +114,7 @@ diffDate = (date1, date2) => {
                 <div class="experience-item-header">
                   <% if (company.image) { %>
                     <div class="experience-item-header__image">
-                      <img src="<%= company.image %>" alt="<%= company.name %>">
+                      <img src="<%= company.image %>" alt="<%= safeQuotes(company.name) %>">
                     </div>
                   <% } %>
                   <div class="experience-item-header__position">
@@ -148,10 +151,10 @@ diffDate = (date1, date2) => {
         <div class="content-block__content">
           <div class="education-list">
             <% for (const education of htmlWebpackPlugin.options.education) { %>
-              <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank"
+              <a href="<%= education.href %>" class="education-item" title="<%= safeQuotes(education.name) %>" target="_blank"
                  rel="noopener nofollow">
                 <div class="education-item__image">
-                  <img src="<%= education.image %>" alt="<%= education.name %>">
+                  <img src="<%= education.image %>" alt="<%= safeQuotes(education.name) %>">
                 </div>
                 <div class="education-item-content">
                   <div class="education-item-content__title">
@@ -192,7 +195,27 @@ diffDate = (date1, date2) => {
           <div class="projects-list">
             <ul>
               <% for (const project of htmlWebpackPlugin.options.projects.items) { %>
-                <li data-technologies="<%= project.filters.join(', ') %>"><%= project.name %></li>
+                <li data-technologies="<%= project.filters.join(', ') %>">
+                  <div class="project-item">
+                    <% if (project.href) { %>
+                      <a href="<%= project.href %>" class="project-item__link" title="<%= safeQuotes(project.name) %>"
+                         target="_blank" rel="noopener">
+                      </a>
+                    <% } %>
+                    <div class="project-item__image">
+                      <img src="<%= project.image %>" alt="<%= safeQuotes(project.name) %>">
+                      <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </div>
+                    <div class="project-item__content">
+                      <div class="project-item__content__name">
+                        <%= project.name %>
+                      </div>
+                      <div class="project-item__content__description">
+                        <%= project.description %>
+                      </div>
+                    </div>
+                  </div>
+                </li>
               <% } %>
             </ul>
           </div>
@@ -200,6 +223,8 @@ diffDate = (date1, date2) => {
       </div>
     <% } %>
   </div>
+
+  <!--TODO Footer-->
 </div>
 
 </body>

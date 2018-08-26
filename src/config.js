@@ -146,6 +146,7 @@ module.exports = {
 
   /**
    * List of implemented projects with filters.
+   * projects.items.href - null (link is not created)
    */
   projects: {
     filters: [
@@ -163,37 +164,37 @@ module.exports = {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     }, {
       name: 'Section 1.10.32 of "de Finibus Bonorum et Malorum"',
-      href: null,
+      href: 'https://example.com/',
       image: 'static/images/projects/p2.png',
       filters: ['open-source', 'web', 'vue'],
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     },  {
       name: '1914 translation by H. Rackham',
-      href: null,
+      href: 'https://example.com/',
       image: 'static/images/projects/p3.png',
       filters: ['open-source', 'photoshop', 'ai'],
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     },  {
       name: 'Section 1.10.33 of "de Finibus Bonorum et Malorum"',
-      href: null,
+      href: 'https://example.com/',
       image: 'static/images/projects/p4.png',
       filters: ['photoshop'],
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     },  {
       name: '1914 translation by H. Rackham',
-      href: null,
+      href: 'https://example.com/',
       image: 'static/images/projects/p5.png',
       filters: ['vue'],
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     },  {
       name: 'Where can I get some?',
-      href: null,
+      href: 'https://example.com/',
       image: 'static/images/projects/p6.png',
       filters: ['web', 'vue'],
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     },  {
       name: 'Lorem Ipsum',
-      href: null,
+      href: 'https://example.com/',
       image: 'static/images/projects/p7.png',
       filters: ['photshop', 'ai'],
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'

@@ -9,6 +9,9 @@ import $ from 'jquery'
  */
 const filters = {}
 
+/**
+ * The reference to the DOM element is added when initializing.
+ */
 let filtersEl
 let listEl
 
@@ -39,14 +42,14 @@ const updateList = () => {
 
     for (const filter of activeFilters) {
       if (!technologies.includes(filter)) {
-        $(el).hide(300)
+        $(el).hide(200)
         isFind = false
         break
       }
     }
 
     if (isFind) {
-      $(el).show(300)
+      $(el).show(200)
     }
   })
 }

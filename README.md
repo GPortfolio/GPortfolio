@@ -53,7 +53,8 @@ npm run dev
 - [ ] Multiple templates
 - [ ] I18n
 - [ ] Common .js file
-- [ ] Projects section
+- [x] Projects section
+- [ ] Footer
 
 ## License
 
