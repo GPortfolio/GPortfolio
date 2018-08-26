@@ -12,7 +12,6 @@
     float: left;
     margin: 0 15px 15px 0;
     border: 1px solid #e7e7e7;
-    transition: .2s;
     &:hover {
       background: #f1f1f1;
     }
@@ -31,6 +30,7 @@
   background: #fff;
   padding: 20px;
   overflow: auto;
+  min-height: 300px;
   ul {
     display: grid;
     grid-gap: 20px;
@@ -40,6 +40,7 @@
 
 .project-item {
   position: relative;
+  height: 100%;
   &:hover {
     .project-item__link + .project-item__image {
       &:after {
@@ -63,7 +64,7 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: .2s;
+    transition: .3s;
     background: rgba(0, 0, 0, .7);
   }
   .fa-external-link {
@@ -78,6 +79,7 @@
     color: #fff;
     font-size: 3rem;
     opacity: 0;
+    transition: .3s;
     z-index: 99;
   }
 }
