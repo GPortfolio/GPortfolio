@@ -34,7 +34,7 @@
   ul {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -111,7 +111,7 @@
 
 @media only screen and (max-width: 768px) {
   .projects-list ul {
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
