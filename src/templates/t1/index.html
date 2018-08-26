@@ -44,7 +44,9 @@ safeQuotes = (str) => {
         <div class="h-ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="h-ls__separator"></div>
         <div class="h-ls__pdf">
-          <a href="<%= htmlWebpackPlugin.options.cv %>">Download CV</a>
+          <a href="<%= htmlWebpackPlugin.options.cv %>" <%= htmlWebpackPlugin.options.cv ? '' : 'disabled' %>>
+            Download CV
+          </a>
         </div>
         <div class="h-ls__separator"></div>
         <div class="h-ls__social">

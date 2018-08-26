@@ -25,6 +25,11 @@ a {
     text-decoration: none;
     color: #333;
   }
+  &[disabled] {
+    pointer-events: none;
+    cursor: default;
+    opacity: .9;
+  }
 }
 
 ul {
