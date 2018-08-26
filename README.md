@@ -2,7 +2,7 @@
   <img src="https://github.com/WPortfolio/WPortfolio/blob/master/static/images/pixabay/resume.png" height="100">
 </p>
 <p align="center">
-  <a href="https://wportfolio.github.io/">Example (app_template: 1)</a>
+  <a href="https://wportfolio.github.io/">Demo page (app_template: 1)</a>
 </p>
 
 > Generate a portfolio using webpack
@@ -35,6 +35,20 @@ Select your template, fill in the information config.js, _base.scss files and up
 
 *{login} - your username on Github.
 
+## How to create your own template?
+
+- Create a new folder "./src/templates/t{number}"
+- Create 3 files: "index.html", "scss/index.scss", "js/index.js"
+- Change the app_template (config.js) number to your {number}
+- Console "npm run dev"
+- Watch for changes in the compiled file "./index.html"
+- When the file is finished: console "npm run build"
+- Push changes to the server
+
+*{number} - this is app_template.
+
+**Use htmlWebpackPlugin as in the first template, creating a new template
+
 ## Development Setup
 
 ``` bash
@@ -47,14 +61,6 @@ npm run build
 # running the webpack in watch mode
 npm run dev
 ```
-
-## TODO
-
-- [ ] Multiple templates
-- [ ] I18n
-- [ ] Common .js file
-- [x] Projects section
-- [ ] Footer
 
 ## License
 
