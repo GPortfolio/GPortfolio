@@ -12,10 +12,11 @@ module.exports = {
   app_template: 1,
 
   /**
-   * Specify a valid URL address. Used in the Open graph and other important places*.
-   * @param {String} app_url - "login" change to your login on Github'e.
+   * Specify a valid URL address. Used in the Open Graph and PWA.
+   * @param {String} app_url - paste the full URL to your page.
+   * @example https://your_login.github.io/, https://your_login.github.io/portfolio
    */
-  app_url: 'https://login.github.io/',
+  app_url: 'https://none.github.io/',
 
   /**
    * Progressive Web Apps (PWA).
