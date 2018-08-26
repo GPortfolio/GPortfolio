@@ -110,7 +110,7 @@ safeQuotes = (str) => {
           <h2>Experience</h2>
         </div>
         <div class="content-block__content">
-          <div class="experience-list">
+          <div class="experience-list box--shadow">
             <% for (const company of htmlWebpackPlugin.options.experience) { %>
               <div class="experience-item">
                 <div class="experience-item-header">
@@ -153,8 +153,8 @@ safeQuotes = (str) => {
         <div class="content-block__content">
           <div class="education-list">
             <% for (const education of htmlWebpackPlugin.options.education) { %>
-              <a href="<%= education.href %>" class="education-item" title="<%= safeQuotes(education.name) %>" target="_blank"
-                 rel="noopener nofollow">
+              <a href="<%= education.href %>" class="education-item box--shadow" title="<%= safeQuotes(education.name) %>"
+                 target="_blank" rel="noopener nofollow">
                 <div class="education-item__image">
                   <img src="<%= education.image %>" alt="<%= safeQuotes(education.name) %>">
                 </div>
@@ -194,7 +194,7 @@ safeQuotes = (str) => {
               </ul>
             </div>
           </div>
-          <div class="projects-list">
+          <div class="projects-list box--shadow">
             <ul>
               <% for (const project of htmlWebpackPlugin.options.projects.items) { %>
                 <li data-technologies="<%= project.filters.join(', ') %>">
@@ -225,8 +225,6 @@ safeQuotes = (str) => {
       </div>
     <% } %>
   </div>
-
-  <!--TODO Footer-->
 </div>
 
 </body>
