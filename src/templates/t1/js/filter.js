@@ -42,14 +42,14 @@ const updateList = () => {
 
     for (const filter of activeFilters) {
       if (!technologies.includes(filter)) {
-        $(el).hide(200)
+        $(el).hide()
         isFind = false
         break
       }
     }
 
     if (isFind) {
-      $(el).show(200)
+      $(el).show()
     }
   })
 }
