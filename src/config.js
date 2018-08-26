@@ -12,10 +12,11 @@ module.exports = {
   app_template: 1,
 
   /**
-   * Specify a valid URL address. Used in the Open graph and other important places*.
-   * @param {String} app_url - "login" change to your login on Github'e.
+   * Specify a valid URL address. Used in the Open Graph and PWA.
+   * @param {String} app_url - paste the full URL to your page.
+   * @example https://your_login.github.io/, https://your_login.github.io/portfolio
    */
-  app_url: 'https://login.github.io/',
+  app_url: 'https://wportfolio.github.io/',
 
   /**
    * Progressive Web Apps (PWA).
@@ -57,7 +58,15 @@ module.exports = {
    * @param {Boolean} display_repository
    * @see package.json - homepage attribute
    */
-  display_repository: false,
+  display_repository: true,
+
+  /**
+   * Display different sections on the site.
+   * @param {Boolean}
+   */
+  display_projects: true,
+  display_education: true,
+  display_experience: true,
 
   /**
    * A little information about yourself.
@@ -83,7 +92,8 @@ module.exports = {
    */
   languages: [
     { name: 'English', skill: 'Native' },
-    { name: 'German', skill: 'Intermediate' }
+    { name: 'German', skill: 'Intermediate' },
+    { name: 'French', skill: 'Elementary' }
   ],
 
   /**
@@ -95,7 +105,9 @@ module.exports = {
   social_media: [
     { name: 'Facebook', href: 'https://facebook.com/profile', icon: 'facebook', },
     { name: 'Twitter', href: 'https://twitter.com/profile', icon: 'twitter' },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/profile', icon: 'linkedin' }
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/profile', icon: 'linkedin' },
+    { name: 'Reddit', href: 'https://reddit.com/', icon: 'reddit' },
+    { name: 'Dribbble', href: 'https://dribbble.com/', icon: 'dribbble' }
   ],
 
   /**
@@ -132,9 +144,61 @@ module.exports = {
     year: { start: 2011, end: 2015 }
   }],
 
-  /* TODO projects */
-  projects: [{
-    name: ''
-  }]
+  /**
+   * List of implemented projects with filters.
+   * projects.items.href - null (link is not created)
+   */
+  projects: {
+    filters: [
+      { name: 'Open Source', value: 'open-source' },
+      { name: 'Photoshop', value: 'photoshop' },
+      { name: 'HTML / CSS / JS', value: 'web' },
+      { name: 'Vue.js', value: 'vue' },
+      { name: 'Adobe Illustrator', value: 'ai' }
+    ],
+    items: [{
+      name: 'The standard Lorem Ipsum passage',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p1.png',
+      filters: ['open-source', 'web', 'ai'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    }, {
+      name: 'Section 1.10.32 of "de Finibus Bonorum et Malorum"',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p2.png',
+      filters: ['open-source', 'web', 'vue'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: '1914 translation by H. Rackham',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p3.png',
+      filters: ['open-source', 'photoshop', 'ai'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: 'Section 1.10.33 of "de Finibus Bonorum et Malorum"',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p4.png',
+      filters: ['photoshop'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: '1914 translation by H. Rackham',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p5.png',
+      filters: ['vue'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: 'Where can I get some?',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p6.png',
+      filters: ['web', 'vue'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    },  {
+      name: 'Lorem Ipsum',
+      href: 'https://example.com/',
+      image: 'static/images/projects/p7.png',
+      filters: ['photshop', 'ai'],
+      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+    }]
+  }
 
 }

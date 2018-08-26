@@ -86,7 +86,7 @@ module.exports = {
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'sw.js',
       minify: true,
-      navigateFallback: '/',
+      navigateFallback: config.app_url,
       staticFileGlobsIgnorePatterns: [
         /\.map$/,
         /asset-manifest\.json$/
@@ -102,7 +102,7 @@ module.exports = {
       description: packageJson.description,
       background_color: config.app_background,
       theme_color: config.app_theme,
-      start_url: '/',
+      start_url: config.app_url,
       icons: [{
         src: config.app_icon,
         sizes: [96, 128, 192, 256, 384, 512],

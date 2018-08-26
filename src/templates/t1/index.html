@@ -8,7 +8,7 @@
   <meta property="og:type" content="profile" />
   <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.image %>" />
   <meta property="og:url" content="<%= htmlWebpackPlugin.options.app_url %>" />
-  <meta property="og:description" content="<%= htmlWebpackPlugin.options.about_me %>" />
+  <meta property="og:description" content="<%= htmlWebpackPlugin.options.opg_description %>" />
   <meta property="profile:first_name" content="<%= htmlWebpackPlugin.options.first_name %>" />
   <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
   <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
@@ -28,6 +28,9 @@ diffDate = (date1, date2) => {
     round: true
   })
 }
+safeQuotes = (str) => {
+  return str.replace(/"/g, '&quot;')
+}
 %>
 
 <div id="app">
@@ -41,14 +44,16 @@ diffDate = (date1, date2) => {
         <div class="h-ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="h-ls__separator"></div>
         <div class="h-ls__pdf">
-          <a href="<%= htmlWebpackPlugin.options.cv %>">Download CV</a>
+          <a href="<%= htmlWebpackPlugin.options.cv %>" <%= htmlWebpackPlugin.options.cv ? '' : 'disabled' %>>
+            Download CV
+          </a>
         </div>
         <div class="h-ls__separator"></div>
         <div class="h-ls__social">
           <ul>
             <% for (const media of htmlWebpackPlugin.options.social_media) { %>
               <li>
-                <a href="<%= media.href %>" title="<%= media.name %>" target="_blank" rel="noopener">
+                <a href="<%= media.href %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
                   <i class="fa fa-<%= media.icon %>" aria-hidden="true"></i>
                 </a>
               </li>
@@ -99,95 +104,126 @@ diffDate = (date1, date2) => {
   </header>
 
   <div id="content">
-    <div class="content-block experience">
-      <div class="content-block__title">
-        <h2>Experience</h2>
-      </div>
-      <div class="content-block__content">
-        <div class="experience-list">
-          <% for (const company of htmlWebpackPlugin.options.experience) { %>
-            <div class="experience-item">
-              <div class="experience-item-header">
-                <% if (company.image) { %>
-                  <div class="experience-item-header__image">
-                    <img src="<%= company.image %>" alt="<%= company.name %>">
-                  </div>
-                <% } %>
-                <div class="experience-item-header__position">
-                  <%= company.position %>
-                </div>
-                <div class="experience-item-header__name">
-                  <%= company.name %>
-                </div>
-                <div class="experience-item-header__dates">
-                  <%= getDate(company.dates.start) %> -
-
-                  <% if (company.dates.end) { %>
-                    <%= getDate(company.dates.end) + ' (' + diffDate(company.dates.start, company.dates.end) + ')' %>
-                  <% } else { %>
-                    Present
+    <% if (htmlWebpackPlugin.options.display_experience) { %>
+      <div class="content-block experience">
+        <div class="content-block__title">
+          <h2>Experience</h2>
+        </div>
+        <div class="content-block__content">
+          <div class="experience-list box--shadow">
+            <% for (const company of htmlWebpackPlugin.options.experience) { %>
+              <div class="experience-item">
+                <div class="experience-item-header">
+                  <% if (company.image) { %>
+                    <div class="experience-item-header__image">
+                      <img src="<%= company.image %>" alt="<%= safeQuotes(company.name) %>">
+                    </div>
                   <% } %>
+                  <div class="experience-item-header__position">
+                    <%= company.position %>
+                  </div>
+                  <div class="experience-item-header__name">
+                    <%= company.name %>
+                  </div>
+                  <div class="experience-item-header__dates">
+                    <%= getDate(company.dates.start) %> -
+
+                    <% if (company.dates.end) { %>
+                      <%= getDate(company.dates.end) + ' (' + diffDate(company.dates.start, company.dates.end) + ')' %>
+                    <% } else { %>
+                      Present
+                    <% } %>
+                  </div>
+                </div>
+                <div class="experience-item__description">
+                  <%= company.description %>
                 </div>
               </div>
-              <div class="experience-item__description">
-                <%= company.description %>
-              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.display_education) { %>
+      <div class="content-block education">
+        <div class="content-block__title">
+          <h2>Education</h2>
+        </div>
+        <div class="content-block__content">
+          <div class="education-list">
+            <% for (const education of htmlWebpackPlugin.options.education) { %>
+              <a href="<%= education.href %>" class="education-item box--shadow" title="<%= safeQuotes(education.name) %>"
+                 target="_blank" rel="noopener nofollow">
+                <div class="education-item__image">
+                  <img src="<%= education.image %>" alt="<%= safeQuotes(education.name) %>">
+                </div>
+                <div class="education-item-content">
+                  <div class="education-item-content__title">
+                    <%= education.name %>
+                  </div>
+                  <div class="education-item-content__subtitle">
+                    <%= `${education.degree}, ${education.specialization}` %>
+                  </div>
+                  <div class="education-item-content__dates">
+                    <%= `${education.year.start} - ${education.year.end}` %>
+                  </div>
+                </div>
+                <div class="education-item__icon">
+                  <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </div>
+              </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.display_projects) { %>
+      <div class="content-block projects">
+        <div class="content-block__title">
+          <h2>Projects</h2>
+        </div>
+        <div class="content-block__content">
+          <div class="projects-filters">
+            <div class="project-filters__list">
+              <ul>
+                <% for (const filter of htmlWebpackPlugin.options.projects.filters) { %>
+                  <li data-filter="<%= filter.value %>"><%= filter.name %></li>
+                <% } %>
+              </ul>
             </div>
-          <% } %>
+          </div>
+          <div class="projects-list box--shadow">
+            <ul>
+              <% for (const project of htmlWebpackPlugin.options.projects.items) { %>
+                <li data-technologies="<%= project.filters.join(', ') %>">
+                  <div class="project-item">
+                    <% if (project.href) { %>
+                      <a href="<%= project.href %>" class="project-item__link" title="<%= safeQuotes(project.name) %>"
+                         target="_blank" rel="noopener">
+                      </a>
+                    <% } %>
+                    <div class="project-item__image">
+                      <img src="<%= project.image %>" alt="<%= safeQuotes(project.name) %>">
+                      <i class="fa fa-external-link" aria-hidden="true"></i>
+                    </div>
+                    <div class="project-item__content">
+                      <div class="project-item__content__name">
+                        <%= project.name %>
+                      </div>
+                      <div class="project-item__content__description">
+                        <%= project.description %>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <% } %>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="content-block education">
-      <div class="content-block__title">
-        <h2>Education</h2>
-      </div>
-      <div class="content-block__content">
-        <div class="education-list">
-          <% for (const education of htmlWebpackPlugin.options.education) { %>
-            <a href="<%= education.href %>" class="education-item" title="<%= education.name %>" target="_blank"
-               rel="noopener nofollow">
-              <div class="education-item__image">
-                <img src="<%= education.image %>" alt="<%= education.name %>">
-              </div>
-              <div class="education-item-content">
-                <div class="education-item-content__title">
-                  <%= education.name %>
-                </div>
-                <div class="education-item-content__subtitle">
-                  <%= `${education.degree}, ${education.specialization}` %>
-                </div>
-                <div class="education-item-content__dates">
-                  <%= `${education.year.start} - ${education.year.end}` %>
-                </div>
-              </div>
-              <div class="education-item__icon">
-                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              </div>
-            </a>
-          <% } %>
-        </div>
-      </div>
-    </div>
-    <!--<div class="content__block projects">-->
-      <!--<div class="content__block__title">-->
-        <!--<h2>Own projects</h2>-->
-      <!--</div>-->
-      <!--<div class="projects__filters">-->
-        <!--&lt;!&ndash;TODO move to config file&ndash;&gt;-->
-        <!--<ul>-->
-          <!--<li data-filter="open-source">Open Source</li>-->
-          <!--<li data-filter="php">PHP</li>-->
-          <!--<li data-filter="web">HTML / CSS / JS</li>-->
-          <!--<li data-filter="vue">Vue</li>-->
-          <!--<li data-filter="c#">C#</li>-->
-        <!--</ul>-->
-      <!--</div>-->
-      <!--<div class="projects__list">-->
-        <!--<a href="#" data-technologies="open-source, php, web">First</a>-->
-        <!--<a href="#" data-technologies="vue, c#, web">Second</a>-->
-        <!--<a href="#" data-technologies="open-source, c#, vue, web">Third</a>-->
-      <!--</div>-->
-    <!--</div>-->
+    <% } %>
   </div>
 </div>
 

@@ -2,7 +2,7 @@
   <img src="https://github.com/WPortfolio/WPortfolio/blob/master/static/images/pixabay/resume.png" height="100">
 </p>
 <p align="center">
-  <a href="https://wportfolio.github.io/">Example (app_template: 1)</a>
+  <a href="https://wportfolio.github.io/">Demo page (app_template: 1)</a>
 </p>
 
 > Generate a portfolio using webpack
@@ -10,29 +10,44 @@
 ## Introducing
 
 Create your portfolio website using webpack.
-Select your template, fill in the information config.js, _base.scss file and ready.
-
-## How to install
-
-- Fork this repo to our profile
-- Rename repository name to "*.github.io"
-- Fill "./src/config.js" with your information.
-- Also fill in the file "./src/_base.scss"
-- Console "npm run build"
-- Console "git push -u origin"
-- Wait a few minutes, then open your site: "*.github.io"
-
-(*) - your username
+Select your template, fill in the information config.js, _base.scss files and upload to server.
 
 ## Benefits
 
 - Documented code
 - Webpack + babel + es6
-- Progressive Web Apps (PWA)
 - Only the most necessary dependencies
 - Generating html code (HtmlWebpackPlugin)
 - The largest estimates in the audit (Lighthouse)
 - Common configuration files for all templates (config.js, _base.scss)
+- Progressive Web Apps (PWA), website is accessible without internet
+
+## How to start
+
+- Fork this repo to your profile
+- Rename repository name to "{login}.github.io"
+- Console "cd /to/your/project"
+- Console "npm install"
+- Fill out the files with your information + image and stuff: "./src/config.js" and "./src/_base.scss"
+- Console "npm run build"
+- Console "git push -u origin"
+- Wait a few minutes, then open your site: "{login}.github.io"
+
+*{login} - your username on Github.
+
+## How to create your own template?
+
+- Create a new folder "./src/templates/t{number}"
+- Create 3 files: "index.html", "scss/index.scss", "js/index.js"
+- Change the app_template (config.js) number to your {number}
+- Console "npm run dev"
+- Watch for changes in the compiled file "./index.html"
+- When the file is finished: console "npm run build"
+- Push changes to the server
+
+*{number} - this is app_template.
+
+**Use htmlWebpackPlugin as in the first template, creating a new template
 
 ## Development Setup
 
@@ -46,13 +61,6 @@ npm run build
 # running the webpack in watch mode
 npm run dev
 ```
-
-## TODO
-
-- [ ] Multiple templates
-- [ ] I18n
-- [ ] Common .js file
-- [ ] Projects section
 
 ## License
 

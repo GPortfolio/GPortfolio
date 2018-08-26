@@ -1,9 +1,25 @@
 import $ from 'jquery'
 
+/**
+ * List of all active filters.
+ * key - the name of the filter
+ * value - bool (active or not)
+ *
+ * @type {Object}
+ */
 const filters = {}
+
+/**
+ * The reference to the DOM element is added when initializing.
+ */
 let filtersEl
 let listEl
 
+/**
+ * Filter all filters and get an array of active filters.
+ *
+ * @return {String[]} - filter names
+ */
 const getActiveFilters = () => {
   return Object.entries(filters)
     .filter(filter => {
@@ -14,6 +30,9 @@ const getActiveFilters = () => {
     })
 }
 
+/**
+ * Refresh the list of projects depending on the filters (DOM).
+ */
 const updateList = () => {
   const activeFilters = getActiveFilters()
 
@@ -23,32 +42,38 @@ const updateList = () => {
 
     for (const filter of activeFilters) {
       if (!technologies.includes(filter)) {
-        el.classList.add('display--none')
+        $(el).hide()
         isFind = false
         break
       }
     }
 
     if (isFind) {
-      el.classList.remove('display--none')
+      $(el).show()
     }
   })
 }
 
+/**
+ * Update the status of the filter and update the list of projects.
+ *
+ * @param event
+ */
 const eventClickFilter = (event) => {
   const attr = event.target.getAttribute('data-filter')
   filters[attr] = !filters[attr]
-  event.target.setAttribute('clicked', filters[attr])
+  event.target.setAttribute('active', filters[attr])
   updateList()
 }
 
 // Initialization
 $(() => {
-  filtersEl = $('.projects__filters li')
-  listEl = $('.projects__list > a')
+  filtersEl = $('.project-filters__list li')
+  listEl = $('.projects-list li')
 
+  // Add all filters to a single object. And listen to the click event.
   filtersEl.each((key, item) => {
     filters[item.getAttribute('data-filter')] = false
-    $(item).on('click', eventClickFilter)
+    $(item).click(eventClickFilter)
   })
 })
