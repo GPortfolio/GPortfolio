@@ -25,7 +25,7 @@ module.exports = {
    * @param {String} app_background - filling backgrounds when the application from the desktop
    * @see https://developers.google.com/web/progressive-web-apps/
    */
-  app_icon: 'static/images/pixabay/resume.png',
+  app_icon: 'static/images/resume.png',
   app_theme: '#485e6c',
   app_background: '#fff',
 
@@ -118,13 +118,13 @@ module.exports = {
    */
   experience: [{
     name: 'Example name1',
-    image: 'static/images/logo/logo1.jpg',
+    image: 'static/images/experience/e1.jpg',
     position: 'Senior Graphic Designer',
     description: 'Development of internal projects',
     dates: { start: new Date(2013, 9), end: null }
   }, {
     name: 'Example name2',
-    image: 'static/images/logo/logo2.jpg',
+    image: 'static/images/experience/e2.jpg',
     position: 'Graphic Designer',
     description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
       'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown ' +
@@ -140,7 +140,7 @@ module.exports = {
     degree: 'Bachelor\'s degree',
     specialization: 'Computer Software Engineering',
     href: 'http://www.mit.edu/',
-    image: 'static/images/logo/mit.png',
+    image: 'static/images/education/mit.png',
     year: { start: 2011, end: 2015 }
   }],
 
