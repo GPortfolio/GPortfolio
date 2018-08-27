@@ -18,7 +18,7 @@ let listEl
 /**
  * Animation time (jQuery - show/hide)
  */
-const anuimationTime = 200
+const animationTime = 200
 
 /**
  * Filter all filters and get an array of active filters.
@@ -47,14 +47,14 @@ const updateList = () => {
 
     for (const filter of activeFilters) {
       if (!technologies.includes(filter)) {
-        $(el).hide(anuimationTime)
+        $(el).hide(animationTime)
         isFind = false
         break
       }
     }
 
     if (isFind) {
-      $(el).show(anuimationTime)
+      $(el).show(animationTime)
     }
   })
 }
