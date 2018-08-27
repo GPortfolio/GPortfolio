@@ -90,6 +90,10 @@ module.exports = {
       staticFileGlobsIgnorePatterns: [
         /\.map$/,
         /asset-manifest\.json$/
+      ],
+      mergeStaticsConfig: true,
+      staticFileGlobs: [
+        'static/**',
       ]
     }),
     new WebpackPwaManifest({
