@@ -1,14 +1,7 @@
 /*
- * Do not touch, to fix the paths to the files.
- */
-@function getUrl($uri) {
-  @return url('../../../../' + $uri);
-}
-
-/*
  * Used in all templates
  */
 
-$avatar-image: getUrl('static/images/profile/avatar.jpeg');
+$avatar-image: url('../static/images/profile/avatar.jpeg');
 
-$background-image: getUrl('static/images/profile/background.jpg');
+$background-image: url('../static/images/profile/background.jpg');
