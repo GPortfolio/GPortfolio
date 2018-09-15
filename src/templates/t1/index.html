@@ -37,19 +37,19 @@ safeQuotes = (str) => {
   <header id="header" class="box--shadow display--flex">
     <aside class="h-ls width--100">
       <div class="h-ls__inner text--center">
-        <div class="h-ls__image radius--circle box--shadow"></div>
-        <div class="h-ls__name mb--5">
+        <div class="h-ls__inner__image radius--circle box--shadow"></div>
+        <div class="h-ls__inner__name mb--5">
           <h1 class="font--bold"><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
-        <div class="h-ls__profession"><%= htmlWebpackPlugin.options.profession %></div>
-        <div class="h-ls__separator"></div>
-        <div class="h-ls__pdf">
-          <a href="<%= htmlWebpackPlugin.options.cv %>" <%= htmlWebpackPlugin.options.cv ? '' : 'disabled' %>>
+        <div class="h-ls__inner__profession"><%= htmlWebpackPlugin.options.profession %></div>
+        <div class="h-ls__inner__separator"></div>
+        <div class="h-ls__inner__pdf <%= htmlWebpackPlugin.options.cv ? '' : 'h-ls__pdf_none' %>">
+          <a href="<%= htmlWebpackPlugin.options.cv %>">
             Download CV
           </a>
         </div>
-        <div class="h-ls__separator"></div>
-        <div class="h-ls__social">
+        <div class="h-ls__inner__separator"></div>
+        <div class="h-ls__inner__social">
           <ul>
             <% for (const media of htmlWebpackPlugin.options.social_media) { %>
               <li>

@@ -9,7 +9,6 @@
   color: #333;
   transition: .3s;
   &:hover {
-    background: #f4f4f4;
     .education-item__icon {
       opacity: 1;
     }
@@ -59,6 +58,7 @@
   opacity: 0;
   min-width: 40px;
   text-align: center;
+  font-size: 1.3rem;
   transition: .3s;
 }
 
