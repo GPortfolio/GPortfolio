@@ -5,15 +5,14 @@
   li {
     display: inline-block;
     padding: 5px 20px;
-    background: #f9f9f9;
+    background: #fff;
     box-shadow: $box-shadow;
     cursor: pointer;
-    font-size: 1.1rem;
     float: left;
     margin: 0 15px 15px 0;
     border: 1px solid #e7e7e7;
     &:hover {
-      background: #f1f1f1;
+      background: #f7f7f7;
     }
     &[active=true] {
       background: $color-primary;
@@ -95,7 +94,8 @@
 
 .project-item__content__description {
   margin-top: 10px;
-  font-size: 0.9rem;
+  font-size: .9rem;
+  font-style: italic;
 }
 
 .project-item__link {

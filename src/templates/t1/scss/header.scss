@@ -6,7 +6,7 @@
     position: relative;
     display: inline-block;
     text-transform: uppercase;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-radius: 10px;
     background: $color-primary;
     margin: 0 0 15px;
@@ -45,7 +45,7 @@
   margin: 0 auto;
 }
 
-.h-ls__image {
+.h-ls__inner__image {
   width: 170px;
   height: 170px;
   line-height: 0;
@@ -54,7 +54,7 @@
   background-size: cover;
 }
 
-.h-ls__name {
+.h-ls__inner__name {
   color: rgba(255, 255, 255, .87);
   > h1 {
     margin: 0;
@@ -62,17 +62,17 @@
   }
 }
 
-.h-ls__profession {
+.h-ls__inner__profession {
   color: rgba(255, 255, 255, .6);
   font-size: 1rem;
 }
 
-.h-ls__separator {
+.h-ls__inner__separator {
   margin: 35px 0;
   border-bottom: 1px solid #747474;
 }
 
-.h-ls__pdf {
+.h-ls__inner__pdf {
   > a {
     display: block;
     padding: 10px 0;
@@ -80,13 +80,20 @@
     color: rgba(255, 255, 255, .9);
     border-radius: 10px;
     transition: .2s;
+    font-weight: bold;
+    font-size: .9rem;
     &:hover {
       background: rgba(255, 255, 255, .2);
     }
   }
 }
 
-.h-ls__social {
+.h-ls__inner__pdf_none {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.h-ls__inner__social {
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -145,6 +152,7 @@
   text-align: justify;
   text-indent: 20px;
   font-size: .9rem;
+  font-style: italic;
   p {
     margin: 5px 0;
   }
@@ -155,12 +163,13 @@
 .h-rs-wrap__skills li {
   position: relative;
   display: inline-block;
-  padding: 5px 15px 2px;
+  padding: 5px 10px 2px;
   border-bottom: 2px solid $color-primary;
   margin: 0 10px 10px 0;
   min-width: 70px;
   text-align: center;
   float: left;
+  font-size: .9rem;
 }
 
 /* Languages */
@@ -169,6 +178,7 @@
   @extend .h-rs-wrap__skills;
   li {
     border: none;
+    margin: 0 0 10px 0;
   }
   .name {
     color: #222;
@@ -176,6 +186,7 @@
   .skill {
     font-size: .7rem;
     vertical-align: super;
+    font-style: italic;
     &.skill-elementary {
       color: #d90000;
     }
@@ -193,7 +204,7 @@
 .h-rs__bottom {
   text-align: right;
   text-transform: uppercase;
-  font-size: .7rem;
+  font-size: .6rem;
   letter-spacing: 1px;
   font-weight: bold;
   margin-top: 10px;
