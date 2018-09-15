@@ -2,7 +2,8 @@
   <img src="https://github.com/WPortfolio/WPortfolio/blob/master/static/images/resume.png" height="100">
 </p>
 <p align="center">
-  <a href="https://wportfolio.github.io/">Demo page (app_template: 1)</a>
+  <a href="https://wportfolio.github.io/">Demo page (app_template: 1)</a> |
+  <a href="https://github.com/WPortfolio/WPortfolio/tree/master/src/templates">Preview templates</a>
 </p>
 
 > Generate a portfolio using webpack
