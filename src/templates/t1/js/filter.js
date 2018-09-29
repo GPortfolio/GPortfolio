@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import { DOMIsLoaded } from '../../../scripts/utils'
 
 /**
  * List of all active filters.
@@ -14,11 +14,6 @@ const filters = {}
  */
 let filtersEl
 let listEl
-
-/**
- * Animation time (jQuery - show/hide)
- */
-const animationTime = 200
 
 /**
  * Filter all filters and get an array of active filters.
@@ -41,20 +36,20 @@ const getActiveFilters = () => {
 const updateList = () => {
   const activeFilters = getActiveFilters()
 
-  listEl.each((key, el) => {
+  listEl.forEach((el, index) => {
     const technologies = el.getAttribute('data-technologies').split(', ')
     let isFind = true
 
     for (const filter of activeFilters) {
       if (!technologies.includes(filter)) {
-        $(el).hide(animationTime)
+        el.classList.add('project-list-li_hide')
         isFind = false
         break
       }
     }
 
     if (isFind) {
-      $(el).show(animationTime)
+      el.classList.remove('project-list-li_hide')
     }
   })
 }
@@ -71,14 +66,13 @@ const eventClickFilter = (event) => {
   updateList()
 }
 
-// Initialization
-$(() => {
-  filtersEl = $('.project-filters__list li')
-  listEl = $('.projects-list li')
+DOMIsLoaded(() => {
+  filtersEl = document.querySelectorAll('.project-filters__list li')
+  listEl = document.querySelectorAll('.projects-list li')
 
   // Add all filters to a single object. And listen to the click event.
-  filtersEl.each((key, item) => {
+  filtersEl.forEach((item, index) => {
     filters[item.getAttribute('data-filter')] = false
-    $(item).click(eventClickFilter)
+    item.addEventListener('click', eventClickFilter)
   })
 })
