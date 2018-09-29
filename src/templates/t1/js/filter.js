@@ -16,11 +16,6 @@ let filtersEl
 let listEl
 
 /**
- * Animation time (jQuery - show/hide)
- */
-const animationTime = 200
-
-/**
  * Filter all filters and get an array of active filters.
  *
  * @return {String[]} - filter names
@@ -47,14 +42,15 @@ const updateList = () => {
 
     for (const filter of activeFilters) {
       if (!technologies.includes(filter)) {
-        $(el).hide(animationTime)
+        el.classList.add('project-list-li_hide')
+        el.parentNode.appendChild(el)
         isFind = false
         break
       }
     }
 
     if (isFind) {
-      $(el).show(animationTime)
+      el.classList.remove('project-list-li_hide')
     }
   })
 }

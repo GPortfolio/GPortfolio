@@ -35,6 +35,14 @@
     grid-gap: 20px;
     grid-template-columns: repeat(3, 1fr);
   }
+  li {
+    opacity: 1;
+    transition: .3s;
+    &.project-list-li_hide {
+      pointer-events: none;
+      opacity: .3;
+    }
+  }
 }
 
 .project-item {
