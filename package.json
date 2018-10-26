@@ -36,16 +36,16 @@
     "file-loader": "^1.1.11",
     "hoek": "^5.0.4",
     "html-webpack-plugin": "^3.2.0",
-    "image-webpack-loader": "^4.3.1",
-    "mini-css-extract-plugin": "^0.4.3",
-    "node-sass": "^4.9.3",
+    "image-webpack-loader": "^4.4.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.9.4",
     "resolve-url-loader": "^2.3.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
     "sw-precache-webpack-plugin": "^0.11.5",
-    "url-loader": "^1.1.1",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2",
     "webpack-pwa-manifest": "^3.7.1"
   }
 }
