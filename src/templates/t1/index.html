@@ -6,17 +6,26 @@
 <body>
 
 <%
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const humanizeDuration = require('humanize-duration')
+
+const months = [
+  'January', 'February', 'March',
+  'April', 'May', 'June',
+  'July', 'August', 'September',
+  'October', 'November', 'December'
+]
+
 getDate = (date) => {
   return months[date.getMonth() - 1] + ' ' + date.getFullYear()
 }
+
 diffDate = (date1, date2) => {
   return humanizeDuration(date2.getTime() - date1.getTime(), {
     units: ['y', 'mo'],
     round: true
   })
 }
+
 safeQuotes = (str) => {
   return str.replace(/"/g, '&quot;')
 }
@@ -32,9 +41,9 @@ safeQuotes = (str) => {
         </div>
         <div class="h-ls__inner__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="h-ls__inner__separator"></div>
-        <div class="h-ls__inner__pdf <%= htmlWebpackPlugin.options.cv ? '' : 'h-ls__inner__pdf_none' %>">
-          <a href="<%= htmlWebpackPlugin.options.cv %>" target="_blank" rel="noopener">
-            Download CV
+        <div class="h-ls__inner__pdf <%= htmlWebpackPlugin.options.resume ? '' : 'h-ls__inner__pdf_none' %>">
+          <a href="<%= htmlWebpackPlugin.options.resume %>" target="_blank" rel="noopener">
+            Resume
           </a>
         </div>
         <div class="h-ls__inner__separator"></div>

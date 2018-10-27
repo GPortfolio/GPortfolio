@@ -46,7 +46,7 @@ module.exports = {
   profession: 'Senior Graphic Designer',
   avatar_img: 'static/images/profile/avatar.jpeg',
   background_img: 'static/images/profile/background.jpg',
-  cv: 'static/files/cv.pdf',
+  resume: 'static/files/resume.pdf',
 
   /**
    * Notify users that you are open to suggestions.
