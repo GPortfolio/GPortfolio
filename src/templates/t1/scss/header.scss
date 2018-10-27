@@ -23,7 +23,8 @@
 .h-ls {
   position: relative;
   max-width: 300px;
-  background: $background-image no-repeat 50% 75%;
+  background-repeat: no-repeat;
+  background-position: 50% 75%;
   background-size: cover;
   cursor: default;
   &::before {
@@ -50,7 +51,7 @@
   height: 170px;
   line-height: 0;
   margin: 0 auto 20px;
-  background: $avatar-image center;
+  background-position: center;
   background-size: cover;
 }
 
@@ -129,12 +130,12 @@
 
 .h-rs__alert {
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 25px;
   color: #c60a0a;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: .9rem;
+  font-size: .8rem;
 }
 
 .h-rs-wrap {

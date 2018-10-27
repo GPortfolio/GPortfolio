@@ -100,10 +100,10 @@ module.exports = {
     new WebpackPwaManifest({
       filename: 'manifest.json',
       includeDirectory: true,
-      orientation: 'any',
+      orientation: 'portrait',
       lang: 'en-US',
       name: `${config.first_name} ${config.last_name}`,
-      short_name: `CV ${config.first_name.charAt(0)}.${config.last_name.charAt(0)}.`,
+      short_name: `Portfolio ${config.first_name.charAt(0)}.${config.last_name.charAt(0)}.`,
       description: packageJson.description,
       background_color: config.app_background,
       theme_color: config.app_theme,

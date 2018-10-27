@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title><%= htmlWebpackPlugin.options.full_name %></title>
-  <link rel="icon" href="favicon.ico">
-  <meta property="og:title" content="Portfolio by <%= htmlWebpackPlugin.options.full_name %>" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.image %>" />
-  <meta property="og:url" content="<%= htmlWebpackPlugin.options.app_url %>" />
-  <meta property="og:description" content="<%= htmlWebpackPlugin.options.opg_description %>" />
-  <meta property="profile:first_name" content="<%= htmlWebpackPlugin.options.first_name %>" />
-  <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
-  <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
-  <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
+  ${require('html-loader?interpolate!../parts/head/index.html')}
 </head>
 <body>
 
 <%
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const humanizeDuration = require('humanize-duration')
+
+const months = [
+  'January', 'February', 'March',
+  'April', 'May', 'June',
+  'July', 'August', 'September',
+  'October', 'November', 'December'
+]
+
 getDate = (date) => {
   return months[date.getMonth() - 1] + ' ' + date.getFullYear()
 }
+
 diffDate = (date1, date2) => {
   return humanizeDuration(date2.getTime() - date1.getTime(), {
     units: ['y', 'mo'],
     round: true
   })
 }
+
 safeQuotes = (str) => {
   return str.replace(/"/g, '&quot;')
 }
@@ -35,17 +33,17 @@ safeQuotes = (str) => {
 
 <div id="app">
   <header id="header" class="box--shadow display--flex">
-    <aside class="h-ls width--100">
+    <aside class="h-ls background-image width--100">
       <div class="h-ls__inner text--center">
-        <div class="h-ls__inner__image radius--circle box--shadow"></div>
+        <div class="h-ls__inner__image avatar-image radius--circle box--shadow"></div>
         <div class="h-ls__inner__name mb--5">
           <h1 class="font--bold"><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
         <div class="h-ls__inner__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="h-ls__inner__separator"></div>
-        <div class="h-ls__inner__pdf <%= htmlWebpackPlugin.options.cv ? '' : 'h-ls__inner__pdf_none' %>">
-          <a href="<%= htmlWebpackPlugin.options.cv %>">
-            Download CV
+        <div class="h-ls__inner__pdf <%= htmlWebpackPlugin.options.resume ? '' : 'h-ls__inner__pdf_none' %>">
+          <a href="<%= htmlWebpackPlugin.options.resume %>" target="_blank" rel="noopener">
+            Resume
           </a>
         </div>
         <div class="h-ls__inner__separator"></div>
