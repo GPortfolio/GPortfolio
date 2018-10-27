@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   ${require('html-loader?interpolate!../parts/head/index.html')}
+  <style>
+    .background--image {
+      background: url(<%= htmlWebpackPlugin.options.background_img %>)
+    }
+    .avatar--image {
+      background: url(<%= htmlWebpackPlugin.options.avatar_img %>)
+    }
+  </style>
 </head>
 <body>
 
@@ -33,9 +41,9 @@ safeQuotes = (str) => {
 
 <div id="app">
   <header id="header" class="box--shadow display--flex">
-    <aside class="h-ls background-image width--100">
+    <aside class="h-ls background--image width--100">
       <div class="h-ls__inner text--center">
-        <div class="h-ls__inner__image avatar-image radius--circle box--shadow"></div>
+        <div class="h-ls__inner__image avatar--image radius--circle box--shadow"></div>
         <div class="h-ls__inner__name mb--5">
           <h1 class="font--bold"><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
