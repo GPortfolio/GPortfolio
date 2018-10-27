@@ -4,7 +4,6 @@ import { DOMIsLoaded } from '../../../scripts/utils'
  * List of all active filters.
  * key - the name of the filter
  * value - bool (active or not)
- *
  * @type {Object}
  */
 const filters = {}
@@ -17,7 +16,6 @@ let listEl
 
 /**
  * Filter all filters and get an array of active filters.
- *
  * @return {String[]} - filter names
  */
 const getActiveFilters = () => {
@@ -56,13 +54,12 @@ const updateList = () => {
 
 /**
  * Update the status of the filter and update the list of projects.
- *
- * @param event
+ * @param {MouseEvent} evt
  */
-const eventClickFilter = (event) => {
-  const attr = event.target.getAttribute('data-filter')
+const eventClickFilter = (evt) => {
+  const attr = evt.srcElement.getAttribute('data-filter')
   filters[attr] = !filters[attr]
-  event.target.setAttribute('active', filters[attr])
+  evt.srcElement.setAttribute('active', filters[attr])
   updateList()
 }
 
