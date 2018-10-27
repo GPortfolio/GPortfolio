@@ -1,75 +1,73 @@
-import { DOMIsLoaded } from '../../../scripts/utils'
+const ATTR_TECHNOLOGIES = 'data-technologies'
+const ATTR_FILTER = 'data-filter'
+const CLASS_DISABLE = 'disable'
 
-/**
- * List of all active filters.
- * key - the name of the filter
- * value - bool (active or not)
- * @type {Object}
- */
-const filters = {}
+export default class Filter {
+  constructor() {
+    /**
+     * List of all active filters.
+     * key - the name of the filter
+     * value - bool (active or not)
+     * @type {Object}
+     */
+    this.filters = {}
 
-/**
- * The reference to the DOM element is added when initializing.
- */
-let filtersEl
-let listEl
+    this.filtersEl = document.querySelectorAll('.project-filters__list li')
+    this.listEl = document.querySelectorAll('.projects-list li')
 
-/**
- * Filter all filters and get an array of active filters.
- * @return {String[]} - filter names
- */
-const getActiveFilters = () => {
-  return Object.entries(filters)
-    .filter(filter => {
-      return filter[1]
+    // Add all filters to a single object and listen to the click event.
+    this.filtersEl.forEach(item => {
+      this.filters[item.getAttribute(ATTR_FILTER)] = false
+      item.addEventListener('click', this.eventClickFilter.bind(this))
     })
-    .map(filter => {
-      return filter[0]
-    })
-}
+  }
 
-/**
- * Refresh the list of projects depending on the filters (DOM).
- */
-const updateList = () => {
-  const activeFilters = getActiveFilters()
+  /**
+   * Refresh the list of projects depending on the filters (DOM).
+   */
+  updateList() {
+    const activeFilters = this.getActiveFilters()
 
-  listEl.forEach((el, index) => {
-    const technologies = el.getAttribute('data-technologies').split(', ')
-    let isFind = true
+    this.listEl.forEach(el => {
+      const technologies = el.getAttribute(ATTR_TECHNOLOGIES).split(', ')
+      let isFind = true
 
-    for (const filter of activeFilters) {
-      if (!technologies.includes(filter)) {
-        el.classList.add('project-list-li_hide')
-        isFind = false
-        break
+      for (const filter of activeFilters) {
+        if (!technologies.includes(filter)) {
+          el.classList.add(CLASS_DISABLE)
+          isFind = false
+          break
+        }
       }
-    }
 
-    if (isFind) {
-      el.classList.remove('project-list-li_hide')
-    }
-  })
+      if (isFind) {
+        el.classList.remove(CLASS_DISABLE)
+      }
+    })
+  }
+
+  /**
+   * Filter all filters and get an array of active filters.
+   * @return {String[]} - filter names
+   */
+  getActiveFilters() {
+    return Object.entries(this.filters)
+      .filter(filter => {
+        return filter[1]
+      })
+      .map(filter => {
+        return filter[0]
+      })
+  }
+
+  /**
+   * Update the status of the filter and update the list of projects.
+   * @param {MouseEvent} evt
+   */
+  eventClickFilter(evt) {
+    const attr = evt.srcElement.getAttribute(ATTR_FILTER)
+    this.filters[attr] = !this.filters[attr]
+    evt.srcElement.setAttribute('active', this.filters[attr])
+    this.updateList()
+  }
 }
-
-/**
- * Update the status of the filter and update the list of projects.
- * @param {MouseEvent} evt
- */
-const eventClickFilter = (evt) => {
-  const attr = evt.srcElement.getAttribute('data-filter')
-  filters[attr] = !filters[attr]
-  evt.srcElement.setAttribute('active', filters[attr])
-  updateList()
-}
-
-DOMIsLoaded(() => {
-  filtersEl = document.querySelectorAll('.project-filters__list li')
-  listEl = document.querySelectorAll('.projects-list li')
-
-  // Add all filters to a single object. And listen to the click event.
-  filtersEl.forEach((item, index) => {
-    filters[item.getAttribute('data-filter')] = false
-    item.addEventListener('click', eventClickFilter)
-  })
-})
