@@ -1,23 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title><%= htmlWebpackPlugin.options.full_name %></title>
-  <link rel="icon" href="favicon.ico">
-  <meta property="og:title" content="Portfolio by <%= htmlWebpackPlugin.options.full_name %>" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.avatar_img %>" />
-  <meta property="og:url" content="<%= htmlWebpackPlugin.options.app_url %>" />
-  <meta property="og:description" content="<%= htmlWebpackPlugin.options.opg_description %>" />
-  <meta property="profile:first_name" content="<%= htmlWebpackPlugin.options.first_name %>" />
-  <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
-  <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
-  <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
-
-  <style>
-    .avatar-image { background: url("<%= htmlWebpackPlugin.options.avatar_img %>") }
-    .background-image { background: url("<%= htmlWebpackPlugin.options.background_img %>") }
-  </style>
+  ${require('html-loader?interpolate!../parts/head/index.html')}
 </head>
 <body>
 
