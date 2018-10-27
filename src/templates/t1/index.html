@@ -6,13 +6,18 @@
   <link rel="icon" href="favicon.ico">
   <meta property="og:title" content="Portfolio by <%= htmlWebpackPlugin.options.full_name %>" />
   <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.image %>" />
+  <meta property="og:image" content="<%= htmlWebpackPlugin.options.app_url + htmlWebpackPlugin.options.avatar_img %>" />
   <meta property="og:url" content="<%= htmlWebpackPlugin.options.app_url %>" />
   <meta property="og:description" content="<%= htmlWebpackPlugin.options.opg_description %>" />
   <meta property="profile:first_name" content="<%= htmlWebpackPlugin.options.first_name %>" />
   <meta property="profile:last_name" content="<%= htmlWebpackPlugin.options.last_name %>" />
   <meta property="profile:username" content="<%= htmlWebpackPlugin.options.username %>" />
   <meta property="profile:gender" content="<%= htmlWebpackPlugin.options.gender %>" />
+
+  <style>
+    .avatar-image { background: url("<%= htmlWebpackPlugin.options.avatar_img %>") }
+    .background-image { background: url("<%= htmlWebpackPlugin.options.background_img %>") }
+  </style>
 </head>
 <body>
 
@@ -35,16 +40,16 @@ safeQuotes = (str) => {
 
 <div id="app">
   <header id="header" class="box--shadow display--flex">
-    <aside class="h-ls width--100">
+    <aside class="h-ls background-image width--100">
       <div class="h-ls__inner text--center">
-        <div class="h-ls__inner__image radius--circle box--shadow"></div>
+        <div class="h-ls__inner__image avatar-image radius--circle box--shadow"></div>
         <div class="h-ls__inner__name mb--5">
           <h1 class="font--bold"><%= htmlWebpackPlugin.options.full_name %></h1>
         </div>
         <div class="h-ls__inner__profession"><%= htmlWebpackPlugin.options.profession %></div>
         <div class="h-ls__inner__separator"></div>
         <div class="h-ls__inner__pdf <%= htmlWebpackPlugin.options.cv ? '' : 'h-ls__inner__pdf_none' %>">
-          <a href="<%= htmlWebpackPlugin.options.cv %>">
+          <a href="<%= htmlWebpackPlugin.options.cv %>" target="_blank" rel="noopener">
             Download CV
           </a>
         </div>

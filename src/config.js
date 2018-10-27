@@ -44,7 +44,8 @@ module.exports = {
   gender: 'Female',
   email: 'mail@example.com',
   profession: 'Senior Graphic Designer',
-  image: 'static/images/profile/avatar.jpeg',
+  avatar_img: 'static/images/profile/avatar.jpeg',
+  background_img: 'static/images/profile/background.jpg',
   cv: 'static/files/cv.pdf',
 
   /**
