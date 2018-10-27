@@ -11,7 +11,7 @@
 ## Introducing
 
 Create your portfolio website using webpack.
-Select your template, fill in the information config.js, _base.scss files and upload to server.
+Select your template, fill in the information config.js file and upload to server.
 
 ## Benefits
 
@@ -20,7 +20,7 @@ Select your template, fill in the information config.js, _base.scss files and up
 - Only the most necessary dependencies
 - Generating html code (HtmlWebpackPlugin)
 - The largest estimates in the audit (Lighthouse)
-- Common configuration files for all templates (config.js, _base.scss)
+- Common configuration file for all templates - config.js
 - Progressive Web Apps (PWA), website is accessible without internet
 
 ## How to start
@@ -29,7 +29,7 @@ Select your template, fill in the information config.js, _base.scss files and up
 - Rename repository name to "{login}.github.io"
 - Console "cd /to/your/project"
 - Console "npm install"
-- Fill out the files with your information + image and stuff: "./src/config.js" and "./src/_base.scss"
+- Fill out the file with your information + image and stuff: "./src/config.js"
 - Console "npm run build"
 - Console "git push -u origin"
 - Wait a few minutes, then open your site: "{login}.github.io"
