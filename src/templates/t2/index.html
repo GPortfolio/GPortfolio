@@ -21,35 +21,29 @@ safeQuotes = (str) => {
 
 <div id="app">
   <header class="header">
-    <div class="header-full">
-      <div class="header-full__background background--image"></div>
-      <div class="header-full__resume">
-        <% if (htmlWebpackPlugin.options.resume) { %>
-        <a href="<%= htmlWebpackPlugin.options.resume %>" target="_blank" rel="noopener">
-          Resume
+    <div class="header__background background--image"></div>
+    <div class="header__resume">
+      <% if (htmlWebpackPlugin.options.resume) { %>
+      <a href="<%= htmlWebpackPlugin.options.resume %>" target="_blank" rel="noopener">
+        Resume
+      </a>
+      <% } %>
+    </div>
+    <div class="header__content">
+      <div class="header__content__image">
+        <div class="avatar--image"></div>
+      </div>
+      <h1 class="header__content__name"><%= htmlWebpackPlugin.options.full_name %></h1>
+      <span class="header__content__profession"><%= htmlWebpackPlugin.options.profession %></span>
+      <% if (htmlWebpackPlugin.options.social_media.length > 0) { %>
+      <div class="header__content__social">
+        <% for (const media of htmlWebpackPlugin.options.social_media) { %>
+        <a href="<%= media.href %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
+          <i class="fa fa-<%= media.icon %>" aria-hidden="true"></i>
         </a>
         <% } %>
       </div>
-      <div class="header-full__content">
-        <div class="header-full__content__image">
-          <div class="avatar--image"></div>
-        </div>
-        <h1 class="header-full__content__name"><%= htmlWebpackPlugin.options.full_name %></h1>
-        <span class="header-full__content__profession"><%= htmlWebpackPlugin.options.profession %></span>
-        <% if (htmlWebpackPlugin.options.social_media.length > 0) { %>
-        <div class="header-full__content__social">
-          <% for (const media of htmlWebpackPlugin.options.social_media) { %>
-          <a href="<%= media.href %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
-            <i class="fa fa-<%= media.icon %>" aria-hidden="true"></i>
-          </a>
-          <% } %>
-        </div>
-        <% } %>
-      </div>
-    </div>
-    <div class="header-lite">
-      <div class="background--image"></div>
-      <div class="header-lite__image avatar--image"></div>
+      <% } %>
     </div>
   </header>
   <div class="content">

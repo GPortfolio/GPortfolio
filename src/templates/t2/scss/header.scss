@@ -1,12 +1,16 @@
 .header {
   position: relative;
+  overflow: hidden;
+  min-height: 500px;
+  padding: 70px 20px;
+  cursor: context-menu;
 }
 
-.header-full__content, .header-full__background {
+.header__content, .header__background {
   will-change: transform;
 }
 
-.header-full__content__image {
+.header__content__image {
   .avatar--image {
     width: 200px;
     height: 200px;
@@ -14,15 +18,7 @@
   }
 }
 
-.header-full {
-  position: relative;
-  overflow: hidden;
-  min-height: 500px;
-  padding: 70px 20px 50px;
-  cursor: context-menu;
-}
-
-.header-full__resume {
+.header__resume {
   position: absolute;
   top: 15px;
   right: -120px;
@@ -38,14 +34,18 @@
     text-align: center;
     font-weight: bold;
     line-height: 1;
+    transition: .2s;
+    &:hover {
+      width: 125px;
+    }
   }
 }
 
-.header-full__content {
+.header__content {
   text-align: center;
 }
 
-.header-full__content__name {
+.header__content__name {
   font-size: 2.3em;
   margin: 40px 0 5px;
   color: #fff;
@@ -53,24 +53,29 @@
   letter-spacing: 1px;
 }
 
-.header-full__content__profession {
+.header__content__profession {
   color: #fff;
 }
 
-.header-full__content__social {
+.header__content__social {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 30px;
   a {
-    padding: 5px;
-    margin: 0 10px;
+    padding: 5px 10px;
+    margin: 0 5px;
     color: #fff;
+    transition: .2s;
+    min-width: 35px;
+    &:hover {
+      background: #4e526d;
+    }
   }
 }
 
 .app_top {
-  .header-full__resume {
+  .header__resume {
     right: 0;
   }
 }
@@ -85,20 +90,32 @@
   height: 40px;
   width: 100%;
   padding: 0 10px;
-
-  // Animation
   will-change: transform;
   transform: translateY(-100%);
-  transition: .1s;
-  &.show {
+  transition: .2s;
+  &.display {
     display: flex;
   }
-  &.animation{
+  &.show{
     transform: translateY(0);
+  }
+  .background--image {
+    &:before {
+      background: rgba(0, 0, 0, .7);
+    }
   }
 }
 
 .header-lite__image {
   width: 30px;
   height: 30px;
+  transition: .3s;
+  transform: translate(-50px, 0) rotate(-180deg);
+}
+
+.header-lite__name {
+  display: inline-block;
+  margin-left: 20px;
+  color: #fff;
+  font-weight: bold;
 }
