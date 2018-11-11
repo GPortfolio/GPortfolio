@@ -43,7 +43,7 @@ module.exports = {
   last_name: 'Harvey',
   gender: 'Male',
   email: 'mail@example.com',
-  profession: 'Senior Graphic Designer',
+  profession: 'UI/UX Designer',
   avatar_img: 'static/images/profile/avatar.jpg',
   background_img: 'static/images/profile/background.svg',
   resume: 'static/files/resume.pdf',

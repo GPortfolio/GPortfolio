@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   min-height: 500px;
-  padding: 0 20px;
+  padding: 70px 20px 50px;
   cursor: context-menu;
 }
 
@@ -66,15 +66,28 @@
   text-align: center;
 }
 
-.header__content__image {
-  margin-top: 50px;
-}
-
 .header__content__name {
   font-size: 2.3em;
-  margin: 40px 0 0;
+  margin: 40px 0 5px;
   color: #fff;
   text-shadow: 0 0 5px #000;
+  letter-spacing: 1px;
+}
+
+.header__content__profession {
+  color: #fff;
+}
+
+.header__content__social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+  a {
+    padding: 5px;
+    margin: 0 10px;
+    color: #fff;
+  }
 }
 
 .app_top {

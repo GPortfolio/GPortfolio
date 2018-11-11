@@ -13,6 +13,12 @@
 </head>
 <body>
 
+<%
+safeQuotes = (str) => {
+  return str.replace(/"/g, '&quot;')
+}
+%>
+
 <div id="app">
   <header id="header">
     <div class="header__background background--image"></div>
@@ -28,6 +34,16 @@
         <div class="avatar--image"></div>
       </div>
       <h1 class="header__content__name"><%= htmlWebpackPlugin.options.full_name %></h1>
+      <span class="header__content__profession"><%= htmlWebpackPlugin.options.profession %></span>
+      <% if (htmlWebpackPlugin.options.social_media.length > 0) { %>
+        <div class="header__content__social">
+          <% for (const media of htmlWebpackPlugin.options.social_media) { %>
+            <a href="<%= media.href %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
+              <i class="fa fa-<%= media.icon %>" aria-hidden="true"></i>
+            </a>
+          <% } %>
+        </div>
+      <% } %>
     </div>
   </header>
   <div id="content">
