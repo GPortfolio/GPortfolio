@@ -9,7 +9,7 @@ module.exports = {
    * @see templates folder
    * @param {Number} app_template
    */
-  app_template: 1,
+  app_template: 2,
 
   /**
    * Specify a valid URL address. Used in the Open Graph and PWA.
@@ -38,14 +38,14 @@ module.exports = {
   /**
    * Basic information about the user + for meta tags.
    */
-  username: 'My username',
-  first_name: 'Name',
-  last_name: 'Surname',
-  gender: 'Female',
+  username: 'username',
+  first_name: 'Victor',
+  last_name: 'Harvey',
+  gender: 'Male',
   email: 'mail@example.com',
   profession: 'Senior Graphic Designer',
-  avatar_img: 'static/images/profile/avatar.jpeg',
-  background_img: 'static/images/profile/background.jpg',
+  avatar_img: 'static/images/profile/avatar.jpg',
+  background_img: 'static/images/profile/background.svg',
   resume: 'static/files/resume.pdf',
 
   /**
