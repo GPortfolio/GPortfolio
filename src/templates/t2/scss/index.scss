@@ -3,11 +3,6 @@
 @import 'header';
 @import 'content';
 
-#app {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 .background--image {
   position: absolute;
   top: 0;
@@ -32,5 +27,10 @@
 .avatar--image {
   border-radius: 50%;
   background-size: cover;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+  box-shadow: 0 10px 20px rgba(36, 37, 38, 0.13);
+}
+
+.has--padding {
+  padding-left: 20px;
+  padding-right: 20px;
 }

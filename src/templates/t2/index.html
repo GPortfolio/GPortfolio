@@ -47,7 +47,20 @@ safeQuotes = (str) => {
     </div>
   </header>
   <div class="content">
-    123
+    <div class="section section_about_me">
+      <h2>About me</h2>
+      <div class="section__inner has--padding">
+        <%= htmlWebpackPlugin.options.about_me %>
+      </div>
+    </div>
+    <div class="section section_skills">
+      <h2>Skills</h2>
+      <div class="section__inner">
+        <% for (const skill of htmlWebpackPlugin.options.skills) { %>
+          <div class="skill"><%= skill %></div>
+        <% } %>
+      </div>
+    </div>
   </div>
 </div>
 
