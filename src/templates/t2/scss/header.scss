@@ -1,4 +1,20 @@
-#header {
+.header {
+  position: relative;
+}
+
+.header-full__content, .header-full__background {
+  will-change: transform;
+}
+
+.header-full__content__image {
+  .avatar--image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+}
+
+.header-full {
   position: relative;
   overflow: hidden;
   min-height: 500px;
@@ -6,35 +22,7 @@
   cursor: context-menu;
 }
 
-.avatar--image, .header__content {
-  will-change: transform;
-}
-
-.background--image {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, .5);
-  }
-}
-
-.avatar--image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-size: cover;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
-  margin: 0 auto;
-}
-
-.header__resume {
+.header-full__resume {
   position: absolute;
   top: 15px;
   right: -120px;
@@ -53,20 +41,11 @@
   }
 }
 
-.header__background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-.header__content {
+.header-full__content {
   text-align: center;
 }
 
-.header__content__name {
+.header-full__content__name {
   font-size: 2.3em;
   margin: 40px 0 5px;
   color: #fff;
@@ -74,11 +53,11 @@
   letter-spacing: 1px;
 }
 
-.header__content__profession {
+.header-full__content__profession {
   color: #fff;
 }
 
-.header__content__social {
+.header-full__content__social {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -91,7 +70,35 @@
 }
 
 .app_top {
-  .header__resume {
+  .header-full__resume {
     right: 0;
   }
+}
+
+// Lite
+.header-lite {
+  display: none;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+
+  // Animation
+  will-change: transform;
+  transform: translateY(-100%);
+  transition: .1s;
+  &.show {
+    display: flex;
+  }
+  &.animation{
+    transform: translateY(0);
+  }
+}
+
+.header-lite__image {
+  width: 30px;
+  height: 30px;
 }

@@ -1,2 +1,2 @@
+import './app'
 import './header'
-import './headerParallax'
