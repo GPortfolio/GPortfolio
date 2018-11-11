@@ -5,3 +5,7 @@ export function DOMIsLoaded(callback) {
     callback()
   }
 }
+
+export function getOffsetTop() {
+  return document.documentElement.scrollTop || document.body.scrollTop
+}
