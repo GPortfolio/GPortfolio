@@ -61,6 +61,35 @@ safeQuotes = (str) => {
         <% } %>
       </div>
     </div>
+    <% if (htmlWebpackPlugin.options.display_projects) { %>
+      <div class="section section_projects">
+        <h2>Projects</h2>
+        <div class="section__inner">
+          <ul>
+            <% for (const project of htmlWebpackPlugin.options.projects.items) { %>
+              <li>
+                <div class="project-item">
+                  <% if (project.href) { %>
+                    <a href="<%= project.href %>" class="project-item__link" title="<%= safeQuotes(project.name) %>"
+                       target="_blank" rel="noopener">
+                    </a>
+                  <% } %>
+                  <img src="<%= project.image %>" alt="<%= safeQuotes(project.name) %>">
+                  <div class="project-item__content">
+                    <div class="project-item__content__name">
+                      <%= project.name %>
+                    </div>
+                    <div class="project-item__content__description">
+                      <%= project.description %>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    <% } %>
   </div>
 </div>
 

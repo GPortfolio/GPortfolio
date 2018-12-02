@@ -1,5 +1,8 @@
 /*
- * NOTE: Supports HTML.
+ * NOTE:
+ *
+ * - Not all templates use all the settings listed below.
+ * - Supports HTML.
  */
 
 module.exports = {
