@@ -1,5 +1,8 @@
 /*
- * NOTE: Supports HTML.
+ * NOTE:
+ *
+ * - Not all templates use all the settings listed below.
+ * - Supports HTML.
  */
 
 module.exports = {
@@ -9,7 +12,7 @@ module.exports = {
    * @see templates folder
    * @param {Number} app_template
    */
-  app_template: 1,
+  app_template: 2,
 
   /**
    * Specify a valid URL address. Used in the Open Graph and PWA.
@@ -38,14 +41,14 @@ module.exports = {
   /**
    * Basic information about the user + for meta tags.
    */
-  username: 'My username',
-  first_name: 'Name',
-  last_name: 'Surname',
-  gender: 'Female',
+  username: 'username',
+  first_name: 'Victor',
+  last_name: 'Harvey',
+  gender: 'Male',
   email: 'mail@example.com',
-  profession: 'Senior Graphic Designer',
-  avatar_img: 'static/images/profile/avatar.jpeg',
-  background_img: 'static/images/profile/background.jpg',
+  profession: 'UI/UX Designer',
+  avatar_img: 'static/images/profile/avatar.jpg',
+  background_img: 'static/images/profile/background.svg',
   resume: 'static/files/resume.pdf',
 
   /**
@@ -78,6 +81,12 @@ module.exports = {
     'of type and scrambled it to make a type specimen book.</p> ' +
     '<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially ' +
     'unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, ' +
+    'and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>' +
+    '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has ' +
+    'been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley ' +
+    'of type and scrambled it to make a type specimen book.</p> ' +
+    '<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially ' +
+    'unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, ' +
     'and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>',
 
 
@@ -85,7 +94,7 @@ module.exports = {
    * Programming languages, technologies.
    */
   skills: [
-    'Photoshop', 'Adobe Illustrator', 'CSS', 'HTML', 'Javascript', 'GIT'
+    'User-centered Design', 'User Research', 'CSS', 'HTML', 'Javascript', 'Sketching/Rendering', 'Wireframing', 'Sketch'
   ],
 
   /**

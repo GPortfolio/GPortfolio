@@ -1,0 +1,37 @@
+@import "~font-awesome/css/font-awesome.min.css";
+@import 'global';
+@import 'header';
+@import 'content';
+@import 'project';
+
+.background--image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+  }
+}
+
+.avatar--image {
+  border-radius: 50%;
+  background-size: cover;
+  box-shadow: 0 10px 20px rgba(36, 37, 38, 0.13);
+}
+
+.has--padding {
+  padding-left: 20px;
+  padding-right: 20px;
+}
