@@ -119,3 +119,9 @@
   color: #fff;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 500px) {
+  .header__content__name {
+    font-size: 1.8rem;
+  }
+}
