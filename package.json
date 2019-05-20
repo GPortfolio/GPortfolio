@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Creating a portfolio based on github profile",
   "scripts": {
-    "build": "webpack -p --config webpack.config.js",
-    "dev": "webpack --watch"
+    "dev": "webpack-dev-server --watch",
+    "build": "webpack --mode production",
+    "lint": "eslint --ext .js src --fix"
   },
   "repository": {
     "type": "git",
@@ -25,8 +26,24 @@
     "url": "https://github.com/WPortfolio/WPortfolio/issues"
   },
   "homepage": "https://github.com/WPortfolio/WPortfolio#readme",
-  "dependencies": {
-    "normalize.css": "^8.0.1"
-  },
-  "devDependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^2.0.2",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "resolve-url-loader": "^3.1.0",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
+  }
 }
