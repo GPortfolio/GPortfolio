@@ -15,9 +15,6 @@ module.exports = async (env, argv) => {
    */
   const repositories = await parseRepositories()
   const profile = await parseProfile()
-
-  console.log(repositories)
-
   if (!repositories || !profile) {
     console.log('[Process]: Repositories or profile is empty')
     process.exit(0)
@@ -92,7 +89,6 @@ module.exports = async (env, argv) => {
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
        * @see https://github.com/jantimon/html-webpack-plugin
-       * @see https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md
        * @example
        *  In the .html file you can get a profile from GitHub and its repositories.
        *    htmlWebpackPlugin.options._profile or htmlWebpackPlugin.options._repositories
@@ -126,7 +122,17 @@ module.exports = async (env, argv) => {
       // TODO PWA
     ],
     resolve: {
-      extensions: ['.js', '.json'],
+      /**
+       * @see https://webpack.js.org/configuration/resolve/
+       * @example
+       *  Import from .js files
+       *  - import 'root/main' - get file './src/main.js'
+       *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
+       *  Import from .scss files
+       *  - @import "~@/styles/index"; - get file './src/template/{template}/styles/index.scss'
+       *
+       *  {template} - insert the path of the current template, for example - default
+       */
       alias: {
         '@': path.resolve(__dirname, `./src/templates/${config.template}/`),
         'root': path.resolve(__dirname, './src/')
