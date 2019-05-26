@@ -1,7 +1,7 @@
 {
-  "name": "wportfolio",
+  "name": "gportfolio",
   "version": "1.0.0",
-  "description": "Creating a portfolio based on github profile",
+  "description": "Creating an automatic portfolio based on Github profile",
   "scripts": {
     "dev": "webpack-dev-server --watch",
     "build": "webpack --mode production",
@@ -9,27 +9,31 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WPortfolio/WPortfolio.git"
+    "url": "git+https://github.com/GPortfolio/GPortfolio.git"
   },
   "keywords": [
-    "wportfolio",
+    "github-portfolio",
+    "gitportfolio",
+    "gportfolio",
     "portfolio",
     "github",
     "git",
     "projects",
     "cv",
-    "resume"
+    "resume",
+    "open-source"
   ],
   "author": "Alexey Khrushch, alexeykhr@outlook.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/WPortfolio/WPortfolio/issues"
+    "url": "https://github.com/GPortfolio/GPortfolio/issues"
   },
-  "homepage": "https://github.com/WPortfolio/WPortfolio#readme",
+  "homepage": "https://github.com/GPortfolio/GPortfolio#readme",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^2.0.2",
