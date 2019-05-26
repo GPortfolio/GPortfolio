@@ -1,3 +1,4 @@
 'use strict'
 
-import './styles/index.scss'
+import 'root/main'
+import '@/styles/index.scss'

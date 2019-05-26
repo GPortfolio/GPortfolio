@@ -71,7 +71,6 @@ module.exports = async (env, argv) => {
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
-            'resolve-url-loader',
             'sass-loader'
           ]
         },
@@ -125,6 +124,13 @@ module.exports = async (env, argv) => {
         chunkFilename: 'static/css/[name].[hash].css'
       }),
       // TODO PWA
-    ]
+    ],
+    resolve: {
+      extensions: ['.js', '.json'],
+      alias: {
+        '@': path.resolve(__dirname, `./src/templates/${config.template}/`),
+        'root': path.resolve(__dirname, './src/')
+      }
+    }
   }
 }
