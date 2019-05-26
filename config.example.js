@@ -25,7 +25,26 @@ module.exports = {
    *  The value will be:
    *    alexeykhr
    */
-  username: 'nwtgck',
+  username: '',
+
+  /**
+   * The Open Graph protocol
+   *  key - property
+   *  value - content
+   * @var {object}
+   * @see http://ogp.me/
+   * @example
+   *  'og:title': 'My portfolio'
+   * @default
+   *  og:title => Portfolio by {name from Github},
+   *  og:type => profile,
+   *  og:image => {avatar url from Github},
+   *  og:url => https://{username}.github.io/,
+   *  profile:username => {username}
+   */
+  opg: {
+    //
+  },
 
   /**
    * Various configurations are stored that will filter

@@ -10,6 +10,12 @@ const path = require('path')
 
 module.exports = async (env, argv) => {
 
+  /** @type {string} */
+  const template = config.template || 'default'
+
+  /** @type {boolean} */
+  const isProd = argv.mode === 'production'
+
   /*
    * Get data from API and inject to .html file
    */
@@ -23,7 +29,10 @@ module.exports = async (env, argv) => {
   return {
     mode: argv.mode,
     entry: {
-      main: `./src/templates/${config.template}/index.js`,
+      main: [
+        `./src/templates/${template}/index.js`,
+        `./src/templates/${template}/index.scss`
+      ]
     },
     output: {
       filename: '[name].[hash].js',
@@ -31,7 +40,7 @@ module.exports = async (env, argv) => {
       publicPath: '/',
       path: path.resolve(__dirname, 'dist')
     },
-    devtool: argv.mode === 'production' ? false : 'source-map',
+    devtool: isProd ? false : 'source-map',
     module: {
       rules: [
         {
@@ -103,13 +112,14 @@ module.exports = async (env, argv) => {
         _repositories: repositories
       }, {
         filename: 'index.html',
-        template: `./src/templates/${config.template || 'default'}/index.html`,
+        template: `./src/templates/${template}/index.html`,
         inject: true,
+        minify: isProd,
         meta: {
           viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
           description: `Portfolio by ${profile.name}`,
           robots: 'index, follow'
-        },
+        }
       })),
       /**
        * Creates a CSS file per JS file which contains CSS
@@ -118,7 +128,7 @@ module.exports = async (env, argv) => {
       new MiniCssExtractPlugin({
         filename: 'static/[name].[hash].css',
         chunkFilename: 'static/css/[name].[hash].css'
-      }),
+      })
       // TODO PWA
     ],
     resolve: {
@@ -134,8 +144,8 @@ module.exports = async (env, argv) => {
        *  {template} - insert the path of the current template, for example - default
        */
       alias: {
-        '@': path.resolve(__dirname, `./src/templates/${config.template}/`),
-        'root': path.resolve(__dirname, './src/')
+        '@': path.resolve(__dirname, `./src/templates/${template}/`),
+        '@root': path.resolve(__dirname, './src/')
       }
     }
   }
