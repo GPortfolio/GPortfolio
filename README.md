@@ -24,8 +24,18 @@ and repositories with the Github API and generate an html file based on the chos
 - Progressive Web Apps (PWA)
 - The largest estimates in the audit (Lighthouse)
 
+## How to install
+- Clone this repository on your PC
+- Copy *config.example.js* to the *config.js* file and config
+- Create the repository: *<username>.github.io*
+- Run **npm ci && npm run build && npm run deploy**
+- Open *<username>.github.io* in the browser
+
 ## How to contribute
 TODO
+
+## FAQ
+- [How to make a new template?](#how-to-make-a-new-template)
 
 ### How to make a new template
 Run the command to create base files with required default content:
