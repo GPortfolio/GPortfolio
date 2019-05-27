@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "webpack-dev-server --watch",
     "build": "webpack --mode production",
-    "lint": "eslint --ext .js src --fix"
+    "lint": "eslint --ext .js src --fix",
+    "template": "node ./utils/makeTemplate.js"
   },
   "repository": {
     "type": "git",
