@@ -27,9 +27,9 @@ and repositories with the Github API and generate an html file based on the chos
 ## How to install
 - Clone this repository on your PC
 - Copy *config.example.js* to the *config.js* file and config
-- Create the repository: *<username>.github.io*
+- Create the repository: *\<username>.github.io*
 - Run **npm ci && npm run build && npm run deploy**
-- Open *<username>.github.io* in the browser
+- Open *\<username>.github.io* in the browser
 
 ## How to contribute
 TODO
