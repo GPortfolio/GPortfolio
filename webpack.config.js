@@ -139,7 +139,7 @@ module.exports = async (env, argv) => {
        *  - import 'root/main' - get file './src/main.js'
        *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
        *  Import from .scss files
-       *  - @import "~@/styles/index"; - get file './src/template/{template}/styles/index.scss'
+       *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
        *
        *  {template} - insert the path of the current template, for example - default
        */

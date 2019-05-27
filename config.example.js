@@ -28,6 +28,15 @@ module.exports = {
   username: '',
 
   /**
+   * If the repository is called: <username>.github.io
+   * Then the value is empty
+   * If the repository is called: portfolio, or any other name
+   * Then the value of <name of repository>
+   * @var {string}
+   */
+  base: '',
+
+  /**
    * The Open Graph protocol
    *  key - property
    *  value - content
@@ -43,7 +52,9 @@ module.exports = {
    *  profile:username => {username}
    */
   opg: {
-    //
+    'profile:first_name': '',
+    'profile:last_name': '',
+    'profile:gender': '' // male, female
   },
 
   /**
@@ -53,9 +64,7 @@ module.exports = {
    */
   parseGithub: {
 
-    /**
-     * @see https://developer.github.com/v3/repos/#list-user-repositories docs
-     */
+    /** @see https://developer.github.com/v3/repos/#list-user-repositories docs */
     repositories: {
       /**
        * @var {string} - all, owner, member
