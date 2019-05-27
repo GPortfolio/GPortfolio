@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --watch",
     "build": "webpack --mode production",
+    "deploy": "node ./utils/deploy.js",
     "lint": "eslint --ext .js src --fix",
     "template": "node ./utils/makeTemplate.js"
   },
@@ -46,6 +47,7 @@
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
+    "shelljs": "^0.8.3",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"
