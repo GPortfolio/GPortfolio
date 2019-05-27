@@ -35,8 +35,8 @@ module.exports = async (env, argv) => {
       ]
     },
     output: {
-      filename: '[name].[hash].js',
-      chunkFilename: '[name].[hash].js',
+      filename: 'static/[name].[hash].js',
+      chunkFilename: 'static/chunks/[name].[hash].js',
       publicPath: '/',
       path: path.resolve(__dirname, 'dist')
     },
