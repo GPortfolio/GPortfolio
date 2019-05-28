@@ -17,9 +17,10 @@ Creating an automatic portfolio based on Github profile. When building a project
 and repositories with the Github API and generate an html file based on the chosen one.
 
 ## Benefits
-- Open Graph
 - Documented code
+- Repository filters
 - Webpack + babel + es6
+- The Open Graph protocol
 - Multiple template support
 - Progressive Web Apps (PWA)
 - The largest estimates in the audit (Lighthouse)

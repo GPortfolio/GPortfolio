@@ -3,6 +3,7 @@
 const jsonHelper = require('./jsonHelper')
 const variables = require('./variables')
 const config = require('../config')
+const Filter = require('./Filter')
 const axios = require('axios')
 
 /**
@@ -59,6 +60,14 @@ module.exports = async () => {
     } catch (e) {
       console.warn(`[Repositories]: ${e}`)
       return null
+    }
+
+    /*
+     * Filter repositories if need
+     */
+    const filter = new Filter(config.parseGithub.filter)
+    if (filter.has) {
+      repositories = filter.run(repositories)
     }
 
     /*
