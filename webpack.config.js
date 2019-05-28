@@ -140,7 +140,9 @@ module.exports = async (env, argv) => {
         filename: 'static/manifest.[hash].json',
         name: `${profile.name}`,
         short_name: config.username,
+        start_url: `https://${config.username}.github.io/${config.base}`,
         description: `Portfolio by ${profile.name}`,
+        theme_color: '#fff',
         background_color: '#fff',
         icons: [
           {
