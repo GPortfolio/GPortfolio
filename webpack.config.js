@@ -99,6 +99,9 @@ module.exports = async (env, argv) => {
       new CleanWebpackPlugin,
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
+       *  _config - data from config.js
+       *  _profile - from Github API
+       *  _repositories - from Github API
        * @see https://github.com/jantimon/html-webpack-plugin
        * @example
        *  In the .html file you can get a profile from GitHub and its repositories.
@@ -137,20 +140,23 @@ module.exports = async (env, argv) => {
        * @see https://github.com/arthurbergmz/webpack-pwa-manifest
        */
       new WebpackPwaManifest({
-        filename: 'static/manifest.[hash].json',
-        name: `${profile.name}`,
-        short_name: config.username,
-        start_url: `https://${config.username}.github.io/${config.base}`,
-        description: `Portfolio by ${profile.name}`,
-        theme_color: '#fff',
-        background_color: '#fff',
-        icons: [
-          {
-            src: path.resolve('assets/upstream/icon.png'),
-            sizes: [96, 128, 192, 256, 384, 512],
-            destination: 'static/icons'
-          }
-        ]
+        ...{
+          filename: 'static/manifest.[hash].json',
+          name: `${profile.name}`,
+          short_name: config.username,
+          start_url: `https://${config.username}.github.io/${config.base}`,
+          description: `Portfolio by ${profile.name}`,
+          theme_color: '#fff',
+          background_color: '#fff',
+          icons: [
+            {
+              src: path.resolve('assets/upstream/icon.png'),
+              sizes: [96, 128, 192, 256, 384, 512],
+              destination: 'static/icons'
+            }
+          ]
+        },
+        ...config.pwa
       }),
       /**
        * Workbox is a collection of JavaScript libraries for Progressive Web Apps.

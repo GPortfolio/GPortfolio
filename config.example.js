@@ -58,6 +58,18 @@ module.exports = {
   },
 
   /**
+   * Override options for WebpackPwaManifest plugin
+   * @var {object}
+   * @see https://github.com/arthurbergmz/webpack-pwa-manifest
+   * @example
+   *  For change description and background color:
+   *    { description: 'My portfolio', background_color: '#333' }
+   */
+  pwa: {
+    //
+  },
+
+  /**
    * Various configurations are stored that will filter
    * the received data with the Github API.
    * @var {Object}
