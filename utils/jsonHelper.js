@@ -50,7 +50,7 @@ module.exports = {
   writeJsonFile(fileName, data) {
     const path = BASE_PATH + fileName
 
-    fs.writeFileSync(path, JSON.stringify(data))
+    fs.writeFileSync(path, JSON.stringify(data), { encoding: 'UTF-8' })
   },
 
   /**

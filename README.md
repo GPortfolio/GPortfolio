@@ -32,7 +32,7 @@ and repositories with the Github API and generate an html file based on the chos
 - Run **npm ci && npm run build && npm run release**
 - Open *\<username>.github.io* in the browser
 
-### \<username>.github.io/<repo>
+### \<username>.github.io/\<repo>
 - Fork this repository and clone on your PC
 - Rename to *\<repo>*, example - portfolio
 - Copy *config.example.js* to the *config.js* file and config this

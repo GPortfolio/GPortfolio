@@ -40,7 +40,7 @@ module.exports = {
    * The Open Graph protocol
    *  key - property
    *  value - content
-   * @var {object}
+   * @var {Object}
    * @see http://ogp.me/
    * @example
    *  'og:title': 'My portfolio'
@@ -59,7 +59,7 @@ module.exports = {
 
   /**
    * Override options for WebpackPwaManifest plugin
-   * @var {object}
+   * @var {Object}
    * @see https://github.com/arthurbergmz/webpack-pwa-manifest
    * @example
    *  For change description and background color:
@@ -71,7 +71,7 @@ module.exports = {
 
   /**
    * Various configurations are stored that will filter
-   * the received data with the Github API.
+   * the received data with the Github API
    * @var {Object}
    */
   parseGithub: {
