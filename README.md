@@ -45,8 +45,9 @@ TODO
 
 ## FAQ
 - [How to make a new template?](#how-to-make-a-new-template)
+- [How to refresh data from API?](#how-to-refresh-data-from-api)
 
-### How to make a new template
+### How to make a new template?
 Run the command to create base files with required default content:
 ```bash
 $ npm run template <name>
@@ -65,6 +66,11 @@ $ npm run dev
 ```
 
 *\<name> - new template name*
+
+### How to refresh data from API?
+Data is cached to the API Github cached, to avoid the limit. It lasts about an hour.
+
+But you can force to refresh the data by deleting the **cache** folder.
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
