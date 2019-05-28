@@ -5,5 +5,8 @@
   "rules": {
     "indent": ["error", 2]
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  }
 }

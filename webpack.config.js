@@ -3,6 +3,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const parseRepositories = require('./utils/parseRepositories')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
+const { GenerateSW } = require('workbox-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const parseProfile = require('./utils/parseProfile')
 const config = require('./config')
@@ -35,8 +37,8 @@ module.exports = async (env, argv) => {
       ]
     },
     output: {
-      filename: '[name].[hash].js',
-      chunkFilename: 'js/[name].[hash].js',
+      filename: 'static/[name].[hash].js',
+      chunkFilename: 'static/js/[name].[hash].js',
       publicPath: '/',
       path: path.resolve(__dirname, 'dist')
     },
@@ -56,7 +58,7 @@ module.exports = async (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'images'
+                outputPath: 'static/images'
               }
             }
           ]
@@ -67,7 +69,7 @@ module.exports = async (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'files'
+                outputPath: 'static/files'
               }
             }
           ]
@@ -126,10 +128,44 @@ module.exports = async (env, argv) => {
        * @see https://github.com/webpack-contrib/mini-css-extract-plugin
        */
       new MiniCssExtractPlugin({
-        filename: '[name].[hash].css',
-        chunkFilename: 'css/[name].[hash].css'
+        filename: 'static/[name].[hash].css',
+        chunkFilename: 'static/css/[name].[hash].css'
+      }),
+      /**
+       * Progressive Web App Manifest Generator for Webpack,
+       * with auto icon resizing and fingerprinting support.
+       * @see https://github.com/arthurbergmz/webpack-pwa-manifest
+       */
+      new WebpackPwaManifest({
+        filename: 'static/manifest.[hash].json',
+        name: `${profile.name}`,
+        short_name: config.username,
+        description: `Portfolio by ${profile.name}`,
+        background_color: '#fff',
+        icons: [
+          {
+            src: path.resolve('assets/upstream/icon.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: 'static/icons'
+          }
+        ]
+      }),
+      /**
+       * Workbox is a collection of JavaScript libraries for Progressive Web Apps.
+       * @see https://github.com/googlechrome/workbox
+       */
+      new GenerateSW({
+        swDest: 'sw.js',
+        importWorkboxFrom: isProd ? 'local' : 'cdn',
+        importsDirectory: 'static/pwa',
+        clientsClaim: true,
+        skipWaiting: true,
+        navigateFallback: '/index.html',
+        navigateFallbackWhitelist: [
+          // Output build
+          /^static/, /^sw\.js$/, /^index\.html$/
+        ]
       })
-      // TODO PWA
     ],
     resolve: {
       /**
