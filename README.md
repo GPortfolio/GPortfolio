@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/GPortfolio/GPortfolio">
-        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/public/images/logo.png" alt="GPortfolio">
+        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/logo.png" alt="GPortfolio">
     </a>
 </p>
 <p align="center">
