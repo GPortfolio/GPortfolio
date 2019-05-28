@@ -25,11 +25,20 @@ and repositories with the Github API and generate an html file based on the chos
 - The largest estimates in the audit (Lighthouse)
 
 ## How to install
+### \<username>.github.io
 - Clone this repository on your PC
-- Copy *config.example.js* to the *config.js* file and config
-- Create the repository: *\<username>.github.io*
-- Run **npm ci && npm run build && npm run deploy**
+- Copy *config.example.js* to the *config.js* file and config this
+- Create *\<username>.github.io* repository
+- Run **npm ci && npm run build && npm run release**
 - Open *\<username>.github.io* in the browser
+
+### \<username>.github.io/<repo>
+- Fork this repository and clone on your PC
+- Rename to *\<repo>*, example - portfolio
+- Copy *config.example.js* to the *config.js* file and config this
+- Run **npm ci && npm run build && npm run release**
+- Change Source GitHub Pages to *gh-pages branch*
+- Open *\<username>.github.io/<repo>* in the browser
 
 ## How to contribute
 TODO

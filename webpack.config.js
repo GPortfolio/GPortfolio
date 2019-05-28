@@ -19,8 +19,8 @@ module.exports = async (env, argv) => {
   /*
    * Get data from API and inject to .html file
    */
-  const repositories = await parseRepositories()
   const profile = await parseProfile()
+  const repositories = await parseRepositories()
   if (!repositories || !profile) {
     console.log('[Process]: Repositories or profile is empty')
     process.exit(0)
@@ -35,8 +35,8 @@ module.exports = async (env, argv) => {
       ]
     },
     output: {
-      filename: 'static/[name].[hash].js',
-      chunkFilename: 'static/chunks/[name].[hash].js',
+      filename: '[name].[hash].js',
+      chunkFilename: 'js/[name].[hash].js',
       publicPath: '/',
       path: path.resolve(__dirname, 'dist')
     },
@@ -56,7 +56,7 @@ module.exports = async (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'static/images'
+                outputPath: 'images'
               }
             }
           ]
@@ -67,7 +67,7 @@ module.exports = async (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                outputPath: 'static/files'
+                outputPath: 'files'
               }
             }
           ]
@@ -126,8 +126,8 @@ module.exports = async (env, argv) => {
        * @see https://github.com/webpack-contrib/mini-css-extract-plugin
        */
       new MiniCssExtractPlugin({
-        filename: 'static/[name].[hash].css',
-        chunkFilename: 'static/css/[name].[hash].css'
+        filename: '[name].[hash].css',
+        chunkFilename: 'css/[name].[hash].css'
       })
       // TODO PWA
     ],
