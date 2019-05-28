@@ -1,7 +1,8 @@
 'use strict'
 
 // Register Service Worker to work offline
-if ('serviceWorker' in navigator) {
+// eslint-disable-next-line
+if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'development') {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
   })

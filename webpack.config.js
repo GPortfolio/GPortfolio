@@ -28,7 +28,7 @@ module.exports = async (env, argv) => {
     process.exit(0)
   }
 
-  return {
+  const webpackConfig = {
     mode: argv.mode,
     entry: {
       main: [
@@ -99,9 +99,6 @@ module.exports = async (env, argv) => {
       new CleanWebpackPlugin,
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
-       *  _config - data from config.js
-       *  _profile - from Github API
-       *  _repositories - from Github API
        * @see https://github.com/jantimon/html-webpack-plugin
        * @example
        *  In the .html file you can get a profile from GitHub and its repositories.
@@ -111,21 +108,24 @@ module.exports = async (env, argv) => {
        *  Insert data from a variable:
        *    <%= htmlWebpackPlugin.options._profile.id %>
        */
-      new HtmlWebpackPlugin(Object.assign({
-        _config: config,
-        _profile: profile,
-        _repositories: repositories
-      }, {
-        filename: 'index.html',
-        template: `./src/templates/${template}/index.html`,
-        inject: true,
-        minify: isProd,
-        meta: {
-          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-          description: `Portfolio by ${profile.name}`,
-          robots: 'index, follow'
+      new HtmlWebpackPlugin({
+        ...{
+          _config: config, // config.js
+          _profile: profile, // Github API
+          _repositories: repositories // Github API
+        },
+        ...{
+          filename: 'index.html',
+          template: `./src/templates/${template}/index.html`,
+          inject: true,
+          minify: isProd,
+          meta: {
+            viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+            description: `Portfolio by ${profile.name}`,
+            robots: 'index, follow'
+          }
         }
-      })),
+      }),
       /**
        * Creates a CSS file per JS file which contains CSS
        * @see https://github.com/webpack-contrib/mini-css-extract-plugin
@@ -133,7 +133,29 @@ module.exports = async (env, argv) => {
       new MiniCssExtractPlugin({
         filename: 'static/[name].[hash].css',
         chunkFilename: 'static/css/[name].[hash].css'
-      }),
+      })
+    ],
+    resolve: {
+      /**
+       * @see https://webpack.js.org/configuration/resolve/
+       * @example
+       *  Import from .js files
+       *  - import 'root/main' - get file './src/main.js'
+       *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
+       *  Import from .scss files
+       *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
+       *
+       *  {template} - insert the path of the current template, for example - default
+       */
+      alias: {
+        '@': path.resolve(__dirname, `./src/templates/${template}/`),
+        '@root': path.resolve(__dirname, './src/')
+      }
+    }
+  }
+
+  if (isProd) {
+    webpackConfig.plugins.push(
       /**
        * Progressive Web App Manifest Generator for Webpack,
        * with auto icon resizing and fingerprinting support.
@@ -164,7 +186,7 @@ module.exports = async (env, argv) => {
        */
       new GenerateSW({
         swDest: 'sw.js',
-        importWorkboxFrom: isProd ? 'local' : 'cdn',
+        importWorkboxFrom: 'local',
         importsDirectory: 'static/pwa',
         clientsClaim: true,
         skipWaiting: true,
@@ -174,23 +196,8 @@ module.exports = async (env, argv) => {
           /^static/, /^sw\.js$/, /^index\.html$/
         ]
       })
-    ],
-    resolve: {
-      /**
-       * @see https://webpack.js.org/configuration/resolve/
-       * @example
-       *  Import from .js files
-       *  - import 'root/main' - get file './src/main.js'
-       *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
-       *  Import from .scss files
-       *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
-       *
-       *  {template} - insert the path of the current template, for example - default
-       */
-      alias: {
-        '@': path.resolve(__dirname, `./src/templates/${template}/`),
-        '@root': path.resolve(__dirname, './src/')
-      }
-    }
+    )
   }
+
+  return webpackConfig
 }
