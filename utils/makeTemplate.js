@@ -60,19 +60,20 @@ fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTa
  * ---------------------------------------------- Create required .html file
  */
 fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
+<% var data = htmlWebpackPlugin.options %>
 <html lang="en">
 <head>
   <!-- START: Common part -->
   <meta charset="utf-8">
-  <title><%= htmlWebpackPlugin.options._profile.name %></title>
+  <title><%= data._profile.name %></title>
   <link rel="icon" href="/favicon.ico">
-  <meta property="og:title" content="Portfolio by <%= htmlWebpackPlugin.options._profile.name %>" />
+  <meta property="og:title" content="Portfolio by <%= data._profile.name %>" />
   <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= htmlWebpackPlugin.options._profile.avatar_url %>" />
-  <meta property="og:url" content="https://<%= htmlWebpackPlugin.options._config.username %>.github.io/" />
-  <meta property="og:description" content="<%= htmlWebpackPlugin.options._profile.bio %>" />
-  <meta property="profile:username" content="<%= htmlWebpackPlugin.options._profile.login %>" />
-  <% for (let [property, content] of Object.entries(htmlWebpackPlugin.options._config.opg)) { %>
+  <meta property="og:image" content="<%= data._profile.avatar_url %>" />
+  <meta property="og:url" content="https://<%= data._config.username %>.github.io/" />
+  <meta property="og:description" content="<%= data._profile.bio %>" />
+  <meta property="profile:username" content="<%= data._profile.login %>" />
+  <% for (let [property, content] of Object.entries(data._config.opg)) { %>
     <meta property="<%= property %>" content="<%= content %>" />
   <% } %>
   <!-- END: Common part -->
