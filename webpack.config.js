@@ -118,7 +118,14 @@ module.exports = async (env, argv) => {
           filename: 'index.html',
           template: `./src/templates/${template}/index.html`,
           inject: true,
-          minify: isProd,
+          minify: isProd ? {
+            collapseWhitespace: true,
+            preserveLineBreaks: true,
+            removeComments: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true
+          } : false,
           meta: {
             viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
             description: `Portfolio by ${profile.name}`,
@@ -149,6 +156,7 @@ module.exports = async (env, argv) => {
        */
       alias: {
         '@': path.resolve(__dirname, `./src/templates/${template}/`),
+        '@asset': path.resolve(__dirname, './assets'),
         '@root': path.resolve(__dirname, './src/')
       }
     }
