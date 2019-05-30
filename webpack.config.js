@@ -4,8 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const parseRepositories = require('./utils/parse/repositories')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const { GenerateSW } = require('workbox-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { GenerateSW } = require('workbox-webpack-plugin')
 const parseProfile = require('./utils/parse/profile')
 const config = require('./config')
 const path = require('path')
@@ -97,6 +98,13 @@ module.exports = async (env, argv) => {
        * @see https://github.com/johnagan/clean-webpack-plugin
        */
       new CleanWebpackPlugin,
+      /**
+       * Copies individual files or entire directories to the build directory.
+       * @see https://github.com/webpack-contrib/copy-webpack-plugin
+       */
+      new CopyWebpackPlugin([
+        { from: 'public', to: 'static/public' }
+      ]),
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
        * @see https://github.com/jantimon/html-webpack-plugin
