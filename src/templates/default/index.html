@@ -2,9 +2,8 @@
 <%
 const o = htmlWebpackPlugin.options
 const forceLastSlash = (str) => str[str.length - 1] === '/' ? str : str + '/'
-const urlBase = o.isProd
-  ? forceLastSlash('https://' + (o._config.customDomain || `${o._config.username}.github.io/${o._config.base}`))
-  : '/'
+const urlBase = o.isProd ? forceLastSlash('https://' + (o._config.customDomain || `${o._config.username}.github.io/${o._config.base}`)) : '/'
+const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 const url = (path) => urlBase + path
 %>
 <html lang="en">
@@ -19,12 +18,39 @@ const url = (path) => urlBase + path
   <meta property="og:description" content="<%= o._profile.bio %>" />
   <meta property="profile:username" content="<%= o._profile.login %>" />
   <% for (let [property, content] of Object.entries(o._config.opg)) { %>
-    <meta property="<%= property %>" content="<%= content %>" />
+  <meta property="<%= property %>" content="<%= content %>" />
   <% } %>
   <!-- END: Common part -->
+  <style>
+  .avatar--image {
+    background: url(<%= o._profile.avatar_url %>);
+  }
+  </style>
 </head>
 <body>
-<%= require('!!svg-inline-loader!@asset/upstream/icons/github.svg') %>
-<%= o._profile.id %>
+<header class="header">
+  <div class="header__background background--image"></div>
+  <div class="header__wrap">
+    <div class="header__wrap__image">
+      <div class="avatar--image"></div>
+    </div>
+    <h1 class="header__wrap__name"><%= o._profile.name %></h1>
+    <% if (o._config.position) { %>
+    <span class="header__wrap__position"><%= o._config.position %></span>
+    <% } %>
+    <% if (o._config.socialMedia.length > 0) { %>
+    <div class="header__wrap__social">
+      <% for (const media of o._config.socialMedia) { %>
+      <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
+        <%= require(`!!svg-inline-loader!@asset/upstream/icons/${media.icon}.svg`) %>
+      </a>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</header>
+<main>
+
+</main>
 </body>
 </html>

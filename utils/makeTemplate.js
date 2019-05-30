@@ -63,9 +63,8 @@ fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
 <%
 const o = htmlWebpackPlugin.options
 const forceLastSlash = (str) => str[str.length - 1] === '/' ? str : str + '/'
-const urlBase = o.isProd
-  ? forceLastSlash('https://' + (o._config.customDomain || \`${o._config.username}.github.io/${o._config.base}\`))
-  : '/'
+const urlBase = o.isProd ? forceLastSlash('https://' + (o._config.customDomain || \`${o._config.username}.github.io/${o._config.base}\`)) : '/'
+const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 const url = (path) => urlBase + path
 %>
 <html lang="en">
@@ -80,7 +79,7 @@ const url = (path) => urlBase + path
   <meta property="og:description" content="<%= o._profile.bio %>" />
   <meta property="profile:username" content="<%= o._profile.login %>" />
   <% for (let [property, content] of Object.entries(o._config.opg)) { %>
-    <meta property="<%= property %>" content="<%= content %>" />
+  <meta property="<%= property %>" content="<%= content %>" />
   <% } %>
   <!-- END: Common part -->
 </head>

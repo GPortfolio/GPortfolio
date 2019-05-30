@@ -37,6 +37,15 @@ module.exports = {
   base: '',
 
   /**
+   * @var {string}
+   * @example
+   *  Software Developer
+   *  UI/UX Designer
+   *  JavaScript Developer
+   */
+  position: '',
+
+  /**
    * The Open Graph protocol
    *  key - property
    *  value - content
@@ -85,7 +94,7 @@ module.exports = {
    *  { name: 'Github', icon: 'github', link: 'https://github.com/profile' },
    *  { name: 'LinkedIn', icon: 'linkedin', link: 'https://linkedin.com/in/profile' }
    */
-  socialLinks: [
+  socialMedia: [
     //
   ],
 
