@@ -39,7 +39,7 @@ and repositories with the Github API and generate an html file based on the chos
 - Copy *config.example.js* to the *config.js* file and config this
 - Run **npm ci && npm run build && npm run release**
 - Change Source GitHub Pages to *gh-pages branch*
-- Open *\<username>.github.io/<repo>* in the browser
+- Open *\<username>.github.io/\<repo>* in the browser
 
 ## How to contribute
 TODO
