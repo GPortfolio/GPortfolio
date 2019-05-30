@@ -133,6 +133,7 @@ module.exports = async (env, argv) => {
           template: `./src/templates/${template}/index.html`,
           favicon: iconPath,
           inject: true,
+          isProd,
           minify: isProd ? {
             collapseWhitespace: true,
             removeComments: true,
@@ -170,8 +171,9 @@ module.exports = async (env, argv) => {
        */
       alias: {
         '@': path.resolve(__dirname, `./src/templates/${template}/`),
-        '@asset': path.resolve(__dirname, './assets'),
-        '@root': path.resolve(__dirname, './src/')
+        '@root': __dirname,
+        '@src': path.resolve(__dirname, './src/'),
+        '@asset': path.resolve(__dirname, './assets/')
       }
     }
   }
@@ -188,7 +190,7 @@ module.exports = async (env, argv) => {
           filename: 'static/manifest.[hash].json',
           name: `${profile.name}`,
           short_name: config.username,
-          start_url: `https://${config.username}.github.io/${config.base}`,
+          start_url: 'https://' + (config.customDomain || `${config.username}.github.io/${config.base}`),
           description: `Portfolio by ${profile.name}`,
           theme_color: '#fff',
           background_color: '#fff',

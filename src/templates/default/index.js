@@ -1,5 +1,5 @@
 'use strict'
 
-import '@root/main'
+import '@src/main'
 
 //

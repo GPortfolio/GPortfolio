@@ -44,7 +44,7 @@ fs.mkdirSync(BASE_PATH + name)
  */
 fs.writeFileSync(BASE_PATH + name + '/index.js', `'use strict'
 
-import '@root/main'
+import '@src/main'
 
 // Code
 `, { encoding: 'utf8' })
@@ -53,7 +53,7 @@ import '@root/main'
  * ---------------------------------------------- Create required .scss file
  */
 fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTarget
-@import "@root/main.scss";
+@import "@src/main.scss";
 `, { encoding: 'utf8' })
 
 /*
