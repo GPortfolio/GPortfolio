@@ -41,9 +41,6 @@ and repositories with the Github API and generate an html file based on the chos
 - Change Source GitHub Pages to *gh-pages branch*
 - Open *\<username>.github.io/\<repo>* in the browser
 
-## How to contribute
-TODO
-
 ## FAQ
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
@@ -76,6 +73,20 @@ But you can force to refresh the data by deleting the **cache** folder.
 
 ### How to change favicon?
 Put the file **favicon.ico** in the assets folder.
+
+## How to contribute
+Please make sure to read the [Contributing Guide](https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/CONTRIBUTING.md) before making a pull request.
+
+### Structure
+- **assets** - files that do not directly build webpack.
+- **cache** - temporarily created files, for example - data from the GitHub API.
+- **dist** - compiled files that are uploaded to your repository/gh-pages branch.
+- **node_modules** - libraries.
+- **public** - all files from this folder will be copied to the **dist** folder
+and access by url: **/static/public/***.
+- **src** - source files.
+- **utils** - files that work with the node - getting data from the API,
+a script for creating a new template, etc.
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
