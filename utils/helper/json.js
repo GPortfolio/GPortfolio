@@ -32,7 +32,7 @@ module.exports = {
       return {}
     }
 
-    const data = fs.readFileSync(path, { encoding: 'UTF-8' })
+    const data = fs.readFileSync(path, { encoding: 'utf8' })
 
     try {
       return JSON.parse(data)
@@ -50,7 +50,7 @@ module.exports = {
   writeJsonFile(fileName, data) {
     const path = BASE_PATH + fileName
 
-    fs.writeFileSync(path, JSON.stringify(data), { encoding: 'UTF-8' })
+    fs.writeFileSync(path, JSON.stringify(data), { encoding: 'utf8' })
   },
 
   /**

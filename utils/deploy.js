@@ -1,5 +1,16 @@
 'use strict'
 
+/* | ------------------------------------------------------------------------------------------------
+ * | - Push files from dist folder to repository -
+ * | ------------------------------------------------------------------------------------------------
+ * |
+ * | gh-pages branch if config.base exists
+ * | <username.github.io repository
+ * |
+ * | NOTE: Force push!
+ * |
+ */
+
 const variables = require('./helper/variables')
 const config = require('../config')
 const shell = require('shelljs')
@@ -19,6 +30,11 @@ if (!fs.existsSync(BASE_DIST)) {
 
 // Move to dist folder
 shell.cd(BASE_DIST)
+
+// Create CNAME for support a custom domain
+if (config.customDomain) {
+  fs.writeFileSync(BASE_DIST + '/CNAME', config.customDomain)
+}
 
 // Git
 shell.exec(`git init`)

@@ -47,14 +47,14 @@ fs.writeFileSync(BASE_PATH + name + '/index.js', `'use strict'
 import '@root/main'
 
 // Code
-`, { encoding: 'UTF-8' })
+`, { encoding: 'utf8' })
 
 /*
  * ---------------------------------------------- Create required .scss file
  */
 fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTarget
 @import "@root/main.scss";
-`, { encoding: 'UTF-8' })
+`, { encoding: 'utf8' })
 
 /*
  * ---------------------------------------------- Create required .html file
@@ -82,7 +82,7 @@ fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
 
 </body>
 </html>
-`, { encoding: 'UTF-8' })
+`, { encoding: 'utf8' })
 
 /*
  * ---------------------------------------------- Complete

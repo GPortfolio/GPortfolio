@@ -70,6 +70,14 @@ module.exports = {
   },
 
   /**
+   * If you are deploying to a custom domain
+   * @var {string}
+   * @example
+   *  www.example.com
+   */
+  customDomain: '',
+
+  /**
    * Various configurations are stored that will filter
    * the received data with the Github API
    * @var {Object}
