@@ -32,7 +32,9 @@
     "url": "https://github.com/GPortfolio/GPortfolio/issues"
   },
   "homepage": "https://github.com/GPortfolio/GPortfolio#readme",
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
