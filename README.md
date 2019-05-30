@@ -47,6 +47,7 @@ TODO
 ## FAQ
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
+- [How to change favicon?](#how-to-change-favicon)
 
 ### How to make a new template?
 Run the command to create base files with required default content:
@@ -72,6 +73,9 @@ $ npm run dev
 Data is cached to the API Github cached, to avoid the limit. It lasts about an hour.
 
 But you can force to refresh the data by deleting the **cache** folder.
+
+### How to change favicon?
+Put the file **favicon.ico** in the assets folder.
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).

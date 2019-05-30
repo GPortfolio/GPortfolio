@@ -66,7 +66,6 @@ fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
   <!-- START: Common part -->
   <meta charset="utf-8">
   <title><%= o._profile.name %></title>
-  <link rel="icon" href="/favicon.ico">
   <meta property="og:title" content="Portfolio by <%= o._profile.name %>" />
   <meta property="og:type" content="profile" />
   <meta property="og:image" content="<%= o._profile.avatar_url %>" />

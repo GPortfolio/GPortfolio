@@ -10,6 +10,7 @@ const { GenerateSW } = require('workbox-webpack-plugin')
 const parseProfile = require('./utils/parse/profile')
 const config = require('./config')
 const path = require('path')
+const fs = require('fs')
 
 module.exports = async (env, argv) => {
 
@@ -18,6 +19,11 @@ module.exports = async (env, argv) => {
 
   /** @type {boolean} */
   const isProd = argv.mode === 'production'
+
+  /** @type {string} */
+  const iconPath = fs.existsSync('./assets/favicon.ico') ?
+    './assets/favicon.ico'
+    : './assets/upstream/favicon.ico'
 
   /*
    * Get data from API and inject to .html file
@@ -125,10 +131,10 @@ module.exports = async (env, argv) => {
         ...{
           filename: 'index.html',
           template: `./src/templates/${template}/index.html`,
+          favicon: iconPath,
           inject: true,
           minify: isProd ? {
             collapseWhitespace: true,
-            preserveLineBreaks: true,
             removeComments: true,
             removeRedundantAttributes: true,
             removeScriptTypeAttributes: true,
