@@ -78,6 +78,18 @@ module.exports = {
   customDomain: '',
 
   /**
+   * Display a list of social networks in the template (if supported)
+   * @var {{name: string, icon: string, link: string}[]}
+   *  icon - svg, find: /assets/upstream/icons
+   * @example
+   *  { name: 'Github', icon: 'github', link: 'https://github.com/profile' },
+   *  { name: 'LinkedIn', icon: 'linkedin', link: 'https://linkedin.com/in/profile' }
+   */
+  socialLinks: [
+    //
+  ],
+
+  /**
    * Various configurations are stored that will filter
    * the received data with the Github API
    * @var {Object}
