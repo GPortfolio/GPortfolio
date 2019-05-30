@@ -60,7 +60,14 @@ fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTa
  * ---------------------------------------------- Create required .html file
  */
 fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
-<% const o = htmlWebpackPlugin.options %>
+<%
+const o = htmlWebpackPlugin.options
+const forceLastSlash = (str) => str[str.length - 1] === '/' ? str : str + '/'
+const urlBase = o.isProd
+  ? forceLastSlash('https://' + (o._config.customDomain || \`${o._config.username}.github.io/${o._config.base}\`))
+  : '/'
+const url = (path) => urlBase + path
+%>
 <html lang="en">
 <head>
   <!-- START: Common part -->
@@ -69,7 +76,7 @@ fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
   <meta property="og:title" content="Portfolio by <%= o._profile.name %>" />
   <meta property="og:type" content="profile" />
   <meta property="og:image" content="<%= o._profile.avatar_url %>" />
-  <meta property="og:url" content="https://<%= o._config.username %>.github.io/<%= o._config.base %>" />
+  <meta property="og:url" content="<%= urlBase %>" />
   <meta property="og:description" content="<%= o._profile.bio %>" />
   <meta property="profile:username" content="<%= o._profile.login %>" />
   <% for (let [property, content] of Object.entries(o._config.opg)) { %>
