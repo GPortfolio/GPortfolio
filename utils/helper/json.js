@@ -1,10 +1,10 @@
 'use strict'
 
-const path = require('path')
+const variables = require('./variables')
 const fs = require('fs')
 
 /** @type {string} */
-const BASE_PATH = path.resolve(__dirname, '../cache') + '/'
+const BASE_PATH = variables.ROOT + '/cache/'
 
 /**
  * Create cache folder if not exists

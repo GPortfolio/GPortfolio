@@ -1,8 +1,8 @@
 'use strict'
 
-const jsonHelper = require('./jsonHelper')
-const variables = require('./variables')
-const config = require('../config')
+const variables = require('../helper/variables')
+const jsonHelper = require('../helper/json')
+const config = require('../../config')
 const axios = require('axios')
 
 /**

@@ -9,8 +9,8 @@
  * |
  */
 
+const variables = require('./helper/variables')
 const argv = process.argv.slice(2)
-const path = require('path')
 const fs = require('fs')
 
 // Check name of template
@@ -28,7 +28,7 @@ const name = argv[0]
  * Path to templates
  * @type {string}
  */
-const BASE_PATH = path.resolve(__dirname, '../src/templates') + '/'
+const BASE_PATH = variables.ROOT + '/src/template/'
 
 // Check on exists template
 if (fs.existsSync(BASE_PATH + name)) {

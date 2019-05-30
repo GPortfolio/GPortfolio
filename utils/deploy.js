@@ -1,12 +1,12 @@
 'use strict'
 
+const variables = require('./helper/variables')
 const config = require('../config')
 const shell = require('shelljs')
-const path = require('path')
 const fs = require('fs')
 
 /** @type {string} */
-const BASE_DIST = path.resolve(__dirname, '../dist')
+const BASE_DIST = variables.ROOT + '/dist'
 
 /**
  * Check dist folder after

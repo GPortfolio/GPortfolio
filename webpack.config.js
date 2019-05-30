@@ -1,12 +1,12 @@
 'use strict'
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const parseRepositories = require('./utils/parseRepositories')
+const parseRepositories = require('./utils/parse/repositories')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const { GenerateSW } = require('workbox-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const parseProfile = require('./utils/parseProfile')
+const parseProfile = require('./utils/parse/profile')
 const config = require('./config')
 const path = require('path')
 
