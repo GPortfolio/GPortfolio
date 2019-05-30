@@ -28,18 +28,18 @@ and repositories with the Github API and generate an html file based on the chos
 ## How to install
 ### \<username>.github.io
 - Clone this repository on your PC
-- Copy *config.example.js* to the *config.js* file and config this
-- Create *\<username>.github.io* repository
-- Run **npm ci && npm run build && npm run release**
-- Open *\<username>.github.io* in the browser
+- Copy **config.example.js** to the **config.js** file and config this
+- Create **\<username>.github.io** repository
+- Run `npm ci && npm run build && npm run release`
+- Open **\<username>.github.io** in the browser
 
 ### \<username>.github.io/\<repo>
 - Fork this repository and clone on your PC
-- Rename to *\<repo>*, example - portfolio
-- Copy *config.example.js* to the *config.js* file and config this
-- Run **npm ci && npm run build && npm run release**
-- Change Source GitHub Pages to *gh-pages branch*
-- Open *\<username>.github.io/\<repo>* in the browser
+- Rename to **\<repo>**, example - portfolio
+- Copy **config.example.js** to the **config.js** file and config this
+- Run `npm ci && npm run build && npm run release`
+- Change Source GitHub Pages to **gh-pages branch**
+- Open **\<username>.github.io/\<repo>** in the browser
 
 ## FAQ
 - [How to make a new template?](#how-to-make-a-new-template)
@@ -72,7 +72,7 @@ Data is cached to the API Github cached, to avoid the limit. It lasts about an h
 But you can force to refresh the data by deleting the **cache** folder.
 
 ### How to change favicon?
-Put the file **favicon.ico** in the assets folder.
+Put the file **favicon.ico** in the **assets** folder.
 
 ## How to contribute
 Please make sure to read the [Contributing Guide](https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/CONTRIBUTING.md) before making a pull request.
@@ -80,13 +80,11 @@ Please make sure to read the [Contributing Guide](https://raw.githubusercontent.
 ### Structure
 - **assets** - files that do not directly build webpack.
 - **cache** - temporarily created files, for example - data from the GitHub API.
-- **dist** - compiled files that are uploaded to your repository/gh-pages branch.
+- **dist** - compiled files that are uploaded to your **repository/gh-pages** branch.
 - **node_modules** - libraries.
-- **public** - all files from this folder will be copied to the **dist** folder
-and access by url: **/static/public/***.
+- **public** - all files from this folder will be copied to the **dist** folder and access by url: **/static/public/***.
 - **src** - source files.
-- **utils** - files that work with the node - getting data from the API,
-a script for creating a new template, etc.
+- **utils** - files that work with the node: getting data from the API, script for creating a new template, etc.
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
