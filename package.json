@@ -7,6 +7,7 @@
     "build": "webpack --mode production",
     "deploy": "node ./utils/deploy.js",
     "lint": "eslint --ext .js src --fix",
+    "release": "standard-version",
     "template": "node ./utils/makeTemplate.js"
   },
   "repository": {
