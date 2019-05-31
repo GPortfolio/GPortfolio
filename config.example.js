@@ -1,6 +1,10 @@
 /* eslint-disable */
 'use strict'
 
+/*
+ * After change - restart server
+ */
+
 module.exports = {
 
   /**
@@ -26,6 +30,16 @@ module.exports = {
    *    alexeykhr
    */
   username: '',
+
+  /**
+   * If a token is specified, then all repositories will be
+   * displayed (including from organizations)
+   * Only one access is needed to:
+   *  public_repo - Access public repositories
+   * @var {string}
+   * @see https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
+   */
+  token: '',
 
   /**
    * If the repository is called: <username>.github.io
@@ -107,6 +121,26 @@ module.exports = {
 
     /** @see https://developer.github.com/v3/repos/#list-user-repositories docs */
     repositories: {
+
+      /**
+       * ONLY IF THE TOKEN IS SPECIFIED
+       * @var {string} - all, public, private
+       * @default all
+       */
+      visibility: 'public',
+
+      /**
+       * ONLY IF THE TOKEN IS SPECIFIED
+       * Comma-separated list of values
+       * @var {string}
+       *  owner: Repositories that are owned by the authenticated user.
+       *  collaborator: Repositories that the user has been added to as a collaborator.
+       *  organization_member: Repositories that the user has access to through being a member
+       *    of an organization. This includes every repository on every team that the user is on.
+       * @default owner,collaborator,organization_member
+       */
+      affiliation: 'owner,collaborator,organization_member',
+
       /**
        * @var {string} - all, owner, member
        * @default owner

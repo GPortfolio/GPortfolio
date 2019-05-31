@@ -31,7 +31,7 @@ module.exports = async (env, argv) => {
   const profile = await parseProfile()
   const repositories = await parseRepositories()
   if (!repositories || !profile) {
-    console.log('[Process]: Repositories or profile is empty')
+    console.log('[API]: Repositories or profile is empty')
     process.exit(0)
   }
 

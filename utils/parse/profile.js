@@ -40,7 +40,11 @@ module.exports = async () => {
      */
     try {
       console.log(`[Profile] Fetching data from api.. | ${config.username} username`)
-      const fetchGithubData = await axios(`${variables.API_GITHUB}/users/${config.username}`)
+      const fetchGithubData = await axios(`${variables.API_GITHUB}/users/${config.username}`, {
+        headers: {
+          Authorization: config.token ? `token ${config.token}` : null
+        }
+      })
       githubUser = fetchGithubData.data
       console.log(`[Profile] Complete, ${githubUser.name}`)
     } catch (e) {

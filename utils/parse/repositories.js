@@ -35,6 +35,9 @@ module.exports = async () => {
 
   if (canRepeatRequestByTimestamp || !repositoriesFileExists) {
 
+    /** @type {string} */
+    const URL_REQUEST = config.token ? 'user/repos' : `users/${config.username}/repos`
+
     /**
      * Make a Github API request to get user repositories.
      * @see https://developer.github.com/v3/repos/#list-user-repositories docs
@@ -45,11 +48,14 @@ module.exports = async () => {
 
       do {
         console.log(`[Repositories] Fetching data from API.. | ${page} page`)
-        fetchRepositories = await axios(`${variables.API_GITHUB}/users/${config.username}/repos`, {
+        fetchRepositories = await axios(`${variables.API_GITHUB}/${URL_REQUEST}`, {
           params: {
             ...config.parseGithub.repositories,
             per_page: 100,
             page: page++
+          },
+          headers: {
+            Authorization: config.token ? `token ${config.token}` : null
           }
         })
         repositories.push(...fetchRepositories.data)
