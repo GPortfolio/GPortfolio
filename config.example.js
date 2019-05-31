@@ -174,6 +174,7 @@ module.exports = {
      *  { attr: 'language', values: 'JavaScript', revert: true, more: null } // excluding javascript
      *  { attr: 'size', values: 200, revert: false, more: '<' } //  size is less than 200 KB
      *  { attr: 'name', values: /php/i, revert: false, more: null } // where php is in the title
+     *  { attr: 'owner.login', values: 'nickname', revert: false, more: null } // owner is nickname
      */
     filter: [
       //

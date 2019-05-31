@@ -21,12 +21,12 @@ module.exports = class Filter {
    * Filter array by filters
    * @param {Array} arr
    * @return {*}
-   * TODO deep attr ('owner.login' or 'license.key')
    */
   run(arr) {
     return arr.filter((item) => {
       for (const filter of this.filters) {
-        const res = Filter.compare(filter.values, item[filter.attr], filter.more)
+        const values = Filter.getDeepByKey(item, filter.attr.split('.'))
+        const res = Filter.compare(filter.values, values, filter.more)
 
         if ((!res && !filter.revert) || (res && filter.revert)) {
           return false
@@ -35,6 +35,24 @@ module.exports = class Filter {
 
       return true
     })
+  }
+
+  /**
+   * Get deep value from object
+   * @param {object} obj
+   * @param {array} keys
+   * @param {number} deep
+   *  attr, deep.attr
+   * @return {*}
+   */
+  static getDeepByKey(obj, keys, deep = 0) {
+    const val = obj[keys[deep]]
+
+    if (val && typeof val === 'object') {
+      return Filter.getDeepByKey(val, keys, deep + 1)
+    }
+
+    return val
   }
 
   /**
