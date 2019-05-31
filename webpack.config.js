@@ -22,8 +22,8 @@ module.exports = async (env, argv) => {
   const isProd = argv.mode === 'production'
 
   /** @type {string} */
-  const iconPath = fs.existsSync('./assets/favicon.ico') ?
-    './assets/favicon.ico'
+  const iconPath = fs.existsSync('./assets/favicon.ico')
+    ? './assets/favicon.ico'
     : './assets/upstream/favicon.ico'
 
   /*
@@ -220,6 +220,9 @@ module.exports = async (env, argv) => {
         navigateFallbackWhitelist: [
           // Output build
           /^static/, /^sw\.js$/, /^index\.html$/, /^favicon\.ico$/
+        ],
+        exclude: [
+          /\.gitignore/
         ]
       })
     )
