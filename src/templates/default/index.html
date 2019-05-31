@@ -49,8 +49,32 @@ const url = (path) => urlBase + path
     <% } %>
   </div>
 </header>
-<main>
-
+<main class="main">
+  <section class="repositories-section">
+    <h2>Repositories</h2>
+    <div class="repositories">
+      <% for (const rep of o._repositories) { %>
+      <a href="<%= rep.html_url %>" class="repository" target="_blank" rel="noopener">
+        <div class="repository__name"><%= rep.full_name %></div>
+        <div class="repository__description"><%= rep.description || '-' %></div>
+        <div class="repository__bottom">
+          <div class="repository__bottom__language">
+            <%= require(`!!svg-inline-loader!@asset/upstream/icons/code.svg`) %>
+            <span><%= rep.language || '-' %></span>
+          </div>
+          <div class="repository__bottom__star">
+            <%= require(`!!svg-inline-loader!@asset/upstream/icons/star.svg`) %>
+            <span><%= rep.stargazers_count %></span>
+          </div>
+          <div class="repository__bottom__forks">
+            <%= require(`!!svg-inline-loader!@asset/upstream/icons/fork.svg`) %>
+            <span><%= rep.forks_count %></span>
+          </div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+  </section>
 </main>
 </body>
 </html>

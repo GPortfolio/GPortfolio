@@ -11,6 +11,21 @@ html, body {
   height: 100%;
 }
 
+main {
+  margin-top: 50px;
+}
+
+section {
+  > h2 {
+    margin: 0 0 30px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #474a73;
+  }
+}
+
 a {
   text-decoration: none !important;
   &[disabled] {
