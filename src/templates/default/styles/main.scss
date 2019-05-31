@@ -1,0 +1,79 @@
+main {
+  margin: 50px 20px 30px;
+}
+
+.repositories {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.repository {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 30px);
+  padding: 15px;
+  margin: 15px;
+  color: rgba(0, 0, 0, .9);
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  .repository__name,
+  .repository__bottom {
+    transition: .2s color;
+  }
+  &:hover {
+    .repository__name,
+    .repository__bottom {
+      color: #000;
+    }
+  }
+}
+
+.repository__name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #474a73;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.repository__description {
+  flex: 1 1 auto;
+  padding: 15px 0 20px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, .8);
+  font-size: .9rem;
+}
+
+.repository__bottom {
+  display: flex;
+  color: rgba(0, 0, 0, .8);
+  > div {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0;
+    }
+    > svg {
+      height: 13px;
+      margin-right: 5px;
+      fill: rgba(0, 0, 0, .8);
+      &[aria-label="Code"] {
+        height: 11px;
+      }
+    }
+    > span {
+      font-size: .8rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .repository {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 20px;
+  }
+}

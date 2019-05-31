@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<%
+const o = htmlWebpackPlugin.options
+const safeQuotes = (str) => str.replace(/"/g, '&quot;')
+const url = (path) => `${o.url}/${path}`
+%>
+<html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
+<head>
+  <!-- START: Common part -->
+  <meta charset="utf-8">
+  <title><%= o._profile.name %></title>
+  <meta property="og:title" content="Portfolio by <%= o._profile.name %>" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:image" content="<%= o._profile.avatar_url %>" />
+  <meta property="og:url" content="<%= o.url %>" />
+  <meta property="og:description" content="<%= o._profile.bio %>" />
+  <meta property="profile:username" content="<%= o._profile.login %>" />
+  <% for (let [property, content] of Object.entries(o._config.opg)) { %>
+  <meta property="<%= property %>" content="<%= content %>" />
+  <% } %>
+  <!-- END: Common part -->
+  <style>
+  .avatar--image {
+    background: url(<%= o._profile.avatar_url %>);
+  }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header__background background--image"></div>
+  <div class="header__wrap">
+    <div class="header__wrap__image">
+      <div class="avatar--image"></div>
+    </div>
+    <h1 class="header__wrap__name"><%= o._profile.name %></h1>
+    <% if (o._config.position) { %>
+    <span class="header__wrap__position"><%= o._config.position %></span>
+    <% } %>
+    <% if (o._config.socialMedia.length > 0) { %>
+    <div class="header__wrap__social">
+      <% for (const media of o._config.socialMedia) { %>
+      <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
+        <%= require(`!!svg-inline-loader!@asset/upstream/icons/${media.icon}.svg`) %>
+      </a>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</header>
+<main>
+  <section class="repositories-section">
+    <h2>Repositories</h2>
+    <div class="repositories">
+      <% for (const rep of o._repositories) { %>
+      <a href="<%= rep.html_url %>" class="repository" target="_blank" rel="noopener">
+        <div class="repository__name"><%= rep.full_name %></div>
+        <div class="repository__description"><%= rep.description || '-' %></div>
+        <div class="repository__bottom">
+          <div class="repository__bottom__language">
+            <%= require(`!!svg-inline-loader!@asset/upstream/icons/code.svg`) %>
+            <span><%= rep.language || '-' %></span>
+          </div>
+          <div class="repository__bottom__star">
+            <%= require(`!!svg-inline-loader!@asset/upstream/icons/star.svg`) %>
+            <span><%= rep.stargazers_count %></span>
+          </div>
+          <div class="repository__bottom__forks">
+            <%= require(`!!svg-inline-loader!@asset/upstream/icons/fork.svg`) %>
+            <span><%= rep.forks_count %></span>
+          </div>
+        </div>
+      </a>
+      <% } %>
+    </div>
+  </section>
+</main>
+<footer>
+  <span><%= new Date().toLocaleDateString(undefined, {
+    year: 'numeric',
+    day: '2-digit',
+    month: '2-digit',
+  }) %> </span>
+</footer>
+</body>
+</html>

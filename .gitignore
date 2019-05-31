@@ -1,2 +1,5 @@
-/.idea
-node_modules
+.idea/
+node_modules/
+config.js
+dist/
+cache/
