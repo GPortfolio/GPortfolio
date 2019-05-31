@@ -1,68 +1,114 @@
-<p align="center">
-  <img src="https://github.com/WPortfolio/WPortfolio/blob/master/static/images/resume.png" height="100">
-</p>
-<p align="center">
-  <a href="https://wportfolio.github.io/">Demo page (app_template: 1)</a> |
-  <a href="https://github.com/WPortfolio/WPortfolio/tree/master/src/templates">Preview templates</a>
-</p>
+# GPortfolio
 
-> Generate a portfolio using webpack
+<p align="center">
+    <a href="https://github.com/GPortfolio/GPortfolio">
+        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/logo.png" alt="GPortfolio">
+    </a>
+</p>
+<p align="center">
+    <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/package-json/v/GPortfolio/GPortfolio.svg" alt="Version"></a>
+    <a href="https://david-dm.org/GPortfolio/GPortfolio" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio.svg" alt="Dependency Status"></a>
+    <a href="https://david-dm.org/GPortfolio/GPortfolio?type=dev" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio/dev-status.svg" alt="devDependency Status"></a>
+    <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
+</p>
 
 ## Introducing
+Creating an automatic portfolio based on Github profile. When building a project, we get a profile
+and repositories with the Github API and generate an html file based on the chosen one.
 
-Create your portfolio website using webpack.
-Select your template, fill in the information config.js file and upload to server.
+[See examples](#list-of-user-portfolios)
 
 ## Benefits
-
 - Documented code
+- Filters after receiving repositories with the Github API
 - Webpack + babel + es6
-- Only the most necessary dependencies
-- Generating html code (HtmlWebpackPlugin)
-- The largest estimates in the audit (Lighthouse)
-- Common configuration file for all templates - config.js
-- Progressive Web Apps (PWA), website is accessible without internet
+- The Open Graph protocol
+- Multiple template support
+- Progressive Web Apps (PWA) - the site is available offline
 
-## How to start
+## How to install
+After running the `npm run deploy` command, the **utils/deploy.js** script is launched,
+which initializes git in the **dist** folder and makes a **force push** in the
+**\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
 
-- Fork this repo to your profile
-- Rename repository name to "{login}.github.io"
-- Console "cd /to/your/project"
-- Console "npm install"
-- Fill out the file with your information + image and stuff: "./src/config.js"
-- Console "npm run build"
-- Console "git push -u origin"
-- Wait a few minutes, then open your site: "{login}.github.io"
+`npm run deploy` - overwrites all data
 
-*{login} - your username on Github.
+### \<username>.github.io
+- Clone this repository on your PC
+- Copy **config.example.js** to the **config.js** file and config this
+- Create **\<username>.github.io** repository
+- Run `npm ci && npm run build && npm run deploy`
+- Open **\<username>.github.io** in the browser
 
-## How to create your own template?
+### \<username>.github.io/\<repo>
+- Fork this repository and clone on your PC
+- Rename to **\<repo>**, example - portfolio
+- Copy **config.example.js** to the **config.js** file and config this
+- Run `npm ci && npm run build && npm run deploy`
+- Change Source GitHub Pages to **gh-pages branch**
+- Open **\<username>.github.io/\<repo>** in the browser
 
-- Create a new folder "./src/templates/t{number}"
-- Create 3 files: "index.html", "scss/index.scss", "js/index.js"
-- Change the app_template (config.js) number to your {number}
-- Console "npm run dev"
-- Watch for changes in the compiled file "./index.html"
-- When the file is finished: console "npm run build"
-- Push changes to the server
+## Templates
+<table>
+  <tr>
+    <td>
+      <a href="https://github.com/GPortfolio/GPortfolio/tree/master/src/templates/default" title="Default">
+        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/templates/default.png" width="250" alt="Default">
+      </a>
+    </td>
+  </tr>
+</table>
 
-*{number} - this is app_template.
+## FAQ
+- [How to make a new template?](#how-to-make-a-new-template)
+- [How to refresh data from API?](#how-to-refresh-data-from-api)
+- [How to change favicon?](#how-to-change-favicon)
 
-**Use htmlWebpackPlugin as in the first template, creating a new template
-
-## Development Setup
-
-``` bash
-# install deps
-npm install
-
-# build dist files
-npm run build
-
-# running the webpack in watch mode
-npm run dev
+### How to make a new template?
+Run the command to create base files with required default content:
+```bash
+$ npm run template <name>
 ```
 
-## License
+Change the template in the **config.js** file:
+```js
+module.exports = {
+  template: 'default' // <name> 
+}
+```
 
-MIT
+Run the project with a new template in dev mode:
+```bash
+$ npm run dev
+```
+
+*\<name> - new template name*
+
+### How to refresh data from API?
+Data is cached to the API Github cached, to avoid the limit. It lasts about an hour.
+
+But you can force to refresh the data by deleting the **cache** folder.
+
+### How to change favicon?
+Put the file **favicon.ico** in the **assets** folder.
+
+## List of user portfolios
+- [Alexeykhr](https://alexeykhr.github.io) | Default
+
+## How to contribute
+Please make sure to read the [Contributing Guide](https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/CONTRIBUTING.md) before making a pull request.
+
+### Structure
+- **assets** - files that do not directly build webpack.
+- **cache** - temporarily created files, for example - data from the GitHub API.
+- **dist** - compiled files that are uploaded to your **repository/gh-pages** branch.
+- **node_modules** - libraries.
+- **public** - all files from this folder will be copied to the **dist** folder and access by url: **/static/public/***.
+- **src** - source files.
+- **utils** - files that work with the node: getting data from the API, script for creating a new template, etc.
+
+## Changelog
+Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
+
+## License
+[MIT](https://opensource.org/licenses/MIT)
