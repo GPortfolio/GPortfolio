@@ -16,6 +16,8 @@
 Creating an automatic portfolio based on Github profile. When building a project, we get a profile
 and repositories with the Github API and generate an html file based on the chosen one.
 
+[See examples](#list-of-user-portfolios)
+
 ## Benefits
 - Documented code
 - Repository filters
@@ -84,6 +86,9 @@ But you can force to refresh the data by deleting the **cache** folder.
 
 ### How to change favicon?
 Put the file **favicon.ico** in the **assets** folder.
+
+## List of user portfolios
+- [Alexeykhr](https://alexeykhr.github.io) | Default
 
 ## How to contribute
 Please make sure to read the [Contributing Guide](https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/CONTRIBUTING.md) before making a pull request.
