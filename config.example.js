@@ -71,7 +71,7 @@ module.exports = {
    *  og:title => Portfolio by {name from Github},
    *  og:type => profile,
    *  og:image => {avatar url from Github},
-   *  og:url => https://{username}.github.io/,
+   *  og:url => {site url},
    *  profile:username => {username}
    */
   opg: {

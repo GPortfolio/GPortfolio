@@ -8,6 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
 const parseProfile = require('./utils/parse/profile')
+const variables = require('./utils/helper/variables')
 const config = require('./config')
 const path = require('path')
 const fs = require('fs')
@@ -134,6 +135,7 @@ module.exports = async (env, argv) => {
           favicon: iconPath,
           inject: true,
           isProd,
+          url: variables.SITE_URL,
           minify: isProd ? {
             collapseWhitespace: true,
             removeComments: true,
@@ -190,7 +192,7 @@ module.exports = async (env, argv) => {
           filename: 'static/manifest.[hash].json',
           name: `${profile.name}`,
           short_name: config.username,
-          start_url: 'https://' + (config.customDomain || `${config.username}.github.io/${config.base}`),
+          start_url: variables.SITE_URL,
           description: `Portfolio by ${profile.name}`,
           theme_color: '#fff',
           background_color: '#fff',
