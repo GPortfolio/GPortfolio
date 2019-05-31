@@ -223,7 +223,20 @@ module.exports = async (env, argv) => {
         ],
         exclude: [
           /\.gitignore/
-        ]
+        ],
+        runtimeCaching: [{
+          urlPattern: new RegExp('^https://.*\.githubusercontent\.com/'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'github-content'
+          }
+        }, {
+          urlPattern: new RegExp('^https://api\.github\.com/'),
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'github-api'
+          }
+        }]
       })
     )
   }
