@@ -217,7 +217,7 @@ module.exports = async (env, argv) => {
         navigateFallback: '/index.html',
         navigateFallbackWhitelist: [
           // Output build
-          /^static/, /^sw\.js$/, /^index\.html$/
+          /^static/, /^sw\.js$/, /^index\.html$/, /^favicon\.ico$/
         ]
       })
     )
