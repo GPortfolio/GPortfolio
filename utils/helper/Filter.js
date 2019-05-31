@@ -26,7 +26,6 @@ module.exports = class Filter {
   run(arr) {
     return arr.filter((item) => {
       for (const filter of this.filters) {
-        console.log(filter.attr, filter.values, item[filter.attr])
         const res = Filter.compare(filter.values, item[filter.attr], filter.more)
 
         if ((!res && !filter.revert) || (res && filter.revert)) {
