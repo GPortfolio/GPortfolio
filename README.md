@@ -41,6 +41,17 @@ and repositories with the Github API and generate an html file based on the chos
 - Change Source GitHub Pages to **gh-pages branch**
 - Open **\<username>.github.io/\<repo>** in the browser
 
+## Templates
+<table>
+  <tr>
+    <td>
+      <a href="https://github.com/GPortfolio/GPortfolio/tree/master/src/templates/default" title="Default">
+        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/templates/default.png" width="250" alt="Default">
+      </a>
+    </td>
+  </tr>
+</table>
+
 ## FAQ
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
