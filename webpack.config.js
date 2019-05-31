@@ -2,7 +2,7 @@
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const parseRepositories = require('./utils/parse/repositories')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
