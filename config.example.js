@@ -164,22 +164,16 @@ module.exports = {
      * After get repositories (API) - filter by these filters
      * Accept repository if all of the parameters is valid
      * String equal!
-     *  Deep attr not support yet
-     *  Values pattern not support yet
-     *
      * @var {{attr: string, values: *, revert: boolean, more: *}[]}
      *  more - extra options, support:
      *    If values is number - ['>', '<', '>=', '<=']
-     *
      * @see cache/repositories.json to see attributes or for API to get repositories
-     *
      * @example
-     *  Get repositories that have the name rep1 and rep2,
-     *  as well as the non-Javascript language
-     *  and the size is less than 200 kb
+     *  Get repositories where:
      *  { attr: 'name', values: ['rep2', 'rep1'], revert: false, more: null } // 2 repositories
      *  { attr: 'language', values: 'JavaScript', revert: true, more: null } // excluding javascript
      *  { attr: 'size', values: 200, revert: false, more: '<' } //  size is less than 200 KB
+     *  { attr: 'name', values: /php/i, revert: false, more: null } // where php is in the title
      */
     filter: [
       //

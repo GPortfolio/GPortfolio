@@ -43,7 +43,6 @@ module.exports = class Filter {
    * @param compareValue
    * @param more
    * @return {boolean}
-   * TODO support pattern type
    */
   static compare(filterValue, compareValue, more = null) {
     switch (typeof filterValue) {
@@ -52,6 +51,9 @@ module.exports = class Filter {
     case 'object':
       if (Array.isArray(filterValue)) {
         return filterValue.includes(compareValue)
+      }
+      if (filterValue instanceof RegExp) {
+        return filterValue.test(compareValue)
       }
       // Not support
       return false
