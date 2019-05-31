@@ -26,7 +26,7 @@ const url = (path) => `${o.url}/${path}`
   </style>
 </head>
 <body>
-<header class="header">
+<header>
   <div class="header__background background--image"></div>
   <div class="header__wrap">
     <div class="header__wrap__image">
@@ -47,7 +47,7 @@ const url = (path) => `${o.url}/${path}`
     <% } %>
   </div>
 </header>
-<main class="main">
+<main>
   <section class="repositories-section">
     <h2>Repositories</h2>
     <div class="repositories">
@@ -74,5 +74,12 @@ const url = (path) => `${o.url}/${path}`
     </div>
   </section>
 </main>
+<footer>
+  <span><%= new Date().toLocaleDateString(undefined, {
+    year: 'numeric',
+    day: '2-digit',
+    month: '2-digit',
+  }) %> </span>
+</footer>
 </body>
 </html>

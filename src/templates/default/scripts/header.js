@@ -53,7 +53,7 @@ const onWindowResize = () => {
 
 DOMIsLoaded(() => {
   // Get all elements from DOM
-  headerEl = document.querySelector('.header')
+  headerEl = document.querySelector('header')
   backgroundImageEl = document.querySelector('.background--image')
   headerWrapEl = document.querySelector('.header__wrap')
 
