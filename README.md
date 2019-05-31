@@ -20,26 +20,31 @@ and repositories with the Github API and generate an html file based on the chos
 
 ## Benefits
 - Documented code
-- Repository filters
+- Filters after receiving repositories with the Github API
 - Webpack + babel + es6
 - The Open Graph protocol
 - Multiple template support
-- Progressive Web Apps (PWA)
-- The largest estimates in the audit (Lighthouse)
+- Progressive Web Apps (PWA) - the site is available offline
 
 ## How to install
+After running the `npm run deploy` command, the **utils/deploy.js** script is launched,
+which initializes git in the **dist** folder and makes a **force push** in the
+**\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
+
+`npm run deploy` - overwrites all data
+
 ### \<username>.github.io
 - Clone this repository on your PC
 - Copy **config.example.js** to the **config.js** file and config this
 - Create **\<username>.github.io** repository
-- Run `npm ci && npm run build && npm run release`
+- Run `npm ci && npm run build && npm run deploy`
 - Open **\<username>.github.io** in the browser
 
 ### \<username>.github.io/\<repo>
 - Fork this repository and clone on your PC
 - Rename to **\<repo>**, example - portfolio
 - Copy **config.example.js** to the **config.js** file and config this
-- Run `npm ci && npm run build && npm run release`
+- Run `npm ci && npm run build && npm run deploy`
 - Change Source GitHub Pages to **gh-pages branch**
 - Open **\<username>.github.io/\<repo>** in the browser
 
