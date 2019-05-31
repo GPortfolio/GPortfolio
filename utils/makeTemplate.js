@@ -22,7 +22,7 @@ if (argv.length !== 1) {
 /**
  * @var {string}
  */
-const name = argv[0]
+const name = argv[0].trim()
 
 /**
  * Path to templates
@@ -65,7 +65,7 @@ const o = htmlWebpackPlugin.options
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 const url = (path) => \`${o.url}/${path}\`
 %>
-<html lang="en">
+<html lang="en" data-template="${name}" data-compiled="<%= Date.now() %>">
 <head>
   <!-- START: Common part -->
   <meta charset="utf-8">
