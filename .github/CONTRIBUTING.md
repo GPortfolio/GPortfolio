@@ -1,5 +1,5 @@
 # GPortfolio Contributing Guide
-- [Code of Conduct](https://github.com/GPortfolio/GPortfolio/blob/master/CODE_OF_CONDUCT.md)
+- [Code of Conduct](https://github.com/GPortfolio/GPortfolio/blob/master/.github/CODE_OF_CONDUCT.md)
 - [Pull Request Guidelines](#pull-request-guidelines)
 - [Development Setup](#development-setup)
 

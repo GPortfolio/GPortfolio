@@ -96,7 +96,7 @@ Put the file **favicon.ico** in the **assets** folder.
 - [Alexeykhr](https://alexeykhr.github.io) | Default
 
 ## How to contribute
-Please make sure to read the [Contributing Guide](https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/CONTRIBUTING.md) before making a pull request.
+Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/GPortfolio/blob/master/.github/CONTRIBUTING.md) before making a pull request.
 
 ### Structure
 - **assets** - files that do not directly build webpack.
