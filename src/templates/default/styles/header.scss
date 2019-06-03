@@ -54,7 +54,7 @@ header {
     transition: .2s;
     min-width: 35px;
     &:hover {
-      background: #4d526b;
+      background: rgba(0, 0, 0, .5);
       border-radius: 10px;
     }
     svg {

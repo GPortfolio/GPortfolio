@@ -113,6 +113,18 @@ module.exports = {
   ],
 
   /**
+   * If the template has a main large image - it can be replaced
+   * with a file on the desktop or from the url
+   * @var {string}
+   * @see cache/images folder for cache images on {x}hours
+   * @example
+   *  (empty) - use default image in template
+   *  upstream/logo.png - from assets folder
+   *  https://images.unsplash.com/photo-1505685296765-3a2736de412f - from url
+   */
+  background: '',
+
+  /**
    * Various configurations are stored that will filter
    * the received data with the Github API
    * @var {Object}
