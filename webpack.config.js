@@ -61,7 +61,7 @@ module.exports = async (env, argv) => {
           ]
         },
         {
-          test: /\.(gif|png|jpe?g|svg)$/i,
+          test: /\.(gif|png|jpe?g)$/i,
           use: [
             {
               loader: 'file-loader',
@@ -164,7 +164,7 @@ module.exports = async (env, argv) => {
        * @see https://webpack.js.org/configuration/resolve/
        * @example
        *  Import from .js files
-       *  - import 'root/main' - get file './src/main.js'
+       *  - import '@src' - get file './src/main.js'
        *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
        *  Import from .scss files
        *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
