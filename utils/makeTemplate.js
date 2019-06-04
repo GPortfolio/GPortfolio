@@ -28,7 +28,7 @@ const name = argv[0].trim()
  * Path to templates
  * @type {string}
  */
-const BASE_PATH = variables.ROOT + '/src/template/'
+const BASE_PATH = variables.ROOT + '/src/templates/'
 
 // Check on exists template
 if (fs.existsSync(BASE_PATH + name)) {
@@ -63,10 +63,10 @@ fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
 <%
 const o = htmlWebpackPlugin.options
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
-const url = (path) => \`${o.url}/${path}\`
+const url = (path) => \`\${o.url}/\${path}\`
 const background = !o._config.background || o._config.background.includes('http')
   ? o._config.background
-  : require(\`!!file-loader!@asset/${o._config.background}\`)
+  : require(\`!!file-loader!@asset/\${o._config.background}\`)
 %>
 <html lang="en" data-template="${name}" data-compiled="<%= Date.now() %>">
 <head>
@@ -88,7 +88,7 @@ const background = !o._config.background || o._config.background.includes('http'
     background: url(<%= o._profile.avatar_url %>);
   }
   .background--image {
-    background: url(<%= background || require('@/assets/background.png') %>);
+    background: url(<%= background %>);
   }
   </style>
 </head>
