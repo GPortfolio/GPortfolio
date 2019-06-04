@@ -28,7 +28,7 @@ const name = argv[0].trim()
  * Path to templates
  * @type {string}
  */
-const BASE_PATH = variables.ROOT + '/src/template/'
+const BASE_PATH = variables.ROOT + '/src/templates/'
 
 // Check on exists template
 if (fs.existsSync(BASE_PATH + name)) {
@@ -63,13 +63,16 @@ fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
 <%
 const o = htmlWebpackPlugin.options
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
-const url = (path) => \`${o.url}/${path}\`
+const url = (path) => \`\${o.url}/\${path}\`
+const background = !o._config.background || o._config.background.includes('http')
+  ? o._config.background
+  : require(\`!!file-loader!@asset/\${o._config.background}\`)
 %>
 <html lang="en" data-template="${name}" data-compiled="<%= Date.now() %>">
 <head>
-  <!-- START: Common part -->
   <meta charset="utf-8">
   <title><%= o._profile.name %></title>
+  <!-- START: Open Graph -->
   <meta property="og:title" content="Portfolio by <%= o._profile.name %>" />
   <meta property="og:type" content="profile" />
   <meta property="og:image" content="<%= o._profile.avatar_url %>" />
@@ -79,7 +82,15 @@ const url = (path) => \`${o.url}/${path}\`
   <% for (let [property, content] of Object.entries(o._config.opg)) { %>
   <meta property="<%= property %>" content="<%= content %>" />
   <% } %>
-  <!-- END: Common part -->
+  <!-- END: Open Graph -->
+  <style>
+  .avatar--image {
+    background: url(<%= o._profile.avatar_url %>);
+  }
+  .background--image {
+    background: url(<%= background %>);
+  }
+  </style>
 </head>
 <body>
 
