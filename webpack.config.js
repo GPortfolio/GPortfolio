@@ -168,7 +168,7 @@ module.exports = async (env, argv) => {
        * @see https://webpack.js.org/configuration/resolve/
        * @example
        *  Import from .js files
-       *  - import '@src' - get file './src/main.js'
+       *  - import '@src/main' - get file './src/main.js'
        *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
        *  Import from .scss files
        *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
