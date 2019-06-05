@@ -124,30 +124,28 @@ module.exports = async (env, argv) => {
        *    <%= htmlWebpackPlugin.options._profile.id %>
        */
       new HtmlWebpackPlugin({
-        ...{
-          _config: config, // config.js
-          _profile: profile, // Github API
-          _repositories: repositories // Github API
-        },
-        ...{
-          filename: 'index.html',
-          template: `./src/templates/${template}/index.ejs`,
-          favicon: iconPath,
-          inject: true,
+        filename: 'index.html',
+        template: `./src/templates/${template}/index.ejs`,
+        favicon: iconPath,
+        inject: true,
+        templateParameters: {
+          config, // config.js
+          profile, // Github API
+          repositories, // Github API
           isProd,
-          url: variables.SITE_URL,
-          minify: isProd ? {
-            collapseWhitespace: true,
-            removeComments: true,
-            removeRedundantAttributes: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true
-          } : false,
-          meta: {
-            viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-            description: `Portfolio by ${profile.name}`,
-            robots: 'index, follow'
-          }
+          url: variables.SITE_URL
+        },
+        minify: isProd ? {
+          collapseWhitespace: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true
+        } : false,
+        meta: {
+          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+          description: `Portfolio by ${profile.name}`,
+          robots: 'index, follow'
         }
       }),
       /**

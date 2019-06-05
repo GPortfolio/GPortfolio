@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <%
-const o = htmlWebpackPlugin.options
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
-const url = (path) => `${o.url}/${path}`
-const background = !o._config.background || o._config.background.includes('http')
-  ? o._config.background
-  : require(`!!file-loader!@asset/${o._config.background}`)
+const background = !config.background || config.background.includes('http')
+  ? config.background
+  : require(`!!file-loader!@asset/${config.background}`)
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
   <meta charset="utf-8">
-  <title><%= o._profile.name %></title>
+  <title><%= profile.name %></title>
   <!-- START: Open Graph -->
-  <meta property="og:title" content="Portfolio by <%= o._profile.name %>" />
+  <meta property="og:title" content="Portfolio by <%= profile.name %>" />
   <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= o._profile.avatar_url %>" />
-  <meta property="og:url" content="<%= o.url %>" />
-  <meta property="og:description" content="<%= o._profile.bio %>" />
-  <meta property="profile:username" content="<%= o._profile.login %>" />
-  <% for (let [property, content] of Object.entries(o._config.opg)) { %>
+  <meta property="og:image" content="<%= profile.avatar_url %>" />
+  <meta property="og:url" content="<%= url %>" />
+  <meta property="og:description" content="<%= profile.bio %>" />
+  <meta property="profile:username" content="<%= profile.login %>" />
+  <% for (let [property, content] of Object.entries(config.opg)) { %>
   <meta property="<%= property %>" content="<%= content %>" />
   <% } %>
   <!-- END: Open Graph -->
   <style>
   .avatar--image {
-    background: url(<%= o._profile.avatar_url %>);
+    background: url(<%= profile.avatar_url %>);
   }
   .background--image {
     background: url(<%= background || require('@/assets/background.png') %>);
@@ -38,13 +36,13 @@ const background = !o._config.background || o._config.background.includes('http'
     <div class="header__wrap__image">
       <div class="avatar--image"></div>
     </div>
-    <h1 class="header__wrap__name"><%= o._profile.name %></h1>
-    <% if (o._config.position) { %>
-    <span class="header__wrap__position"><%= o._config.position %></span>
+    <h1 class="header__wrap__name"><%= profile.name %></h1>
+    <% if (config.position) { %>
+    <span class="header__wrap__position"><%= config.position %></span>
     <% } %>
-    <% if (o._config.socialMedia.length > 0) { %>
+    <% if (config.socialMedia.length > 0) { %>
     <div class="header__wrap__social">
-      <% for (const media of o._config.socialMedia) { %>
+      <% for (const media of config.socialMedia) { %>
       <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
         <%= require(`!!svg-inline-loader!@asset/upstream/icons/${media.icon}.svg`) %>
       </a>
@@ -57,7 +55,7 @@ const background = !o._config.background || o._config.background.includes('http'
   <section class="repositories-section">
     <h2>Repositories</h2>
     <div class="repositories">
-      <% for (const rep of o._repositories) { %>
+      <% for (const rep of repositories) { %>
       <a href="<%= rep.html_url %>" class="repository" target="_blank" rel="noopener">
         <div class="repository__name"><%= rep.full_name %></div>
         <div class="repository__description"><%= rep.description || '-' %></div>
