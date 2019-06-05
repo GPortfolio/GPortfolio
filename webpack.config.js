@@ -131,7 +131,7 @@ module.exports = async (env, argv) => {
         },
         ...{
           filename: 'index.html',
-          template: `./src/templates/${template}/index.html`,
+          template: `./src/templates/${template}/index.ejs`,
           favicon: iconPath,
           inject: true,
           isProd,
