@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/GPortfolio/GPortfolio/compare/v2.1.0...v2.2.0) (2019-06-05)
+
+
+### Bug Fixes
+
+* extra files in <root> dist folder ([e5f1558](https://github.com/GPortfolio/GPortfolio/commit/e5f1558))
+
+
+### Features
+
+* **pwa:** cache data from other websites ([c3908a9](https://github.com/GPortfolio/GPortfolio/commit/c3908a9))
+
+
+
 ## [2.1.0](https://github.com/GPortfolio/GPortfolio/compare/v2.0.0...v2.1.0) (2019-06-04)
 
 
