@@ -61,7 +61,7 @@ module.exports = async (env, argv) => {
           ]
         },
         {
-          test: /\.(gif|png|jpe?g|svg)$/i,
+          test: /\.(gif|png|jpe?g)$/,
           use: [
             {
               loader: 'file-loader',
@@ -83,7 +83,7 @@ module.exports = async (env, argv) => {
           ]
         },
         {
-          test: /\.s?css/,
+          test: /\.s?css$/,
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
@@ -124,30 +124,34 @@ module.exports = async (env, argv) => {
        *    <%= htmlWebpackPlugin.options._profile.id %>
        */
       new HtmlWebpackPlugin({
-        ...{
-          _config: config, // config.js
-          _profile: profile, // Github API
-          _repositories: repositories // Github API
-        },
-        ...{
-          filename: 'index.html',
-          template: `./src/templates/${template}/index.html`,
-          favicon: iconPath,
-          inject: true,
+        filename: 'index.html',
+        template: `./src/templates/${template}/index.ejs`,
+        favicon: iconPath,
+        inject: true,
+        templateParameters: {
+          config, // config.js
+          profile, // Github API
+          repositories, // Github API
           isProd,
           url: variables.SITE_URL,
-          minify: isProd ? {
-            collapseWhitespace: true,
-            removeComments: true,
-            removeRedundantAttributes: true,
-            removeScriptTypeAttributes: true,
-            removeStyleLinkTypeAttributes: true
-          } : false,
-          meta: {
-            viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-            description: `Portfolio by ${profile.name}`,
-            robots: 'index, follow'
+          safeQuotes: (str) => str.replace(/"/g, '&quot;'),
+          background: (assetFolder) => {
+            return !config.background || config.background.includes('http')
+              ? config.background
+              : assetFolder(`./${config.background}`)
           }
+        },
+        minify: isProd ? {
+          collapseWhitespace: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true
+        } : false,
+        meta: {
+          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+          description: `Portfolio by ${profile.name}`,
+          robots: 'index, follow'
         }
       }),
       /**
@@ -164,7 +168,7 @@ module.exports = async (env, argv) => {
        * @see https://webpack.js.org/configuration/resolve/
        * @example
        *  Import from .js files
-       *  - import 'root/main' - get file './src/main.js'
+       *  - import '@src/main' - get file './src/main.js'
        *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
        *  Import from .scss files
        *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
@@ -235,6 +239,12 @@ module.exports = async (env, argv) => {
           handler: 'NetworkFirst',
           options: {
             cacheName: 'github-api'
+          }
+        }, {
+          urlPattern: new RegExp('.+'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'other-websites'
           }
         }]
       })

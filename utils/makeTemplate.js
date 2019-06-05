@@ -59,36 +59,31 @@ fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTa
 /*
  * ---------------------------------------------- Create required .html file
  */
-fs.writeFileSync(BASE_PATH + name + '/index.html', `<!DOCTYPE html>
+fs.writeFileSync(BASE_PATH + name + '/index.ejs', `<!DOCTYPE html>
 <%
-const o = htmlWebpackPlugin.options
-const safeQuotes = (str) => str.replace(/"/g, '&quot;')
-const url = (path) => \`\${o.url}/\${path}\`
-const background = !o._config.background || o._config.background.includes('http')
-  ? o._config.background
-  : require(\`!!file-loader!@asset/\${o._config.background}\`)
+const assetFolder = require.context('@asset', true, /\\.gif|png|jpe?g|svg/)
 %>
-<html lang="en" data-template="${name}" data-compiled="<%= Date.now() %>">
+<html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
   <meta charset="utf-8">
-  <title><%= o._profile.name %></title>
+  <title><%= profile.name %></title>
   <!-- START: Open Graph -->
-  <meta property="og:title" content="Portfolio by <%= o._profile.name %>" />
+  <meta property="og:title" content="Portfolio by <%= profile.name %>" />
   <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= o._profile.avatar_url %>" />
-  <meta property="og:url" content="<%= o.url %>" />
-  <meta property="og:description" content="<%= o._profile.bio %>" />
-  <meta property="profile:username" content="<%= o._profile.login %>" />
-  <% for (let [property, content] of Object.entries(o._config.opg)) { %>
+  <meta property="og:image" content="<%= profile.avatar_url %>" />
+  <meta property="og:url" content="<%= url %>" />
+  <meta property="og:description" content="<%= profile.bio %>" />
+  <meta property="profile:username" content="<%= profile.login %>" />
+  <% for (let [property, content] of Object.entries(config.opg)) { %>
   <meta property="<%= property %>" content="<%= content %>" />
   <% } %>
   <!-- END: Open Graph -->
   <style>
   .avatar--image {
-    background: url(<%= o._profile.avatar_url %>);
+    background: url(<%= profile.avatar_url %>);
   }
   .background--image {
-    background: url(<%= background %>);
+    background: url(<%= background(assetFolder) %>);
   }
   </style>
 </head>
