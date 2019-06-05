@@ -61,7 +61,7 @@ module.exports = async (env, argv) => {
           ]
         },
         {
-          test: /\.(gif|png|jpe?g)$/i,
+          test: /\.(gif|png|jpe?g)$/,
           use: [
             {
               loader: 'file-loader',
@@ -83,7 +83,7 @@ module.exports = async (env, argv) => {
           ]
         },
         {
-          test: /\.s?css/,
+          test: /\.s?css$/,
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
@@ -133,7 +133,13 @@ module.exports = async (env, argv) => {
           profile, // Github API
           repositories, // Github API
           isProd,
-          url: variables.SITE_URL
+          url: variables.SITE_URL,
+          safeQuotes: (str) => str.replace(/"/g, '&quot;'),
+          background: (assetFolder) => {
+            return !config.background || config.background.includes('http')
+              ? config.background
+              : assetFolder(`./${config.background}`)
+          }
         },
         minify: isProd ? {
           collapseWhitespace: true,

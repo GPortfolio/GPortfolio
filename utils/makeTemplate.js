@@ -61,10 +61,7 @@ fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTa
  */
 fs.writeFileSync(BASE_PATH + name + '/index.ejs', `<!DOCTYPE html>
 <%
-const safeQuotes = (str) => str.replace(/"/g, '&quot;')
-const background = !config.background || config.background.includes('http')
-  ? config.background
-  : require(\`!!file-loader!@asset/\${config.background}\`)
+const assetFolder = require.context('@asset', true, /\\.gif|png|jpe?g|svg/)
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
@@ -86,7 +83,7 @@ const background = !config.background || config.background.includes('http')
     background: url(<%= profile.avatar_url %>);
   }
   .background--image {
-    background: url(<%= background %>);
+    background: url(<%= background(assetFolder) %>);
   }
   </style>
 </head>
