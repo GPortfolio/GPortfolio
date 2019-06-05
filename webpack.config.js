@@ -240,6 +240,12 @@ module.exports = async (env, argv) => {
           options: {
             cacheName: 'github-api'
           }
+        }, {
+          urlPattern: new RegExp('.+'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'other-websites'
+          }
         }]
       })
     )
