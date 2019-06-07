@@ -6,7 +6,8 @@
     "dev": "webpack-dev-server --watch",
     "build": "webpack --mode production",
     "deploy": "node ./utils/deploy.js",
-    "lint": "eslint --ext .js src --fix",
+    "lint": "eslint --ext .js src",
+    "lint:fix": "npm run lint -- --fix",
     "release": "standard-version",
     "template": "node ./utils/makeTemplate.js"
   },
