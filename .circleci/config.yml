@@ -35,6 +35,3 @@ jobs:
 
       # Run lint
       - run: npm run lint
-
-      # Run build
-      - run: npm run build
