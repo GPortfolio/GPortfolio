@@ -1,6 +1,6 @@
 'use strict'
 
-import { DOMIsLoaded, getOffsetTop } from '@/scripts/helper'
+import { DOMIsLoaded, getOffsetTop } from '@src/scripts/helper'
 
 // DOM elements
 let headerEl = null
