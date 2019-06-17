@@ -1,30 +1,11 @@
 <!DOCTYPE html>
 <%
-const assetFolder = require.context('@asset', true, /\.gif|png|jpe?g|svg/)
+const headTemplate = require('ejs-loader!@src/parts/head.ejs')
+const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <meta charset="utf-8">
-  <title><%= profile.name %></title>
-  <!-- START: Open Graph -->
-  <meta property="og:title" content="Portfolio by <%= profile.name %>" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= profile.avatar_url %>" />
-  <meta property="og:url" content="<%= url %>" />
-  <meta property="og:description" content="<%= profile.bio %>" />
-  <meta property="profile:username" content="<%= profile.login %>" />
-  <% for (let [property, content] of Object.entries(config.opg)) { %>
-  <meta property="<%= property %>" content="<%= content %>" />
-  <% } %>
-  <!-- END: Open Graph -->
-  <style>
-  .avatar--image {
-    background: url(<%= profile.avatar_url %>);
-  }
-  .background--image {
-    background: url(<%= background(assetFolder) || require('@/assets/background.png') %>);
-  }
-  </style>
+  <%= headTemplate({ profile, config, url, defaultBackground: require('@/assets/background.png') }) %>
 </head>
 <body>
 <header>
@@ -80,7 +61,7 @@ const assetFolder = require.context('@asset', true, /\.gif|png|jpe?g|svg/)
     year: 'numeric',
     day: '2-digit',
     month: '2-digit'
-  }) %> </span>
+  }) %></span>
 </footer>
 </body>
 </html>
