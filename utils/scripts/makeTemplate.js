@@ -9,7 +9,7 @@
  * |
  */
 
-const variables = require('./helper/variables')
+const variables = require('../variables')
 const argv = process.argv.slice(2)
 const fs = require('fs')
 

@@ -1,23 +1,10 @@
 'use strict'
 
-const variables = require('../helper/variables')
-const jsonHelper = require('../helper/json')
-const Filter = require('../helper/Filter')
+const Filter = require('../classes/Filter')
+const variables = require('../variables')
+const Cache = require('../classes/Cache')
 const config = require('../../config')
 const axios = require('axios')
-
-/**
- * Waiting before the next request to the API.
- *  2 hours
- * @type {number} - milliseconds
- */
-const TIME_WAIT = 1000 * 60 * 60 * 2
-
-/**
- * How to save in timestamp
- * @type {string}
- */
-const CACHE_NAME = 'repositories'
 
 /**
  * @return {Promise<?array>}
@@ -26,14 +13,13 @@ const CACHE_NAME = 'repositories'
  */
 module.exports = async () => {
 
-  const timestamp = jsonHelper.tryReadJsonFile(variables.FILE_TIMESTAMP_JSON)
-  const repositoriesFileExists = jsonHelper.existsJsonFile(variables.FILE_REPOSITORIES_JSON)
-  const canRepeatRequestByTimestamp = (+timestamp[CACHE_NAME] || 0) + TIME_WAIT <= Date.now()
+  const cache = new Cache(variables.FILE_REPOSITORIES_JSON)
+  cache.setTimeWait(1000 * 60 * 60 * 2) // 2 hour
 
   /** @type {array} - data from API */
   let repositories = []
 
-  if (canRepeatRequestByTimestamp || !repositoriesFileExists) {
+  if (cache.canParse) {
 
     /** @type {string} */
     const URL_REQUEST = config.token ? 'user/repos' : `users/${config.username}/repos`
@@ -74,21 +60,17 @@ module.exports = async () => {
     const filter = new Filter(config.parseGithub.filter)
     if (filter.has) {
       repositories = filter.run(repositories)
+      console.log(`[Repositories] Filter, ${repositories.length} length`)
     }
 
     /*
-     * Update repositories cache
+     * Update cache and timestamp
      */
-    jsonHelper.writeJsonFile(variables.FILE_REPOSITORIES_JSON, repositories)
+    cache.updateData(repositories)
+    cache.updateTimestamp()
 
-    /*
-     * Update timestamp cache
-     */
-    jsonHelper.writeJsonFile(variables.FILE_TIMESTAMP_JSON,
-      Object.assign({}, timestamp, { [CACHE_NAME]: Date.now() })
-    )
   } else {
-    repositories = jsonHelper.tryReadJsonFile(variables.FILE_REPOSITORIES_JSON)
+    repositories = cache.fileData
     console.log(`[Repositories] Get repositories from cache, ${repositories.length} length`)
   }
 

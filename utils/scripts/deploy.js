@@ -11,8 +11,8 @@
  * |
  */
 
-const variables = require('./helper/variables')
-const config = require('../config')
+const variables = require('../variables')
+const config = require('../../config')
 const shell = require('shelljs')
 const fs = require('fs')
 

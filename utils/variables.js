@@ -1,6 +1,6 @@
 'use strict'
 
-const config = require('../../config')
+const config = require('../config')
 const path = require('path')
 
 /**
@@ -12,7 +12,7 @@ const noLastSlash = (str) => str[str.length - 1] === '/' ? str.substring(0, str.
 module.exports = {
 
   /** @var {string} */
-  ROOT: path.resolve(__dirname, '../..'),
+  ROOT: path.resolve(__dirname, '..'),
 
   /** @var {string} */
   API_GITHUB: 'https://api.github.com',
