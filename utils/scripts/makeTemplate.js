@@ -30,6 +30,9 @@ const name = argv[0].trim()
  */
 const BASE_PATH = variables.ROOT + '/src/templates/'
 
+/** @type {string} */
+const FILE_ENCODING = 'utf8'
+
 // Check on exists template
 if (fs.existsSync(BASE_PATH + name)) {
   console.warn(`[Exists]: ${BASE_PATH + name}`)
@@ -47,51 +50,32 @@ fs.writeFileSync(BASE_PATH + name + '/index.js', `'use strict'
 import '@src/main'
 
 // Code
-`, { encoding: 'utf8' })
+`, { encoding: FILE_ENCODING })
 
 /*
  * ---------------------------------------------- Create required .scss file
  */
 fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTarget
 @import "@src/main.scss";
-`, { encoding: 'utf8' })
+`, { encoding: FILE_ENCODING })
 
 /*
  * ---------------------------------------------- Create required .html file
  */
 fs.writeFileSync(BASE_PATH + name + '/index.ejs', `<!DOCTYPE html>
 <%
-const assetFolder = require.context('@asset', true, /\\.gif|png|jpe?g|svg/)
+const headTemplate = require('ejs-loader!@src/parts/head.ejs')
+const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <meta charset="utf-8">
-  <title><%= profile.name %></title>
-  <!-- START: Open Graph -->
-  <meta property="og:title" content="Portfolio by <%= profile.name %>" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:image" content="<%= profile.avatar_url %>" />
-  <meta property="og:url" content="<%= url %>" />
-  <meta property="og:description" content="<%= profile.bio %>" />
-  <meta property="profile:username" content="<%= profile.login %>" />
-  <% for (let [property, content] of Object.entries(config.opg)) { %>
-  <meta property="<%= property %>" content="<%= content %>" />
-  <% } %>
-  <!-- END: Open Graph -->
-  <style>
-  .avatar--image {
-    background: url(<%= profile.avatar_url %>);
-  }
-  .background--image {
-    background: url(<%= background(assetFolder) %>);
-  }
-  </style>
+  <%= headTemplate({ profile, config, url }) %>
 </head>
 <body>
 
 </body>
 </html>
-`, { encoding: 'utf8' })
+`, { encoding: FILE_ENCODING })
 
 /*
  * ---------------------------------------------- Complete

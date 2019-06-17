@@ -133,13 +133,7 @@ module.exports = async (env, argv) => {
           profile, // Github API
           repositories, // Github API
           isProd,
-          url: variables.SITE_URL,
-          safeQuotes: (str) => str.replace(/"/g, '&quot;'),
-          background: (assetFolder) => {
-            return !config.background || config.background.includes('http')
-              ? config.background
-              : assetFolder(`./${config.background}`)
-          }
+          url: variables.SITE_URL
         },
         minify: isProd ? {
           collapseWhitespace: true,

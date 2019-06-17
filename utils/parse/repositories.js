@@ -14,7 +14,7 @@ const axios = require('axios')
 module.exports = async () => {
 
   const cache = new Cache(variables.FILE_REPOSITORIES_JSON)
-  cache.setTimeWait(1000 * 60 * 60 * 2) // 2 hour
+  cache.setTimeWait(1000 * 60 * 60 * 2) // 2 hours
 
   /** @type {array} - data from API */
   let repositories = []
