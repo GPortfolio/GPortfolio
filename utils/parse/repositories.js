@@ -1,13 +1,13 @@
 'use strict'
 
+const Github = require('../classes/Github')
 const Filter = require('../classes/Filter')
 const variables = require('../variables')
 const Cache = require('../classes/Cache')
 const config = require('../../config')
-const axios = require('axios')
 
 /** @type {string} */
-const APPEND_CONSOLE = '[Github Repositories]'
+const LOG_SECTION = 'Repositories'
 
 /**
  * @return {Promise<?array>}
@@ -23,36 +23,17 @@ module.exports = async () => {
 
   if (cache.canParse) {
 
-    /** @type {string} */
-    const URL_REQUEST = config.token ? 'user/repos' : `users/${config.username}/repos`
-
-    /**
-     * Make a Github API request to get user repositories.
-     * @see https://developer.github.com/v3/repos/#list-user-repositories docs
+    /*
+     * Fetch repositories
      */
     try {
-      let fetchRepositories
-      let page = 1
-
-      do {
-        console.log(`${APPEND_CONSOLE} Fetching data from API.. | ${page} page`)
-        fetchRepositories = await axios(`${variables.API_GITHUB}/${URL_REQUEST}`, {
-          params: {
-            ...config.parseGithub.repositories,
-            per_page: 100,
-            page: page++
-          },
-          headers: {
-            Authorization: config.token ? `token ${config.token}` : null
-          }
-        })
-        repositories.push(...fetchRepositories.data)
-
-      } while (fetchRepositories.data.length === 100)
-
-      console.log(`${APPEND_CONSOLE} Complete, ${repositories.length} length`)
+      repositories = await Github.fetchRepositories((page) => {
+        Github.log(`Fetching data from API.. | ${page} page`, LOG_SECTION)
+      })
+      Github.log(`Complete, ${repositories.length} length`, LOG_SECTION)
     } catch (e) {
-      throw new Error(`${APPEND_CONSOLE}: ${e}`)
+      Github.log(e, LOG_SECTION)
+      throw new Error(e)
     }
 
     /*
@@ -61,7 +42,7 @@ module.exports = async () => {
     const filter = new Filter(config.parseGithub.filter)
     if (filter.has) {
       repositories = filter.run(repositories)
-      console.log(`${APPEND_CONSOLE} Filter, ${repositories.length} length`)
+      Github.log(`Filter, ${repositories.length} length`, LOG_SECTION)
     }
 
     /*
@@ -72,7 +53,7 @@ module.exports = async () => {
 
   } else {
     repositories = cache.fileData
-    console.log(`${APPEND_CONSOLE} Get repositories from cache, ${repositories.length} length`)
+    Github.log(`Get from cache, ${repositories.length} length`, LOG_SECTION)
   }
 
   return repositories

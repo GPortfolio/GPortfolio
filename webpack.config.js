@@ -33,8 +33,8 @@ module.exports = async (env, argv) => {
   try {
     profile = await parseProfile()
     repositories = await parseRepositories()
+    console.log()
   } catch (e) {
-    console.warn(e)
     process.exit(0)
   }
 
