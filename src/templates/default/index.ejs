@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <%
 const headTemplate = require('ejs-loader!@src/parts/head.ejs')
+const imagesTemplate = require('ejs-loader!@src/parts/images.ejs')
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <%= headTemplate({ profile, config, url, defaultBackground: require('@/assets/background.png') }) %>
+  <%= headTemplate({ profile, config, url }) %>
+  <%= imagesTemplate({
+    avatar: profile.avatar_url,
+    background: config.templates.default.background,
+    defaultBackground: require('@/assets/background.png')
+  }) %>
 </head>
 <body>
 <header>
