@@ -6,10 +6,12 @@ const Cache = require('../classes/Cache')
 const config = require('../../config')
 const axios = require('axios')
 
+/** @type {string} */
+const APPEND_CONSOLE = '[Github Repositories]'
+
 /**
  * @return {Promise<?array>}
- *  null - failed
- *  [] - success
+ * @throws
  */
 module.exports = async () => {
 
@@ -33,7 +35,7 @@ module.exports = async () => {
       let page = 1
 
       do {
-        console.log(`[Repositories] Fetching data from API.. | ${page} page`)
+        console.log(`${APPEND_CONSOLE} Fetching data from API.. | ${page} page`)
         fetchRepositories = await axios(`${variables.API_GITHUB}/${URL_REQUEST}`, {
           params: {
             ...config.parseGithub.repositories,
@@ -48,10 +50,9 @@ module.exports = async () => {
 
       } while (fetchRepositories.data.length === 100)
 
-      console.log(`[Repositories] Complete, ${repositories.length} length`)
+      console.log(`${APPEND_CONSOLE} Complete, ${repositories.length} length`)
     } catch (e) {
-      console.warn(`[Repositories]: ${e}`)
-      return null
+      throw new Error(`${APPEND_CONSOLE}: ${e}`)
     }
 
     /*
@@ -60,7 +61,7 @@ module.exports = async () => {
     const filter = new Filter(config.parseGithub.filter)
     if (filter.has) {
       repositories = filter.run(repositories)
-      console.log(`[Repositories] Filter, ${repositories.length} length`)
+      console.log(`${APPEND_CONSOLE} Filter, ${repositories.length} length`)
     }
 
     /*
@@ -71,8 +72,8 @@ module.exports = async () => {
 
   } else {
     repositories = cache.fileData
-    console.log(`[Repositories] Get repositories from cache, ${repositories.length} length`)
+    console.log(`${APPEND_CONSOLE} Get repositories from cache, ${repositories.length} length`)
   }
 
-  return Array.isArray(repositories) ? repositories : null
+  return repositories
 }
