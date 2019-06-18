@@ -27,12 +27,12 @@ module.exports = async (env, argv) => {
     : './assets/upstream/favicon.ico'
 
   /*
-   * Get data from API and inject to .html file
+   * Get data from API and inject to .ejs file
    */
   const profile = await parseProfile()
   const repositories = await parseRepositories()
   if (!repositories || !profile) {
-    console.log('[API]: Repositories or profile is empty')
+    console.log('[API]: Repositories or profile failed')
     process.exit(0)
   }
 
