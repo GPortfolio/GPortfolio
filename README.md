@@ -61,9 +61,17 @@ which initializes git in the **dist** folder and makes a **force push** in the
 </table>
 
 ## FAQ
+- [How to get your repositories from the organization?](#how-to-get-your-repositories-from-the-organization)
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
 - [How to change favicon?](#how-to-change-favicon)
+
+### How to get your repositories from the organization?
+
+You need to get a **token** from Github with access to `public_repo`,
+and add it to **config.js**.
+
+[Read more](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
 ### How to make a new template?
 Run the command to create base files with required default content:
