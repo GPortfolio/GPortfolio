@@ -29,10 +29,12 @@ module.exports = async (env, argv) => {
   /*
    * Get data from API and inject to .ejs file
    */
-  const profile = await parseProfile()
-  const repositories = await parseRepositories()
-  if (!repositories || !profile) {
-    console.log('[API]: Repositories or profile failed')
+  let profile, repositories
+  try {
+    profile = await parseProfile()
+    repositories = await parseRepositories()
+  } catch (e) {
+    console.warn(e)
     process.exit(0)
   }
 
