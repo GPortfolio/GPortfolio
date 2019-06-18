@@ -2,13 +2,7 @@
 /*
  * Properties:
  *  - Require: profile, config, url
- *  - Include: defaultBackground
  */
-
-const assetFolder = require.context('@asset', true, /\.gif|png|jpe?g|svg/)
-const background = !config.background || config.background.includes('http')
-    ? config.background
-    : assetFolder(`./${config.background}`)
 %>
 
 <meta charset="utf-8">
@@ -24,12 +18,3 @@ const background = !config.background || config.background.includes('http')
     <meta property="<%= property %>" content="<%= content %>" />
 <% } %>
 <!-- END: Open Graph -->
-
-<style>
-.avatar--image {
-    background: url(<%= profile.avatar_url %>);
-}
-.background--image {
-    background: url(<%= background || (typeof defaultBackground === 'undefined' ? null : defaultBackground) %>);
-}
-</style>
