@@ -1,12 +1,11 @@
 'use strict'
 
+const Github = require('../classes/Github')
 const variables = require('../variables')
 const Cache = require('../classes/Cache')
-const config = require('../../config')
-const axios = require('axios')
 
 /** @type {string} */
-const APPEND_CONSOLE = '[Github Profile]'
+const LOG_SECTION = 'Profile'
 
 /**
  * @return {Promise<?object>}
@@ -21,22 +20,16 @@ module.exports = async () => {
 
   if (cache.canParse) {
 
-    /**
-     * Make a Github API request to get user data.
-     * @see https://developer.github.com/v3/users/#get-a-single-user docs
+    /*
+     * Fetch profile
      */
+    Github.log('Fetching data from API..', LOG_SECTION)
     try {
-      console.log(`${APPEND_CONSOLE} Fetching data from API..`)
-      const fetchGithubData = await axios(`${variables.API_GITHUB}/users/${config.username}`, {
-        headers: {
-          Authorization: config.token ? `token ${config.token}` : null
-        }
-      })
-      githubUser = fetchGithubData.data
-      console.log(`${APPEND_CONSOLE} Complete`)
-
+      githubUser = await Github.fetchProfile()
+      Github.log('Complete', LOG_SECTION)
     } catch (e) {
-      throw new Error(`${APPEND_CONSOLE}: ${e}`)
+      Github.log(e, LOG_SECTION)
+      throw new Error(e)
     }
 
     /*
@@ -47,7 +40,7 @@ module.exports = async () => {
 
   } else {
     githubUser = cache.fileData
-    console.log(`${APPEND_CONSOLE} Get profile from cache`)
+    Github.log(`Get from cache`, LOG_SECTION)
   }
 
   return githubUser
