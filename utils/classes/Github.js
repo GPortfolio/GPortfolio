@@ -3,7 +3,11 @@
 const variables = require('../variables')
 const config = require('../../config')
 const Default = require('./Default')
-const axios = require('axios')
+const axios = require('axios').create({
+  headers: {
+    Authorization: config.token ? `token ${config.token}` : null
+  }
+})
 
 class Github extends Default {
 
@@ -28,11 +32,7 @@ class Github extends Default {
     let response
 
     try {
-      response = await axios(Github.URL_PROFILE, {
-        headers: {
-          Authorization: config.token ? `token ${config.token}` : null
-        }
-      })
+      response = await axios.get(Github.URL_PROFILE)
     } catch (e) {
       Github.log(e, Github.sections.profile)
       throw new Error(e)
@@ -58,14 +58,11 @@ class Github extends Default {
       Github.log(`Fetching data from API.. | ${page} page`, Github.sections.repositories)
 
       try {
-        fetchRepositories = await axios(Github.URL_REPOSITORIES, {
+        fetchRepositories = await axios.get(Github.URL_REPOSITORIES, {
           params: {
             ...config.parseGithub.repositories,
             per_page: 100,
             page: page++
-          },
-          headers: {
-            Authorization: config.token ? `token ${config.token}` : null
           }
         })
       } catch (e) {
