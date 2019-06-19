@@ -10,7 +10,7 @@ const BASE_PATH = variables.ROOT + '/cache/'
 const FILE_ENCODING = 'utf8'
 
 /** @type {Object} */
-let timestampFile
+let generalFile
 
 /**
  * Create cache folder if not exists
@@ -45,7 +45,7 @@ class Cache {
   }
 
   /**
-   * The name of the property in the timestamp file
+   * The name of the property in the general file
    * @param {string} name
    * @default as fileName
    */
@@ -72,20 +72,39 @@ class Cache {
   }
 
   /**
-   * Update the file with timestamps
+   * Update/override data for general file
+   * @param {object} data
+   */
+  static updateGeneralFile(data) {
+    Cache.writeFile(variables.FILE_GENERAL_JSON, {
+      ...generalFile,
+      ...data
+    })
+  }
+
+  /**
+   * Append timestamp to file
    * @return {void}
    */
   updateTimestamp() {
-    timestampFile[this.cacheName] = Date.now()
-    Cache.writeFile(variables.FILE_TIMESTAMP_JSON, timestampFile)
+    Cache.updateGeneralFile({
+      [this.keyTimestamp]: Date.now()
+    })
   }
 
   /**
    * Get data from file if exists
    * @return {object|array}
    */
-  get fileData() {
+  get dataFromFile() {
     return Cache.tryReadJsonFile(this.fileName)
+  }
+
+  /**
+   * @return {string}
+   */
+  get keyTimestamp() {
+    return this.cacheName + '_timestamp'
   }
 
   /**
@@ -94,13 +113,13 @@ class Cache {
    * @return {boolean}
    */
   get canParse() {
-    // File no exists
+    // Check by exists
     if (!Cache.existsFile(this.fileName)) {
       return true
     }
 
     // Check by timestamp
-    return (+timestampFile[this.cacheName] || 0) + this.timeWait <= Date.now()
+    return (+generalFile[this.keyTimestamp] || 0) + this.timeWait <= Date.now()
   }
 
   /**
@@ -144,6 +163,6 @@ class Cache {
   }
 }
 
-timestampFile = Cache.tryReadJsonFile(variables.FILE_TIMESTAMP_JSON) || {}
+generalFile = Cache.tryReadJsonFile(variables.FILE_GENERAL_JSON) || {}
 
 module.exports = Cache

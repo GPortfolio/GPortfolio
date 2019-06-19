@@ -26,7 +26,7 @@ module.exports = async () => {
     cache.updateTimestamp()
 
   } else {
-    githubUser = cache.fileData
+    githubUser = cache.dataFromFile
     Github.log(`Get from cache`, Github.sections.profile)
   }
 

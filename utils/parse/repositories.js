@@ -38,7 +38,7 @@ module.exports = async () => {
     cache.updateTimestamp()
 
   } else {
-    repositories = cache.fileData
+    repositories = cache.dataFromFile
     Github.log(`Get from cache, ${repositories.length} length`, Github.sections.repositories)
   }
 
