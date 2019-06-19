@@ -6,9 +6,6 @@ const variables = require('../variables')
 const Cache = require('../classes/Cache')
 const config = require('../../config')
 
-/** @type {string} */
-const LOG_SECTION = 'Repositories'
-
 /**
  * @return {Promise<?array>}
  * @throws
@@ -23,18 +20,7 @@ module.exports = async () => {
 
   if (cache.canParse) {
 
-    /*
-     * Fetch repositories
-     */
-    try {
-      repositories = await Github.fetchRepositories((page) => {
-        Github.log(`Fetching data from API.. | ${page} page`, LOG_SECTION)
-      })
-      Github.log(`Complete, ${repositories.length} length`, LOG_SECTION)
-    } catch (e) {
-      Github.log(e, LOG_SECTION)
-      throw new Error(e)
-    }
+    repositories = await Github.fetchRepositories()
 
     /*
      * Filter repositories if need
@@ -42,7 +28,7 @@ module.exports = async () => {
     const filter = new Filter(config.parseGithub.filter)
     if (filter.has) {
       repositories = filter.run(repositories)
-      Github.log(`Filter, ${repositories.length} length`, LOG_SECTION)
+      Github.log(`Filter, ${repositories.length} length`, Github.sections.repositories)
     }
 
     /*
@@ -53,7 +39,7 @@ module.exports = async () => {
 
   } else {
     repositories = cache.fileData
-    Github.log(`Get from cache, ${repositories.length} length`, LOG_SECTION)
+    Github.log(`Get from cache, ${repositories.length} length`, Github.sections.repositories)
   }
 
   return repositories
