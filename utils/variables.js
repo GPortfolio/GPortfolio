@@ -15,9 +15,6 @@ module.exports = {
   ROOT: path.resolve(__dirname, '..'),
 
   /** @var {string} */
-  API_GITHUB: 'https://api.github.com',
-
-  /** @var {string} */
   SITE_URL: noLastSlash('https://' + (config.customDomain || `${config.username}.github.io/${config.base}`)),
 
   /**
