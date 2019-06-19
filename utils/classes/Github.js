@@ -1,9 +1,11 @@
 'use strict'
 
+const variables = require('../variables')
 const config = require('../../config')
+const Default = require('./Default')
 const axios = require('axios')
 
-module.exports = class Github {
+class Github extends Default {
 
   /**
    * Make a Github API request to get user data.
@@ -54,29 +56,12 @@ module.exports = class Github {
   }
 
   /**
-   * Print console.log with color
-   * @param {string} txt
-   * @param {string} section
-   */
-  static log(txt, section = '') {
-    console.log(`\x1b[34m[Github%s]\x1b[0m %s`, section ? ` ${section}` : '', txt)
-  }
-
-  /**
-   * REST API of Github
-   * @return {string}
-   */
-  static get API_GITHUB() {
-    return 'https://api.github.com'
-  }
-
-  /**
    * Full url to get list of the repositories
    * @return {string}
    */
   static get URL_REPOSITORIES() {
     const append = config.token ? 'user/repos' : `users/${config.username}/repos`
-    return `${Github.API_GITHUB}/${append}`
+    return `${Github.prototype.api}/${append}`
   }
 
   /**
@@ -84,6 +69,12 @@ module.exports = class Github {
    * @return {string}
    */
   static get URL_PROFILE() {
-    return `${Github.API_GITHUB}/users/${config.username}`
+    return `${Github.prototype.api}/users/${config.username}`
   }
 }
+
+Github.prototype.name = Github.name
+Github.prototype.api = 'https://api.github.com'
+Github.prototype.color = variables.CONSOLE_COLORS.blue
+
+module.exports = Github

@@ -17,6 +17,13 @@ module.exports = {
   /** @var {string} */
   SITE_URL: noLastSlash('https://' + (config.customDomain || `${config.username}.github.io/${config.base}`)),
 
+  /** @var {{}} */
+  CONSOLE_COLORS: {
+    reset: '\x1b[0m',
+    blue: '\x1b[34m',
+    magenta: '\x1b[35m'
+  },
+
   /**
    * Files in <root>/data folder
    * @var {string}
