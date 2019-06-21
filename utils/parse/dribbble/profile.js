@@ -18,7 +18,6 @@ module.exports = async () => {
   if (cache.canParse) {
 
     profile = await Dribbble.fetchProfile()
-    profile = profile.data
 
     /*
      * Update cache and timestamp

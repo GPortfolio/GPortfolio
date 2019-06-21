@@ -9,7 +9,7 @@ const Cache = require('./Cache')
 const axios = defaultAxios.create()
 
 /** @type {string} */
-const KEY_TOKEN = 'dribble_token'
+const GENERAL_FILE_KEY_TOKEN = 'dribble_token'
 
 class Dribbble extends Default {
 
@@ -27,17 +27,17 @@ class Dribbble extends Default {
   /**
    * Fetch token and set to write to file.
    * @throws
-   * @return {Promise<*>} token
+   * @return {Promise<*>} access_token
    */
   static async fetchUpdateToken() {
     const response = await Dribbble.fetchToken()
-    Cache.generalFile = { [KEY_TOKEN]: response.data.access_token }
-    return response.data.access_token
+    Cache.generalFile = { [GENERAL_FILE_KEY_TOKEN]: response.access_token }
+    return response.access_token
   }
 
   /**
    * Make a Dribbble API request to get profile token.
-   * @return {Promise<Object>}
+   * @return {Promise<Object>} data
    * @throws
    * @see https://developer.dribbble.com/v2/oauth/ docs
    */
@@ -52,12 +52,12 @@ class Dribbble extends Default {
     }
 
     Dribbble.log('Complete', Dribbble.sections.token)
-    return response
+    return response.data
   }
 
   /**
    * Make a Dribbble API request to get profile.
-   * @return {Promise<Object>}
+   * @return {Promise<Object>} data
    * @throws
    * @see https://developer.dribbble.com/v2/user/ docs
    */
@@ -72,7 +72,7 @@ class Dribbble extends Default {
     }
 
     Dribbble.log('Complete', Dribbble.sections.profile)
-    return response
+    return response.data
   }
 
   /**
@@ -159,7 +159,7 @@ Dribbble.prototype.color = variables.CONSOLE_COLORS.magenta
 
 // Add a request interceptor
 axios.interceptors.request.use(async (config) => {
-  let token = Cache.generalFile[KEY_TOKEN]
+  let token = Cache.generalFile[GENERAL_FILE_KEY_TOKEN]
 
   if (!token && config.url !== Dribbble.URL_OAUTH_TOKEN) {
     try {
@@ -188,7 +188,8 @@ axios.interceptors.response.use(undefined, async (err) => {
    */
   if (!defaultAxios.isCancel(err) && err.response.status === 401) {
     Dribbble.log('Need to get the code again', Dribbble.sections.token)
-    Cache.generalFile = { [KEY_TOKEN]: null }
+    Dribbble.log(`https://dribbble.com/oauth/authorize?client_id=${config.dribbble.client_id}`, Dribbble.sections.token)
+    Cache.generalFile = { [GENERAL_FILE_KEY_TOKEN]: null }
   }
 
   /*
