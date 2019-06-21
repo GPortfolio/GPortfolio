@@ -114,6 +114,7 @@ module.exports = {
 
   /**
    * If all data fill - get profile and shots from Dribbble
+   * NOTE: Code is valid only once when receiving a token
    * @var {{client_id: string, client_secret: string, code: string}}
    * @see
    *  https://dribbble.com/ website

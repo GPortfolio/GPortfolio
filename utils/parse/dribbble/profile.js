@@ -5,7 +5,7 @@ const variables = require('../../variables')
 const Cache = require('../../classes/Cache')
 
 /**
- * @return {Promise<?object>}
+ * @return {Promise<object>}
  * @throws
  */
 module.exports = async () => {
@@ -18,11 +18,12 @@ module.exports = async () => {
   if (cache.canParse) {
 
     profile = await Dribbble.fetchProfile()
+    profile = profile.data
 
     /*
      * Update cache and timestamp
      */
-    cache.updateData(profile.data)
+    cache.updateData(profile)
     cache.updateTimestamp()
 
   } else {

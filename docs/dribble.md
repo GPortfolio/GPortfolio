@@ -33,3 +33,5 @@ Copy: c3a1fa87f3c0feerho34pjt23po969238cdc18638a2ab28f764ddcc434b07a22
 Paste the value into the **config.js** file - `dribbble.code`:
 
 Now you can run the project in dev mode `npm run dev` or prod `npm run build`
+
+*NOTE: `dribbble.code` is valid only once when receiving a token*
