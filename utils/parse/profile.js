@@ -13,22 +13,22 @@ module.exports = async () => {
   const cache = new Cache(variables.FILE_PROFILE_JSON)
 
   /** @type {object} - data from API */
-  let githubUser = {}
+  let profile = {}
 
   if (cache.canParse) {
 
-    githubUser = await Github.fetchProfile()
+    profile = await Github.fetchProfile()
 
     /*
      * Update cache and timestamp
      */
-    cache.updateData(githubUser)
+    cache.updateData(profile)
     cache.updateTimestamp()
 
   } else {
-    githubUser = cache.dataFromFile
+    profile = cache.dataFromFile
     Github.log(`Get from cache`, Github.sections.profile)
   }
 
-  return githubUser
+  return profile
 }

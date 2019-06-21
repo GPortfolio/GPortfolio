@@ -117,6 +117,7 @@ module.exports = {
    */
   templates: {
     default: {
+
       /**
        * @var {string}
        * @example

@@ -30,7 +30,7 @@ class Cache {
    * @param {string} fileName (ext is required)
    * @param {string} cacheName
    */
-  constructor(fileName, cacheName = fileName) {
+  constructor(fileName = variables.FILE_GENERAL_JSON, cacheName = fileName) {
     this.fileName = fileName
     this.cacheName = cacheName
     this.timeWait = 1000 * 60 * 60 // 1 hour
@@ -72,24 +72,11 @@ class Cache {
   }
 
   /**
-   * Update/override data for general file
-   * @param {object} data
-   */
-  static updateGeneralFile(data) {
-    Cache.writeFile(variables.FILE_GENERAL_JSON, {
-      ...generalFile,
-      ...data
-    })
-  }
-
-  /**
    * Append timestamp to file
    * @return {void}
    */
   updateTimestamp() {
-    Cache.updateGeneralFile({
-      [this.keyTimestamp]: Date.now()
-    })
+    Cache.generalFile = { [this.keyTimestamp]: Date.now() }
   }
 
   /**
@@ -160,6 +147,21 @@ class Cache {
    */
   static existsFile(fileName) {
     return fs.existsSync(BASE_PATH + fileName)
+  }
+
+  /**
+   * @return {Object}
+   */
+  static get generalFile() {
+    return generalFile
+  }
+
+  /**
+   * Update/override data for general file
+   */
+  static set generalFile(data) {
+    generalFile = { ...generalFile, ...data }
+    Cache.writeFile(variables.FILE_GENERAL_JSON, generalFile)
   }
 }
 
