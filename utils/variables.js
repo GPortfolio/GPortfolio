@@ -29,6 +29,8 @@ module.exports = {
    * @var {string}
    */
   FILE_PROFILE_JSON: 'profile.json',
-  FILE_TIMESTAMP_JSON: 'timestamp.json',
-  FILE_REPOSITORIES_JSON: 'repositories.json'
+  FILE_GENERAL_JSON: 'general.json',
+  FILE_REPOSITORIES_JSON: 'repositories.json',
+  FILE_DRIBBBLE_SHOTS_JSON: 'dribbble-shots.json',
+  FILE_DRIBBBLE_PROFILE_JSON: 'dribbble-profile.json'
 }

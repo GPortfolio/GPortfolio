@@ -1,14 +1,13 @@
 'use strict'
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const parseRepositories = require('./utils/parse/repositories')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
-const parseProfile = require('./utils/parse/profile')
 const variables = require('./utils/variables')
+const parse = require('./utils/parse')
 const config = require('./config')
 const path = require('path')
 const fs = require('fs')
@@ -27,14 +26,14 @@ module.exports = async (env, argv) => {
     : './assets/upstream/favicon.ico'
 
   /*
-   * Get data from API and inject to .ejs file
+   * Fetch data from all social and inject to .ejs file
    */
-  let profile, repositories
+  let parseAPI
   try {
-    profile = await parseProfile()
-    repositories = await parseRepositories()
+    parseAPI = await parse()
     console.log()
   } catch (e) {
+    console.log('[PARSE] - Failed')
     process.exit(0)
   }
 
@@ -132,8 +131,7 @@ module.exports = async (env, argv) => {
         inject: true,
         templateParameters: {
           config, // config.js
-          profile, // Github API
-          repositories, // Github API
+          ...parseAPI,
           isProd,
           url: variables.SITE_URL
         },
@@ -146,7 +144,7 @@ module.exports = async (env, argv) => {
         } : false,
         meta: {
           viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-          description: `Portfolio by ${profile.name}`,
+          description: `Portfolio by ${parseAPI.profile.name}`,
           robots: 'index, follow'
         }
       }),
@@ -190,10 +188,10 @@ module.exports = async (env, argv) => {
       new WebpackPwaManifest({
         ...{
           filename: 'static/manifest.[hash].json',
-          name: `${profile.name}`,
+          name: `${parseAPI.profile.name}`,
           short_name: config.username,
           start_url: variables.SITE_URL,
-          description: `Portfolio by ${profile.name}`,
+          description: `Portfolio by ${parseAPI.profile.name}`,
           theme_color: '#fff',
           background_color: '#fff',
           icons: [
