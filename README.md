@@ -23,6 +23,7 @@ and repositories with the Github API and generate an html file based on the chos
 - Documented code
 - Filters after receiving repositories with the Github API
 - Webpack + babel + es6
+- Support Dribbble data
 - The Open Graph protocol
 - Multiple template support
 - Progressive Web Apps (PWA) - the site is available offline
@@ -65,6 +66,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
 - [How to change favicon?](#how-to-change-favicon)
+- [How to connect Dribbble or another?](#how-to-connect-dribbble-or-another)
 
 ### How to get your repositories from the organization?
 
@@ -100,6 +102,9 @@ But you can force to refresh the data by deleting the **cache** folder.
 
 ### How to change favicon?
 Put the file **favicon.ico** in the **assets** folder.
+
+### How to connect Dribbble or another?
+[See here](https://github.com/GPortfolio/GPortfolio/tree/master/docs)
 
 ## List of user portfolios
 - [Alexeykhr](https://alexeykhr.github.io) | Default
