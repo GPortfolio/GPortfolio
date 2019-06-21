@@ -1,6 +1,7 @@
 'use strict'
 
 const dribbbleProfileParse = require('./dribbble/profile')
+const dribbbleShotsParse = require('./dribbble/shots')
 const repositoriesParse = require('./repositories')
 const Dribbble = require('../classes/Dribbble')
 const profileParse = require('./profile')
@@ -23,6 +24,7 @@ module.exports = async () => {
   // Parse Dribbble - check fill data
   if (Object.values(config.dribbble).every(obj => obj)) {
     data.dribbble.profile = await dribbbleProfileParse()
+    data.dribbble.shots = await dribbbleShotsParse()
   } else {
     Dribbble.log('skip')
   }

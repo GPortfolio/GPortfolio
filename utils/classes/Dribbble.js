@@ -76,6 +76,39 @@ class Dribbble extends Default {
   }
 
   /**
+   * Make a Dribbble API request to get profile shots.
+   * @return {Promise<Array>}
+   * @throws
+   * @see https://developer.dribbble.com/v2/shots/ docs
+   */
+  static async fetchShots() {
+    let fetchShots
+    let shots = []
+    let page = 1
+
+    do {
+      Dribbble.log(`Fetching data from API.. | ${page} page`, Dribbble.sections.shots)
+
+      try {
+        fetchShots = await axios.get(Dribbble.URL_SHOTS, {
+          params: {
+            per_page: 100,
+            page: page++
+          }
+        })
+      } catch (e) {
+        Dribbble.errorLog(e, Dribbble.sections.shots)
+      }
+
+      shots.push(...fetchShots.data)
+
+    } while (fetchShots.data.length === 100)
+
+    Dribbble.log('Complete', Dribbble.sections.shots)
+    return shots
+  }
+
+  /**
    * Full url to get profile
    * @return {string}
    */
