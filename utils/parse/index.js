@@ -15,7 +15,10 @@ module.exports = async () => {
   const data = {
     // Github
     profile: await profileParse(),
-    repositories: await repositoriesParse()
+    repositories: await repositoriesParse(),
+
+    // Dribbble
+    dribbble: null
   }
 
   // Parse Dribbble - check fill data
