@@ -113,6 +113,20 @@ module.exports = {
   ],
 
   /**
+   * If all data fill - get profile and shots from Dribbble
+   * NOTE: Code is valid only once when receiving a token
+   * @var {{client_id: string, client_secret: string, code: string}}
+   * @see
+   *  https://dribbble.com/ website
+   *  <root>/docs/dribbble.md where to get data
+   */
+  dribbble: {
+    client_id: '',
+    client_secret: '',
+    code: ''
+  },
+
+  /**
    * Settings for a specific template.
    */
   templates: {

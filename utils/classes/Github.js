@@ -23,7 +23,7 @@ class Github extends Default {
 
   /**
    * Make a Github API request to get user data.
-   * @return {Promise<Object>}
+   * @return {Promise<Object>} data
    * @throws
    * @see https://developer.github.com/v3/users/#get-a-single-user docs
    */
@@ -75,7 +75,6 @@ class Github extends Default {
     } while (fetchRepositories.data.length === 100)
 
     Github.log(`Complete, ${repositories.length} length`, Github.sections.repositories)
-
     return repositories
   }
 
