@@ -61,6 +61,26 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
       <% } %>
     </div>
   </section>
+  <% if (dribbble && dribbble.shots.length) { %>
+  <section class="dribbble-shots-section">
+    <h2>Shots</h2>
+    <div class="dribbble-shots">
+    <% for (const shot of dribbble.shots) { %>
+      <a href="<%= shot.html_url %>" class="dribbble-shot" target="_blank" rel="noopener"
+         style="background-image: url(<%= shot.images.normal %>)">
+        <div class="dribbble-shot__title"><%= shot.title %></div>
+        <div class="dribbble-shot__published_at">
+          <%= new Date(shot.published_at).toLocaleDateString(undefined, {
+            year: 'numeric',
+            day: '2-digit',
+            month: '2-digit'
+          }) %>
+        </div>
+      </a>
+    <% } %>
+    </div>
+  </section>
+  <% } %>
 </main>
 <footer>
   <span><%= new Date().toLocaleDateString(undefined, {

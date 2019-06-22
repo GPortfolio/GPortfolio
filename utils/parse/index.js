@@ -15,16 +15,15 @@ module.exports = async () => {
   const data = {
     // Github
     profile: await profileParse(),
-    repositories: await repositoriesParse(),
-
-    // Dribbble
-    dribbble: {}
+    repositories: await repositoriesParse()
   }
 
   // Parse Dribbble - check fill data
   if (Object.values(config.dribbble).every(obj => obj)) {
-    data.dribbble.profile = await dribbbleProfileParse()
-    data.dribbble.shots = await dribbbleShotsParse()
+    data.dribbble = {
+      profile: await dribbbleProfileParse(),
+      shots: await dribbbleShotsParse()
+    }
   } else {
     Dribbble.log('skip')
   }
