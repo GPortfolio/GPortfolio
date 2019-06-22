@@ -116,10 +116,19 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **assets** - files that do not directly build webpack.
 - **cache** - temporarily created files, for example - data from the GitHub API.
 - **dist** - compiled files that are uploaded to your **repository/gh-pages** branch.
+- **docs** - .md files
 - **node_modules** - libraries.
 - **public** - all files from this folder will be copied to the **dist** folder and access by url: **/static/public/***.
 - **src** - source files.
 - **utils** - files that work with the node: getting data from the API, script for creating a new template, etc.
+
+### TODO
+- General:
+  - Support get description, image, etc from specified social API (`@github.avatar_url`, `@dribbble.avatar_url`)
+- `Default` template:
+  - **Show more** button on repositories + shots
+- `Dribbble`:
+  - Make filter shots like repositories
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
