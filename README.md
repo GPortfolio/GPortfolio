@@ -23,6 +23,7 @@ and repositories with the Github API and generate an html file based on the chos
 - Documented code
 - Filters after receiving repositories with the Github API
 - Webpack + babel + es6
+- Support Dribbble data
 - The Open Graph protocol
 - Multiple template support
 - Progressive Web Apps (PWA) - the site is available offline
@@ -65,6 +66,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
 - [How to change favicon?](#how-to-change-favicon)
+- [How to connect Dribbble or another?](#how-to-connect-dribbble-or-another)
 
 ### How to get your repositories from the organization?
 
@@ -101,6 +103,9 @@ But you can force to refresh the data by deleting the **cache** folder.
 ### How to change favicon?
 Put the file **favicon.ico** in the **assets** folder.
 
+### How to connect Dribbble or another?
+[See here](https://github.com/GPortfolio/GPortfolio/tree/master/docs)
+
 ## List of user portfolios
 - [Alexeykhr](https://alexeykhr.github.io) | Default
 
@@ -111,10 +116,17 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **assets** - files that do not directly build webpack.
 - **cache** - temporarily created files, for example - data from the GitHub API.
 - **dist** - compiled files that are uploaded to your **repository/gh-pages** branch.
+- **docs** - .md files
 - **node_modules** - libraries.
 - **public** - all files from this folder will be copied to the **dist** folder and access by url: **/static/public/***.
 - **src** - source files.
 - **utils** - files that work with the node: getting data from the API, script for creating a new template, etc.
+
+### TODO
+- General:
+  - Support get description, image, etc from specified social API (`@github.avatar_url`, `@dribbble.avatar_url`)
+- `Default` template:
+  - **Show more** button on repositories + shots
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).

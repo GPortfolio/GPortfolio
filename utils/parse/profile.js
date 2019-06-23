@@ -4,9 +4,6 @@ const Github = require('../classes/Github')
 const variables = require('../variables')
 const Cache = require('../classes/Cache')
 
-/** @type {string} */
-const LOG_SECTION = 'Profile'
-
 /**
  * @return {Promise<?object>}
  * @throws
@@ -16,32 +13,22 @@ module.exports = async () => {
   const cache = new Cache(variables.FILE_PROFILE_JSON)
 
   /** @type {object} - data from API */
-  let githubUser = {}
+  let profile = {}
 
   if (cache.canParse) {
 
-    /*
-     * Fetch profile
-     */
-    Github.log('Fetching data from API..', LOG_SECTION)
-    try {
-      githubUser = await Github.fetchProfile()
-      Github.log('Complete', LOG_SECTION)
-    } catch (e) {
-      Github.log(e, LOG_SECTION)
-      throw new Error(e)
-    }
+    profile = await Github.fetchProfile()
 
     /*
      * Update cache and timestamp
      */
-    cache.updateData(githubUser)
+    cache.updateData(profile)
     cache.updateTimestamp()
 
   } else {
-    githubUser = cache.fileData
-    Github.log(`Get from cache`, LOG_SECTION)
+    profile = cache.dataFromFile
+    Github.log(`Get from cache`, Github.sections.profile)
   }
 
-  return githubUser
+  return profile
 }

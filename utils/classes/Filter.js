@@ -13,7 +13,7 @@ module.exports = class Filter {
    * Filter is not empty
    * @return {boolean}
    */
-  get has() {
+  get exists() {
     return !!this.filters.length
   }
 

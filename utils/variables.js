@@ -15,16 +15,22 @@ module.exports = {
   ROOT: path.resolve(__dirname, '..'),
 
   /** @var {string} */
-  API_GITHUB: 'https://api.github.com',
-
-  /** @var {string} */
   SITE_URL: noLastSlash('https://' + (config.customDomain || `${config.username}.github.io/${config.base}`)),
+
+  /** @var {{}} */
+  CONSOLE_COLORS: {
+    reset: '\x1b[0m',
+    blue: '\x1b[34m',
+    magenta: '\x1b[35m'
+  },
 
   /**
    * Files in <root>/data folder
    * @var {string}
    */
   FILE_PROFILE_JSON: 'profile.json',
-  FILE_TIMESTAMP_JSON: 'timestamp.json',
-  FILE_REPOSITORIES_JSON: 'repositories.json'
+  FILE_GENERAL_JSON: 'general.json',
+  FILE_REPOSITORIES_JSON: 'repositories.json',
+  FILE_DRIBBBLE_SHOTS_JSON: 'dribbble-shots.json',
+  FILE_DRIBBBLE_PROFILE_JSON: 'dribbble-profile.json'
 }

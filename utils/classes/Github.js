@@ -1,73 +1,81 @@
 'use strict'
 
+const variables = require('../variables')
 const config = require('../../config')
-const axios = require('axios')
+const Default = require('./Default')
+const axios = require('axios').create({
+  headers: {
+    Authorization: config.token ? `token ${config.token}` : null
+  }
+})
 
-module.exports = class Github {
+class Github extends Default {
+
+  /**
+   * For console.log
+   */
+  static get sections() {
+    return {
+      repositories: 'Repositories',
+      profile: 'Profile'
+    }
+  }
 
   /**
    * Make a Github API request to get user data.
-   * @return {Promise<Object>}
+   * @return {Promise<Object>} data
    * @throws
    * @see https://developer.github.com/v3/users/#get-a-single-user docs
    */
   static async fetchProfile() {
-    const fetchGithubData = await axios(Github.URL_PROFILE, {
-      headers: {
-        Authorization: config.token ? `token ${config.token}` : null
-      }
-    })
+    Github.log('Fetching data from API..', Github.sections.profile)
+    let response
 
-    return fetchGithubData.data
+    try {
+      response = await axios.get(Github.URL_PROFILE)
+    } catch (e) {
+      Github.log(e, Github.sections.profile)
+      throw new Error(e)
+    }
+
+    Github.log('Complete', Github.sections.profile)
+
+    return response.data
   }
 
   /**
    * Make a Github API request to get user repositories.
-   * @param {function} beforeCb
    * @return {Promise<Array>}
    * @throws
    * @see https://developer.github.com/v3/repos/#list-user-repositories docs
    */
-  static async fetchRepositories(beforeCb = () => {}) {
+  static async fetchRepositories() {
     let fetchRepositories
     let repositories = []
     let page = 1
 
     do {
-      beforeCb(page)
+      Github.log(`Fetching data from API.. | ${page} page`, Github.sections.repositories)
 
-      fetchRepositories = await axios(Github.URL_REPOSITORIES, {
-        params: {
-          ...config.parseGithub.repositories,
-          per_page: 100,
-          page: page++
-        },
-        headers: {
-          Authorization: config.token ? `token ${config.token}` : null
-        }
-      })
+      try {
+        fetchRepositories = await axios.get(Github.URL_REPOSITORIES, {
+          params: {
+            ...config.parseGithub.repositories,
+            per_page: 100,
+            page: page++
+          }
+        })
+      } catch (e) {
+        Github.log(e, Github.sections.repositories)
+        throw new Error(e)
+      }
+
       repositories.push(...fetchRepositories.data)
 
     } while (fetchRepositories.data.length === 100)
 
+    Github.log(`Complete, ${repositories.length} length`, Github.sections.repositories)
     return repositories
-  }
-
-  /**
-   * Print console.log with color
-   * @param {string} txt
-   * @param {string} section
-   */
-  static log(txt, section = '') {
-    console.log(`\x1b[34m[Github%s]\x1b[0m %s`, section ? ` ${section}` : '', txt)
-  }
-
-  /**
-   * REST API of Github
-   * @return {string}
-   */
-  static get API_GITHUB() {
-    return 'https://api.github.com'
   }
 
   /**
@@ -76,7 +84,7 @@ module.exports = class Github {
    */
   static get URL_REPOSITORIES() {
     const append = config.token ? 'user/repos' : `users/${config.username}/repos`
-    return `${Github.API_GITHUB}/${append}`
+    return `${Github.prototype.api}/${append}`
   }
 
   /**
@@ -84,6 +92,12 @@ module.exports = class Github {
    * @return {string}
    */
   static get URL_PROFILE() {
-    return `${Github.API_GITHUB}/users/${config.username}`
+    return `${Github.prototype.api}/users/${config.username}`
   }
 }
+
+Github.prototype.name = Github.name
+Github.prototype.api = 'https://api.github.com'
+Github.prototype.color = variables.CONSOLE_COLORS.blue
+
+module.exports = Github
