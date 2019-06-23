@@ -26,7 +26,7 @@ module.exports = async () => {
      * Filter repositories if need
      */
     const filter = new Filter(config.parseGithub.filter)
-    if (filter.has) {
+    if (filter.exists) {
       repositories = filter.run(repositories)
       Github.log(`Filter, ${repositories.length} length`, Github.sections.repositories)
     }

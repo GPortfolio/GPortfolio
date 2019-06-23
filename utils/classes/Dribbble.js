@@ -104,7 +104,7 @@ class Dribbble extends Default {
 
     } while (fetchShots.data.length === 100)
 
-    Dribbble.log('Complete', Dribbble.sections.shots)
+    Dribbble.log(`Complete, ${shots.length} length`, Dribbble.sections.shots)
     return shots
   }
 

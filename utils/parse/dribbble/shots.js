@@ -1,8 +1,10 @@
 'use strict'
 
 const Dribbble = require('../../classes/Dribbble')
+const Filter = require('../../classes/Filter')
 const variables = require('../../variables')
 const Cache = require('../../classes/Cache')
+const config = require('../../../config')
 
 /**
  * @return {Promise<array>}
@@ -20,6 +22,15 @@ module.exports = async () => {
     shots = await Dribbble.fetchShots()
 
     /*
+     * Filter shots if need
+     */
+    const filter = new Filter(config.parseDribbble.filter)
+    if (filter.exists) {
+      shots = filter.run(shots)
+      Dribbble.log(`Filter, ${shots.length} length`, Dribbble.sections.shots)
+    }
+
+    /*
      * Update cache and timestamp
      */
     cache.updateData(shots)
@@ -27,7 +38,7 @@ module.exports = async () => {
 
   } else {
     shots = cache.dataFromFile
-    Dribbble.log('Get from cache', Dribbble.sections.shots)
+    Dribbble.log(`Get from cache, ${shots.length} length`, Dribbble.sections.shots)
   }
 
   return shots

@@ -145,6 +145,23 @@ module.exports = {
 
   /**
    * Various configurations are stored that will filter
+   * the received data with the Dribbble API
+   * @var {Object}
+   */
+  parseDribbble: {
+
+    /**
+     * @var {{attr: string, values: *, revert: boolean, more: *}[]}
+     * @see cache/dribbble-shots.json to see attributes or for API to get repositories
+     * @see parseGithub.filter - It works equally
+     */
+    filter: [
+      //
+    ]
+  },
+
+  /**
+   * Various configurations are stored that will filter
    * the received data with the Github API
    * @var {Object}
    */
