@@ -126,6 +126,7 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - General:
   - Support get description, image, etc from specified social API (`@github.avatar_url`, `@dribbble.avatar_url`)
 - `Default` template:
+  - Show `Dribbble` shots
   - **Show more** button on repositories + shots
 
 ## Changelog

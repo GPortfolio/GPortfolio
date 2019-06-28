@@ -34,7 +34,8 @@
   },
   "homepage": "https://github.com/GPortfolio/GPortfolio#readme",
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "uikit": "^3.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

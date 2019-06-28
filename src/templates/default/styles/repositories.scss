@@ -1,19 +1,15 @@
 .repositories {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 .repository {
-  display: flex;
-  flex-direction: column;
-  width: calc(50% - 30px);
+  display: block;
   padding: 15px;
-  margin: 15px;
   color: rgba(0, 0, 0, .9);
-  border: 1px solid #d6d6d6;
-  border-radius: 10px;
+  .repository__name {
+    color: #474a73;
+  }
   .repository__name,
   .repository__bottom {
     transition: .2s color;
@@ -29,14 +25,13 @@
 .repository__name {
   font-weight: bold;
   font-size: 1.2rem;
-  color: #474a73;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .repository__description {
   flex: 1 1 auto;
-  padding: 15px 0 20px;
+  margin-top: 15px;
   line-height: 1.5;
   color: rgba(0, 0, 0, .8);
   font-size: .9rem;
@@ -63,13 +58,5 @@
     > span {
       font-size: .8rem;
     }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .repository {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto 20px;
   }
 }
