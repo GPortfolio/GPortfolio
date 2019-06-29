@@ -4,11 +4,19 @@
 
 section {
   h2 {
+    display: flex;
     margin-bottom: 50px;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-transform: uppercase;
     color: #474a73;
+    > span {
+      display: flex !important;
+      align-items: center;
+      > .uk-icon {
+        margin-right: 8px;
+      }
+    }
   }
   + section {
     margin-top: 50px;

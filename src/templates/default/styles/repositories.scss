@@ -47,16 +47,16 @@
     &:last-child {
       margin-right: 0;
     }
-    > svg {
-      height: 13px;
-      margin-right: 5px;
-      fill: rgba(0, 0, 0, .8);
-      &[aria-label="Code"] {
-        height: 11px;
-      }
-    }
     > span {
       font-size: .8rem;
+      &.uk-icon {
+        width: 14px;
+        margin-right: 7px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
 }
