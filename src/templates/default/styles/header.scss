@@ -11,14 +11,13 @@ header {
 
 .header__wrap {
   text-align: center;
-  will-change: transform, opacity;
 }
 
 .header__wrap__name {
-  font-size: 2.3em;
   margin: 35px 0 5px;
   color: #fff;
   text-shadow: 0 0 5px #000;
+  font-weight: 600;
   letter-spacing: 1px;
 }
 
@@ -33,7 +32,7 @@ header {
 .header__wrap__position {
   display: block;
   margin-top: 20px;
-  color: rgba(255, 255, 255, .9);
+  color: rgba(255, 255, 255, .95);
   font-size: 1.1rem;
 }
 

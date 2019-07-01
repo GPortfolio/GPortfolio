@@ -2,27 +2,21 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-html, body {
-  min-height: calc(100% + 1px);
-  height: 100%;
-}
-
-main {
-  margin: 50px 20px 30px;
-}
-
 section {
-  > h2 {
-    margin: 0 0 30px;
+  h2 {
+    display: flex;
+    margin-bottom: 50px;
     font-weight: bold;
     font-size: 1.4rem;
-    text-align: center;
     text-transform: uppercase;
     color: #474a73;
+    > span {
+      display: flex !important;
+      align-items: center;
+      > .uk-icon {
+        margin-right: 8px;
+      }
+    }
   }
   + section {
     margin-top: 50px;
@@ -31,10 +25,6 @@ section {
 
 a {
   text-decoration: none !important;
-  &[disabled] {
-    pointer-events: none;
-    cursor: default;
-  }
 }
 
 ul {

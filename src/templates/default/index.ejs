@@ -15,74 +15,64 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 </head>
 <body>
 <header>
-  <div class="header__background background--image"></div>
+  <div class="header__background uk-background-cover background--image" uk-parallax="bgy: -200"></div>
   <div class="header__wrap">
     <div class="header__wrap__image">
-      <div class="avatar--image"></div>
+      <div class="avatar--image uk-background-cover"></div>
     </div>
-    <h1 class="header__wrap__name"><%= profile.name %></h1>
+    <h1 class="header__wrap__name uk-h1"><%= profile.name %></h1>
     <% if (config.position) { %>
-    <span class="header__wrap__position"><%= config.position %></span>
+      <span class="header__wrap__position"><%= config.position %></span>
     <% } %>
     <% if (config.socialMedia.length > 0) { %>
-    <div class="header__wrap__social">
-      <% for (const media of config.socialMedia) { %>
-      <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
-        <%= require(`!!svg-inline-loader!@asset/upstream/icons/${media.icon}.svg`) %>
-      </a>
-      <% } %>
-    </div>
+      <div class="header__wrap__social">
+        <% for (const media of config.socialMedia) { %>
+          <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
+            <%= require(`!!svg-inline-loader!@asset/upstream/icons/${media.icon}.svg`) %>
+          </a>
+        <% } %>
+      </div>
     <% } %>
   </div>
 </header>
 <main>
-  <section class="repositories-section">
-    <h2>Repositories</h2>
-    <div class="repositories">
-      <% for (const rep of repositories) { %>
-      <a href="<%= rep.html_url %>" class="repository" target="_blank" rel="noopener">
-        <div class="repository__name"><%= rep.full_name %></div>
-        <div class="repository__description"><%= rep.description || '-' %></div>
-        <div class="repository__bottom">
-          <div class="repository__bottom__language">
-            <%= require(`!!svg-inline-loader!@asset/upstream/icons/code.svg`) %>
-            <span><%= rep.language || '-' %></span>
+  <section class="repositories-section uk-section uk-section-default">
+    <div class="uk-container">
+      <h2 class="uk-heading-line">
+        <span>
+          <span uk-icon="grid"></span>
+          <span>Repositories</span>
+        </span>
+      </h2>
+      <div class="repositories uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small" uk-grid="masonry: true">
+        <% for (const rep of repositories) { %>
+          <div>
+            <a href="<%= rep.html_url %>" class="repository uk-card uk-card-default uk-card-small uk-card-hover" uk-scrollspy="cls: uk-animation-scale-up" target="_blank" rel="noopener">
+              <div class="repository__name uk-card-title"><%= rep.full_name %></div>
+              <p class="repository__description"><%= rep.description || '-' %></p>
+              <div class="repository__bottom">
+                <div class="repository__bottom__language">
+                  <span uk-icon="code"></span>
+                  <span><%= rep.language || '-' %></span>
+                </div>
+                <div class="repository__bottom__star">
+                  <span uk-icon="star"></span>
+                  <span><%= rep.stargazers_count %></span>
+                </div>
+                <div class="repository__bottom__forks">
+                  <span uk-icon="git-fork"></span>
+                  <span><%= rep.forks_count %></span>
+                </div>
+              </div>
+            </a>
           </div>
-          <div class="repository__bottom__star">
-            <%= require(`!!svg-inline-loader!@asset/upstream/icons/star.svg`) %>
-            <span><%= rep.stargazers_count %></span>
-          </div>
-          <div class="repository__bottom__forks">
-            <%= require(`!!svg-inline-loader!@asset/upstream/icons/fork.svg`) %>
-            <span><%= rep.forks_count %></span>
-          </div>
-        </div>
-      </a>
-      <% } %>
+        <% } %>
+      </div>
     </div>
   </section>
-  <% if (dribbble && dribbble.shots.length) { %>
-  <section class="dribbble-shots-section">
-    <h2>Shots</h2>
-    <div class="dribbble-shots">
-    <% for (const shot of dribbble.shots) { %>
-      <a href="<%= shot.html_url %>" class="dribbble-shot" target="_blank" rel="noopener"
-         style="background-image: url(<%= shot.images.normal %>)">
-        <div class="dribbble-shot__title"><%= shot.title %></div>
-        <div class="dribbble-shot__published_at">
-          <%= new Date(shot.published_at).toLocaleDateString(undefined, {
-            year: 'numeric',
-            day: '2-digit',
-            month: '2-digit'
-          }) %>
-        </div>
-      </a>
-    <% } %>
-    </div>
-  </section>
-  <% } %>
 </main>
 <footer>
+  <hr class="uk-divider-icon">
   <span><%= new Date().toLocaleDateString(undefined, {
     year: 'numeric',
     day: '2-digit',
