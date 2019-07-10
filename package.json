@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-env": "^7.5.4",
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
