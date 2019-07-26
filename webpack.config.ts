@@ -6,9 +6,9 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
-import variables from './node/variables'
-import collectModules from './node/modules'
-import config from './config'
+import config from './config';
+import collectModules from './node/modules';
+import variables from './node/variables';
 
 export default async (env: any, argv: { mode: string; }) => {
 
@@ -16,7 +16,7 @@ export default async (env: any, argv: { mode: string; }) => {
    * Fetch data from all social media
    * And then inject all data to .ejs
    */
-  const modules = await collectModules()
+  const modules = await collectModules();
 
   /** @type {string} */
   const template: string = config.global.template || 'default';
@@ -87,7 +87,7 @@ export default async (env: any, argv: { mode: string; }) => {
         {
           test: /\.(js|ts)$/,
           use: [
-            'babel-loader'
+            'babel-loader',
           ],
         },
       ],
@@ -163,6 +163,7 @@ export default async (env: any, argv: { mode: string; }) => {
        */
       alias: {
         '@': path.resolve(__dirname, `./src/templates/${template}/`),
+        '@src': path.resolve(__dirname, './src'),
         '@root': __dirname,
         '@asset': path.resolve(__dirname, './assets/'),
       },
@@ -171,7 +172,7 @@ export default async (env: any, argv: { mode: string; }) => {
        */
       extensions: [
         '.ts', '.js', '.json',
-      ]
+      ],
     },
   };
 
