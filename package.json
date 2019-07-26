@@ -35,8 +35,7 @@
   "homepage": "https://github.com/GPortfolio/GPortfolio#readme",
   "dependencies": {
     "axios": "^0.19.0",
-    "shelljs": "^0.8.3",
-    "uikit": "^3.1.6"
+    "shelljs": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -51,7 +50,6 @@
     "@types/webpack-dev-server": "^3.1.7",
     "@types/webpack-env": "^1.14.0",
     "@types/workbox-webpack-plugin": "^4.1.0",
-    "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.3",
@@ -68,7 +66,7 @@
     "tsconfig-paths": "^3.8.0",
     "tslint": "^5.18.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.37.0",
+    "webpack": "^4.38.0",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2",
     "webpack-pwa-manifest": "^4.0.0",
