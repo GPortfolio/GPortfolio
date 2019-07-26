@@ -6,9 +6,9 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <%= headTemplate({ profile, config, url }) %>
+  <%= headTemplate({ profile: modules.github.profile, config, url }) %>
   <%= imagesTemplate({
-    avatar: profile.avatar_url,
+    avatar: modules.github.profile.avatar_url,
     background: config.templates.default.background,
     defaultBackground: require('@/assets/background.png')
   }) %>
@@ -20,11 +20,11 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
     <div class="header__wrap__image">
       <div class="avatar--image uk-background-cover"></div>
     </div>
-    <h1 class="header__wrap__name uk-h1"><%= profile.name %></h1>
-    <% if (config.position) { %>
-      <span class="header__wrap__position"><%= config.position %></span>
+    <h1 class="header__wrap__name uk-h1"><%= modules.github.profile.name %></h1>
+    <% if (config.data.position) { %>
+      <span class="header__wrap__position"><%= config.data.position %></span>
     <% } %>
-    <% if (config.socialMedia.length > 0) { %>
+    <% if (config.data.socialMedia.length > 0) { %>
       <div class="header__wrap__social">
         <% for (const media of config.socialMedia) { %>
           <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
@@ -45,7 +45,7 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
         </span>
       </h2>
       <div class="repositories uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small" uk-grid="masonry: true">
-        <% for (const rep of repositories) { %>
+        <% for (const rep of modules.github.repositories) { %>
           <div>
             <a href="<%= rep.html_url %>" class="repository uk-card uk-card-default uk-card-small uk-card-hover" uk-scrollspy="cls: uk-animation-scale-up" target="_blank" rel="noopener">
               <div class="repository__name uk-card-title"><%= rep.full_name %></div>

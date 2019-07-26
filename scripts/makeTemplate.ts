@@ -1,63 +1,61 @@
-'use strict'
-
 /* | ------------------------------------------------------------------------------------------------
  * | - Generate a basic files/content for new template. -
  * | ------------------------------------------------------------------------------------------------
  * |
  * | How to create: npm run template <name>
- * | Example: npm run template myTemplate
+ * | Example: npm run template myTemplateName
  * |
  */
 
-const variables = require('../variables')
-const argv = process.argv.slice(2)
-const fs = require('fs')
+import fs from 'fs';
+import variables from '../node/variables';
+
+const argv = process.argv.slice(2);
 
 // Check name of template
 if (argv.length !== 1) {
-  console.warn('Invalid arguments')
-  process.exit(0)
+  console.warn('Invalid arguments');
+  process.exit(0);
 }
 
 /**
- * @var {string}
+ * Name of template
+ * @type {string}
  */
-const name = argv[0].trim()
+const name: string = argv[0].trim();
 
 /**
  * Path to templates
  * @type {string}
  */
-const BASE_PATH = variables.ROOT + '/src/templates/'
+const BASE_PATH: string = variables.root + '/src/templates/';
 
 /** @type {string} */
-const FILE_ENCODING = 'utf8'
+const FILE_ENCODING: string = 'utf8';
 
 // Check on exists template
 if (fs.existsSync(BASE_PATH + name)) {
-  console.warn(`[Exists]: ${BASE_PATH + name}`)
-  process.exit(0)
+  console.warn(`[Exists]: ${BASE_PATH + name}`);
+  process.exit(0);
 }
 
 // Create folder
-fs.mkdirSync(BASE_PATH + name)
+fs.mkdirSync(BASE_PATH + name);
 
 /*
  * ---------------------------------------------- Create required .js file
  */
-fs.writeFileSync(BASE_PATH + name + '/index.js', `'use strict'
-
-import '@src/main'
+fs.writeFileSync(BASE_PATH + name + '/index.js', `import '../../main';
 
 // Code
-`, { encoding: FILE_ENCODING })
+`, { encoding: FILE_ENCODING });
 
 /*
  * ---------------------------------------------- Create required .scss file
  */
 fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTarget
-@import "@src/main.scss";
-`, { encoding: FILE_ENCODING })
+@import "../../main.scss";
+`, { encoding: FILE_ENCODING });
 
 /*
  * ---------------------------------------------- Create required .html file
@@ -69,16 +67,16 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <%= headTemplate({ profile, config, url }) %>
+  <%= headTemplate({ profile: modules.github.profile, config, url }) %>
 </head>
 <body>
 
 </body>
 </html>
-`, { encoding: FILE_ENCODING })
+`, { encoding: FILE_ENCODING });
 
 /*
  * ---------------------------------------------- Complete
  */
-console.log('Complete, path:', BASE_PATH + name)
-console.log('Change the template in the config.js file to:', name)
+console.log('Complete, path:', BASE_PATH + name);
+console.log('Change the template in the config.js file to:', name);

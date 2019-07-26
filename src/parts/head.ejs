@@ -14,7 +14,7 @@
 <meta property="og:url" content="<%= url %>" />
 <meta property="og:description" content="<%= profile.bio %>" />
 <meta property="profile:username" content="<%= profile.login %>" />
-<% for (let [property, content] of Object.entries(config.opg)) { %>
+<% for (let [property, content] of Object.entries(config.global.opg)) { %>
     <meta property="<%= property %>" content="<%= content %>" />
 <% } %>
 <!-- END: Open Graph -->
