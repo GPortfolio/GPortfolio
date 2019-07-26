@@ -85,10 +85,10 @@ class Cache {
     const data = fs.readFileSync(path, { encoding: FILE_ENCODING });
 
     try {
-      return JSON.parse(data)
+      return JSON.parse(data);
     } catch (e) {
-      Logger.error('Cache', e)
-      return null
+      Logger.error('Cache', e);
+      return null;
     }
   }
 

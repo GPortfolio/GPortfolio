@@ -8,13 +8,19 @@
  */
 
 import fs from 'fs';
+import path from 'path';
+import Logger from '../node/classes/Logger';
 import variables from '../node/variables';
 
-const argv = process.argv.slice(2);
+/** @type {Array<string>} */
+const argv: string[] = process.argv.slice(2);
+
+/** @type {string} */
+const loggerSection: string = 'Template';
 
 // Check name of template
 if (argv.length !== 1) {
-  console.warn('Invalid arguments');
+  Logger.error(loggerSection, 'Invalid arguments');
   process.exit(0);
 }
 
@@ -28,24 +34,26 @@ const name: string = argv[0].trim();
  * Path to templates
  * @type {string}
  */
-const BASE_PATH: string = variables.root + '/src/templates/';
+const BASE_PATH: string = `${variables.root + path.sep}src${path.sep}templates${path.sep}`;
 
 /** @type {string} */
 const FILE_ENCODING: string = 'utf8';
 
 // Check on exists template
 if (fs.existsSync(BASE_PATH + name)) {
-  console.warn(`[Exists]: ${BASE_PATH + name}`);
+  Logger.warning(loggerSection, `Template exists: ${BASE_PATH + name}`);
   process.exit(0);
 }
 
 // Create folder
+Logger.info(loggerSection, `Create: ${BASE_PATH + name}`);
 fs.mkdirSync(BASE_PATH + name);
 
 /*
- * ---------------------------------------------- Create required .js file
+ * ---------------------------------------------- Create required .ts file
  */
-fs.writeFileSync(BASE_PATH + name + '/index.js', `import '../../main';
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}index.ts`);
+fs.writeFileSync(`${BASE_PATH + name + path.sep}index.ts`, `import '../../main';
 
 // Code
 `, { encoding: FILE_ENCODING });
@@ -53,14 +61,16 @@ fs.writeFileSync(BASE_PATH + name + '/index.js', `import '../../main';
 /*
  * ---------------------------------------------- Create required .scss file
  */
-fs.writeFileSync(BASE_PATH + name + '/index.scss', `// noinspection CssUnknownTarget
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}index.scss`);
+fs.writeFileSync(`${BASE_PATH + name + path.sep}index.scss`, `// noinspection CssUnknownTarget
 @import "../../main.scss";
 `, { encoding: FILE_ENCODING });
 
 /*
  * ---------------------------------------------- Create required .html file
  */
-fs.writeFileSync(BASE_PATH + name + '/index.ejs', `<!DOCTYPE html>
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}index.ejs`);
+fs.writeFileSync(`${BASE_PATH + name + path.sep}index.ejs`, `<!DOCTYPE html>
 <%
 const headTemplate = require('ejs-loader!@src/parts/head.ejs')
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
@@ -70,7 +80,7 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
   <%= headTemplate({ profile: modules.github.profile, config, url }) %>
 </head>
 <body>
-
+  <!-- Code -->
 </body>
 </html>
 `, { encoding: FILE_ENCODING });
@@ -78,5 +88,6 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 /*
  * ---------------------------------------------- Complete
  */
-console.log('Complete, path:', BASE_PATH + name);
-console.log('Change the template in the config.js file to:', name);
+Logger.success(loggerSection, `Complete, path: ${BASE_PATH + name}`);
+Logger.info(loggerSection, `To change the template - edit config.ts:`);
+Logger.info(loggerSection, `  { global.template: ${name} }`);
