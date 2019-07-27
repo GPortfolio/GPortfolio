@@ -7,14 +7,22 @@ import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import config from './config';
+import validateConfig from './node/helpers/validateConfig';
 import collectModules from './node/modules';
 import variables from './node/variables';
 
 export default async (env: any, argv: { mode: string; }) => {
 
-  /*
+  /**
+   * Check that the required data has been entered
+   * @throws
+   */
+  validateConfig();
+
+  /**
    * Fetch data from all social media
    * And then inject all data to .ejs
+   * @throws
    */
   const modules = await collectModules();
 
@@ -120,7 +128,7 @@ export default async (env: any, argv: { mode: string; }) => {
         filename: 'index.html',
         template: `./src/templates/${template}/index.ejs`,
         favicon: iconPath,
-        inject: true,
+        inject: 'head',
         templateParameters: {
           config,
           modules,
