@@ -1,3 +1,7 @@
+/*
+ * After editing - restart the server for the change to take effect.
+ */
+
 export default {
   global: {
 
@@ -166,7 +170,7 @@ export default {
 
         /**
          * @type {IFilters[]}
-         * @see cache/github-repositories.json attributes
+         * @see node/interfaces/IGithib.ts identify attributes
          * @see docs/config.md #Filters
          */
         repositories: [
@@ -199,7 +203,7 @@ export default {
 
         /**
          * @type {IFilters[]}
-         * @see cache/github-repositories.json attributes
+         * @see node/interfaces/IDribbble.ts identify attributes
          * @see docs/config.md #Filters
          */
         shots: [
@@ -214,7 +218,7 @@ export default {
 
       /**
        * @type {string}
-       * @see docs/config.md #File
+       * @see docs/config.md #Image
        */
       background: '',
     },

@@ -1,33 +1,60 @@
 # README
 
+- [Filter](#filter)
+- [Image](#image)
 
--- filter
+## Filter
 
-/**
-  * After get repositories (API) - filter by these filters
-  * Accept repository if all of the parameters is valid
-  * String equal!
-  * @type {{attr: string, values: *, revert: boolean, more: *}[]}
-  *  more - extra options, support:
-  *    If values is number - ['>', '<', '>=', '<=']
-  * @see cache/repositories.json to see attributes or for API to get repositories
-  * @example
-  *  Get repositories where:
-  *  { attr: 'name', values: ['rep2', 'rep1'], revert: false, more: '' } // 2 repositories
-  *  { attr: 'language', values: 'JavaScript', revert: true, more: '' } // excluding javascript
-  *  { attr: 'size', values: 200, revert: false, more: '<' } //  size is less than 200 KB
-  *  { attr: 'name', values: /php/i, revert: false, more: '' } // where php is in the title
-  *  { attr: 'owner.login', values: 'nickname', revert: false, more: '' } // owner is nickname
-  */
+Filter the data by the specified parameters. **String equal**.
 
+### Structure:
 
--- background
+```
+{
+  attr: string, // the resulting property from the object to filter
+  values: any, // to compare the resulting value
+  revert: boolean, // change check backwards (true -> false, false -> true)
+  more: string, // extra options
+}
+```
 
-/**
-  * @type {string}
-  * @example
-  *  (empty) - use default image in template
-  *  upstream/logo.png - from assets folder
-  *  https://images.unsplash.com/photo-1505685296765-3a2736de412f - from url
-  */
-  
+Details **more** property:
+
+- **values** property is number, accept: **>, <, >=, <=**
+
+Interface: *node/interfaces/IFilter.ts*
+
+### Example:
+
+Filter the received Github repositories by these parameters:
+
+```
+[
+  // Get only 2 repositories
+  { attr: 'name', values: ['rep2', 'rep1'], revert: false, more: '' }
+
+  // Excluding javascript
+  { attr: 'language', values: 'JavaScript', revert: true, more: '' }
+
+  // Size is less than 200 KB
+  { attr: 'size', values: 200, revert: false, more: '<' }
+
+  // Where "php" is in the title
+  { attr: 'name', values: /php/i, revert: false, more: '' }
+
+  // Owner login - nickname
+  { attr: 'owner.login', values: 'nickname', revert: false, more: '' }
+]
+```
+
+## Image
+
+Insert image to the site.
+
+### Example
+
+```
+'' - use default image in template (if exists)
+'upstream/logo.png' - from assets folder
+'https://images.unsplash.com/photo-1505685296765-3a2736de412f' - from url
+```
