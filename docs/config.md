@@ -1,7 +1,53 @@
 # README
 
+- [Data](#data)
 - [Filter](#filter)
 - [Image](#image)
+
+## Data
+
+All user data is in the `config.data` object. Each **attribute** accepts the **specified type** or **function**, in which all modules are transferred to take data from social networks.
+
+### Example
+
+Via the **function**, we receive data from **Github**, if the value is empty, then we get from **Dribbble** (if any).
+
+```
+name: (modules: any) => {
+  let val = getDeepByKey(modules, ['github', 'profile', 'name']);
+
+  if (!val) {
+    val = getDeepByKey(modules, ['dribbble', 'profile', 'name']);
+  }
+
+  return val;
+}
+```
+
+If you need to specify a **custom name**, then you need to **remove the function** and **replace it with a regular value** (in this case, it is a string type)
+
+```
+name: 'My name'
+```
+
+### How to find out what data I can take
+
+In the `./node/modules/index.ts` file, the properties that are available in the **modules** variable are specified.
+
+```
+{
+  github: {
+    profile: IGithubProfile,
+    repositories: IGithubRepository[],
+  },
+  dribbble: {
+    profile: IDribbbleProfile,
+    shots: IDribbbleShot[],
+  },
+}
+```
+
+Etc.
 
 ## Filter
 

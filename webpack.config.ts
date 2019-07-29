@@ -7,6 +7,7 @@ import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import config from './config';
+import transformConfigData from './node/helpers/transformConfigData';
 import validateConfig from './node/helpers/validateConfig';
 import collectModules from './node/modules';
 import variables from './node/variables';
@@ -25,6 +26,12 @@ export default async (env: any, argv: { mode: string; }) => {
    * @throws
    */
   const modules = await collectModules();
+
+  /**
+   * Change data from settings to data from social networks
+   * @see see docs/config.md #Data
+   */
+  transformConfigData(config.data, modules)
 
   /** @type {string} */
   const template: string = config.global.template || 'default';

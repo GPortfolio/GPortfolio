@@ -1,3 +1,5 @@
+import { getDeepByKey } from './node/helpers/utils';
+
 /*
  * After editing - restart the server for the change to take effect.
  */
@@ -71,24 +73,53 @@ export default {
   data: {
 
     /**
+     * Your name
      * @type {string}
-     * @example
-     *  Software Developer
-     *  UI/UX Designer
-     *  JavaScript Developer
      */
-    position: '',
+    name: (modules: any) => {
+      let val = getDeepByKey(modules, ['github', 'profile', 'name']);
+
+      if (!val) {
+        val = getDeepByKey(modules, ['dribbble', 'profile', 'name']);
+      }
+
+      return val;
+    },
 
     /**
-     * Display a list of social networks in the template (if supported)
-     * @type {{name: string, icon: string, link: string}[]}
-     *  icon - svg, find: /assets/upstream/icons
-     * @example
-     *  { name: 'Github', icon: 'github', link: 'https://github.com/profile' },
-     *  { name: 'LinkedIn', icon: 'linkedin', link: 'https://linkedin.com/in/profile' }
+     * Profile picture
+     * @type {string}
+     */
+    avatar_url: (modules: any) => {
+      let val = getDeepByKey(modules, ['github', 'profile', 'avatar_url']);
+
+      if (!val) {
+        val = getDeepByKey(modules, ['dribbble', 'profile', 'avatar_url']);
+      }
+
+      return val;
+    },
+
+    /**
+     * @type {string}
+     */
+    position: 'Software Developer',
+
+    /**
+     * Searching for a job
+     * @type {boolean}
+     */
+    hire: (modules: any) => {
+      return !!getDeepByKey(modules, ['github', 'profile', 'hireable']);
+    },
+
+    /**
+     * You are in social networks
+     * @type {object}
      */
     socialMedia: [
-      //
+      { name: 'Github', icon: 'github', link: 'https://github.com/' },
+      { name: 'LinkedIn', icon: 'linkedin', link: 'https://linkedin.com/' },
     ],
   },
 

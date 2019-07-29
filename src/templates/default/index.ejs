@@ -6,9 +6,9 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <%= headTemplate({ profile: modules.github.profile, config, url }) %>
+  <%= headTemplate({ github: modules.github, config, url }) %>
   <%= imagesTemplate({
-    avatar: modules.github.profile.avatar_url,
+    avatar: config.data.avatar_url,
     background: config.templates.default.background,
     defaultBackground: require('@/assets/background.png')
   }) %>
@@ -20,13 +20,13 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
     <div class="header__wrap__image">
       <div class="avatar--image uk-background-cover"></div>
     </div>
-    <h1 class="header__wrap__name uk-h1"><%= modules.github.profile.name %></h1>
+    <h1 class="header__wrap__name uk-h1"><%= config.data.name %></h1>
     <% if (config.data.position) { %>
       <span class="header__wrap__position"><%= config.data.position %></span>
     <% } %>
     <% if (config.data.socialMedia.length > 0) { %>
       <div class="header__wrap__social">
-        <% for (const media of config.socialMedia) { %>
+        <% for (const media of config.data.socialMedia) { %>
           <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
             <%= require(`!!svg-inline-loader!@asset/upstream/icons/${media.icon}.svg`) %>
           </a>
@@ -36,40 +36,42 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
   </div>
 </header>
 <main>
-  <section class="repositories-section uk-section uk-section-default">
-    <div class="uk-container">
-      <h2 class="uk-heading-line">
-        <span>
-          <span uk-icon="grid"></span>
-          <span>Repositories</span>
-        </span>
-      </h2>
-      <div class="repositories uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small" uk-grid="masonry: true">
-        <% for (const rep of modules.github.repositories) { %>
-          <div>
-            <a href="<%= rep.html_url %>" class="repository uk-card uk-card-default uk-card-small uk-card-hover" uk-scrollspy="cls: uk-animation-scale-up" target="_blank" rel="noopener">
-              <div class="repository__name uk-card-title"><%= rep.full_name %></div>
-              <p class="repository__description"><%= rep.description || '-' %></p>
-              <div class="repository__bottom">
-                <div class="repository__bottom__language">
-                  <span uk-icon="code"></span>
-                  <span><%= rep.language || '-' %></span>
+  <% if (modules.github && modules.github.repositories.length > 0) { %>
+    <section class="repositories-section uk-section uk-section-default">
+      <div class="uk-container">
+        <h2 class="uk-heading-line">
+          <span>
+            <span uk-icon="grid"></span>
+            <span>Repositories</span>
+          </span>
+        </h2>
+        <div class="repositories uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small" uk-grid="masonry: true">
+          <% for (const rep of modules.github.repositories) { %>
+            <div>
+              <a href="<%= rep.html_url %>" class="repository uk-card uk-card-default uk-card-small uk-card-hover" uk-scrollspy="cls: uk-animation-scale-up" target="_blank" rel="noopener">
+                <div class="repository__name uk-card-title"><%= rep.full_name %></div>
+                <p class="repository__description"><%= rep.description || '-' %></p>
+                <div class="repository__bottom">
+                  <div class="repository__bottom__language">
+                    <span uk-icon="code"></span>
+                    <span><%= rep.language || '-' %></span>
+                  </div>
+                  <div class="repository__bottom__star">
+                    <span uk-icon="star"></span>
+                    <span><%= rep.stargazers_count %></span>
+                  </div>
+                  <div class="repository__bottom__forks">
+                    <span uk-icon="git-fork"></span>
+                    <span><%= rep.forks_count %></span>
+                  </div>
                 </div>
-                <div class="repository__bottom__star">
-                  <span uk-icon="star"></span>
-                  <span><%= rep.stargazers_count %></span>
-                </div>
-                <div class="repository__bottom__forks">
-                  <span uk-icon="git-fork"></span>
-                  <span><%= rep.forks_count %></span>
-                </div>
-              </div>
-            </a>
-          </div>
-        <% } %>
+              </a>
+            </div>
+          <% } %>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <% } %>
 </main>
 <footer>
   <hr class="uk-divider-icon">
