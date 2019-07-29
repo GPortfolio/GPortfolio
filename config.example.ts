@@ -159,6 +159,7 @@ export default {
         repositories: {
 
           /**
+           * Not used if token is present. Instead, use: visibility, affiliation.
            * @type {string} - all, owner, member
            * @default owner
            */

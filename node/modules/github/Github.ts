@@ -111,6 +111,7 @@ export default class Github extends Module {
             ...config.modules.github.parse.repositories,
             page: page++,
             per_page: MAX_COUNT,
+            type: config.modules.github.token ? undefined : config.modules.github.parse.repositories.type,
           },
         });
       } catch (e) {
