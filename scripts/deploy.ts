@@ -42,16 +42,19 @@ if (config.global.customDomain) {
 }
 
 // Git
-shell.exec(`git init`);
-shell.exec(`git add -A`);
+const username = config.modules.github.username;
+const branch = config.global.base ? 'gh-pages' : 'master';
+const remoteCmd = `git remote add origin https://github.com/${username}`;
+
+shell.exec('git init');
+
+if (config.global.base) {
+  shell.exec(`${remoteCmd}/${config.global.base}.git`);
+} else {
+  shell.exec(`${remoteCmd}/${username}.github.io.git`);
+}
+
+shell.exec('git fetch');
+shell.exec('git add .');
 shell.exec(`git commit -m deploy`);
-
-const append: string = config.global.base
-  ? `${config.modules.github.username}/${config.global.base}.git master:gh-pages`
-  : `${config.modules.github.username}/${config.modules.github.username}.github.io.git master`;
-
-Logger.info(loggerSection, 'git push --force-with-lease');
-shell.exec(`git push --force-with-lease git@github.com:${append}`);
-shell.cd('-');
-
-Logger.success(loggerSection, 'Complete');
+shell.exec(`git push -u --force-with-lease origin ${branch}`);
