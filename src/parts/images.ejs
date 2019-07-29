@@ -3,15 +3,6 @@
 * Properties:
 *  - Include: avatar, background, defaultBackground
 */
-
-const assetFolder = require.context('@asset', true, /\.gif|png|jpe?g|svg/)
-
-let backgroundFile
-if (typeof background !== 'undefined') {
-    backgroundFile = !background || background.includes('http')
-            ? background
-            : assetFolder(`./${background}`)
-}
 %>
 
 <style>
@@ -20,9 +11,9 @@ if (typeof background !== 'undefined') {
     background: url(<%= avatar %>);
 }
 <% } %>
-<% if (backgroundFile || typeof defaultBackground !== 'undefined') { %>
+<% if (background || typeof defaultBackground !== 'undefined') { %>
 .background--image {
-    background: url(<%= backgroundFile || defaultBackground %>);
+    background: url(<%= background || defaultBackground %>);
 }
 <% } %>
 </style>

@@ -101,6 +101,6 @@ Insert image to the site.
 
 ```
 '' - use default image in template (if exists)
-'upstream/logo.png' - from assets folder
+'/foo/bar.png' - from public folder
 'https://images.unsplash.com/photo-1505685296765-3a2736de412f' - from url
 ```

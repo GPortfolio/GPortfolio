@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/GPortfolio/GPortfolio">
-    <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/logo.png" alt="GPortfolio">
+    <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/logo.png" alt="GPortfolio">
   </a>
 </p>
 <p align="center">
@@ -53,7 +53,7 @@ in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` bra
   <tr>
     <td>
       <a href="https://github.com/GPortfolio/GPortfolio/tree/master/src/templates/default" title="Default">
-        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/templates/default.png" width="250" alt="Default">
+        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/templates/default.png" width="250" alt="Default">
       </a>
     </td>
   </tr>
@@ -99,7 +99,7 @@ Data is cached to the API Github cached, to avoid the limit. It lasts about an h
 But you can force to refresh the data by deleting the **cache** folder.
 
 ### How to change favicon?
-Put the file **favicon.ico** in the **assets** folder.
+Put the file **favicon.ico** in the **public** folder.
 
 ### How to connect Dribbble or another?
 [See here](https://github.com/GPortfolio/GPortfolio/tree/master/docs)
@@ -114,7 +114,7 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **docs** - documentation (.md files)
 - **node** - running scripts (retrieving data from API) before webpack work
 - **node_modules** - libraries.
-- **public** - all files from this folder will be copied to the **dist** folder and access by url: **/static/public/***.
+- **public** - all files from this folder will be copied to the **dist** folder (user files).
 - **scripts** - small cli scripts.
 - **src** - source files.
 

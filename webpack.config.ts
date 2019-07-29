@@ -39,12 +39,6 @@ export default async (env: any, argv: { mode: string; }) => {
   /** @type {boolean} */
   const isProd: boolean = argv.mode === 'production';
 
-  // TODO Rewrite public copy system
-  /** @type {string} */
-  const iconPath: string = fs.existsSync('./assets/favicon.ico')
-    ? './assets/favicon.ico'
-    : './assets/upstream/favicon.ico';
-
   const webpackConfig = {
     mode: argv.mode,
     entry: {
@@ -118,7 +112,7 @@ export default async (env: any, argv: { mode: string; }) => {
        * @see https://github.com/webpack-contrib/copy-webpack-plugin
        */
       new CopyWebpackPlugin([
-        { from: 'public', to: 'static/public' },
+        { from: 'public', to: undefined, ignore: ['.gitignore'] },
       ]),
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
@@ -134,7 +128,6 @@ export default async (env: any, argv: { mode: string; }) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: `./src/templates/${template}/index.ejs`,
-        favicon: iconPath,
         inject: 'head',
         templateParameters: {
           config,
@@ -192,6 +185,19 @@ export default async (env: any, argv: { mode: string; }) => {
   };
 
   if (isProd) {
+    /**
+     * Add all folders and files to navigateFallbackWhitelist (PWA)
+     * @type {RegExp[]}
+     */
+    const ignorePublicFolder: RegExp[] = fs.readdirSync(path.resolve(__dirname, './public'))
+      .map((path) => {
+        if (fs.lstatSync('./public/' + path).isDirectory()) {
+          return new RegExp('^' + path)
+        }
+    
+        return new RegExp('^' + path.replace(/\./g, '\\.') + '$')
+      })
+
     webpackConfig.plugins.push(
       /**
        * Progressive Web App Manifest Generator for Webpack,
@@ -209,7 +215,7 @@ export default async (env: any, argv: { mode: string; }) => {
           background_color: '#fff',
           icons: [
             {
-              src: path.resolve('assets/upstream/icon.png'),
+              src: path.resolve('demo/icon.png'),
               sizes: [96, 128, 192, 256, 384, 512],
               destination: 'static/icons',
             },
@@ -231,6 +237,8 @@ export default async (env: any, argv: { mode: string; }) => {
         navigateFallbackWhitelist: [
           // Output build
           /^static/, /^sw\.js$/, /^index\.html$/, /^favicon\.ico$/,
+          // Public folder
+          ...ignorePublicFolder
         ],
         exclude: [
           /\.gitignore/,

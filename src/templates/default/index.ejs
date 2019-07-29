@@ -28,7 +28,7 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
       <div class="header__wrap__social">
         <% for (const media of config.data.socialMedia) { %>
           <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
-            <%= require(`!!svg-inline-loader!@asset/upstream/icons/${media.icon}.svg`) %>
+            <%= require(`!!svg-inline-loader!@asset/icons/${media.icon}.svg`) %>
           </a>
         <% } %>
       </div>
