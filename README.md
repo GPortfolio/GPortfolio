@@ -1,39 +1,37 @@
 # GPortfolio
 
 <p align="center">
-    <a href="https://github.com/GPortfolio/GPortfolio">
-        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/logo.png" alt="GPortfolio">
-    </a>
+  <a href="https://github.com/GPortfolio/GPortfolio">
+    <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/logo.png" alt="GPortfolio">
+  </a>
 </p>
 <p align="center">
-    <a href="https://circleci.com/gh/GPortfolio/GPortfolio" rel="nofollow"><img src="https://circleci.com/gh/GPortfolio/GPortfolio.svg?style=shield" alt="Build Status"></a>
-    <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/package-json/v/GPortfolio/GPortfolio.svg" alt="Version"></a>
-    <a href="https://david-dm.org/GPortfolio/GPortfolio" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio.svg" alt="Dependency Status"></a>
-    <a href="https://david-dm.org/GPortfolio/GPortfolio?type=dev" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio/dev-status.svg" alt="devDependency Status"></a>
-    <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
+  <a href="https://circleci.com/gh/GPortfolio/GPortfolio" rel="nofollow"><img src="https://circleci.com/gh/GPortfolio/GPortfolio.svg?style=shield" alt="Build Status"></a>
+  <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/package-json/v/GPortfolio/GPortfolio.svg" alt="Version"></a>
+  <a href="https://david-dm.org/GPortfolio/GPortfolio" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio.svg" alt="Dependency Status"></a>
+  <a href="https://david-dm.org/GPortfolio/GPortfolio?type=dev" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio/dev-status.svg" alt="devDependency Status"></a>
+  <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
 </p>
 
 ## Introducing
-Creating an automatic portfolio based on Github profile. When building a project, we get a profile
-and repositories with the Github API and generate an html file based on the chosen one.
+Creating an automatic portfolio based on Github profile, with the ability to connect others.
+When building, we get data from the API and generate html.
 
-[See examples](#list-of-user-portfolios)
+[See examples](https://alexeykhr.github.io) | Default template
 
 ## Benefits
 - Documented code
-- Filters after receiving repositories with the Github API
+- Filters after receiving data from API
 - Webpack + babel + es6
-- Support Dribbble data
+- Support: Github, Dribbble
 - The Open Graph protocol
 - Multiple template support
-- Progressive Web Apps (PWA) - the site is available offline
+- Progressive Web Apps - the site is available offline
 
 ## How to install
 After running the `npm run deploy` command, the **utils/deploy.js** script is launched,
-which initializes git in the **dist** folder and makes a **force push** in the
-**\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
-
-`npm run deploy` - overwrites all data
+which initializes git in the **dist** folder and makes a **force push with lease**
+in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
 
 ### \<username>.github.io
 - Clone this repository on your PC
@@ -106,28 +104,19 @@ Put the file **favicon.ico** in the **assets** folder.
 ### How to connect Dribbble or another?
 [See here](https://github.com/GPortfolio/GPortfolio/tree/master/docs)
 
-## List of user portfolios
-- [Alexeykhr](https://alexeykhr.github.io) | Default
-
 ## How to contribute
 Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/GPortfolio/blob/master/.github/CONTRIBUTING.md) before making a pull request.
 
 ### Structure
-- **assets** - files that do not directly build webpack.
+- **assets** - files that directly build webpack.
 - **cache** - temporarily created files, for example - data from the GitHub API.
-- **dist** - compiled files that are uploaded to your **repository/gh-pages** branch.
-- **docs** - .md files
+- **dist** - compiled files that are uploaded to repository.
+- **docs** - documentation (.md files)
+- **node** - running scripts (retrieving data from API) before webpack work
 - **node_modules** - libraries.
 - **public** - all files from this folder will be copied to the **dist** folder and access by url: **/static/public/***.
+- **scripts** - small cli scripts.
 - **src** - source files.
-- **utils** - files that work with the node: getting data from the API, script for creating a new template, etc.
-
-### TODO
-- General:
-  - Support get description, image, etc from specified social API (`@github.avatar_url`, `@dribbble.avatar_url`)
-- `Default` template:
-  - Show `Dribbble` shots
-  - **Show more** button on repositories + shots
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
