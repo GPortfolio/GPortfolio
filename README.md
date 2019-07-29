@@ -130,8 +130,10 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **src** - source files.
 
 ### How can you improve?
-- Limit the amount of output data. Add the **Show more** button on
-**github.repositories** + **dribbble.shots** to display the remaining data.
+- **Default** template
+  - Limit the amount of output data. Add the **Show more** button on
+    **github.repositories** + **dribbble.shots** to display the remaining data.
+  - Display data shots from **Dribbble** (`modules.dribbble.shots`)
 - Add more templates or improve existing.
 - Add more sites to get data.
 - Other improvements.
