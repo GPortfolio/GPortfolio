@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/GPortfolio/GPortfolio/compare/v2.4.0...v3.0.0) (2019-07-29)
+
+
+### Bug Fixes
+
+* **circleci:** npm ci command ([04aa63c](https://github.com/GPortfolio/GPortfolio/commit/04aa63c))
+* use type in query params on fetch repos ([28e77e0](https://github.com/GPortfolio/GPortfolio/commit/28e77e0))
+
+
+### Features
+
+* change logic to load files ([7423caa](https://github.com/GPortfolio/GPortfolio/commit/7423caa))
+* move all data to config.data section ([e47e8ae](https://github.com/GPortfolio/GPortfolio/commit/e47e8ae))
+* rewrite to Typescript + some improved code ([0b6d020](https://github.com/GPortfolio/GPortfolio/commit/0b6d020))
+
+
+### BREAKING CHANGES
+
+* change logic to load files
+* rewrite to Typescript + some improved code
+
+
+
 ## [2.4.0](https://github.com/GPortfolio/GPortfolio/compare/v2.3.0...v2.4.0) (2019-07-01)
 
 
