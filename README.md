@@ -17,25 +17,28 @@
 Creating an automatic portfolio based on Github profile, with the ability to connect others.
 When building, we get data from the API and generate html.
 
-[See example](https://alexeykhr.github.io) | Default template
+[See example](https://alexeykhr.github.io/) | Default template
 
 ## Benefits
 - Documented code
+- Configuration in one place
 - Filters after receiving data from API
 - Webpack + babel + es6
-- Support: Github, Dribbble
-- The Open Graph protocol
 - Multiple template support
-- Progressive Web Apps - the site is available offline
+- The Open Graph protocol (social share)
+- Progressive Web Apps (offline access)
+- The ability to obtain data from:
+  - [Github](https://github.com/)
+  - [Dribbble](https://dribbble.com/)
 
 ## How to install
-After running the `npm run deploy` command, the **utils/deploy.js** script is launched,
+After running the `npm run deploy` command, the **utils/deploy.ts** script is launched,
 which initializes git in the **dist** folder and makes a **force push with lease**
 in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
 
 ### \<username>.github.io
 - Clone this repository on your PC
-- Copy **config.example.js** to the **config.js** file and config this
+- Copy **config.example.ts** to the **config.ts** file and config this
 - Create **\<username>.github.io** repository
 - Run `npm ci && npm run build && npm run deploy`
 - Open **\<username>.github.io** in the browser
@@ -43,7 +46,7 @@ in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` bra
 ### \<username>.github.io/\<repo>
 - Fork this repository and clone on your PC
 - Rename to **\<repo>**, example - portfolio
-- Copy **config.example.js** to the **config.js** file and config this
+- Copy **config.example.ts** to the **config.ts** file and config this
 - Run `npm ci && npm run build && npm run deploy`
 - Change Source GitHub Pages to **gh-pages branch**
 - Open **\<username>.github.io/\<repo>** in the browser
@@ -59,6 +62,9 @@ in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` bra
   </tr>
 </table>
 
+## Contributors
+TODO
+
 ## FAQ
 - [How to get your repositories from the organization?](#how-to-get-your-repositories-from-the-organization)
 - [How to make a new template?](#how-to-make-a-new-template)
@@ -69,7 +75,7 @@ in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` bra
 ### How to get your repositories from the organization?
 
 You need to get a **token** from Github with access to `public_repo`,
-and add it to **config.js**.
+and add it to **config.ts**.
 
 [Read more](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
@@ -79,8 +85,8 @@ Run the command to create base files with required default content:
 $ npm run template <name>
 ```
 
-Change the template in the **config.js** file:
-```js
+Change the template in the **config.ts** file:
+```ts
 module.exports = {
   template: 'default' // <name> 
 }
@@ -117,6 +123,13 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **public** - all files from this folder will be copied to the **dist** folder (user files).
 - **scripts** - small cli scripts.
 - **src** - source files.
+
+### How can you improve?
+- Limit the amount of output data. Add the **Show more** button on
+**github.repositories** + **dribbble.shots** to display the remaining data.
+- Add more templates or improve existing.
+- Add more sites to get data.
+- Other improvements.
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
