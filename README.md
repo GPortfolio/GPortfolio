@@ -63,7 +63,12 @@ in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` bra
 </table>
 
 ## Contributors
-TODO
+<a href="https://github.com/Alexeykhr">
+  <img src="https://avatars2.githubusercontent.com/u/14747569?v=4" width="48px">
+</a>
+<a href="https://github.com/apps/dependabot-preview">
+  <img src="https://avatars3.githubusercontent.com/in/2141?v=4" width="48px">
+</a>
 
 ## FAQ
 - [How to get your repositories from the organization?](#how-to-get-your-repositories-from-the-organization)

@@ -7,9 +7,10 @@
     "build": "webpack --mode production",
     "lint": "tslint node/**/*.ts src/**/*.ts docs/**/*.ts scripts/**/*.ts config.example.ts",
     "lint:fix": "npm run lint -- --fix",
-    "release": "standard-version",
+    "release": "npm run contributors && standard-version",
     "template": "ts-node scripts/template.ts",
-    "deploy": "ts-node scripts/deploy.ts"
+    "deploy": "ts-node scripts/deploy.ts",
+    "contributors": "ts-node scripts/contributors.ts"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 import config from '../../../config';
 import Module from '../../classes/Module';
-import { IGithubProfile, IGithubRepository } from '../../interfaces/IGithub';
+import {
+  IGithubContributor,
+  IGithubProfile,
+  IGithubRepository,
+} from '../../interfaces/IGithub';
 
 /** @type {AxiosInstance} */
 const axiosInstance: AxiosInstance = axios.create({
@@ -13,6 +17,12 @@ const axiosInstance: AxiosInstance = axios.create({
 /** @type {number} */
 const MAX_COUNT: number = 100;
 
+/** @type {string} */
+const SELF_OWNER: string = 'gportfolio';
+
+/** @type {string} */
+const SELF_REP: string = 'gportfolio';
+
 export default class Github extends Module {
 
   /**
@@ -20,6 +30,7 @@ export default class Github extends Module {
    */
   static get sections () {
     return {
+      contributors: 'Contributors',
       profile: 'Profile',
       repositories: 'Repositories',
     };
@@ -47,6 +58,16 @@ export default class Github extends Module {
 
   public static NAME = 'Github';
   public static API = 'https://api.github.com';
+
+  /**
+   * Full url to get list contributors.
+   * @param {string} owner
+   * @param {string} repo
+   * @return {string}
+   */
+  public static URL_LIST_CONTRIBUTORS (owner: string, repo: string): string {
+    return `${this.API}/repos/${owner}/${repo}/contributors`;
+  }
 
   /**
    * Make a Github API request to get user data.
@@ -103,5 +124,41 @@ export default class Github extends Module {
 
     Github.log(Github.sections.repositories, `Complete, ${repositories.length} length`).success();
     return repositories;
+  }
+
+  /**
+   * Make a Github API request to get contributors.
+   * @return {Promise<Array<IGithubContributor>>}
+   * @throws
+   * @see https://developer.github.com/v3/repos/#list-contributors docs
+   */
+  public static async fetchSelfContributors (): Promise<IGithubContributor[]> {
+    const fetchUrl = Github.URL_LIST_CONTRIBUTORS(SELF_OWNER, SELF_REP);
+    const contributors = [];
+    let fetchContributors;
+    let page = 1;
+
+    do {
+      Github.log(Github.sections.contributors, `Fetching data from API.. | ${page} page`).info();
+
+      try {
+        fetchContributors = await axiosInstance.get(fetchUrl, {
+          params: {
+            ...config.modules.github.parse.repositories,
+            page: page++,
+            per_page: MAX_COUNT,
+          },
+        });
+      } catch (e) {
+        Github.log(Github.sections.contributors, e).error();
+        throw new Error(e);
+      }
+
+      contributors.push(...fetchContributors.data);
+
+    } while (fetchContributors.data.length === MAX_COUNT);
+
+    Github.log(Github.sections.contributors, `Complete, ${contributors.length} length`).success();
+    return contributors;
   }
 }

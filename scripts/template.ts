@@ -9,9 +9,9 @@
 
 import fs from 'fs';
 import path from 'path';
+import config from '../config';
 import Logger from '../node/classes/Logger';
 import variables from '../node/variables';
-import config from '../config';
 
 /** @type {Array<string>} */
 const argv: string[] = process.argv.slice(2);
@@ -98,7 +98,7 @@ fs.writeFileSync(`${BASE_PATH + name + path.sep}README.md`, `# Template: ${name}
 
 ## Creator
 [@${config.modules.github.username}](https://github.com/${config.modules.github.username})
-`, { encoding: FILE_ENCODING })
+`, { encoding: FILE_ENCODING });
 
 /*
  * ---------------------------------------------- Complete
