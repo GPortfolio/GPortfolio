@@ -1,3 +1,4 @@
+import { getDeepByKey } from '../helpers/utils';
 import { IFilter } from '../interfaces/IFilter';
 
 export default class Filter {
@@ -8,27 +9,6 @@ export default class Filter {
    */
   get exists (): boolean {
     return !!this.filters.length;
-  }
-
-  /**
-   * Get deep value from object
-   * @param {object} obj
-   * @param {array} keys
-   * @param {number} deep
-   * @return {*}
-   * @example
-   *  obj - { foo: { foo2: 'bar' } }
-   *  keys - 'foo.foo2'
-   *  result - 'bar'
-   */
-  public static getDeepByKey (obj: any, keys: any[], deep: number = 0): any {
-    const val = obj[keys[deep]];
-
-    if (val && typeof val === 'object') {
-      return Filter.getDeepByKey(val, keys, deep + 1);
-    }
-
-    return val;
   }
 
   /**
@@ -80,7 +60,7 @@ export default class Filter {
   public run (arr: any[]): any {
     return arr.filter((item) => {
       for (const filter of this.filters) {
-        const values = Filter.getDeepByKey(item, filter.attr.split('.'));
+        const values = getDeepByKey(item, filter.attr.split('.'));
         const res = Filter.compare(filter.values, values, filter.more);
 
         if ((!res && !filter.revert) || (res && filter.revert)) {
