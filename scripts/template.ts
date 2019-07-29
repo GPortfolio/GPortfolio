@@ -11,6 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import Logger from '../node/classes/Logger';
 import variables from '../node/variables';
+import config from '../config';
 
 /** @type {Array<string>} */
 const argv: string[] = process.argv.slice(2);
@@ -62,8 +63,9 @@ fs.writeFileSync(`${BASE_PATH + name + path.sep}index.ts`, `import '../../main';
  * ---------------------------------------------- Create required .scss file
  */
 Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}index.scss`);
-fs.writeFileSync(`${BASE_PATH + name + path.sep}index.scss`, `// noinspection CssUnknownTarget
-@import "../../main.scss";
+fs.writeFileSync(`${BASE_PATH + name + path.sep}index.scss`, `@import "../../main.scss";
+
+// Code
 `, { encoding: FILE_ENCODING });
 
 /*
@@ -77,13 +79,26 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 %>
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <%= headTemplate({ profile: modules.github.profile, config, url }) %>
+  <%= headTemplate({ github: modules.github, config, url }) %>
 </head>
 <body>
   <!-- Code -->
 </body>
 </html>
 `, { encoding: FILE_ENCODING });
+
+/*
+ * ---------------------------------------------- Create .md file
+ */
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}README.md`);
+fs.writeFileSync(`${BASE_PATH + name + path.sep}README.md`, `# Template: ${name}
+
+## Preview
+<img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/templates/${name}.png" alt="${name}">
+
+## Creator
+[@${config.modules.github.username}](https://github.com/${config.modules.github.username})
+`, { encoding: FILE_ENCODING })
 
 /*
  * ---------------------------------------------- Complete
