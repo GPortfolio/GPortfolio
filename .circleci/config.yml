@@ -19,6 +19,8 @@ jobs:
     steps:
       - checkout
 
+      - run: sudo npm install -g npm@latest
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -26,7 +28,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm i
+      - run: npm ci
 
       - save_cache:
           paths:

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "strict": true,
+    "alwaysStrict": true,
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "src/types/*",
+        "node/interfaces/*"
+      ]
+    },
+    "lib": [
+      "esnext", "dom"
+    ]
+  }
+}

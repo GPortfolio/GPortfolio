@@ -1,43 +1,44 @@
 # GPortfolio
 
 <p align="center">
-    <a href="https://github.com/GPortfolio/GPortfolio">
-        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/logo.png" alt="GPortfolio">
-    </a>
+  <a href="https://github.com/GPortfolio/GPortfolio">
+    <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/logo.png" alt="GPortfolio">
+  </a>
 </p>
 <p align="center">
-    <a href="https://circleci.com/gh/GPortfolio/GPortfolio" rel="nofollow"><img src="https://circleci.com/gh/GPortfolio/GPortfolio.svg?style=shield" alt="Build Status"></a>
-    <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/package-json/v/GPortfolio/GPortfolio.svg" alt="Version"></a>
-    <a href="https://david-dm.org/GPortfolio/GPortfolio" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio.svg" alt="Dependency Status"></a>
-    <a href="https://david-dm.org/GPortfolio/GPortfolio?type=dev" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio/dev-status.svg" alt="devDependency Status"></a>
-    <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
+  <a href="https://circleci.com/gh/GPortfolio/GPortfolio" rel="nofollow"><img src="https://circleci.com/gh/GPortfolio/GPortfolio.svg?style=shield" alt="Build Status"></a>
+  <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/package-json/v/GPortfolio/GPortfolio.svg" alt="Version"></a>
+  <a href="https://david-dm.org/GPortfolio/GPortfolio" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio.svg" alt="Dependency Status"></a>
+  <a href="https://david-dm.org/GPortfolio/GPortfolio?type=dev" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio/dev-status.svg" alt="devDependency Status"></a>
+  <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
 </p>
 
 ## Introducing
-Creating an automatic portfolio based on Github profile. When building a project, we get a profile
-and repositories with the Github API and generate an html file based on the chosen one.
+Creating an automatic portfolio based on Github profile, with the ability to connect others.
+When building, we get data from the API and generate html.
 
-[See examples](#list-of-user-portfolios)
+[See example](https://alexeykhr.github.io/) | Default template
 
 ## Benefits
 - Documented code
-- Filters after receiving repositories with the Github API
+- Configuration in one place
+- Filters after receiving data from API
 - Webpack + babel + es6
-- Support Dribbble data
-- The Open Graph protocol
 - Multiple template support
-- Progressive Web Apps (PWA) - the site is available offline
+- The Open Graph protocol (social share)
+- Progressive Web Apps (offline access)
+- The ability to obtain data from:
+  - [Github](https://github.com/)
+  - [Dribbble](https://dribbble.com/)
 
 ## How to install
-After running the `npm run deploy` command, the **utils/deploy.js** script is launched,
-which initializes git in the **dist** folder and makes a **force push** in the
-**\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
-
-`npm run deploy` - overwrites all data
+After running the `npm run deploy` command, the **utils/deploy.ts** script is launched,
+which initializes git in the **dist** folder and makes a **force push with lease**
+in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
 
 ### \<username>.github.io
 - Clone this repository on your PC
-- Copy **config.example.js** to the **config.js** file and config this
+- Copy **config.example.ts** to the **config.ts** file and config this
 - Create **\<username>.github.io** repository
 - Run `npm ci && npm run build && npm run deploy`
 - Open **\<username>.github.io** in the browser
@@ -45,7 +46,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 ### \<username>.github.io/\<repo>
 - Fork this repository and clone on your PC
 - Rename to **\<repo>**, example - portfolio
-- Copy **config.example.js** to the **config.js** file and config this
+- Copy **config.example.ts** to the **config.ts** file and config this
 - Run `npm ci && npm run build && npm run deploy`
 - Change Source GitHub Pages to **gh-pages branch**
 - Open **\<username>.github.io/\<repo>** in the browser
@@ -55,11 +56,19 @@ which initializes git in the **dist** folder and makes a **force push** in the
   <tr>
     <td>
       <a href="https://github.com/GPortfolio/GPortfolio/tree/master/src/templates/default" title="Default">
-        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/assets/upstream/templates/default.png" width="250" alt="Default">
+        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/templates/default.png" width="250" alt="Default">
       </a>
     </td>
   </tr>
 </table>
+
+## Contributors
+<a href="https://github.com/Alexeykhr">
+  <img src="https://avatars2.githubusercontent.com/u/14747569?v=4" width="48px">
+</a>
+<a href="https://github.com/apps/dependabot-preview">
+  <img src="https://avatars3.githubusercontent.com/in/2141?v=4" width="48px">
+</a>
 
 ## FAQ
 - [How to get your repositories from the organization?](#how-to-get-your-repositories-from-the-organization)
@@ -71,7 +80,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 ### How to get your repositories from the organization?
 
 You need to get a **token** from Github with access to `public_repo`,
-and add it to **config.js**.
+and add it to **config.ts**.
 
 [Read more](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
@@ -81,8 +90,8 @@ Run the command to create base files with required default content:
 $ npm run template <name>
 ```
 
-Change the template in the **config.js** file:
-```js
+Change the template in the **config.ts** file:
+```ts
 module.exports = {
   template: 'default' // <name> 
 }
@@ -101,33 +110,33 @@ Data is cached to the API Github cached, to avoid the limit. It lasts about an h
 But you can force to refresh the data by deleting the **cache** folder.
 
 ### How to change favicon?
-Put the file **favicon.ico** in the **assets** folder.
+Put the file **favicon.ico** in the **public** folder.
 
 ### How to connect Dribbble or another?
 [See here](https://github.com/GPortfolio/GPortfolio/tree/master/docs)
-
-## List of user portfolios
-- [Alexeykhr](https://alexeykhr.github.io) | Default
 
 ## How to contribute
 Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/GPortfolio/blob/master/.github/CONTRIBUTING.md) before making a pull request.
 
 ### Structure
-- **assets** - files that do not directly build webpack.
+- **assets** - files that directly build webpack.
 - **cache** - temporarily created files, for example - data from the GitHub API.
-- **dist** - compiled files that are uploaded to your **repository/gh-pages** branch.
-- **docs** - .md files
+- **dist** - compiled files that are uploaded to repository.
+- **docs** - documentation (.md files)
+- **node** - running scripts (retrieving data from API) before webpack work
 - **node_modules** - libraries.
-- **public** - all files from this folder will be copied to the **dist** folder and access by url: **/static/public/***.
+- **public** - all files from this folder will be copied to the **dist** folder (user files).
+- **scripts** - small cli scripts.
 - **src** - source files.
-- **utils** - files that work with the node: getting data from the API, script for creating a new template, etc.
 
-### TODO
-- General:
-  - Support get description, image, etc from specified social API (`@github.avatar_url`, `@dribbble.avatar_url`)
-- `Default` template:
-  - Show `Dribbble` shots
-  - **Show more** button on repositories + shots
+### How can you improve?
+- **Default** template
+  - Limit the amount of output data. Add the **Show more** button on
+    **github.repositories** + **dribbble.shots** to display the remaining data.
+  - Display data shots from **Dribbble** (`modules.dribbble.shots`)
+- Add more templates or improve existing.
+- Add more sites to get data.
+- Other improvements.
 
 ## Changelog
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
