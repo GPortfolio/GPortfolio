@@ -17,7 +17,7 @@
 Creating an automatic portfolio based on Github profile, with the ability to connect others.
 When building, we get data from the API and generate html.
 
-[See examples](https://alexeykhr.github.io) | Default template
+[See example](https://alexeykhr.github.io) | Default template
 
 ## Benefits
 - Documented code
