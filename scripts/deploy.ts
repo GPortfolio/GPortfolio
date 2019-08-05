@@ -5,7 +5,7 @@
  * | gh-pages branch if config.base exists
  * | <username.github.io repository
  * |
- * | NOTE: --force-with-lease flag
+ * | NOTE: --force flag
  * |
  */
 
@@ -44,17 +44,13 @@ if (config.global.customDomain) {
 // Git
 const username = config.modules.github.username;
 const branch = config.global.base ? 'gh-pages' : 'master';
-const remoteCmd = `git remote add origin https://github.com/${username}`;
 
 shell.exec('git init');
+shell.exec('git add .');
+shell.exec('git commit -m deploy');
 
 if (config.global.base) {
-  shell.exec(`${remoteCmd}/${config.global.base}.git`);
+  shell.exec(`git push --force git@github.com:${username}/${config.global.base}.git master:${branch}`);
 } else {
-  shell.exec(`${remoteCmd}/${username}.github.io.git`);
+  shell.exec(`git push --force git@github.com:${username}/${username}.github.io.git master:${branch}`);
 }
-
-shell.exec('git fetch');
-shell.exec('git add .');
-shell.exec(`git commit -m deploy`);
-shell.exec(`git push -u --force-with-lease origin ${branch}`);

@@ -33,8 +33,8 @@ When building, we get data from the API and generate html.
 
 ## How to install
 After running the `npm run deploy` command, the **utils/deploy.ts** script is launched,
-which initializes git in the **dist** folder and makes a **force push with lease**
-in the **\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
+which initializes git in the **dist** folder and makes a **force push** in the
+**\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
 
 ### \<username>.github.io
 - Clone this repository on your PC
