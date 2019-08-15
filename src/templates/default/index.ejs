@@ -3,7 +3,52 @@
 const headTemplate = require('ejs-loader!@src/parts/head.ejs')
 const imagesTemplate = require('ejs-loader!@src/parts/images.ejs')
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
+
+/*
+ * Github
+ */
+const repositories = modules.github.repositories
+const repositoriesMore = config.templates.default.github_repositories_more
+const canShowMoreRepositories = repositoriesMore && repositoriesMore < repositories.length
+
+function generateRepositoriesHtml(repositories) {
+  var len = repositories.length;
+  var output = '';
+
+  for (var i = 0; i < len; i++) {
+    output +=
+      '<div>' +
+        '<a href="'+ repositories[i].html_url +'" class="repository uk-card uk-card-default uk-card-small uk-card-hover"' +
+        'uk-scrollspy="cls: uk-animation-scale-up" target="_blank" rel="noopener">' +
+        '<div class="repository__name uk-card-title">' + repositories[i].full_name + '</div>' +
+        '<p class="repository__description">' + (repositories[i].description || '-') + '</p>' +
+        '<div class="repository__bottom">' +
+          '<div class="repository__bottom__language">' +
+            '<span uk-icon="code"></span>' +
+            '<span>' + (repositories[i].language || '-') + '</span>' +
+            '</div>' +
+          '<div class="repository__bottom__star">' +
+            '<span uk-icon="star"></span>' +
+            '<span>' + repositories[i].stargazers_count + '</span>' +
+            '</div>' +
+          '<div class="repository__bottom__forks">' +
+            '<span uk-icon="git-fork"></span>' +
+            '<span>' + repositories[i].forks_count + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</a>' +
+      '</div>';
+    }
+
+  return output;
+}
+
+/*
+ * Dribbble
+ */
+// TODO
 %>
+
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
   <%= headTemplate({ github: modules.github, config, url }) %>
@@ -46,29 +91,13 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
           </span>
         </h2>
         <div class="repositories uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small" uk-grid="masonry: true">
-          <% for (const rep of modules.github.repositories) { %>
-            <div>
-              <a href="<%= rep.html_url %>" class="repository uk-card uk-card-default uk-card-small uk-card-hover" uk-scrollspy="cls: uk-animation-scale-up" target="_blank" rel="noopener">
-                <div class="repository__name uk-card-title"><%= rep.full_name %></div>
-                <p class="repository__description"><%= rep.description || '-' %></p>
-                <div class="repository__bottom">
-                  <div class="repository__bottom__language">
-                    <span uk-icon="code"></span>
-                    <span><%= rep.language || '-' %></span>
-                  </div>
-                  <div class="repository__bottom__star">
-                    <span uk-icon="star"></span>
-                    <span><%= rep.stargazers_count %></span>
-                  </div>
-                  <div class="repository__bottom__forks">
-                    <span uk-icon="git-fork"></span>
-                    <span><%= rep.forks_count %></span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          <% } %>
+          <%= generateRepositoriesHtml(canShowMoreRepositories ? repositories.slice(0, repositoriesMore) : repositories) %>
         </div>
+        <% if (canShowMoreRepositories) { %>
+          <div class="show-more-wrap">
+            <button id="github-more" class="uk-button uk-button-default">Show more</button>
+          </div>
+        <% } %>
       </div>
     </section>
   <% } %>
@@ -81,5 +110,54 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
     month: '2-digit'
   }) %></span>
 </footer>
+
+<script type="text/javascript">
+<% if (canShowMoreRepositories) {%>
+  var repositories = <%= JSON.stringify(modules.github.repositories) %>;
+<% } %>
+
+window.addEventListener('DOMContentLoaded', function () {
+  <% if (canShowMoreRepositories) { %>
+    /*
+     * Github
+     */
+    var btnMoreGithubRepsEl = document.querySelector('#github-more');
+
+    if (btnMoreGithubRepsEl) {
+      var sectionGithubRepsEl = document.querySelector('.repositories');
+      var per_page = <%= repositoriesMore %>;
+      var len = repositories.length;
+      var page = 1;
+
+      btnMoreGithubRepsEl.addEventListener('click', function () {
+        var current = page * per_page;
+        var next = current + per_page;
+        var html = generateRepositoriesHtml(repositories.slice(current, next));
+
+        sectionGithubRepsEl.append(...htmlToElements(html));
+
+        if (len <= next) {
+          var showMoreWrapEl = document.querySelector('.repositories-section .show-more-wrap');
+          if (showMoreWrapEl) {
+            showMoreWrapEl.remove();
+          }
+        }
+
+        page++;
+      });
+    }
+  <% } %>
+});
+</script>
+
+<script type="text/javascript">
+function htmlToElements(html) {
+  var template = document.createElement('template');
+  template.innerHTML = html;
+  return template.content.childNodes;
+}
+
+<%= canShowMoreRepositories ? generateRepositoriesHtml.toString() : '' %>
+</script>
 </body>
 </html>
