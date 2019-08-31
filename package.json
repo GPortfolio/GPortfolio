@@ -1,6 +1,6 @@
 {
   "name": "@gportfolio/gportfolio",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Create an automatic portfolio based on Github and other various data",
   "scripts": {
     "dev": "webpack-dev-server --watch",
