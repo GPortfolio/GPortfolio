@@ -2,4 +2,3 @@
 node_modules/
 config.ts
 dist/
-cache/
