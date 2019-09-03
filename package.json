@@ -37,7 +37,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "shelljs": "^0.8.3",
-    "uikit": "^3.1.8"
+    "uikit": "^3.1.9"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
