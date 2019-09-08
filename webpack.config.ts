@@ -12,6 +12,14 @@ import transformConfigData from './core/helpers/transformConfigData';
 import validateConfig from './core/helpers/validateConfig';
 import collectModules from './core/modules';
 import variables from './core/variables';
+import dotenv from 'dotenv';
+
+/**
+ * Load .env file
+ * @example
+ *  process.env.GITHUB_TOKEN
+ */
+dotenv.config()
 
 export default async (env: any, argv: { mode: string; }) => {
 
