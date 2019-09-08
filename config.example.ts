@@ -203,7 +203,7 @@ export default {
 
         /**
          * @type {IFilters[]}
-         * @see node/interfaces/IGithib.ts identify attributes
+         * @see core/interfaces/IGithib.ts identify attributes
          * @see docs/config.md #Filters
          */
         repositories: [
@@ -236,7 +236,7 @@ export default {
 
         /**
          * @type {IFilters[]}
-         * @see node/interfaces/IDribbble.ts identify attributes
+         * @see core/interfaces/IDribbble.ts identify attributes
          * @see docs/config.md #Filters
          */
         shots: [

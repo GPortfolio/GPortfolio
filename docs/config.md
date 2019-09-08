@@ -68,7 +68,7 @@ Details **more** property:
 
 - **values** property is number, accept: **>, <, >=, <=**
 
-Interface: *node/interfaces/IFilter.ts*
+Interface: *core/interfaces/IFilter.ts*
 
 ### Example:
 
