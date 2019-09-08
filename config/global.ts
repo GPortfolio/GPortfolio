@@ -60,4 +60,4 @@ export default {
    *  www.example.com
    */
   customDomain: '',
-}
+};

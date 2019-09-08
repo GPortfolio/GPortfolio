@@ -18,4 +18,4 @@ export default {
    * @type {number}
    */
   dribbble_shots_more: 25,
-}
+};
