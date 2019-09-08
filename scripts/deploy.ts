@@ -13,8 +13,8 @@ import fs from 'fs';
 import path from 'path';
 import shell from 'shelljs';
 import config from '../config';
-import Logger from '../node/classes/Logger';
-import variables from '../node/variables';
+import Logger from '../core/classes/Logger';
+import variables from '../core/variables';
 
 /** @type {string} */
 const BASE_DIST: string = `${variables.root + path.sep}dist`;

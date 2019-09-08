@@ -32,7 +32,7 @@ name: 'My name'
 
 ### How to find out what data I can take
 
-In the `./node/modules/index.ts` file, the properties that are available in the **modules** variable are specified.
+In the `./core/modules/index.ts` file, the properties that are available in the **modules** variable are specified.
 
 ```
 {

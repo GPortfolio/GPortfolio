@@ -123,7 +123,7 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **cache** - temporarily created files, for example - data from the GitHub API.
 - **dist** - compiled files that are uploaded to repository.
 - **docs** - documentation (.md files)
-- **node** - running scripts (retrieving data from API) before webpack work
+- **core** - running scripts (retrieving data from API) before webpack work
 - **node_modules** - libraries.
 - **public** - all files from this folder will be copied to the **dist** folder (user files).
 - **scripts** - small cli scripts.

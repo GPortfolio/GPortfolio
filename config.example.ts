@@ -1,4 +1,5 @@
-import { getDeepByKey } from './node/helpers/utils';
+/* tslint:disable:max-line-length */
+import { getDeepByKey } from './core/helpers/utils';
 
 /*
  * After editing - restart the server for the change to take effect.

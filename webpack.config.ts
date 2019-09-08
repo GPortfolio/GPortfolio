@@ -8,10 +8,10 @@ import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import config from './config';
-import transformConfigData from './node/helpers/transformConfigData';
-import validateConfig from './node/helpers/validateConfig';
-import collectModules from './node/modules';
-import variables from './node/variables';
+import transformConfigData from './core/helpers/transformConfigData';
+import validateConfig from './core/helpers/validateConfig';
+import collectModules from './core/modules';
+import variables from './core/variables';
 
 export default async (env: any, argv: { mode: string; }) => {
 
