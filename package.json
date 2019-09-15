@@ -70,7 +70,7 @@
     "tsconfig-paths": "^3.8.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.2",
-    "webpack": "^4.39.3",
+    "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0",
     "webpack-pwa-manifest": "^4.0.0",
