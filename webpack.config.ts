@@ -19,7 +19,9 @@ import dotenv from 'dotenv';
  * @example
  *  process.env.GITHUB_TOKEN
  */
-dotenv.config()
+if (fs.existsSync(path.resolve(__dirname, '.env'))) {
+  dotenv.config();
+}
 
 export default async (env: any, argv: { mode: string; }) => {
 
@@ -120,9 +122,19 @@ export default async (env: any, argv: { mode: string; }) => {
        * Copies individual files or entire directories to the build directory.
        * @see https://github.com/webpack-contrib/copy-webpack-plugin
        */
-      new CopyWebpackPlugin([
-        { from: 'public', to: undefined, ignore: ['.gitignore'] },
-      ]),
+      new CopyWebpackPlugin((() => {
+        const output = [];
+
+        // Upload config.ts to dist folder for save all config data
+        if (process.env.UPLOAD_CONFIG === 'true') {
+          output.push({ from: 'config.ts', to: 'cache', ignore: [] });
+        }
+
+        return [
+          ...output,
+          { from: 'public', ignore: ['.gitignore'] },
+        ];
+      })()),
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
        * @see https://github.com/jantimon/html-webpack-plugin
