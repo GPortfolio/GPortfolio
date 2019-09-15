@@ -67,7 +67,7 @@
     "sass-loader": "^7.3.1",
     "svg-inline-loader": "^0.8.0",
     "ts-node": "^8.3.0",
-    "tsconfig-paths": "^3.8.0",
+    "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.2",
     "webpack": "^4.40.2",
