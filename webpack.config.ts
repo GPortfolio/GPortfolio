@@ -1,18 +1,13 @@
 /* tslint:disable:no-implicit-dependencies */
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import dotenv from 'dotenv';
 import fs from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
-import config from './config';
-import transformConfigData from './core/helpers/transformConfigData';
-import validateConfig from './core/helpers/validateConfig';
-import collectModules from './core/modules';
-import variables from './core/variables';
-import dotenv from 'dotenv';
 
 /**
  * Load .env file
@@ -22,6 +17,12 @@ import dotenv from 'dotenv';
 if (fs.existsSync(path.resolve(__dirname, '.env'))) {
   dotenv.config();
 }
+
+import config from './config';
+import transformConfigData from './core/helpers/transformConfigData';
+import validateConfig from './core/helpers/validateConfig';
+import collectModules from './core/modules';
+import variables from './core/variables';
 
 export default async (env: any, argv: { mode: string; }) => {
 
@@ -127,7 +128,7 @@ export default async (env: any, argv: { mode: string; }) => {
 
         // Upload config.ts to dist folder for save all config data
         if (process.env.UPLOAD_CONFIG === 'true') {
-          output.push({ from: 'config.ts', to: 'cache', ignore: [] });
+          output.push({ from: 'config.ts', to: '_cache', ignore: [] });
         }
 
         return [
@@ -251,7 +252,7 @@ export default async (env: any, argv: { mode: string; }) => {
       new GenerateSW({
         clientsClaim: true,
         exclude: [
-          /\.gitignore/,
+          /\.gitignore/, /_cache\//,
         ],
         importWorkboxFrom: 'local',
         importsDirectory: 'static/pwa',

@@ -147,7 +147,7 @@ export default {
        * @type {string}
        * @see https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
        */
-      token: '',
+      token: process.env.GITHUB_TOKEN || '',
 
       /**
        * Various configurations are stored that will filter
@@ -218,18 +218,18 @@ export default {
         /**
          * @type {string}
          */
-        client_id: '',
+        client_id: process.env.DRIBBBLE_CLIENT_ID || '',
 
         /**
          * @type {string}
          */
-        client_secret: '',
+        client_secret: process.env.DRIBBBLE_CLIENT_SECRET || '',
 
         /**
          * NOTE: Code is valid only once when receiving a token
          * @type {string}
          */
-        code: '',
+        code: process.env.DRIBBBLE_CODE || '',
       },
 
       filter: {
