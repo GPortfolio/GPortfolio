@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --watch",
     "build": "webpack --mode production",
-    "lint": "tslint core/**/*.ts src/**/*.ts scripts/**/*.ts config/**/*.ts webpack.config.ts",
+    "lint": "tslint core/**/*.ts src/**/*.ts scripts/**/*.ts webpack.config.ts",
     "lint:fix": "npm run lint -- --fix",
     "release": "npm run contributors && standard-version",
     "template": "ts-node scripts/template.ts",
