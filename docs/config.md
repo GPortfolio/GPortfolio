@@ -32,7 +32,7 @@ name: 'My name'
 
 ### How to find out what data I can take
 
-In the `./node/modules/index.ts` file, the properties that are available in the **modules** variable are specified.
+In the `./core/modules/index.ts` file, the properties that are available in the **modules** variable are specified.
 
 ```
 {
@@ -68,7 +68,7 @@ Details **more** property:
 
 - **values** property is number, accept: **>, <, >=, <=**
 
-Interface: *node/interfaces/IFilter.ts*
+Interface: *core/interfaces/IFilter.ts*
 
 ### Example:
 

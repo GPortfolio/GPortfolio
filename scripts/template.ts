@@ -8,10 +8,10 @@
  */
 
 import fs from 'fs';
-import path from 'path';
+import { sep } from 'path';
 import config from '../config';
-import Logger from '../node/classes/Logger';
-import variables from '../node/variables';
+import Logger from '../core/classes/Logger';
+import variables from '../core/variables';
 
 /** @type {Array<string>} */
 const argv: string[] = process.argv.slice(2);
@@ -35,7 +35,7 @@ const name: string = argv[0].trim();
  * Path to templates
  * @type {string}
  */
-const BASE_PATH: string = `${variables.root + path.sep}src${path.sep}templates${path.sep}`;
+const BASE_PATH: string = `${variables.root + sep}src${sep}templates${sep}`;
 
 /** @type {string} */
 const FILE_ENCODING: string = 'utf8';
@@ -53,8 +53,8 @@ fs.mkdirSync(BASE_PATH + name);
 /*
  * ---------------------------------------------- Create required .ts file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}index.ts`);
-fs.writeFileSync(`${BASE_PATH + name + path.sep}index.ts`, `import '../../main';
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}index.ts`);
+fs.writeFileSync(`${BASE_PATH + name + sep}index.ts`, `import '../../main';
 
 // Code
 `, { encoding: FILE_ENCODING });
@@ -62,8 +62,8 @@ fs.writeFileSync(`${BASE_PATH + name + path.sep}index.ts`, `import '../../main';
 /*
  * ---------------------------------------------- Create required .scss file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}index.scss`);
-fs.writeFileSync(`${BASE_PATH + name + path.sep}index.scss`, `@import "../../main.scss";
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}index.scss`);
+fs.writeFileSync(`${BASE_PATH + name + sep}index.scss`, `@import "../../main.scss";
 
 // Code
 `, { encoding: FILE_ENCODING });
@@ -71,8 +71,8 @@ fs.writeFileSync(`${BASE_PATH + name + path.sep}index.scss`, `@import "../../mai
 /*
  * ---------------------------------------------- Create required .html file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}index.ejs`);
-fs.writeFileSync(`${BASE_PATH + name + path.sep}index.ejs`, `<!DOCTYPE html>
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}index.ejs`);
+fs.writeFileSync(`${BASE_PATH + name + sep}index.ejs`, `<!DOCTYPE html>
 <%
 const headTemplate = require('ejs-loader!@src/parts/head.ejs')
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
@@ -90,8 +90,8 @@ const safeQuotes = (str) => str.replace(/"/g, '&quot;')
 /*
  * ---------------------------------------------- Create .md file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + path.sep}README.md`);
-fs.writeFileSync(`${BASE_PATH + name + path.sep}README.md`, `# Template: ${name}
+Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}README.md`);
+fs.writeFileSync(`${BASE_PATH + name + sep}README.md`, `# Template: ${name}
 
 ## Preview
 <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/templates/${name}.png" alt="${name}">

@@ -1,17 +1,28 @@
 /* tslint:disable:no-implicit-dependencies */
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import dotenv from 'dotenv';
 import fs from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
+
+/**
+ * Load .env file
+ * @example
+ *  process.env.GITHUB_TOKEN
+ */
+if (fs.existsSync(path.resolve(__dirname, '.env'))) {
+  dotenv.config();
+}
+
 import config from './config';
-import transformConfigData from './node/helpers/transformConfigData';
-import validateConfig from './node/helpers/validateConfig';
-import collectModules from './node/modules';
-import variables from './node/variables';
+import transformConfigData from './core/helpers/transformConfigData';
+import validateConfig from './core/helpers/validateConfig';
+import collectModules from './core/modules';
+import variables from './core/variables';
 
 export default async (env: any, argv: { mode: string; }) => {
 
@@ -112,9 +123,19 @@ export default async (env: any, argv: { mode: string; }) => {
        * Copies individual files or entire directories to the build directory.
        * @see https://github.com/webpack-contrib/copy-webpack-plugin
        */
-      new CopyWebpackPlugin([
-        { from: 'public', to: undefined, ignore: ['.gitignore'] },
-      ]),
+      new CopyWebpackPlugin((() => {
+        const output = [];
+
+        // Upload config.ts to dist folder for save all config data
+        if (process.env.UPLOAD_CONFIG === 'true') {
+          output.push({ from: 'config.ts', to: '_cache', ignore: [] });
+        }
+
+        return [
+          ...output,
+          { from: 'public', ignore: ['.gitignore'] },
+        ];
+      })()),
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
        * @see https://github.com/jantimon/html-webpack-plugin
@@ -231,7 +252,7 @@ export default async (env: any, argv: { mode: string; }) => {
       new GenerateSW({
         clientsClaim: true,
         exclude: [
-          /\.gitignore/,
+          /\.gitignore/, /_cache\//,
         ],
         importWorkboxFrom: 'local',
         importsDirectory: 'static/pwa',
