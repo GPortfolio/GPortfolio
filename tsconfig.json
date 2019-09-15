@@ -15,7 +15,7 @@
       "*": [
         "node_modules/*",
         "src/types/*",
-        "node/interfaces/*"
+        "core/interfaces/*"
       ]
     },
     "lib": [

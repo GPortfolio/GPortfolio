@@ -10,14 +10,14 @@
  */
 
 import fs from 'fs';
-import path from 'path';
+import { sep } from 'path';
 import shell from 'shelljs';
 import config from '../config';
-import Logger from '../node/classes/Logger';
-import variables from '../node/variables';
+import Logger from '../core/classes/Logger';
+import variables from '../core/variables';
 
 /** @type {string} */
-const BASE_DIST: string = `${variables.root + path.sep}dist`;
+const BASE_DIST: string = `${variables.root + sep}dist`;
 
 /** @type {string} */
 const loggerSection: string = 'Deploy';
@@ -37,8 +37,8 @@ shell.cd(BASE_DIST);
 
 // Create CNAME for support a custom domain
 if (config.global.customDomain) {
-  Logger.info(loggerSection, `Create: ${BASE_DIST + path.sep}CNAME`);
-  fs.writeFileSync(`${BASE_DIST + path.sep}CNAME`, config.global.customDomain);
+  Logger.info(loggerSection, `Create: ${BASE_DIST + sep}CNAME`);
+  fs.writeFileSync(`${BASE_DIST + sep}CNAME`, config.global.customDomain);
 }
 
 // Git

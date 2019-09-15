@@ -9,7 +9,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import Github from '../node/modules/github/Github';
+import Github from '../core/modules/github/Github';
 
 /** @type {string} */
 const FILE_ENCODING: string = 'utf8';

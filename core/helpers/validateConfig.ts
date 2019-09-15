@@ -1,5 +1,5 @@
 import fs from 'fs';
-import path from 'path';
+import { sep } from 'path';
 import config from '../../config';
 import Logger from '../classes/Logger';
 import variables from '../variables';
@@ -27,8 +27,8 @@ export default function (): void {
     error('global.template is required');
   }
 
-  const templatesPath = variables.root + path.sep + 'src' + path.sep + 'templates';
-  if (!fs.existsSync(templatesPath + path.sep + config.global.template)) {
+  const templatesPath = variables.root + sep + 'src' + sep + 'templates';
+  if (!fs.existsSync(templatesPath + sep + config.global.template)) {
     error(`${config.global.template} template not found`);
   }
 

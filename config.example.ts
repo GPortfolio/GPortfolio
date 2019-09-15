@@ -1,4 +1,5 @@
-import { getDeepByKey } from './node/helpers/utils';
+/* tslint:disable:max-line-length */
+import { getDeepByKey } from './core/helpers/utils';
 
 /*
  * After editing - restart the server for the change to take effect.
@@ -146,7 +147,7 @@ export default {
        * @type {string}
        * @see https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
        */
-      token: '',
+      token: process.env.GITHUB_TOKEN || '',
 
       /**
        * Various configurations are stored that will filter
@@ -202,7 +203,7 @@ export default {
 
         /**
          * @type {IFilters[]}
-         * @see node/interfaces/IGithib.ts identify attributes
+         * @see core/interfaces/IGithib.ts identify attributes
          * @see docs/config.md #Filters
          */
         repositories: [
@@ -217,25 +218,25 @@ export default {
         /**
          * @type {string}
          */
-        client_id: '',
+        client_id: process.env.DRIBBBLE_CLIENT_ID || '',
 
         /**
          * @type {string}
          */
-        client_secret: '',
+        client_secret: process.env.DRIBBBLE_CLIENT_SECRET || '',
 
         /**
          * NOTE: Code is valid only once when receiving a token
          * @type {string}
          */
-        code: '',
+        code: process.env.DRIBBBLE_CODE || '',
       },
 
       filter: {
 
         /**
          * @type {IFilters[]}
-         * @see node/interfaces/IDribbble.ts identify attributes
+         * @see core/interfaces/IDribbble.ts identify attributes
          * @see docs/config.md #Filters
          */
         shots: [

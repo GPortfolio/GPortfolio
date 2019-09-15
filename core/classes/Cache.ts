@@ -1,9 +1,10 @@
 import fs from 'fs';
+import { sep } from 'path';
 import variables from '../variables';
 import Logger from './Logger';
 
 /** @type {string} */
-const BASE_PATH: string = variables.root + '/cache/';
+const BASE_PATH: string = variables.root + sep + 'cache' + sep;
 
 /** @type {string} */
 const FILE_ENCODING: string = 'utf8';
