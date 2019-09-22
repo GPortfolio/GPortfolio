@@ -21,15 +21,6 @@ export default async (): Promise<IDribbbleShot[]> => {
     shots = await Dribbble.fetchShots();
 
     /*
-     * Filter shots if need
-     */
-    const filter = new Filter(config.modules.dribbble.filter.shots);
-    if (filter.exists) {
-      shots = filter.run(shots);
-      Dribbble.log(Dribbble.sections.shots, `Filter, ${shots.length} length`).info();
-    }
-
-    /*
      * Update cache and timestamp
      */
     cache.updateData(shots);
@@ -38,6 +29,15 @@ export default async (): Promise<IDribbbleShot[]> => {
   } else {
     shots = cache.dataFromFile;
     Dribbble.log(Dribbble.sections.shots, `Get from cache, ${shots.length} length`).info();
+  }
+
+  /*
+   * Filter shots if need
+   */
+  const filter = new Filter(config.modules.dribbble.filter.shots);
+  if (filter.exists) {
+    shots = filter.run(shots);
+    Dribbble.log(Dribbble.sections.shots, `Filter, ${shots.length} length`).info();
   }
 
   return shots;

@@ -22,15 +22,6 @@ export default async (): Promise<IGithubRepository[]> => {
     repositories = await Github.fetchRepositories();
 
     /*
-     * Filter repositories if need
-     */
-    const filter = new Filter(config.modules.github.filter.repositories);
-    if (filter.exists) {
-      repositories = filter.run(repositories);
-      Github.log(Github.sections.repositories, `Filter, ${repositories.length} length`).info();
-    }
-
-    /*
      * Update cache and timestamp
      */
     cache.updateData(repositories);
@@ -39,6 +30,15 @@ export default async (): Promise<IGithubRepository[]> => {
   } else {
     repositories = cache.dataFromFile;
     Github.log(Github.sections.repositories, `Get from cache, ${repositories.length} length`).info();
+  }
+
+  /*
+   * Filter repositories if need
+   */
+  const filter = new Filter(config.modules.github.filter.repositories);
+  if (filter.exists) {
+    repositories = filter.run(repositories);
+    Github.log(Github.sections.repositories, `Filter, ${repositories.length} length`).info();
   }
 
   return repositories;
