@@ -1,15 +1,19 @@
 /**
  * Get deep value from object
- * @param {any} data
+ * @param {*} data
  * @param {array} keys
  * @param {number} deep
- * @return {any} undefined - not found
+ * @return {*} undefined - not found
  * @example
  *  obj - { foo: { foo2: 'bar' } }
  *  keys - 'foo.foo2'
  *  result - 'bar'
  */
 export function getDeepByKey (data: any, keys: string[], deep: number = 0): any {
+  if (!keys.length || keys.length === deep) {
+    return data;
+  }
+
   if (! isObject(data)) {
     return undefined;
   }
@@ -29,7 +33,7 @@ export function getDeepByKey (data: any, keys: string[], deep: number = 0): any 
 
 /**
  * Value is an object
- * @param {any} val
+ * @param {*} val
  * @return {boolean}
  */
 function isObject (val: any): boolean {

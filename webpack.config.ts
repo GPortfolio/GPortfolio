@@ -268,13 +268,13 @@ export default async (env: any, argv: { mode: string; }) => {
           options: {
             cacheName: 'github-content',
           },
-          urlPattern: new RegExp('^https://.*\.githubusercontent\.com/'),
+          urlPattern: new RegExp('^https:\/\/.*\.githubusercontent\.com\/'),
         }, {
           handler: 'NetworkFirst',
           options: {
             cacheName: 'github-api',
           },
-          urlPattern: new RegExp('^https://api\.github\.com/'),
+          urlPattern: new RegExp('^https:\/\/api\.github\.com\/'),
         }, {
           handler: 'StaleWhileRevalidate',
           options: {

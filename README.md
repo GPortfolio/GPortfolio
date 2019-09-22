@@ -14,12 +14,14 @@
 </p>
 
 ## Introducing
+
 Creating an automatic portfolio based on Github profile, with the ability to connect others.
 When building, we get data from the API and generate html.
 
 [See example](https://alexeykhr.github.io/) | Default template
 
 ## Benefits
+
 - Documented code
 - Configuration in one place
 - Filters after receiving data from API
@@ -32,11 +34,13 @@ When building, we get data from the API and generate html.
   - [Dribbble](https://dribbble.com/)
 
 ## How to install
+
 After running the `npm run deploy` command, the **utils/deploy.ts** script is launched,
 which initializes git in the **dist** folder and makes a **force push** in the
 **\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
 
 ### \<username>.github.io
+
 - Clone this repository on your PC
 - Copy **config.example.ts** to the **config.ts** file and config this
 - Create **\<username>.github.io** repository
@@ -44,6 +48,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 - Open **\<username>.github.io** in the browser
 
 ### \<username>.github.io/\<repo>
+
 - Fork this repository and clone on your PC
 - Rename to **\<repo>**, example - portfolio
 - Copy **config.example.ts** to the **config.ts** file and config this
@@ -52,6 +57,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 - Open **\<username>.github.io/\<repo>** in the browser
 
 ## Templates
+
 <table>
   <tr>
     <td>
@@ -63,6 +69,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 </table>
 
 ## Contributors
+
 <a href="https://github.com/Alexeykhr">
   <img src="https://avatars2.githubusercontent.com/u/14747569?v=4" width="48px">
 </a>
@@ -71,6 +78,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 </a>
 
 ## FAQ
+
 - [How to get your repositories from the organization?](#how-to-get-your-repositories-from-the-organization)
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
@@ -85,40 +93,49 @@ and add it to **config.ts**.
 [Read more](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
 ### How to make a new template?
+
 Run the command to create base files with required default content:
+
 ```bash
-$ npm run template <name>
+npm run template <name>
 ```
 
 Change the template in the **config.ts** file:
+
 ```ts
 module.exports = {
-  template: 'default' // <name> 
+  template: 'default' // <name>
 }
 ```
 
 Run the project with a new template in dev mode:
+
 ```bash
-$ npm run dev
+npm run dev
 ```
 
-*\<name> - new template name*
+\<name> - new template name*
 
 ### How to refresh data from API?
+
 Data is cached to the API Github cached, to avoid the limit. It lasts about an hour.
 
 But you can force to refresh the data by deleting the **cache** folder.
 
-### How to change favicon?
+### How to change favicon'?'
+
 Put the file **favicon.ico** in the **public** folder.
 
 ### How to connect Dribbble or another?
+
 [See here](https://github.com/GPortfolio/GPortfolio/tree/master/docs)
 
 ## How to contribute
+
 Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/GPortfolio/blob/master/.github/CONTRIBUTING.md) before making a pull request.
 
 ### Structure
+
 - **assets** - files that directly build webpack.
 - **cache** - temporarily created files, for example - data from the GitHub API.
 - **dist** - compiled files that are uploaded to repository.
@@ -130,14 +147,19 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **src** - source files.
 
 ### How can you improve?
+
 - **Default** template
   - Display data shots from **Dribbble** (`modules.dribbble.shots`)
 - Add more templates or improve existing.
-- Add more sites to get data.
+- Add more sites for parse data.
+- Add tests
+- Support merge config.example.ts to config.ts after update
 - Other improvements.
 
 ## Changelog
+
 Detailed changes for each release are documented in the [CHANGELOG.md](https://github.com/GPortfolio/GPortfolio/blob/master/CHANGELOG.md).
 
 ## License
+
 [MIT](https://opensource.org/licenses/MIT)

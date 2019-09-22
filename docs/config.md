@@ -12,7 +12,7 @@ All user data is in the `config.data` object. Each **attribute** accepts the **s
 
 Via the **function**, we receive data from **Github**, if the value is empty, then we get from **Dribbble** (if any).
 
-```
+```ts
 name: (modules: any) => {
   let val = getDeepByKey(modules, ['github', 'profile', 'name']);
 
@@ -26,7 +26,7 @@ name: (modules: any) => {
 
 If you need to specify a **custom name**, then you need to **remove the function** and **replace it with a regular value** (in this case, it is a string type)
 
-```
+```ts
 name: 'My name'
 ```
 
@@ -34,7 +34,7 @@ name: 'My name'
 
 In the `./core/modules/index.ts` file, the properties that are available in the **modules** variable are specified.
 
-```
+```ts
 {
   github: {
     profile: IGithubProfile,
@@ -53,9 +53,9 @@ Etc.
 
 Filter the data by the specified parameters. **String equal**.
 
-### Structure:
+### Structure
 
-```
+```ts
 {
   attr: string, // the resulting property from the object to filter
   values: any, // to compare the resulting value
@@ -70,11 +70,11 @@ Details **more** property:
 
 Interface: *core/interfaces/IFilter.ts*
 
-### Example:
+### Filter example
 
 Filter the received Github repositories by these parameters:
 
-```
+```ts
 [
   // Get only 2 repositories
   { attr: 'name', values: ['rep2', 'rep1'], revert: false, more: '' }
@@ -97,9 +97,9 @@ Filter the received Github repositories by these parameters:
 
 Insert image to the site.
 
-### Example
+### Image example
 
-```
+```ts
 '' - use default image in template (if exists)
 '/foo/bar.png' - from public folder
 'https://images.unsplash.com/photo-1505685296765-3a2736de412f' - from url

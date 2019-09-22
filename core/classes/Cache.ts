@@ -28,7 +28,7 @@ class Cache {
 
   /**
    * Get data from file if exists
-   * @return {any}
+   * @return {*}
    */
   get dataFromFile (): any {
     return Cache.tryReadJsonFile(this.fileName);
@@ -57,7 +57,7 @@ class Cache {
   }
 
   /**
-   * @return {any}
+   * @return {*}
    */
   static get generalFile (): any {
     return generalFile;
@@ -74,7 +74,7 @@ class Cache {
   /**
    * Get data from file if exists
    * @param {string} fileName - path in <root>/data folder (ext is required)
-   * @return {any}
+   * @return {*}
    */
   public static tryReadJsonFile (fileName: string): any {
     const path = BASE_PATH + fileName;
