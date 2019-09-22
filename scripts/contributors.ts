@@ -31,7 +31,7 @@ const run = async () => {
 
   // Append text before Contributors section
   let txt = file.substring(0, posContr);
-  txt += contrSection + '\n';
+  txt += contrSection + '\n\n';
 
   // Add Contributors section
   const contributors = await Github.fetchSelfContributors();
