@@ -54,7 +54,7 @@ export default class Filter {
 
   /**
    * Filter array by filters
-   * @param {any[]} arr
+   * @param {*[]} arr
    * @return {*}
    */
   public run (arr: any[]): any {

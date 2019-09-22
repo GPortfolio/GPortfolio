@@ -10,6 +10,10 @@
  *  result - 'bar'
  */
 export function getDeepByKey (data: any, keys: string[], deep: number = 0): any {
+  if (!keys.length || keys.length === deep) {
+    return data;
+  }
+
   if (! isObject(data)) {
     return undefined;
   }

@@ -210,6 +210,22 @@ export default {
           //
         ],
       },
+
+      sort: {
+
+        /**
+         * @type {ISort}
+         * @see core/interfaces/IGithib.ts identify attributes
+         * @example
+         *  { attr: 'stargazers_count', enable: true, sortByDesc: true }
+         *  { attr: 'owner.id', enable: true, sortByDesc: false }
+         */
+        repositories: {
+          attr: 'stargazers_count',
+          enable: false,
+          sortByDesc: true,
+        },
+      },
     },
 
     dribbble: {
@@ -242,6 +258,21 @@ export default {
         shots: [
           //
         ],
+      },
+
+      sort: {
+
+        /**
+         * @type {ISort}
+         * @see core/interfaces/IDribbble.ts identify attributes
+         * @example
+         *  { attr: 'id', enable: true, sortByDesc: true }
+         */
+        shots: {
+          attr: 'id',
+          enable: false,
+          sortByDesc: true,
+        },
       },
     },
   },
