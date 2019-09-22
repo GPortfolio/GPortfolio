@@ -151,7 +151,9 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **Default** template
   - Display data shots from **Dribbble** (`modules.dribbble.shots`)
 - Add more templates or improve existing.
-- Add more sites to get data.
+- Add more sites for parse data.
+- Add tests
+- Support merge config.example.ts to config.ts after update
 - Other improvements.
 
 ## Changelog
