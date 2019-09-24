@@ -15,8 +15,9 @@
 
 ## Introducing
 
-Creating an automatic portfolio based on Github profile, with the ability to connect others.
-When building, we get data from the API and generate html.
+Automatically create a portfolio based on data from various social networks.
+
+**Configure data -> build -> deploy**
 
 [See example](https://alexeykhr.github.io/) | Default template
 
@@ -75,6 +76,9 @@ which initializes git in the **dist** folder and makes a **force push** in the
 </a>
 <a href="https://github.com/apps/dependabot-preview">
   <img src="https://avatars3.githubusercontent.com/in/2141?v=4" width="48px">
+</a>
+<a href="https://github.com/lucasnaja">
+  <img src="https://avatars3.githubusercontent.com/u/13838273?v=4" width="48px">
 </a>
 
 ## FAQ

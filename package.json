@@ -1,7 +1,7 @@
 {
   "name": "@gportfolio/gportfolio",
-  "version": "3.3.0",
-  "description": "Create an automatic portfolio based on Github and other various data",
+  "version": "3.3.1",
+  "description": "Create Your Portfolio Online",
   "scripts": {
     "dev": "webpack-dev-server --watch",
     "build": "webpack --mode production",
@@ -40,8 +40,8 @@
     "uikit": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
     "@types/copy-webpack-plugin": "^5.0.0",
     "@types/dotenv": "^6.1.1",
     "@types/html-webpack-plugin": "^3.2.1",
