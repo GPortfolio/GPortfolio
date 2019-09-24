@@ -77,6 +77,9 @@ which initializes git in the **dist** folder and makes a **force push** in the
 <a href="https://github.com/apps/dependabot-preview">
   <img src="https://avatars3.githubusercontent.com/in/2141?v=4" width="48px">
 </a>
+<a href="https://github.com/lucasnaja">
+  <img src="https://avatars3.githubusercontent.com/u/13838273?v=4" width="48px">
+</a>
 
 ## FAQ
 
