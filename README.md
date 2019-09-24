@@ -15,8 +15,9 @@
 
 ## Introducing
 
-Creating an automatic portfolio based on Github profile, with the ability to connect others.
-When building, we get data from the API and generate html.
+Automatically create a portfolio based on data from various social networks.
+
+**Configure data -> build -> deploy**
 
 [See example](https://alexeykhr.github.io/) | Default template
 
