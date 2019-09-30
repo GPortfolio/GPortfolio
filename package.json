@@ -1,6 +1,6 @@
 {
   "name": "@gportfolio/gportfolio",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "description": "Create Your Portfolio Online",
   "scripts": {
     "dev": "webpack-dev-server --hot --progress",
