@@ -52,6 +52,13 @@ export default async (env: any, argv: { mode: string; }) => {
   const isProd: boolean = argv.mode === 'production';
 
   const webpackConfig = {
+    devServer: {
+      clientLogLevel: 'error',
+      contentBase: [path.resolve(__dirname, `./src/templates/${template}/index.ejs`)],
+      hot: true,
+      inline: true,
+      watchContentBase: true,
+    },
     devtool: isProd ? false : 'source-map',
     entry: {
       main: [
@@ -62,13 +69,6 @@ export default async (env: any, argv: { mode: string; }) => {
     mode: argv.mode,
     module: {
       rules: [
-        {
-          test: /\.scss$/,
-          use: [
-            'css-loader',
-            'sass-loader',
-          ],
-        },
         {
           test: /\.(gif|png|jpe?g)$/,
           use: [
@@ -94,15 +94,29 @@ export default async (env: any, argv: { mode: string; }) => {
         {
           test: /\.s?css$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            isProd ? MiniCssExtractPlugin.loader : 'style-loader',
             'css-loader',
+            'resolve-url-loader',
+            'postcss-loader',
             'sass-loader',
           ],
         },
         {
-          test: /\.(js|ts)$/,
+          test: /\.js$/,
           use: [
             'babel-loader',
+          ],
+        },
+        {
+          test: /\.ts$/,
+          use: [
+            'babel-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+              },
+            },
           ],
         },
       ],

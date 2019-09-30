@@ -1,6 +1,8 @@
-import * as UIkit from 'uikit';
-// tslint:disable-next-line
-import * as Icons from 'uikit/dist/js/uikit-icons';
+/* tslint:disable */
+
+// TODO Replace to another, lightweight library
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
 import '../../main';
 
 UIkit.use(Icons);
