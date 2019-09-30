@@ -71,14 +71,14 @@ which initializes git in the **dist** folder and makes a **force push** in the
 
 ## Contributors
 
-<a href="https://github.com/Alexeykhr">
-  <img src="https://avatars2.githubusercontent.com/u/14747569?v=4" width="48px">
+<a href="https://github.com/Alexeykhr" title="Alexeykhr">
+  <img src="https://avatars2.githubusercontent.com/u/14747569?v=4" alt="Alexeykhr" width="48px">
 </a>
-<a href="https://github.com/apps/dependabot-preview">
-  <img src="https://avatars3.githubusercontent.com/in/2141?v=4" width="48px">
+<a href="https://github.com/apps/dependabot-preview" title="dependabot-preview[bot]">
+  <img src="https://avatars3.githubusercontent.com/in/2141?v=4" alt="dependabot-preview[bot]" width="48px">
 </a>
-<a href="https://github.com/lucasnaja">
-  <img src="https://avatars3.githubusercontent.com/u/13838273?v=4" width="48px">
+<a href="https://github.com/lucasnaja" title="lucasnaja">
+  <img src="https://avatars3.githubusercontent.com/u/13838273?v=4" alt="lucasnaja" width="48px">
 </a>
 
 ## FAQ

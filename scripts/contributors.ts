@@ -8,6 +8,7 @@
  */
 
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import Github from '../core/modules/github/Github';
 
@@ -31,19 +32,19 @@ const run = async () => {
 
   // Append text before Contributors section
   let txt = file.substring(0, posContr);
-  txt += contrSection + '\n\n';
+  txt += contrSection + os.EOL + os.EOL;
 
   // Add Contributors section
   const contributors = await Github.fetchSelfContributors();
   contributors.forEach((contr) => {
     txt +=
-`<a href="${contr.html_url}">
-  <img src="${contr.avatar_url}" width="48px">
-</a>\n`;
+`<a href="${contr.html_url}" title="${contr.login}">` + os.EOL +
+`  <img src="${contr.avatar_url}" alt="${contr.login}" width="48px">` + os.EOL +
+`</a>` + os.EOL;
   });
 
   // Append text after Contributors section
-  txt += '\n' + file.substring(posContrToNext);
+  txt += os.EOL + file.substring(posContrToNext);
 
   // Write with new text
   fs.writeFileSync(filePath, txt, { encoding: FILE_ENCODING });
