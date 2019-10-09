@@ -40,7 +40,7 @@
     "uikit": "^3.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.6.3",
     "@babel/preset-env": "^7.6.2",
     "@types/copy-webpack-plugin": "^5.0.0",
     "@types/dotenv": "^6.1.1",
