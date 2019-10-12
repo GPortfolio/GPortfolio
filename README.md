@@ -14,6 +14,28 @@
   <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
 </p>
 
+## Plans
+Create ui, with which you can simply create your portfolio online without editing any files.
+After development is complete, major changes to this repository are possible.
+
+- More automation
+- More customization options
+- Get data from various sites in one click
+- Deploy to various sites or upload as html
+
+[Repository Server](https://github.com/GPortfolio/server/tree/dev)
+
+<table>
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/1.png" width="500" alt="Server 1">
+    </td>
+    <td>
+      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/2.png" width="500" alt="Server 2">
+    </td>
+  </tr>
+</table>
+
 ## Introducing
 
 Automatically create a portfolio based on data from various social networks.
@@ -37,13 +59,10 @@ Automatically create a portfolio based on data from various social networks.
 
 ## How to install
 
-After running the `npm run deploy` command, the **utils/deploy.ts** script is launched,
-which initializes git in the **dist** folder and makes a **force push** in the
-**\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
-
 ### \<username>.github.io
 
 - Clone this repository on your PC
+- Copy **.env** to the **.env.example** file and config this
 - Copy **config.example.ts** to the **config.ts** file and config this
 - Create **\<username>.github.io** repository
 - Run `npm ci && npm run build && npm run deploy`
@@ -53,6 +72,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 
 - Fork this repository and clone on your PC
 - Rename to **\<repo>**, example - portfolio
+- Copy **.env** to the **.env.example** file and config this
 - Copy **config.example.ts** to the **config.ts** file and config this
 - Run `npm ci && npm run build && npm run deploy`
 - Change Source GitHub Pages to **gh-pages branch**
