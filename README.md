@@ -8,10 +8,33 @@
 <p align="center">
   <a href="https://circleci.com/gh/GPortfolio/GPortfolio" rel="nofollow"><img src="https://circleci.com/gh/GPortfolio/GPortfolio.svg?style=shield" alt="Build Status"></a>
   <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/package-json/v/GPortfolio/GPortfolio.svg" alt="Version"></a>
+  <a href="https://lgtm.com/projects/g/GPortfolio/GPortfolio/alerts/" rel="nofollow"><img src="https://img.shields.io/lgtm/alerts/g/GPortfolio/GPortfolio.svg?logo=lgtm&logoWidth=18" alt="Total alerts"></a>
   <a href="https://david-dm.org/GPortfolio/GPortfolio" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio.svg" alt="Dependency Status"></a>
   <a href="https://david-dm.org/GPortfolio/GPortfolio?type=dev" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio/dev-status.svg" alt="devDependency Status"></a>
   <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
 </p>
+
+## Plans
+Create ui, with which you can simply create your portfolio online without editing any files.
+After development is complete, major changes to this repository are possible.
+
+- More automation
+- More customization options
+- Get data from various sites in one click
+- Deploy to various sites or upload as html
+
+[Repository Server](https://github.com/GPortfolio/server/tree/dev)
+
+<table>
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/1.png" width="500" alt="Server 1">
+    </td>
+    <td>
+      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/2.png" width="500" alt="Server 2">
+    </td>
+  </tr>
+</table>
 
 ## Introducing
 
@@ -36,13 +59,10 @@ Automatically create a portfolio based on data from various social networks.
 
 ## How to install
 
-After running the `npm run deploy` command, the **utils/deploy.ts** script is launched,
-which initializes git in the **dist** folder and makes a **force push** in the
-**\<username>.github.io** repository or **\<repo>** in the `gh-pages` branch.
-
 ### \<username>.github.io
 
 - Clone this repository on your PC
+- Copy **.env** to the **.env.example** file and config this
 - Copy **config.example.ts** to the **config.ts** file and config this
 - Create **\<username>.github.io** repository
 - Run `npm ci && npm run build && npm run deploy`
@@ -52,6 +72,7 @@ which initializes git in the **dist** folder and makes a **force push** in the
 
 - Fork this repository and clone on your PC
 - Rename to **\<repo>**, example - portfolio
+- Copy **.env** to the **.env.example** file and config this
 - Copy **config.example.ts** to the **config.ts** file and config this
 - Run `npm ci && npm run build && npm run deploy`
 - Change Source GitHub Pages to **gh-pages branch**
@@ -71,14 +92,14 @@ which initializes git in the **dist** folder and makes a **force push** in the
 
 ## Contributors
 
-<a href="https://github.com/Alexeykhr">
-  <img src="https://avatars2.githubusercontent.com/u/14747569?v=4" width="48px">
+<a href="https://github.com/Alexeykhr" title="Alexeykhr">
+  <img src="https://avatars2.githubusercontent.com/u/14747569?v=4" alt="Alexeykhr" width="48px">
 </a>
-<a href="https://github.com/apps/dependabot-preview">
-  <img src="https://avatars3.githubusercontent.com/in/2141?v=4" width="48px">
+<a href="https://github.com/apps/dependabot-preview" title="dependabot-preview[bot]">
+  <img src="https://avatars3.githubusercontent.com/in/2141?v=4" alt="dependabot-preview[bot]" width="48px">
 </a>
-<a href="https://github.com/lucasnaja">
-  <img src="https://avatars3.githubusercontent.com/u/13838273?v=4" width="48px">
+<a href="https://github.com/lucasnaja" title="lucasnaja">
+  <img src="https://avatars3.githubusercontent.com/u/13838273?v=4" alt="lucasnaja" width="48px">
 </a>
 
 ## FAQ

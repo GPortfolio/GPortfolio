@@ -116,7 +116,7 @@ export default {
 
     /**
      * You are in social networks
-     * @type {object}
+     * @type {Array}
      */
     socialMedia: [
       { name: 'Github', icon: 'github', link: 'https://github.com/' },
@@ -132,14 +132,14 @@ export default {
        * data from this profile (name, projects, etc.)
        * @type {string}
        * @example
-       *  You can find the login from the address bar, for example:
-       *    https://github.com/alexeykhr
-       *  The value will be:
+       *  You can find the login from the address bar, for example, value will be:
        *    alexeykhr
+       *  From url https://github.com/alexeykhr
        */
       username: '',
 
       /**
+       * NOTICE: Set value in .env file
        * If a token is specified, then all repositories will be
        *  displayed (including from organizations)
        * Only one access is needed to:
@@ -232,16 +232,19 @@ export default {
 
       auth: {
         /**
+         * NOTICE: Set value in .env file
          * @type {string}
          */
         client_id: process.env.DRIBBBLE_CLIENT_ID || '',
 
         /**
+         * NOTICE: Set value in .env file
          * @type {string}
          */
         client_secret: process.env.DRIBBBLE_CLIENT_SECRET || '',
 
         /**
+         * NOTICE: Set value in .env file
          * NOTE: Code is valid only once when receiving a token
          * @type {string}
          */
