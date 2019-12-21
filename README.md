@@ -14,28 +14,6 @@
   <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
 </p>
 
-## Plans
-Create ui, with which you can simply create your portfolio online without editing any files.
-After development is complete, major changes to this repository are possible.
-
-- More automation
-- More customization options
-- Get data from various sites in one click
-- Deploy to various sites or upload as html
-
-[Repository Server](https://github.com/GPortfolio/server/tree/dev)
-
-<table>
-  <tr>
-    <td>
-      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/1.png" width="500" alt="Server 1">
-    </td>
-    <td>
-      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/2.png" width="500" alt="Server 2">
-    </td>
-  </tr>
-</table>
-
 ## Introducing
 
 Automatically create a portfolio based on data from various social networks.
