@@ -1,6 +1,6 @@
-/* | ------------------------------------------------------------------------------------------------
+/* | -----------------------------------------------------------------------------------------------
  * | - Push files from dist folder to repository -
- * | ------------------------------------------------------------------------------------------------
+ * | -----------------------------------------------------------------------------------------------
  * |
  * | gh-pages branch if config.base exists
  * | <username.github.io repository
@@ -28,7 +28,7 @@ const loggerSection: string = 'Deploy';
  */
 if (!fs.existsSync(BASE_DIST)) {
   Logger.error(loggerSection, `${BASE_DIST} not exists`);
-  Logger.info(loggerSection, `Run: npm run build`);
+  Logger.info(loggerSection, 'Run: npm run build');
   process.exit(0);
 }
 
@@ -42,7 +42,7 @@ if (config.global.customDomain) {
 }
 
 // Git
-const username = config.modules.github.username;
+const { username } = config.modules.github;
 const branch = config.global.base ? 'gh-pages' : 'master';
 
 shell.exec('git init');

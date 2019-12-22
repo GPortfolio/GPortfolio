@@ -24,11 +24,10 @@ const SELF_OWNER: string = 'gportfolio';
 const SELF_REP: string = 'gportfolio';
 
 export default class Github extends Module {
-
   /**
    * Logger sections
    */
-  static get sections () {
+  static get sections() {
     return {
       contributors: 'Contributors',
       profile: 'Profile',
@@ -40,7 +39,7 @@ export default class Github extends Module {
    * Full url to get list of the repositories
    * @return {string}
    */
-  static get URL_REPOSITORIES (): string {
+  static get URL_REPOSITORIES(): string {
     const append = config.modules.github.token
       ? 'user/repos'
       : `users/${config.modules.github.username}/repos`;
@@ -52,11 +51,12 @@ export default class Github extends Module {
    * Full url to get profile
    * @return {string}
    */
-  static get URL_PROFILE (): string {
+  static get URL_PROFILE(): string {
     return `${this.API}/users/${config.modules.github.username}`;
   }
 
   public static NAME = 'Github';
+
   public static API = 'https://api.github.com';
 
   /**
@@ -65,7 +65,7 @@ export default class Github extends Module {
    * @param {string} repo
    * @return {string}
    */
-  public static URL_LIST_CONTRIBUTORS (owner: string, repo: string): string {
+  public static URL_LIST_CONTRIBUTORS(owner: string, repo: string): string {
     return `${this.API}/repos/${owner}/${repo}/contributors`;
   }
 
@@ -75,7 +75,7 @@ export default class Github extends Module {
    * @throws
    * @see https://developer.github.com/v3/users/#get-a-single-user docs
    */
-  public static async fetchProfile (): Promise<IGithubProfile> {
+  public static async fetchProfile(): Promise<IGithubProfile> {
     Github.log(Github.sections.profile, 'Fetching data from API..').info();
     let response;
 
@@ -97,30 +97,36 @@ export default class Github extends Module {
    * @throws
    * @see https://developer.github.com/v3/repos/#list-user-repositories docs
    */
-  public static async fetchRepositories (): Promise<IGithubRepository[]> {
+  public static async fetchRepositories(): Promise<IGithubRepository[]> {
     let fetchRepositories;
     const repositories = [];
     let page = 1;
+
+    const repositoryType = config.modules.github.token
+      ? undefined
+      : config.modules.github.parse.repositories.type;
 
     do {
       Github.log(Github.sections.repositories, `Fetching data from API.. | ${page} page`).info();
 
       try {
+        /* eslint-disable-next-line no-await-in-loop */
         fetchRepositories = await axiosInstance.get(Github.URL_REPOSITORIES, {
           params: {
             ...config.modules.github.parse.repositories,
-            page: page++,
+            page,
             per_page: MAX_COUNT,
-            type: config.modules.github.token ? undefined : config.modules.github.parse.repositories.type,
+            type: repositoryType,
           },
         });
+
+        page += 1;
       } catch (e) {
         Github.log(Github.sections.repositories, e).error();
         throw new Error(e);
       }
 
       repositories.push(...fetchRepositories.data);
-
     } while (fetchRepositories.data.length === MAX_COUNT);
 
     Github.log(Github.sections.repositories, `Complete, ${repositories.length} length`).success();
@@ -133,7 +139,7 @@ export default class Github extends Module {
    * @throws
    * @see https://developer.github.com/v3/repos/#list-contributors docs
    */
-  public static async fetchSelfContributors (): Promise<IGithubContributor[]> {
+  public static async fetchSelfContributors(): Promise<IGithubContributor[]> {
     const fetchUrl = Github.URL_LIST_CONTRIBUTORS(SELF_OWNER, SELF_REP);
     const contributors = [];
     let fetchContributors;
@@ -143,20 +149,22 @@ export default class Github extends Module {
       Github.log(Github.sections.contributors, `Fetching data from API.. | ${page} page`).info();
 
       try {
+        /* eslint-disable-next-line no-await-in-loop */
         fetchContributors = await axiosInstance.get(fetchUrl, {
           params: {
             ...config.modules.github.parse.repositories,
-            page: page++,
+            page,
             per_page: MAX_COUNT,
           },
         });
+
+        page += 1;
       } catch (e) {
         Github.log(Github.sections.contributors, e).error();
         throw new Error(e);
       }
 
       contributors.push(...fetchContributors.data);
-
     } while (fetchContributors.data.length === MAX_COUNT);
 
     Github.log(Github.sections.contributors, `Complete, ${contributors.length} length`).success();

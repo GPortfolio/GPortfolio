@@ -7,11 +7,13 @@ import { IConfigData } from '../interfaces/IConfig';
  * @return {IConfigData}
  */
 export default (configData: any, modules: any): IConfigData => {
+  const data = configData;
+
   Object.entries(configData).forEach(([key, val]) => {
     if (typeof val === 'function') {
-      configData[key] = val(modules);
+      data[key] = val(modules);
     }
   });
 
-  return configData;
+  return data;
 };

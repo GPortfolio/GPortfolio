@@ -5,9 +5,7 @@ import github from './github';
  * Data collected from various services using API/manual
  * @throws
  */
-export default async () => {
-  return {
-    dribbble: await dribbble(),
-    github: await github(),
-  };
-};
+export default async () => ({
+  dribbble: await dribbble(),
+  github: await github(),
+});

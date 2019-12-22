@@ -1,6 +1,6 @@
-/* | ------------------------------------------------------------------------------------------------
+/* | -----------------------------------------------------------------------------------------------
  * | - README | Contributors section -
- * | ------------------------------------------------------------------------------------------------
+ * | -----------------------------------------------------------------------------------------------
  * |
  * | Get data from the Github API to contributors
  * | and add to README.md
@@ -29,7 +29,6 @@ const posContr = file.indexOf(contrSection);
 const posContrToNext = file.indexOf('##', posContr + contrSection.length);
 
 const run = async () => {
-
   // Append text before Contributors section
   let txt = file.substring(0, posContr);
   txt += contrSection + os.EOL + os.EOL;
@@ -37,10 +36,10 @@ const run = async () => {
   // Add Contributors section
   const contributors = await Github.fetchSelfContributors();
   contributors.forEach((contr) => {
-    txt +=
-`<a href="${contr.html_url}" title="${contr.login}">` + os.EOL +
-`  <img src="${contr.avatar_url}" alt="${contr.login}" width="48px">` + os.EOL +
-`</a>` + os.EOL;
+    txt
++= `<a href="${contr.html_url}" title="${contr.login}">${os.EOL
+      }  <img src="${contr.avatar_url}" alt="${contr.login}" width="48px">${os.EOL
+      }</a>${os.EOL}`;
   });
 
   // Append text after Contributors section

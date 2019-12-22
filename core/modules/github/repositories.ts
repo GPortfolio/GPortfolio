@@ -11,8 +11,7 @@ import Github from './Github';
  * @throws
  */
 export default async (): Promise<IGithubRepository[]> => {
-
-  const github = config.modules.github;
+  const { github } = config.modules;
 
   const cache = new Cache(variables.cache.github.repositories);
   cache.setTimeWait(1000 * 60 * 60 * 2); // 2 hours
@@ -21,7 +20,6 @@ export default async (): Promise<IGithubRepository[]> => {
   let repositories: IGithubRepository[];
 
   if (cache.needParse) {
-
     repositories = await Github.fetchRepositories();
 
     /*
@@ -29,7 +27,6 @@ export default async (): Promise<IGithubRepository[]> => {
      */
     cache.updateData(repositories);
     cache.updateTimestamp();
-
   } else {
     repositories = cache.dataFromFile;
     Github.log(Github.sections.repositories, `Get from cache, ${repositories.length} length`).info();
@@ -49,6 +46,8 @@ export default async (): Promise<IGithubRepository[]> => {
    */
   if (github.sort.repositories.enable) {
     const sort = new Sort(repositories);
+
+    /* eslint-disable-next-line @typescript-eslint/no-unused-expressions */
     github.sort.repositories.sortByDesc
       ? sort.desc(github.sort.repositories.attr)
       : sort.asc(github.sort.repositories.attr);

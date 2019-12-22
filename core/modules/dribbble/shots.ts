@@ -11,15 +11,13 @@ import Dribbble from './Dribbble';
  * @throws
  */
 export default async (): Promise<IDribbbleShot[]> => {
-
-  const dribbble = config.modules.dribbble;
+  const { dribbble } = config.modules;
   const cache = new Cache(variables.cache.dribbble.shots);
 
   /** @type {IDribbbleShot[]} - data from API */
   let shots: IDribbbleShot[];
 
   if (cache.needParse) {
-
     shots = await Dribbble.fetchShots();
 
     /*
@@ -27,7 +25,6 @@ export default async (): Promise<IDribbbleShot[]> => {
      */
     cache.updateData(shots);
     cache.updateTimestamp();
-
   } else {
     shots = cache.dataFromFile;
     Dribbble.log(Dribbble.sections.shots, `Get from cache, ${shots.length} length`).info();
@@ -47,6 +44,8 @@ export default async (): Promise<IDribbbleShot[]> => {
    */
   if (dribbble.sort.shots.enable) {
     const sort = new Sort(shots);
+
+    /* eslint-disable-next-line @typescript-eslint/no-unused-expressions */
     dribbble.sort.shots.sortByDesc
       ? sort.desc(dribbble.sort.shots.attr)
       : sort.asc(dribbble.sort.shots.attr);

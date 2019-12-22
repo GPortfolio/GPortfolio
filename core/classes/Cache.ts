@@ -4,7 +4,7 @@ import variables from '../variables';
 import Logger from './Logger';
 
 /** @type {string} */
-const BASE_PATH: string = variables.root + sep + 'cache' + sep;
+const BASE_PATH: string = `${variables.root + sep}cache${sep}`;
 
 /** @type {string} */
 const FILE_ENCODING: string = 'utf8';
@@ -17,28 +17,29 @@ let generalFile: any;
  */
 if (!fs.existsSync(BASE_PATH)) {
   try {
+    // eslint-disable-next-line
     console.log('[Cache] Create folder');
     fs.mkdirSync(BASE_PATH);
   } catch (e) {
+    // eslint-disable-next-line
     console.warn(e);
   }
 }
 
 class Cache {
-
   /**
    * Get data from file if exists
    * @return {*}
    */
-  get dataFromFile (): any {
+  get dataFromFile(): any {
     return Cache.tryReadJsonFile(this.fileName);
   }
 
   /**
    * @return {string}
    */
-  get keyTimestamp (): string {
-    return this.cacheName + '_timestamp';
+  get keyTimestamp(): string {
+    return `${this.cacheName}_timestamp`;
   }
 
   /**
@@ -46,7 +47,7 @@ class Cache {
    * re-receiving information has not come
    * @return {boolean}
    */
-  get needParse (): boolean {
+  get needParse(): boolean {
     // Check by exists
     if (!Cache.existsFile(this.fileName)) {
       return true;
@@ -59,14 +60,14 @@ class Cache {
   /**
    * @return {*}
    */
-  static get generalFile (): any {
+  static get generalFile(): any {
     return generalFile;
   }
 
   /**
    * Update/override data for general file
    */
-  static set generalFile (data) {
+  static set generalFile(data) {
     generalFile = { ...generalFile, ...data };
     Cache.writeFile(variables.cache.general, generalFile);
   }
@@ -76,7 +77,7 @@ class Cache {
    * @param {string} fileName - path in <root>/data folder (ext is required)
    * @return {*}
    */
-  public static tryReadJsonFile (fileName: string): any {
+  public static tryReadJsonFile(fileName: string): any {
     const path = BASE_PATH + fileName;
 
     if (!fs.existsSync(path)) {
@@ -98,7 +99,7 @@ class Cache {
    * @param {string} fileName - path in <root>/data folder (ext is required)
    * @param {*} data
    */
-  public static writeFile (fileName: string, data: any) {
+  public static writeFile(fileName: string, data: any) {
     fs.writeFileSync(BASE_PATH + fileName, JSON.stringify(data), { encoding: FILE_ENCODING });
   }
 
@@ -107,19 +108,21 @@ class Cache {
    * @param {string} fileName - path in <root>/data folder (ext is required)
    * @return {boolean}
    */
-  public static existsFile (fileName: string): boolean {
+  public static existsFile(fileName: string): boolean {
     return fs.existsSync(BASE_PATH + fileName);
   }
 
   public fileName: string;
+
   public cacheName: string;
+
   public timeWait: number;
 
   /**
    * @param {string} fileName (ext is required)
    * @param {string} cacheName
    */
-  constructor (fileName: string = variables.cache.general, cacheName: string = fileName) {
+  constructor(fileName: string = variables.cache.general, cacheName: string = fileName) {
     this.fileName = fileName;
     this.cacheName = cacheName;
     this.timeWait = 1000 * 60 * 60; // 1 hour
@@ -129,7 +132,7 @@ class Cache {
    * The name of the cache file in the cache folder
    * @param {string} name
    */
-  public setFileName (name: string) {
+  public setFileName(name: string) {
     this.fileName = name;
   }
 
@@ -138,7 +141,7 @@ class Cache {
    * @param {string} name
    * @default as fileName
    */
-  public setCacheName (name: string) {
+  public setCacheName(name: string) {
     this.cacheName = name;
   }
 
@@ -147,7 +150,7 @@ class Cache {
    * @param {number} timestamp - milliseconds
    * @default 1 hour
    */
-  public setTimeWait (timestamp: number) {
+  public setTimeWait(timestamp: number) {
     this.timeWait = +timestamp || 0;
   }
 
@@ -156,7 +159,7 @@ class Cache {
    * @param {object|array} data
    * @return {void}
    */
-  public updateData (data: object | any[]): void {
+  public updateData(data: object | any[]): void {
     Cache.writeFile(this.fileName, data);
   }
 
@@ -164,7 +167,7 @@ class Cache {
    * Append timestamp to file
    * @return {void}
    */
-  public updateTimestamp (): void {
+  public updateTimestamp(): void {
     Cache.generalFile = { [this.keyTimestamp]: Date.now() };
   }
 }

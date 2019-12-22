@@ -1,6 +1,6 @@
-/* | ------------------------------------------------------------------------------------------------
+/* | -----------------------------------------------------------------------------------------------
  * | - Generate a basic files/content for new template. -
- * | ------------------------------------------------------------------------------------------------
+ * | -----------------------------------------------------------------------------------------------
  * |
  * | How to create: npm run template <name>
  * | Example: npm run template myTemplateName
@@ -104,5 +104,5 @@ fs.writeFileSync(`${BASE_PATH + name + sep}README.md`, `# Template: ${name}
  * ---------------------------------------------- Complete
  */
 Logger.success(loggerSection, `Complete, path: ${BASE_PATH + name}`);
-Logger.info(loggerSection, `To change the template - edit config.ts:`);
+Logger.info(loggerSection, 'To change the template - edit config.ts:');
 Logger.info(loggerSection, `  { global.template: ${name} }`);

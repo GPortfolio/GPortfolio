@@ -8,14 +8,12 @@ import Github from './Github';
  * @throws
  */
 export default async (): Promise<IGithubProfile> => {
-
   const cache = new Cache(variables.cache.github.profile);
 
   /** @type {IGithubProfile} - data from API */
   let profile: IGithubProfile;
 
   if (cache.needParse) {
-
     profile = await Github.fetchProfile();
 
     /*
@@ -23,7 +21,6 @@ export default async (): Promise<IGithubProfile> => {
      */
     cache.updateData(profile);
     cache.updateTimestamp();
-
   } else {
     profile = cache.dataFromFile;
     Github.log(Github.sections.profile, 'Get from cache').info();

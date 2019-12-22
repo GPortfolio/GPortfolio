@@ -1,4 +1,3 @@
-/* tslint:disable:max-line-length */
 import { getDeepByKey } from './core/helpers/utils';
 
 /*
@@ -110,9 +109,7 @@ export default {
      * Searching for a job
      * @type {boolean}
      */
-    hire: (modules: any) => {
-      return !!getDeepByKey(modules, ['github', 'profile', 'hireable']);
-    },
+    hire: (modules: any) => !!getDeepByKey(modules, ['github', 'profile', 'hireable']),
 
     /**
      * You are in social networks
@@ -192,7 +189,7 @@ export default {
            *  owner: Repositories that are owned by the authenticated user.
            *  collaborator: Repositories that the user has been added to as a collaborator.
            *  organization_member: Repositories that the user has access to through being a member
-           *    of an organization. This includes every repository on every team that the user is on.
+           *    of an organization. This includes every repository on every team that the user is on
            * @default owner,collaborator,organization_member
            */
           affiliation: 'owner,collaborator,organization_member',

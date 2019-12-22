@@ -14,11 +14,10 @@ const GENERAL_FILE_KEY_TOKEN: string = 'dribble_token';
 const MAX_COUNT: number = 100;
 
 class Dribbble extends Module {
-
   /**
    * Logger sections
    */
-  static get sections () {
+  static get sections() {
     return {
       profile: 'Profile',
       shots: 'Shots',
@@ -30,7 +29,7 @@ class Dribbble extends Module {
    * Full url to get profile
    * @return {string}
    */
-  static get URL_PROFILE (): string {
+  static get URL_PROFILE(): string {
     return `${this.API}/user`;
   }
 
@@ -38,7 +37,7 @@ class Dribbble extends Module {
    * Full url to get profile shots
    * @return {string}
    */
-  static get URL_SHOTS (): string {
+  static get URL_SHOTS(): string {
     return `${this.API}/user/shots`;
   }
 
@@ -46,12 +45,14 @@ class Dribbble extends Module {
    * Full url to get oauth token
    * @return {string}
    */
-  static get URL_OAUTH_TOKEN (): string {
+  static get URL_OAUTH_TOKEN(): string {
     return `${this.WEBSITE}/oauth/token`;
   }
 
   public static NAME = 'Dribbble';
+
   public static API = 'https://api.dribbble.com/v2';
+
   public static WEBSITE = 'https://dribbble.com';
 
   /**
@@ -59,7 +60,7 @@ class Dribbble extends Module {
    * @throws
    * @return {Promise<string>} access_token
    */
-  public static async fetchUpdateToken (): Promise<string> {
+  public static async fetchUpdateToken(): Promise<string> {
     const response = await Dribbble.fetchToken();
     Cache.generalFile = { [GENERAL_FILE_KEY_TOKEN]: response.access_token };
     return response.access_token;
@@ -71,7 +72,7 @@ class Dribbble extends Module {
    * @throws
    * @see https://developer.dribbble.com/v2/oauth/ docs
    */
-  public static async fetchToken (): Promise<IDribbbleOath> {
+  public static async fetchToken(): Promise<IDribbbleOath> {
     Dribbble.log(Dribbble.sections.token, 'Fetching data from API..').info();
     let response;
 
@@ -92,7 +93,7 @@ class Dribbble extends Module {
    * @throws
    * @see https://developer.dribbble.com/v2/user/ docs
    */
-  public static async fetchProfile (): Promise<IDribbbleProfile> {
+  public static async fetchProfile(): Promise<IDribbbleProfile> {
     Dribbble.log(Dribbble.sections.profile, 'Fetching data from API..').info();
     let response;
 
@@ -113,7 +114,7 @@ class Dribbble extends Module {
    * @throws
    * @see https://developer.dribbble.com/v2/shots/ docs
    */
-  public static async fetchShots (): Promise<IDribbbleShot[]> {
+  public static async fetchShots(): Promise<IDribbbleShot[]> {
     const shots = [];
     let fetchShots;
     let page = 1;
@@ -122,19 +123,21 @@ class Dribbble extends Module {
       Dribbble.log(Dribbble.sections.shots, `Fetching data from API.. | ${page} page`).info();
 
       try {
+        /* eslint-disable-next-line no-await-in-loop */
         fetchShots = await axiosInstance.get(Dribbble.URL_SHOTS, {
           params: {
-            page: page++,
+            page,
             per_page: MAX_COUNT,
           },
         });
+
+        page += 1;
       } catch (e) {
         Dribbble.errorLog(e, Dribbble.sections.shots);
         throw new Error(e);
       }
 
       shots.push(...fetchShots.data);
-
     } while (fetchShots.data.length === MAX_COUNT);
 
     Dribbble.log(Dribbble.sections.shots, `Complete, ${shots.length} length`).success();
@@ -147,9 +150,9 @@ class Dribbble extends Module {
    * @param {string} section
    * @return {void}
    */
-  public static errorLog (e: any, section: string): void {
+  public static errorLog(e: any, section: string): void {
     if (e && e.response && e.response.data) {
-      const data = e.response.data;
+      const { data } = e.response;
       if (data.error_description || data.message || data.error) {
         Dribbble.log(section, data.error_description || data.message || data.error).error();
       }
@@ -162,29 +165,29 @@ class Dribbble extends Module {
 // Add a request interceptor
 axiosInstance.interceptors.request.use(async (axiosConfig) => {
   let token = Cache.generalFile[GENERAL_FILE_KEY_TOKEN];
+  const requestConfig = axiosConfig;
 
-  if (!token && axiosConfig.url !== Dribbble.URL_OAUTH_TOKEN) {
+  if (!token && requestConfig.url !== Dribbble.URL_OAUTH_TOKEN) {
     try {
       token = await Dribbble.fetchUpdateToken();
     } catch (e) {
       return {
-        ...axiosConfig,
+        ...requestConfig,
         cancelToken: new axios.CancelToken((cancel) => cancel('stop executing request')),
       };
     }
   }
 
-  axiosConfig.headers.common.Authorization = `Bearer ${token}`;
+  requestConfig.headers.common.Authorization = `Bearer ${token}`;
   axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-  return axiosConfig;
+  return requestConfig;
 });
 
 /*
  * Auto update access_token
  */
 axiosInstance.interceptors.response.use(undefined, async (err) => {
-
   /*
    * Temporary, while does not work auto refresh code
    */
@@ -199,7 +202,9 @@ axiosInstance.interceptors.response.use(undefined, async (err) => {
    * Dribbble Code working only works once
    * Now this code without a server does not work
    */
-  // if (!axios.isCancel(err) && err.config.url !== Dribbble.URL_OAUTH_TOKEN && err.response.status === 401) {
+  // if (!axios.isCancel(err) && err.config.url !== Dribbble.URL_OAUTH_TOKEN
+  //  && err.response.status === 401
+  // ) {
   //   Dribbble.log(Dribbble.sections.token, 'Try refresh token').info()
   //   try {
   //     const token = await Dribbble.fetchUpdateToken()

@@ -8,14 +8,12 @@ import Dribbble from './Dribbble';
  * @throws
  */
 export default async (): Promise<IDribbbleProfile> => {
-
   const cache = new Cache(variables.cache.dribbble.profile);
 
   /** @type {IDribbbleProfile} - data from API */
   let profile: IDribbbleProfile;
 
   if (cache.needParse) {
-
     profile = await Dribbble.fetchProfile();
 
     /*
@@ -23,7 +21,6 @@ export default async (): Promise<IDribbbleProfile> => {
      */
     cache.updateData(profile);
     cache.updateTimestamp();
-
   } else {
     profile = cache.dataFromFile;
     Dribbble.log(Dribbble.sections.profile, 'Get from cache').info();

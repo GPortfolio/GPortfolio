@@ -1,10 +1,9 @@
-'use strict';
 
 /**
  * @param {function} callback
  * @return {void}
  */
-export function DOMIsLoaded (callback: () => {}) {
+export function DOMIsLoaded(callback: () => {}) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', callback);
   } else {
@@ -15,6 +14,6 @@ export function DOMIsLoaded (callback: () => {}) {
 /**
  * @return {number}
  */
-export function getOffsetTop () {
+export function getOffsetTop() {
   return document.documentElement.scrollTop || document.body.scrollTop;
 }

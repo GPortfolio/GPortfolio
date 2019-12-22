@@ -27,7 +27,7 @@ export default function (): void {
     error('global.template is required');
   }
 
-  const templatesPath = variables.root + sep + 'src' + sep + 'templates';
+  const templatesPath = `${variables.root + sep}src${sep}templates`;
   if (!fs.existsSync(templatesPath + sep + config.global.template)) {
     error(`${config.global.template} template not found`);
   }

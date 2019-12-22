@@ -1,4 +1,13 @@
 /**
+ * Value is an object
+ * @param {*} val
+ * @return {boolean}
+ */
+function isObject(val: any): boolean {
+  return !!val && val.constructor === Object;
+}
+
+/**
  * Get deep value from object
  * @param {*} data
  * @param {array} keys
@@ -9,12 +18,12 @@
  *  keys - 'foo.foo2'
  *  result - 'bar'
  */
-export function getDeepByKey (data: any, keys: string[], deep: number = 0): any {
+export function getDeepByKey(data: any, keys: string[], deep: number = 0): any {
   if (!keys.length || keys.length === deep) {
     return data;
   }
 
-  if (! isObject(data)) {
+  if (!isObject(data)) {
     return undefined;
   }
 
@@ -31,11 +40,6 @@ export function getDeepByKey (data: any, keys: string[], deep: number = 0): any 
   return val;
 }
 
-/**
- * Value is an object
- * @param {*} val
- * @return {boolean}
- */
-function isObject (val: any): boolean {
-  return (!!val) && (val.constructor === Object);
-}
+export default {
+  getDeepByKey,
+};

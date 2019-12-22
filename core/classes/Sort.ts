@@ -1,10 +1,9 @@
 import { getDeepByKey } from '../helpers/utils';
 
 export default class Sort {
-
   private arr: any[];
 
-  constructor (arr: any[]) {
+  constructor(arr: any[]) {
     this.arr = arr;
   }
 
@@ -13,8 +12,8 @@ export default class Sort {
    * @param {string} key
    * @return {void} self array change
    */
-  public asc (key: string) {
-    this.arr.sort(this.compareValues(key));
+  public asc(key: string) {
+    this.arr.sort(Sort.compareValues(key));
   }
 
   /**
@@ -22,8 +21,8 @@ export default class Sort {
    * @param {string} key
    * @return {void} self array change
    */
-  public desc (key: string) {
-    this.arr.sort(this.compareValues(key, 'desc'));
+  public desc(key: string) {
+    this.arr.sort(Sort.compareValues(key, 'desc'));
   }
 
   /**
@@ -31,7 +30,7 @@ export default class Sort {
    * @param {string} key
    * @param {string} order - asc|desc
    */
-  private compareValues (key: string, order = 'asc') {
+  private static compareValues(key: string, order: string = 'asc') {
     const parts = key.split('.');
     const keysExceptLast = parts.slice(0, -1);
     const lastKey = parts[parts.length - 1];

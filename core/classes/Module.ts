@@ -1,11 +1,10 @@
 import Logger from './Logger';
 
 export default abstract class Module {
-
   /**
    * Print console.log with color
    */
-  public static log (section: string, msg: string) {
+  public static log(section: string, msg: string) {
     return {
       error: () => {
         Logger.error(`${this.name}, ${section}`, msg);

@@ -1,4 +1,5 @@
-/* tslint:disable:no-implicit-dependencies */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/first */
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import dotenv from 'dotenv';
@@ -25,7 +26,6 @@ import collectModules from './core/modules';
 import variables from './core/variables';
 
 export default async (env: any, argv: { mode: string; }) => {
-
   /**
    * Check that the required data has been entered
    * @throws
@@ -227,11 +227,11 @@ export default async (env: any, argv: { mode: string; }) => {
      */
     const ignorePublicFolder: RegExp[] = fs.readdirSync(path.resolve(__dirname, './public'))
       .map((pathDir: string) => {
-        if (fs.lstatSync('./public/' + pathDir).isDirectory()) {
-          return new RegExp('^' + pathDir);
+        if (fs.lstatSync(`./public/${pathDir}`).isDirectory()) {
+          return new RegExp(`^${pathDir}`);
         }
 
-        return new RegExp('^' + pathDir.replace(/\./g, '\\.') + '$');
+        return new RegExp(`^${pathDir.replace(/\./g, '\\.')}$`);
       });
 
     webpackConfig.plugins.push(
@@ -282,12 +282,14 @@ export default async (env: any, argv: { mode: string; }) => {
           options: {
             cacheName: 'github-content',
           },
+          /* eslint-disable-next-line no-useless-escape */
           urlPattern: new RegExp('^https:\/\/.*\.githubusercontent\.com\/'),
         }, {
           handler: 'NetworkFirst',
           options: {
             cacheName: 'github-api',
           },
+          /* eslint-disable-next-line no-useless-escape */
           urlPattern: new RegExp('^https:\/\/api\.github\.com\/'),
         }, {
           handler: 'StaleWhileRevalidate',
