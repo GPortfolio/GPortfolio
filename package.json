@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --hot --progress",
     "build": "webpack --mode=production",
-    "lint": "eslint --fix --ext .js,.vue,.ts src/ scripts/ core/ webpack.config.ts config.example.ts",
+    "lint": "eslint --ext .js,.vue,.ts .",
     "lint:fix": "npm run lint -- --fix",
     "release": "npm run contributors && standard-version",
     "template": "ts-node scripts/template.ts",
