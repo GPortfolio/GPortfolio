@@ -1,14 +1,10 @@
 import axios, { AxiosInstance } from 'axios';
-import config from '../../../config';
-import Cache from '../../classes/Cache';
+import config from '../../config';
 import Module from '../../classes/Module';
-import { IDribbbleOath, IDribbbleProfile, IDribbbleShot } from '../../interfaces/IDribbble';
+import { IDribbbleProfile, IDribbbleShot } from '../../interfaces/IDribbble';
 
 /** @type {AxiosInstance} */
 const axiosInstance: AxiosInstance = axios.create();
-
-/** @type {string} */
-const GENERAL_FILE_KEY_TOKEN: string = 'dribble_token';
 
 /** @type {number} */
 const MAX_COUNT: number = 100;
@@ -45,11 +41,9 @@ class Dribbble extends Module {
    * Full url to get oauth token
    * @return {string}
    */
-  static get URL_OAUTH_TOKEN(): string {
-    return `${this.WEBSITE}/oauth/token`;
-  }
-
-  public static NAME = 'Dribbble';
+  // static get URL_OAUTH_TOKEN(): string {
+  //   return `${this.WEBSITE}/oauth/token`;
+  // }
 
   public static API = 'https://api.dribbble.com/v2';
 
@@ -60,11 +54,11 @@ class Dribbble extends Module {
    * @throws
    * @return {Promise<string>} access_token
    */
-  public static async fetchUpdateToken(): Promise<string> {
-    const response = await Dribbble.fetchToken();
-    Cache.generalFile = { [GENERAL_FILE_KEY_TOKEN]: response.access_token };
-    return response.access_token;
-  }
+  // public static async fetchUpdateToken(): Promise<string> {
+  //   const response = await Dribbble.fetchToken();
+  //   Cache.generalFile = { [GENERAL_FILE_KEY_TOKEN]: response.access_token };
+  //   return response.access_token;
+  // }
 
   /**
    * Make a Dribbble API request to get profile token.
@@ -72,20 +66,21 @@ class Dribbble extends Module {
    * @throws
    * @see https://developer.dribbble.com/v2/oauth/ docs
    */
-  public static async fetchToken(): Promise<IDribbbleOath> {
-    Dribbble.log(Dribbble.sections.token, 'Fetching data from API..').info();
-    let response;
-
-    try {
-      response = await axiosInstance.post(Dribbble.URL_OAUTH_TOKEN, config.modules.dribbble.auth);
-    } catch (e) {
-      Dribbble.errorLog(e, Dribbble.sections.token);
-      throw new Error(e);
-    }
-
-    Dribbble.log(Dribbble.sections.token, 'Complete').success();
-    return response.data;
-  }
+  // public static async fetchToken(): Promise<IDribbbleOath> {
+  //   Dribbble.log(Dribbble.sections.token, 'Fetching data from API..').info();
+  //   let response;
+  //
+  //   try {
+  //     eslint-disable-next-line
+  //     response = await axiosInstance.post(Dribbble.URL_OAUTH_TOKEN, config.websites.dribbble.auth);
+  //   } catch (e) {
+  //     Dribbble.errorLog(e, Dribbble.sections.token);
+  //     throw new Error(e);
+  //   }
+  //
+  //   Dribbble.log(Dribbble.sections.token, 'Complete').success();
+  //   return response.data;
+  // }
 
   /**
    * Make a Dribbble API request to get profile.
@@ -163,26 +158,26 @@ class Dribbble extends Module {
 }
 
 // Add a request interceptor
-axiosInstance.interceptors.request.use(async (axiosConfig) => {
-  let token = Cache.generalFile[GENERAL_FILE_KEY_TOKEN];
-  const requestConfig = axiosConfig;
-
-  if (!token && requestConfig.url !== Dribbble.URL_OAUTH_TOKEN) {
-    try {
-      token = await Dribbble.fetchUpdateToken();
-    } catch (e) {
-      return {
-        ...requestConfig,
-        cancelToken: new axios.CancelToken((cancel) => cancel('stop executing request')),
-      };
-    }
-  }
-
-  requestConfig.headers.common.Authorization = `Bearer ${token}`;
-  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
-
-  return requestConfig;
-});
+// axiosInstance.interceptors.request.use(async (axiosConfig) => {
+// let token = Cache.generalFile[GENERAL_FILE_KEY_TOKEN];
+// const requestConfig = axiosConfig;
+//
+// if (!token && requestConfig.url !== Dribbble.URL_OAUTH_TOKEN) {
+//   try {
+//     token = await Dribbble.fetchUpdateToken();
+//   } catch (e) {
+//     return {
+//       ...requestConfig,
+//       cancelToken: new axios.CancelToken((cancel) => cancel('stop executing request')),
+//     };
+//   }
+// }
+//
+// requestConfig.headers.common.Authorization = `Bearer ${token}`;
+// axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+//
+// return requestConfig;
+// });
 
 /*
  * Auto update access_token
@@ -192,10 +187,9 @@ axiosInstance.interceptors.response.use(undefined, async (err) => {
    * Temporary, while does not work auto refresh code
    */
   if (!axios.isCancel(err) && err.response.status === 401) {
-    const url = `https://dribbble.com/oauth/authorize?client_id=${config.modules.dribbble.auth.client_id}`;
+    const url = `https://dribbble.com/oauth/authorize?client_id=${config.websites.dribbble.auth.client_id}`;
     Dribbble.log(Dribbble.sections.token, 'Need to get the code again').warning();
     Dribbble.log(Dribbble.sections.token, url).warning();
-    Cache.generalFile = { [GENERAL_FILE_KEY_TOKEN]: null };
   }
 
   /*

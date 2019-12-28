@@ -9,7 +9,7 @@
 
 import fs from 'fs';
 import { sep } from 'path';
-import config from '../config';
+import config from '../core/config';
 import Logger from '../core/classes/Logger';
 import variables from '../core/variables';
 
@@ -74,12 +74,12 @@ fs.writeFileSync(`${BASE_PATH + name + sep}index.scss`, `@import "../../main.scs
 Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}index.ejs`);
 fs.writeFileSync(`${BASE_PATH + name + sep}index.ejs`, `<!DOCTYPE html>
 <%
-const headTemplate = require('ejs-loader!@src/parts/head.ejs')
-const safeQuotes = (str) => str.replace(/"/g, '&quot;')
+const { default: config } = require('../../../config')
 %>
-<html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
+
+<html lang="en" data-template="${name}" data-compiled="<%= Date.now() %>">
 <head>
-  <%= headTemplate({ github: modules.github, config, url }) %>
+  <%= require('ejs-loader!@src/parts/head.ejs')() %>
 </head>
 <body>
   <!-- Code -->
@@ -97,7 +97,7 @@ fs.writeFileSync(`${BASE_PATH + name + sep}README.md`, `# Template: ${name}
 <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/templates/${name}.png" alt="${name}">
 
 ## Creator
-[@${config.modules.github.username}](https://github.com/${config.modules.github.username})
+[@${config.websites.github.username}](https://github.com/${config.websites.github.username})
 `, { encoding: FILE_ENCODING });
 
 /*

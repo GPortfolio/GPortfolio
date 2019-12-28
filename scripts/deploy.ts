@@ -12,7 +12,7 @@
 import fs from 'fs';
 import { sep } from 'path';
 import shell from 'shelljs';
-import config from '../config';
+import config from '../core/config';
 import Logger from '../core/classes/Logger';
 import variables from '../core/variables';
 
@@ -42,7 +42,7 @@ if (config.global.customDomain) {
 }
 
 // Git
-const { username } = config.modules.github;
+const { username } = config.websites.github;
 const branch = config.global.base ? 'gh-pages' : 'master';
 
 shell.exec('git init');

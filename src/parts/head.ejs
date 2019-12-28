@@ -1,8 +1,6 @@
 <%
-/*
- * Properties:
- *  - Require: config, github, url
- */
+const { default: config } = require('../../core/config')
+const { siteUrl } = require('../../core/variables')
 %>
 
 <meta charset="utf-8">
@@ -11,9 +9,9 @@
 <meta property="og:title" content="Portfolio by <%= config.data.name %>" />
 <meta property="og:type" content="profile" />
 <meta property="og:image" content="<%= config.data.avatar_url %>" />
-<meta property="og:url" content="<%= url %>" />
-<meta property="og:description" content="<%= github.profile.bio %>" />
-<meta property="profile:username" content="<%= github.profile.login %>" />
+<meta property="og:url" content="<%= siteUrl %>" />
+<meta property="og:description" content="<%= config.websites.github.profile.bio %>" />
+<meta property="profile:username" content="<%= config.websites.github.profile.login %>" />
 <% for (let [property, content] of Object.entries(config.global.opg)) { %>
     <meta property="<%= property %>" content="<%= content %>" />
 <% } %>

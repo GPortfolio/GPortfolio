@@ -36,10 +36,9 @@ const run = async () => {
   // Add Contributors section
   const contributors = await Github.fetchSelfContributors();
   contributors.forEach((contr) => {
-    txt
-+= `<a href="${contr.html_url}" title="${contr.login}">${os.EOL
-      }  <img src="${contr.avatar_url}" alt="${contr.login}" width="48px">${os.EOL
-      }</a>${os.EOL}`;
+    txt += `<a href="${contr.html_url}" title="${contr.login}">${os.EOL
+    }  <img src="${contr.avatar_url}" alt="${contr.login}" width="48px">${os.EOL
+    }</a>${os.EOL}`;
   });
 
   // Append text after Contributors section

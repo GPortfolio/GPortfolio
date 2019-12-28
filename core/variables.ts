@@ -1,5 +1,5 @@
 import path from 'path';
-import config from '../config';
+import config from './config';
 
 /**
  * @param {string} str
@@ -16,7 +16,7 @@ export default {
 
   /** @type {string} */
   siteUrl: noLastSlash(`https://${config.global.customDomain
-    || `${config.modules.github.username}.github.io/${config.global.base}`}`),
+    || `${config.websites.github.username}.github.io/${config.global.base}`}`),
 
   /**
    * Files in <root>/cache folder

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/first */
+
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import dotenv from 'dotenv';
@@ -9,52 +9,31 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
+import server from './core/server';
+import config from './core/config';
+import variables from './core/variables';
 
 /**
- * Load .env file
+ * Load .env file for change environment
  * @example
- *  process.env.GITHUB_TOKEN
+ *  process.env.APP_DEMO
  */
 if (fs.existsSync(path.resolve(__dirname, '.env'))) {
   dotenv.config();
 }
 
-import config from './config';
-import transformConfigData from './core/helpers/transformConfigData';
-import validateConfig from './core/helpers/validateConfig';
-import collectModules from './core/modules';
-import variables from './core/variables';
-
 export default async (env: any, argv: { mode: string; }) => {
-  /**
-   * Check that the required data has been entered
-   * @throws
-   */
-  validateConfig();
-
-  /**
-   * Fetch data from all social media
-   * And then inject all data to .ejs
-   * @throws
-   */
-  const modules = await collectModules();
-
-  /**
-   * Change data from settings to data from social networks
-   * @see see docs/config.md #Data
-   */
-  transformConfigData(config.data, modules);
-
-  /** @type {string} */
-  const template: string = config.global.template || 'default';
-
   /** @type {boolean} */
   const isProd: boolean = argv.mode === 'production';
 
   const webpackConfig = {
     devServer: {
       clientLogLevel: 'error',
-      contentBase: [path.resolve(__dirname, `./src/templates/${template}/index.ejs`)],
+      before: server,
+      contentBase: [
+        path.resolve(__dirname, `./src/templates/${config.global.template}/index.ejs`),
+        path.resolve(__dirname, './config'),
+      ],
       hot: true,
       inline: true,
       watchContentBase: true,
@@ -62,8 +41,8 @@ export default async (env: any, argv: { mode: string; }) => {
     devtool: isProd ? false : 'source-map',
     entry: {
       main: [
-        `./src/templates/${template}/index.ts`,
-        `./src/templates/${template}/index.scss`,
+        `./src/templates/${config.global.template}/index.ts`,
+        `./src/templates/${config.global.template}/index.scss`,
       ],
     },
     mode: argv.mode,
@@ -132,37 +111,28 @@ export default async (env: any, argv: { mode: string; }) => {
        * Copies individual files or entire directories to the build directory.
        * @see https://github.com/webpack-contrib/copy-webpack-plugin
        */
-      new CopyWebpackPlugin((() => {
-        const output = [];
-
-        // Upload config.ts to dist folder for save all config data
-        if (process.env.UPLOAD_CONFIG === 'true') {
-          output.push({ from: 'config.ts', to: '_cache', ignore: [] });
-        }
-
-        return [
-          ...output,
-          { from: 'public', ignore: ['.gitignore'] },
-        ];
-      })()),
+      new CopyWebpackPlugin([
+        { from: 'public', ignore: ['.gitignore'] },
+      ]),
       /**
        * Simplifies creation of HTML files to serve your webpack bundles.
        * @see https://github.com/jantimon/html-webpack-plugin
        * @example
        *  In the .ejs file you can get a profile and repositories from GitHub.
-       *    Example: htmlWebpackPlugin.options.modules.github.profile
+       *    Example: htmlWebpackPlugin.options.websites.github.profile
        *  Get a variable:
-       *    <% if (htmlWebpackPlugin.options.modules.github.profile.id === 1) { /\* code *\/ } %>
+       *    <% if (htmlWebpackPlugin.options.websites.github.profile.id === 1) { /\* code *\/ } %>
        *  Insert data from a variable:
-       *    <%= htmlWebpackPlugin.options.modules.github.profile.id %>
+       *    <%= htmlWebpackPlugin.options.websites.github.profile.id %>
        */
       new HtmlWebpackPlugin({
         filename: 'index.html',
         inject: 'head',
         meta: {
-          description: `Portfolio by ${modules.github.profile.name}`,
+          description: `Portfolio by ${config.data.first_name} ${config.data.last_name}`,
           robots: 'index, follow',
           viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+          ...config.global.meta,
         },
         minify: isProd ? {
           collapseWhitespace: true,
@@ -171,12 +141,9 @@ export default async (env: any, argv: { mode: string; }) => {
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true,
         } : false,
-        template: `./src/templates/${template}/index.ejs`,
+        template: `./src/templates/${config.global.template}/index.ejs`,
         templateParameters: {
-          config,
           isProd,
-          modules,
-          url: variables.siteUrl,
         },
       }),
       /**
@@ -201,7 +168,7 @@ export default async (env: any, argv: { mode: string; }) => {
        *  {template} - insert the path of the current template, for example - default
        */
       alias: {
-        '@': path.resolve(__dirname, `./src/templates/${template}/`),
+        '@': path.resolve(__dirname, `./src/templates/${config.global.template}/`),
         '@asset': path.resolve(__dirname, './assets/'),
         '@root': __dirname,
         '@src': path.resolve(__dirname, './src'),
@@ -241,22 +208,20 @@ export default async (env: any, argv: { mode: string; }) => {
        * @see https://github.com/arthurbergmz/webpack-pwa-manifest
        */
       new WebpackPwaManifest({
-        ...{
-          background_color: '#fff',
-          description: `Portfolio by ${modules.github.profile.name}`,
-          filename: 'static/manifest.[hash].json',
-          icons: [
-            {
-              destination: 'static/icons',
-              sizes: [96, 128, 192, 256, 384, 512],
-              src: path.resolve('demo/icon.png'),
-            },
-          ],
-          name: `${modules.github.profile.name}`,
-          short_name: config.modules.github.username,
-          start_url: variables.siteUrl,
-          theme_color: '#fff',
-        },
+        background_color: '#fff',
+        description: `Portfolio by ${config.data.first_name} ${config.data.last_name}`,
+        filename: 'static/manifest.[hash].json',
+        icons: [
+          {
+            destination: 'static/icons',
+            sizes: [96, 128, 192, 256, 384, 512],
+            src: path.resolve('demo/icon.png'),
+          },
+        ],
+        name: `${config.data.first_name} ${config.data.last_name}`,
+        short_name: `${config.data.first_name} ${config.data.last_name}`,
+        start_url: variables.siteUrl,
+        theme_color: '#fff',
         ...config.global.pwa,
       }),
       /**

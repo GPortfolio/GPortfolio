@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <%
+const { default: config } = require('../../../core/config')
 const safeQuotes = (str) => str.replace(/"/g, '&quot;')
-const headTemplate = require('ejs-loader!@src/parts/head.ejs')
-const imagesTemplate = require('ejs-loader!@src/parts/images.ejs')
 
 /*
  * Github
  */
-const repositories = modules.github.repositories
+const repositories = config.websites.github.repositories
 const repositoriesMore = config.templates.default.github_repositories_more
 const canShowMoreRepositories = repositoriesMore && repositoriesMore < repositories.length
 
@@ -50,12 +49,19 @@ function generateRepositoriesHtml(repositories) {
 
 <html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
 <head>
-  <%= headTemplate({ github: modules.github, config, url }) %>
-  <%= imagesTemplate({
-    avatar: config.data.avatar_url,
-    background: config.templates.default.background,
-    defaultBackground: require('@/assets/background.png')
-  }) %>
+  <%= require('ejs-loader!@src/parts/head.ejs')() %>
+  <style>
+    <% if (typeof config.data.avatar_url !== 'undefined' && config.data.avatar_url) { %>
+      .avatar--image {
+        background: url(<%= config.data.avatar_url %>);
+      }
+    <% } %>
+    <% if (config.templates.default.background) { %>
+      .background--image {
+        background: url(<%= config.templates.default.background || require('@/assets/background.png') %>);
+      }
+    <% } %>
+  </style>
 </head>
 <body>
 <header>
@@ -68,11 +74,11 @@ function generateRepositoriesHtml(repositories) {
     <% if (config.data.position) { %>
       <span class="header__wrap__position"><%= config.data.position %></span>
     <% } %>
-    <% if (config.data.socialMedia.length > 0) { %>
+    <% if (config.data.links.length > 0) { %>
       <div class="header__wrap__social">
-        <% for (const media of config.data.socialMedia) { %>
-          <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
-            <%= require(`!!svg-inline-loader!@asset/icons/${media.icon}.svg`) %>
+        <% for (const link of config.data.links) { %>
+          <a href="<%= link.link %>" title="<%= safeQuotes(link.name) %>" target="_blank" rel="noopener">
+            <%= require(`!!svg-inline-loader!@asset/icons/${link.icon}.svg`) %>
           </a>
         <% } %>
       </div>
@@ -80,7 +86,7 @@ function generateRepositoriesHtml(repositories) {
   </div>
 </header>
 <main>
-  <% if (modules.github && modules.github.repositories.length > 0) { %>
+  <% if (repositories.length > 0) { %>
     <section class="repositories-section uk-section uk-section-default">
       <div class="uk-container">
         <h2 class="uk-heading-line">
@@ -112,8 +118,10 @@ function generateRepositoriesHtml(repositories) {
 
 <script type="text/javascript">
 <% if (canShowMoreRepositories) {%>
-  var repositories = <%= JSON.stringify(modules.github.repositories) %>;
+  var repositories = <%= JSON.stringify(repositories) %>;
 <% } %>
+
+console.log(<%= JSON.stringify(config) %>);
 
 window.addEventListener('DOMContentLoaded', function () {
   <% if (canShowMoreRepositories) { %>

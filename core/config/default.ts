@@ -1,16 +1,10 @@
-import { getDeepByKey } from './core/helpers/utils';
-
-/*
- * After editing - restart the server for the change to take effect.
- */
-
 export default {
   global: {
 
     /**
      * The value is the name of the folder, all templates
      * you can find by the current path:
-     *    ./src/templates
+     *    src/templates
      * You can also create your own template, which is
      * described in this file:
      *    README.md
@@ -36,17 +30,9 @@ export default {
      * @see http://ogp.me/
      * @example
      *  'og:title': 'My portfolio'
-     * @default
-     *  og:title => Portfolio by {name from Github},
-     *  og:type => profile,
-     *  og:image => {avatar url from Github},
-     *  og:url => {site url},
-     *  profile:username => {username}
      */
     opg: {
-      'profile:first_name': '',
-      'profile:gender': '', // male, female
-      'profile:last_name': '',
+      //
     },
 
     /**
@@ -58,7 +44,9 @@ export default {
      *    { description: 'My portfolio', background_color: '#333' }
      */
     pwa: {
-      //
+      description: '',
+      name: '',
+      short_name: '',
     },
 
     /**
@@ -68,60 +56,70 @@ export default {
      *  www.example.com
      */
     customDomain: '',
+
+    /**
+     * Add meta tags to head
+     * @type {Object}
+     * @example
+     *  { description: 'Portfolio of a certain user' }
+     *  { keywords: 'portfolio, cw' }
+     */
+    meta: {
+      //
+    },
   },
 
   data: {
 
     /**
-     * Your name
      * @type {string}
      */
-    name: (modules: any) => {
-      let val = getDeepByKey(modules, ['github', 'profile', 'name']);
-
-      if (!val) {
-        val = getDeepByKey(modules, ['dribbble', 'profile', 'name']);
-      }
-
-      return val;
-    },
-
-    /**
-     * Profile picture
-     * @type {string}
-     */
-    avatar_url: (modules: any) => {
-      let val = getDeepByKey(modules, ['github', 'profile', 'avatar_url']);
-
-      if (!val) {
-        val = getDeepByKey(modules, ['dribbble', 'profile', 'avatar_url']);
-      }
-
-      return val;
-    },
+    first_name: '',
 
     /**
      * @type {string}
      */
-    position: 'Software Developer',
+    last_name: '',
 
     /**
-     * Searching for a job
+     * @type {string}
+     */
+    bio: '',
+
+    /**
+     * @type {string}
+     */
+    avatar_url: '',
+
+    /**
+     * @type {string}
+     */
+    position: '',
+
+    /**
+     * @type {string}
+     */
+    company: '',
+
+    /**
+     * @type {string}
+     */
+    location: '',
+
+    /**
      * @type {boolean}
      */
-    hire: (modules: any) => !!getDeepByKey(modules, ['github', 'profile', 'hireable']),
+    hireable: false,
 
     /**
-     * You are in social networks
      * @type {Array}
      */
-    socialMedia: [
-      { name: 'Github', icon: 'github', link: 'https://github.com/' },
-      { name: 'LinkedIn', icon: 'linkedin', link: 'https://linkedin.com/' },
+    links: [
+      //
     ],
   },
 
-  modules: {
+  websites: {
     github: {
 
       /**
@@ -144,7 +142,7 @@ export default {
        * @type {string}
        * @see https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
        */
-      token: process.env.GITHUB_TOKEN || '',
+      token: '',
 
       /**
        * Various configurations are stored that will filter
@@ -199,8 +197,8 @@ export default {
       filter: {
 
         /**
-         * @type {IFilters[]}
-         * @see core/interfaces/IGithib.ts identify attributes
+         * @type {IFilter[]}
+         * @see core/interfaces/IGithub.ts identify attributes
          * @see docs/config.md #Filters
          */
         repositories: [
@@ -212,17 +210,29 @@ export default {
 
         /**
          * @type {ISort}
-         * @see core/interfaces/IGithib.ts identify attributes
+         * @see core/interfaces/IGithub.ts identify attributes
          * @example
          *  { attr: 'stargazers_count', enable: true, sortByDesc: true }
          *  { attr: 'owner.id', enable: true, sortByDesc: false }
          */
         repositories: {
-          attr: 'stargazers_count',
-          enable: false,
-          sortByDesc: true,
+          //
         },
       },
+
+      /**
+       * @type {IGithubProfile}
+       */
+      profile: {
+        //
+      },
+
+      /**
+       * @type {IGithubRepository}
+       */
+      repositories: [
+        //
+      ],
     },
 
     dribbble: {
@@ -232,26 +242,26 @@ export default {
          * NOTICE: Set value in .env file
          * @type {string}
          */
-        client_id: process.env.DRIBBBLE_CLIENT_ID || '',
+        client_id: '',
 
         /**
          * NOTICE: Set value in .env file
          * @type {string}
          */
-        client_secret: process.env.DRIBBBLE_CLIENT_SECRET || '',
+        client_secret: '',
 
         /**
          * NOTICE: Set value in .env file
          * NOTE: Code is valid only once when receiving a token
          * @type {string}
          */
-        code: process.env.DRIBBBLE_CODE || '',
+        code: '',
       },
 
       filter: {
 
         /**
-         * @type {IFilters[]}
+         * @type {IFilter[]}
          * @see core/interfaces/IDribbble.ts identify attributes
          * @see docs/config.md #Filters
          */
@@ -269,9 +279,7 @@ export default {
          *  { attr: 'id', enable: true, sortByDesc: true }
          */
         shots: {
-          attr: 'id',
-          enable: false,
-          sortByDesc: true,
+          //
         },
       },
     },

@@ -1,16 +1,16 @@
 import axios, { AxiosInstance } from 'axios';
-import config from '../../../config';
-import Module from '../../classes/Module';
 import {
   IGithubContributor,
   IGithubProfile,
   IGithubRepository,
 } from '../../interfaces/IGithub';
+import config from '../../config';
+import Module from '../../classes/Module';
 
 /** @type {AxiosInstance} */
 const axiosInstance: AxiosInstance = axios.create({
   headers: {
-    Authorization: config.modules.github.token ? `token ${config.modules.github.token}` : null,
+    Authorization: config.websites.github.token ? `token ${config.websites.github.token}` : null,
   },
 });
 
@@ -40,9 +40,9 @@ export default class Github extends Module {
    * @return {string}
    */
   static get URL_REPOSITORIES(): string {
-    const append = config.modules.github.token
+    const append = config.websites.github.token
       ? 'user/repos'
-      : `users/${config.modules.github.username}/repos`;
+      : `users/${config.websites.github.username}/repos`;
 
     return `${this.API}/${append}`;
   }
@@ -52,10 +52,8 @@ export default class Github extends Module {
    * @return {string}
    */
   static get URL_PROFILE(): string {
-    return `${this.API}/users/${config.modules.github.username}`;
+    return `${this.API}/users/${config.websites.github.username}`;
   }
-
-  public static NAME = 'Github';
 
   public static API = 'https://api.github.com';
 
@@ -102,9 +100,9 @@ export default class Github extends Module {
     const repositories = [];
     let page = 1;
 
-    const repositoryType = config.modules.github.token
+    const repositoryType = config.websites.github.token
       ? undefined
-      : config.modules.github.parse.repositories.type;
+      : config.websites.github.parse.repositories.type;
 
     do {
       Github.log(Github.sections.repositories, `Fetching data from API.. | ${page} page`).info();
@@ -113,7 +111,7 @@ export default class Github extends Module {
         /* eslint-disable-next-line no-await-in-loop */
         fetchRepositories = await axiosInstance.get(Github.URL_REPOSITORIES, {
           params: {
-            ...config.modules.github.parse.repositories,
+            ...config.websites.github.parse.repositories,
             page,
             per_page: MAX_COUNT,
             type: repositoryType,
@@ -152,7 +150,7 @@ export default class Github extends Module {
         /* eslint-disable-next-line no-await-in-loop */
         fetchContributors = await axiosInstance.get(fetchUrl, {
           params: {
-            ...config.modules.github.parse.repositories,
+            ...config.websites.github.parse.repositories,
             page,
             per_page: MAX_COUNT,
           },
