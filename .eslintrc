@@ -17,6 +17,10 @@
     "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
+  "ignorePatterns": [
+    "dist/",
+    "node_modules/"
+  ],
   "plugins": [
     "@typescript-eslint"
   ]
