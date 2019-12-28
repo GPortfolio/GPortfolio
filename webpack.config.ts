@@ -129,11 +129,6 @@ export default async (env: any, argv: { mode: string; }) => {
     },
     plugins: [
       /**
-       * Remove build folder(s) before building.
-       * @see https://github.com/johnagan/clean-webpack-plugin
-       */
-      new CleanWebpackPlugin(),
-      /**
        * Copies individual files or entire directories to the build directory.
        * @see https://github.com/webpack-contrib/copy-webpack-plugin
        */
@@ -235,6 +230,11 @@ export default async (env: any, argv: { mode: string; }) => {
       });
 
     webpackConfig.plugins.push(
+      /**
+       * Remove build folder(s) before building.
+       * @see https://github.com/johnagan/clean-webpack-plugin
+       */
+      new CleanWebpackPlugin(),
       /**
        * Progressive Web App Manifest Generator for Webpack,
        * with auto icon resizing and fingerprinting support.
