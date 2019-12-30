@@ -121,8 +121,6 @@ function generateRepositoriesHtml(repositories) {
   var repositories = <%= JSON.stringify(repositories) %>;
 <% } %>
 
-console.log(<%= JSON.stringify(config) %>);
-
 window.addEventListener('DOMContentLoaded', function () {
   <% if (canShowMoreRepositories) { %>
     /*
@@ -133,7 +131,7 @@ window.addEventListener('DOMContentLoaded', function () {
     if (btnMoreGithubRepsEl) {
       var sectionGithubRepsEl = document.querySelector('.repositories');
       var per_page = <%= repositoriesMore %>;
-      var len = repositories.length;
+      var len = <%= repositories.length %>;
       var page = 1;
 
       btnMoreGithubRepsEl.addEventListener('click', function () {

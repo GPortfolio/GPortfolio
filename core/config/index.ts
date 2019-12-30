@@ -7,7 +7,7 @@ const data = defaultData;
 
 const replace = (keys: Array<string>) => {
   const keySplit = keys.join('/');
-  const filePath = path.resolve(`config/${folder}/${keySplit}.json`);
+  const filePath = path.resolve(`core/config/${folder}/${keySplit}.json`);
 
   if (fs.existsSync(filePath)) {
     let currentData: any = data;
