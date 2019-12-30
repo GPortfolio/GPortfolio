@@ -51,16 +51,13 @@ function generateRepositoriesHtml(repositories) {
 <head>
   <%= require('ejs-loader!@src/parts/head.ejs')() %>
   <style>
-    <% if (typeof config.data.avatar_url !== 'undefined' && config.data.avatar_url) { %>
-      .avatar--image {
-        background: url(<%= config.data.avatar_url %>);
-      }
-    <% } %>
-    <% if (config.templates.default.background) { %>
-      .background--image {
-        background: url(<%= config.templates.default.background || require('@/assets/background.png') %>);
-      }
-    <% } %>
+    .avatar--image {
+      /* TODO Default avatar */
+      background: url(<%= config.data.avatar_url %>);
+    }
+    .background--image {
+      background: url(<%= config.templates.default.background || require('@/assets/background.png').default %>);
+    }
   </style>
 </head>
 <body>
@@ -156,9 +153,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
   <% } %>
 });
-</script>
 
-<script type="text/javascript">
 function htmlToElements(html) {
   var template = document.createElement('template');
   template.innerHTML = html;
