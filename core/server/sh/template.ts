@@ -8,10 +8,9 @@
  */
 
 import fs from 'fs';
-import { sep } from 'path';
-import config from '../core/config';
-import Logger from '../core/classes/Logger';
-import variables from '../core/variables';
+import path, { sep } from 'path';
+import config from '../../config';
+import logger from '../../helpers/logger';
 
 /** @type {Array<string>} */
 const argv: string[] = process.argv.slice(2);
@@ -21,8 +20,8 @@ const loggerSection: string = 'Template';
 
 // Check name of template
 if (argv.length !== 1) {
-  Logger.error(loggerSection, 'Invalid arguments');
-  process.exit(0);
+  logger(loggerSection, 'Invalid arguments').error();
+  process.exit(1);
 }
 
 /**
@@ -35,25 +34,27 @@ const name: string = argv[0].trim();
  * Path to templates
  * @type {string}
  */
-const BASE_PATH: string = `${variables.root + sep}src${sep}templates${sep}`;
+const BASE_PATH: string = path.resolve(__dirname, `..${sep}src${sep}templates${sep}`);
 
 /** @type {string} */
 const FILE_ENCODING: string = 'utf8';
 
+const githubProfile = config.websites.github.profile;
+
 // Check on exists template
 if (fs.existsSync(BASE_PATH + name)) {
-  Logger.warning(loggerSection, `Template exists: ${BASE_PATH + name}`);
-  process.exit(0);
+  logger(loggerSection, `Template exists: ${BASE_PATH + name}`).error();
+  process.exit(1);
 }
 
 // Create folder
-Logger.info(loggerSection, `Create: ${BASE_PATH + name}`);
+logger(loggerSection, `Create: ${BASE_PATH + name}`).info();
 fs.mkdirSync(BASE_PATH + name);
 
 /*
  * ---------------------------------------------- Create required .ts file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}index.ts`);
+logger(loggerSection, `Create: ${BASE_PATH + name + sep}index.ts`).info();
 fs.writeFileSync(`${BASE_PATH + name + sep}index.ts`, `import '../../main';
 
 // Code
@@ -62,7 +63,7 @@ fs.writeFileSync(`${BASE_PATH + name + sep}index.ts`, `import '../../main';
 /*
  * ---------------------------------------------- Create required .scss file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}index.scss`);
+logger(loggerSection, `Create: ${BASE_PATH + name + sep}index.scss`).info();
 fs.writeFileSync(`${BASE_PATH + name + sep}index.scss`, `@import "../../main.scss";
 
 // Code
@@ -71,10 +72,10 @@ fs.writeFileSync(`${BASE_PATH + name + sep}index.scss`, `@import "../../main.scs
 /*
  * ---------------------------------------------- Create required .html file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}index.ejs`);
+logger(loggerSection, `Create: ${BASE_PATH + name + sep}index.ejs`).info();
 fs.writeFileSync(`${BASE_PATH + name + sep}index.ejs`, `<!DOCTYPE html>
 <%
-const { default: config } = require('../../../config')
+const { default: config } = require('../../../core/config')
 %>
 
 <html lang="en" data-template="${name}" data-compiled="<%= Date.now() %>">
@@ -90,19 +91,17 @@ const { default: config } = require('../../../config')
 /*
  * ---------------------------------------------- Create .md file
  */
-Logger.info(loggerSection, `Create: ${BASE_PATH + name + sep}README.md`);
+logger(loggerSection, `Create: ${BASE_PATH + name + sep}README.md`).info();
 fs.writeFileSync(`${BASE_PATH + name + sep}README.md`, `# Template: ${name}
 
 ## Preview
 <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/templates/${name}.png" alt="${name}">
 
 ## Creator
-[@${config.websites.github.username}](https://github.com/${config.websites.github.username})
+[@${githubProfile ? githubProfile.login : 'set_login'}](https://github.com/${githubProfile ? githubProfile.login : 'set_url'})
 `, { encoding: FILE_ENCODING });
 
 /*
  * ---------------------------------------------- Complete
  */
-Logger.success(loggerSection, `Complete, path: ${BASE_PATH + name}`);
-Logger.info(loggerSection, 'To change the template - edit config.ts:');
-Logger.info(loggerSection, `  { global.template: ${name} }`);
+logger(loggerSection, `Complete, path: ${BASE_PATH + name}`).success();

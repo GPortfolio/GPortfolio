@@ -1,13 +1,30 @@
+import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
 import defaultData from './default';
+import transform from './transform';
 
-const folder = process.env.APP_DEMO === 'true' ? 'demo' : 'custom';
+// We import this file from the ejs template,
+// so we need to update the environment
+const envPath = path.resolve('.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+}
+
+/**
+ * Support multiple accounts
+ * @type {string}
+ */
+const account = process.env.APP_ACCOUNT || 'profile';
 const data = defaultData;
 
+/**
+ * Replace default data with user data
+ * @param {string[]} keys
+ */
 const replace = (keys: Array<string>) => {
   const keySplit = keys.join('/');
-  const filePath = path.resolve(`core/config/${folder}/${keySplit}.json`);
+  const filePath = path.resolve(`core/config/accounts/${account}/${keySplit}.json`);
 
   if (fs.existsSync(filePath)) {
     let currentData: any = data;
@@ -17,6 +34,7 @@ const replace = (keys: Array<string>) => {
       return;
     }
 
+    // Refers to the folder itself as a folder.json
     if (lastKey === 'index') {
       lastKey = keys.pop();
       if (!lastKey) {
@@ -29,13 +47,15 @@ const replace = (keys: Array<string>) => {
     });
 
     // eslint-disable-next-line
-    const jsonData = require(`./${folder}/${keySplit}.json`);
+    const jsonData = require(`./accounts/${account}/${keySplit}.json`);
 
     currentData[lastKey] = Array.isArray(currentData[lastKey])
       ? [...currentData[lastKey], ...jsonData]
       : { ...currentData[lastKey], ...jsonData };
   }
 };
+
+// TODO Automatically
 
 // Common
 replace(['global']);
@@ -53,5 +73,7 @@ replace(['websites', 'dribbble', 'shots']);
 
 // Templates
 replace(['templates', 'default']);
+
+transform(data);
 
 export default data;

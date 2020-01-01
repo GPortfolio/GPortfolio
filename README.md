@@ -152,7 +152,7 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 ### How can you improve?
 
 - **Default** template
-  - Display data shots from **Dribbble** (`modules.dribbble.shots`)
+  - Display data shots from **Dribbble** (`websites.dribbble.shots`)
 - Add more templates or improve existing.
 - Add more sites for parse data.
 - Add tests

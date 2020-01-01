@@ -1,3 +1,5 @@
+import { IConfig } from '@i/IConfig';
+
 export default {
   global: {
 
@@ -8,8 +10,6 @@ export default {
      * You can also create your own template, which is
      * described in this file:
      *    README.md
-     * @type {string}
-     * @default default
      */
     template: 'default',
 
@@ -18,18 +18,14 @@ export default {
      *  Then the value is empty
      * If the repository is called: portfolio, or any other name
      *  Then the value of <name of repository>
-     * @type {string}
      */
     base: '',
 
     /**
      * The Open Graph protocol
-     *  key - property
-     *  value - content
-     * @type {Object}
-     * @see http://ogp.me/
      * @example
-     *  'og:title': 'My portfolio'
+     *  { 'og:title': 'My portfolio' }
+     *  <meta property="og:title" content="My portfolio" />
      */
     opg: {
       //
@@ -37,109 +33,108 @@ export default {
 
     /**
      * Override options for WebpackPwaManifest plugin
-     * @type {Object}
      * @see https://github.com/arthurbergmz/webpack-pwa-manifest
      * @example
      *  For change description and background color:
      *    { description: 'My portfolio', background_color: '#333' }
      */
     pwa: {
-      description: '',
-      name: '',
-      short_name: '',
+      //
     },
 
     /**
      * If you are deploying to a custom domain
-     * @type {string}
      * @example
      *  www.example.com
      */
     customDomain: '',
 
     /**
-     * Add meta tags to head
-     * @type {Object}
+     * Meta tags to head
      * @example
-     *  { description: 'Portfolio of a certain user' }
-     *  { keywords: 'portfolio, cw' }
+     *  { description: 'My Portfolio', keywords: 'portfolio, cw' }
      */
     meta: {
       //
     },
   },
 
+  /**
+   * User data, which will be mostly used in templates
+   */
   data: {
 
     /**
-     * @type {string}
+     * First name of the user
      */
     first_name: '',
 
     /**
-     * @type {string}
+     * Last name of the user
      */
     last_name: '',
 
     /**
-     * @type {string}
+     * Short text for user description
      */
     bio: '',
 
     /**
-     * @type {string}
+     * Image link
      */
     avatar_url: '',
 
     /**
-     * @type {string}
+     * @example
+     *  Freelance
+     *  Software Engineer
+     *  UI/UX Designer
      */
     position: '',
 
     /**
-     * @type {string}
+     * Name of the company
      */
     company: '',
 
     /**
-     * @type {string}
+     * Where are you
      */
     location: '',
 
     /**
-     * @type {boolean}
+     * Do you accept a job offer
      */
     hireable: false,
 
     /**
-     * @type {Array}
+     * Links to various website / social networks
      */
     links: [
       //
     ],
   },
 
+  /**
+   * A list of sites on which we can obtain additional data, such as a list
+   * of repositories from the Github, or shots from Dribbble. And also
+   * with the help of these data you can quickly fill out a profile
+   */
   websites: {
+
+    /**
+     * DescriptionGitHub is a global company that provides hosting for
+     * software development version control using Git
+     * @see https://github.com/
+     * @see docs/websites/github.md
+     */
     github: {
 
       /**
-       * Set your login from github, after the build we will receive
-       * data from this profile (name, projects, etc.)
-       * @type {string}
-       * @example
-       *  You can find the login from the address bar, for example, value will be:
-       *    alexeykhr
-       *  From url https://github.com/alexeykhr
-       */
-      username: '',
-
-      /**
-       * NOTICE: Set value in .env file
        * If a token is specified, then all repositories will be
-       *  displayed (including from organizations)
-       * Only one access is needed to:
-       *  public_repo - Access public repositories
-       * @type {string}
+       * displayed (including from organizations). You do not
+       * need to specify any additional accesses, just
+       * get the token itself
        * @see https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line
        */
       token: '',
@@ -147,43 +142,39 @@ export default {
       /**
        * Various configurations are stored that will filter
        * the received data with the Github API
-       * @type {object}
        */
       parse: {
 
-        /** @see https://developer.github.com/v3/repos/#list-user-repositories docs */
+        /**
+         * @see https://developer.github.com/v3/repos/#list-user-repositories docs
+         */
         repositories: {
 
           /**
            * Not used if token is present. Instead, use: visibility, affiliation.
-           * @type {string} - all, owner, member
            * @default owner
            */
           type: 'owner',
 
           /**
-           * @type {string} - created, updated, pushed, full_name
            * @default full_name
            */
           sort: 'full_name',
 
           /**
-           * @type {string} - asc, desc
            * @default asc when using full_name, otherwise desc
            */
           direction: 'asc',
 
           /**
            * ONLY IF THE TOKEN IS SPECIFIED
-           * @type {string} - all, public, private
            * @default all
            */
           visibility: 'public',
 
           /**
            * ONLY IF THE TOKEN IS SPECIFIED
-           * Comma-separated list of values
-           * @type {string}
+           * Comma-separated list of values:
            *  owner: Repositories that are owned by the authenticated user.
            *  collaborator: Repositories that the user has been added to as a collaborator.
            *  organization_member: Repositories that the user has access to through being a member
@@ -194,102 +185,93 @@ export default {
         },
       },
 
+      /**
+       * Before outputting data - filter them
+       * @see docs/config.md #Filters
+       */
       filter: {
-
-        /**
-         * @type {IFilter[]}
-         * @see core/interfaces/IGithub.ts identify attributes
-         * @see docs/config.md #Filters
-         */
         repositories: [
           //
         ],
       },
 
-      sort: {
-
-        /**
-         * @type {ISort}
-         * @see core/interfaces/IGithub.ts identify attributes
-         * @example
-         *  { attr: 'stargazers_count', enable: true, sortByDesc: true }
-         *  { attr: 'owner.id', enable: true, sortByDesc: false }
-         */
-        repositories: {
-          //
-        },
-      },
-
       /**
-       * @type {IGithubProfile}
+       * Before outputting data - sort them
+       * @see docs/config.md #Sort
        */
-      profile: {
-        //
+      sort: {
+        repositories: null,
       },
 
       /**
-       * @type {IGithubRepository}
+       * Profile from Github API
+       */
+      profile: null,
+
+      /**
+       * Repositories from Github API
        */
       repositories: [
         //
       ],
     },
 
+    /**
+     * DescriptionDribbble is a self-promotion and networking
+     * platform for digital designers.
+     * @see https://dribbble.com/
+     * @see docs/websites/dribbble.md
+     */
     dribbble: {
 
+      /**
+       * Data required to obtain access_token (access to profile)
+       */
       auth: {
-        /**
-         * NOTICE: Set value in .env file
-         * @type {string}
-         */
         client_id: '',
-
-        /**
-         * NOTICE: Set value in .env file
-         * @type {string}
-         */
         client_secret: '',
-
-        /**
-         * NOTICE: Set value in .env file
-         * NOTE: Code is valid only once when receiving a token
-         * @type {string}
-         */
         code: '',
       },
 
+      /**
+       * Before outputting data - filter them
+       * @see docs/config.md #Filters
+       */
       filter: {
-
-        /**
-         * @type {IFilter[]}
-         * @see core/interfaces/IDribbble.ts identify attributes
-         * @see docs/config.md #Filters
-         */
         shots: [
           //
         ],
       },
 
+      /**
+       * Before outputting data - sort them
+       * @see docs/config.md #Sort
+       */
       sort: {
-
-        /**
-         * @type {ISort}
-         * @see core/interfaces/IDribbble.ts identify attributes
-         * @example
-         *  { attr: 'id', enable: true, sortByDesc: true }
-         */
-        shots: {
-          //
-        },
+        shots: null,
       },
+
+      /**
+       * Profile from Dribbble API
+       */
+      profile: null,
+
+      /**
+       * Shots from Dribbble API
+       */
+      shots: [
+        //
+      ],
     },
   },
 
+  /**
+   * Additional settings for each created template
+   */
   templates: {
     default: {
 
       /**
-       * @type {string}
        * @see docs/config.md #Image
        */
       background: '',
@@ -298,15 +280,13 @@ export default {
        * Number of items to display, the rest will be hidden and displayed
        * when you click on the button (for the same number of elements)
        *  0 - display all
-       * @type {number}
        */
       github_repositories_more: 25,
 
       /**
        * Same as github_repositories_more
-       * @type {number}
        */
       dribbble_shots_more: 25,
     },
   },
-};
+} as IConfig;

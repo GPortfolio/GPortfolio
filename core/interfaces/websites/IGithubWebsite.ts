@@ -1,3 +1,27 @@
+import { IFilter } from '@i/IFilter';
+import { ISort } from '@i/ISort';
+
+export interface IGithubWebsite {
+  token: string
+  parse: {
+    repositories: {
+      type: string
+      sort: string
+      direction: string
+      visibility: string
+      affiliation: string
+    }
+  }
+  filter: {
+    repositories: IFilter[]
+  }
+  sort: {
+    repositories: ISort | null
+  }
+  profile: IGithubProfile | null
+  repositories: IGithubRepository[]
+}
+
 export interface IGithubProfile {
   login: string;
   id: number;

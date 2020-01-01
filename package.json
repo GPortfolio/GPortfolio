@@ -1,16 +1,15 @@
 {
   "name": "@gportfolio/gportfolio",
   "version": "3.4.1",
-  "description": "Create Your Portfolio Online",
+  "description": "Create Your Portfolio",
   "scripts": {
     "dev": "webpack-dev-server --hot --progress",
     "build": "webpack --mode=production",
     "lint": "eslint --ext .js,.ts .",
     "lint:fix": "npm run lint -- --fix",
     "release": "npm run contributors && standard-version",
-    "template": "ts-node scripts/template.ts",
-    "deploy": "ts-node scripts/deploy.ts",
-    "contributors": "ts-node scripts/contributors.ts"
+    "contributors": "ts-node utils/contributors.ts",
+    "github-deploy": "ts-node utils/githubDeploy.ts"
   },
   "repository": {
     "type": "git",
@@ -36,6 +35,8 @@
   "homepage": "https://github.com/GPortfolio/GPortfolio#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
+    "chalk": "^3.0.0",
     "shelljs": "^0.8.3",
     "uikit": "^3.2.6"
   },
@@ -59,7 +60,6 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.0",
-    "dotenv": "^8.2.0",
     "ejs-loader": "^0.3.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^6.3.1",

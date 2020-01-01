@@ -1,7 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
-import config from '../../config';
-import Module from '../../classes/Module';
-import { IDribbbleProfile, IDribbbleShot } from '../../interfaces/IDribbble';
+import { IDribbbleProfile, IDribbbleShot } from '@i/websites/IDribbbleWebsite';
+import config from '../config';
 
 /** @type {AxiosInstance} */
 const axiosInstance: AxiosInstance = axios.create();
@@ -9,7 +8,7 @@ const axiosInstance: AxiosInstance = axios.create();
 /** @type {number} */
 const MAX_COUNT: number = 100;
 
-class Dribbble extends Module {
+class Dribbble {
   /**
    * Logger sections
    */

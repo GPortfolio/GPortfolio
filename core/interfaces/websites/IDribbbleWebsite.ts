@@ -1,3 +1,22 @@
+import { IFilter } from '@i/IFilter';
+import { ISort } from '@i/ISort';
+
+export interface IDribbbleWebsite {
+  auth: {
+    client_id: string
+    client_secret: string
+    code: string
+  }
+  filter: {
+    shots: IFilter[]
+  }
+  sort: {
+    shots: ISort | null
+  }
+  profile: IDribbbleProfile | null
+  shots: IDribbbleShot[]
+}
+
 export interface IDribbbleProfile {
   id: number;
   name: string;

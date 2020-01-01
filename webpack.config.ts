@@ -11,15 +11,16 @@ import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import server from './core/server';
 import config from './core/config';
-import variables from './core/variables';
+import global from './core/global';
 
 /**
  * Load .env file for change environment
  * @example
  *  process.env.APP_DEMO
  */
-if (fs.existsSync(path.resolve(__dirname, '.env'))) {
-  dotenv.config();
+const envPath = path.resolve(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
 }
 
 export default async (env: any, argv: { mode: string; }) => {
@@ -32,7 +33,7 @@ export default async (env: any, argv: { mode: string; }) => {
       before: server,
       contentBase: [
         path.resolve(__dirname, `./src/templates/${config.global.template}/index.ejs`),
-        path.resolve(__dirname, './config'),
+        path.resolve(__dirname, './core/config/accounts'),
       ],
       hot: true,
       inline: true,
@@ -220,7 +221,7 @@ export default async (env: any, argv: { mode: string; }) => {
         ],
         name: `${config.data.first_name} ${config.data.last_name}`,
         short_name: `${config.data.first_name} ${config.data.last_name}`,
-        start_url: variables.siteUrl,
+        start_url: global.siteUrl,
         theme_color: '#fff',
         ...config.global.pwa,
       }),
