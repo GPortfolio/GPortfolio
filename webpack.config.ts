@@ -48,7 +48,7 @@ export default async (env: any, argv: { mode: string; }) => {
         ]
         : [
           './src/dev/index.ts',
-          './src/dev/index.scss'
+          './src/dev/index.scss',
         ],
     },
     mode: argv.mode,
