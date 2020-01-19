@@ -1,0 +1,7 @@
+<%
+const { default: config } = require('../../core/config');
+// TODO Check file on exists
+const template = require(`!!ejs-loader!../templates/${config.global.template}/index.ejs`);
+%>
+
+<%= template() %>

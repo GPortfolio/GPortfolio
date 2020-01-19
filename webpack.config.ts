@@ -32,7 +32,7 @@ export default async (env: any, argv: { mode: string; }) => {
       clientLogLevel: 'error',
       before: server,
       contentBase: [
-        path.resolve(__dirname, `./src/templates/${config.global.template}/index.ejs`),
+        path.resolve(__dirname, './src/templates'),
         path.resolve(__dirname, './core/config/accounts'),
       ],
       hot: true,
@@ -41,10 +41,15 @@ export default async (env: any, argv: { mode: string; }) => {
     },
     devtool: isProd ? false : 'source-map',
     entry: {
-      main: [
-        `./src/templates/${config.global.template}/index.ts`,
-        `./src/templates/${config.global.template}/index.scss`,
-      ],
+      main: isProd
+        ? [
+          `./src/templates/${config.global.template}/index.ts`,
+          `./src/templates/${config.global.template}/index.scss`,
+        ]
+        : [
+          './src/dev/index.ts',
+          './src/dev/index.scss'
+        ],
     },
     mode: argv.mode,
     module: {
@@ -142,7 +147,9 @@ export default async (env: any, argv: { mode: string; }) => {
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true,
         } : false,
-        template: `./src/templates/${config.global.template}/index.ejs`,
+        template: isProd
+          ? `!!ejs-loader!./src/templates/${config.global.template}/index.ejs`
+          : '!!ejs-loader!./src/dev/index.ejs',
         templateParameters: {
           isProd,
         },
@@ -161,7 +168,6 @@ export default async (env: any, argv: { mode: string; }) => {
        * @see https://webpack.js.org/configuration/resolve/
        * @example
        *  Import from .ts files
-       *  - import '@/main' - get file './src/template/{template}/main.ts'
        *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
        *  Import from .scss files
        *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
@@ -169,7 +175,6 @@ export default async (env: any, argv: { mode: string; }) => {
        *  {template} - insert the path of the current template, for example - default
        */
       alias: {
-        '@': path.resolve(__dirname, `./src/templates/${config.global.template}/`),
         '@asset': path.resolve(__dirname, './assets/'),
         '@root': __dirname,
         '@src': path.resolve(__dirname, './src'),
