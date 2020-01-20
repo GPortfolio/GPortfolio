@@ -11,4 +11,4 @@ const noLastSlash = (str: string): string => (str[str.length - 1] === '/'
 const { profile: githubProfile } = config.websites.github;
 
 export default noLastSlash(`https://${config.global.customDomain
-|| `${githubProfile ? githubProfile.login : ''}.github.io/${config.global.base}`}`)
+  || `${githubProfile ? githubProfile.login : ''}.github.io/${config.global.base}`}`);

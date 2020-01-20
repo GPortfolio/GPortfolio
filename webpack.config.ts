@@ -149,7 +149,7 @@ export default async (env: any, argv: { mode: string; }) => {
         } : false,
         template: isProd
           ? `!!ejs-loader!./src/templates/${config.global.template}/index.ejs`
-          : '!!ejs-loader!./src/dev/index.ejs',
+          : '!!ejs-loader!./src/main.ejs',
         templateParameters: {
           isProd,
         },
@@ -178,6 +178,7 @@ export default async (env: any, argv: { mode: string; }) => {
         '@asset': path.resolve(__dirname, './assets/'),
         '@root': __dirname,
         '@src': path.resolve(__dirname, './src'),
+        '@t': path.resolve(__dirname, './src/templates'),
       },
       /**
        * Attempt to resolve these extensions in order

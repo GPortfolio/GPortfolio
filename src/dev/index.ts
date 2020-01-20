@@ -1,6 +1,6 @@
 /* eslint-disable global-require, import/no-webpack-loader-syntax, import/no-dynamic-require */
 
-import global from '../../core/global'
+import global from '../../core/global';
 
 (() => {
   const { template } = require(`../../core/config/accounts/${global.account}/global.json`);
