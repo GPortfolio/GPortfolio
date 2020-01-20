@@ -9,9 +9,9 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
+import siteUrl from './core/config/siteUrl';
 import server from './core/server';
 import config from './core/config';
-import global from './core/global';
 
 /**
  * Load .env file for change environment
@@ -226,7 +226,7 @@ export default async (env: any, argv: { mode: string; }) => {
         ],
         name: `${config.data.first_name} ${config.data.last_name}`,
         short_name: `${config.data.first_name} ${config.data.last_name}`,
-        start_url: global.siteUrl,
+        start_url: siteUrl,
         theme_color: '#fff',
         ...config.global.pwa,
       }),

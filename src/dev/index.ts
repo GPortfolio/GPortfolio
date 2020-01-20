@@ -1,8 +1,9 @@
 /* eslint-disable global-require, import/no-webpack-loader-syntax, import/no-dynamic-require */
 
+import global from '../../core/global'
+
 (() => {
-  const account = process.env.APP_ACCOUNT || 'profile';
-  const { template } = require(`../../core/config/accounts/${account}/global.json`);
+  const { template } = require(`../../core/config/accounts/${global.account}/global.json`);
 
   require(`../templates/${template}/index`);
   require(`../templates/${template}/index.scss`);

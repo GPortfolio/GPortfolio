@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import defaultData from './default';
 import transform from './transform';
+import global from '../global';
 
 // We import this file from the ejs template,
 // so we need to update the environment
@@ -15,7 +16,6 @@ if (fs.existsSync(envPath)) {
  * Support multiple accounts
  * @type {string}
  */
-const account = process.env.APP_ACCOUNT || 'profile';
 const data = defaultData;
 
 /**
@@ -24,7 +24,7 @@ const data = defaultData;
  */
 const replace = (keys: Array<string>) => {
   const keySplit = keys.join('/');
-  const filePath = path.resolve(`core/config/accounts/${account}/${keySplit}.json`);
+  const filePath = path.resolve(`core/config/accounts/${global.account}/${keySplit}.json`);
 
   if (fs.existsSync(filePath)) {
     let currentData: any = data;
@@ -47,7 +47,7 @@ const replace = (keys: Array<string>) => {
     });
 
     // eslint-disable-next-line
-    const jsonData = require(`./accounts/${account}/${keySplit}.json`);
+    const jsonData = require(`./accounts/${global.account}/${keySplit}.json`);
 
     currentData[lastKey] = Array.isArray(currentData[lastKey])
       ? [...currentData[lastKey], ...jsonData]
