@@ -1,0 +1,19 @@
+<%
+/*
+ * For local development, we load templates dynamically
+ * If the template does not exist - display the settings page.
+ */
+
+const fs = require('fs')
+const path = require('path')
+const { default: config } = require('@root/core/config');
+
+const isExists = fs.existsSync(path.resolve(`src/templates/${config.global.template}/index.ejs`));
+%>
+
+<% if (isExists) { %>
+    <% const template = require(`!!ejs-loader!../templates/${config.global.template}/index.ejs`) %>
+    <%= template() %>
+<% } else { %>
+    No template
+<% } %>

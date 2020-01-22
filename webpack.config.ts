@@ -29,6 +29,7 @@ export default async (env: any, argv: { mode: string; }) => {
 
   const webpackConfig = {
     devServer: {
+      index: 'index.html',
       clientLogLevel: 'error',
       before: server,
       contentBase: [
@@ -46,10 +47,7 @@ export default async (env: any, argv: { mode: string; }) => {
           `./src/templates/${config.global.template}/index.ts`,
           `./src/templates/${config.global.template}/index.scss`,
         ]
-        : [
-          './src/dev/index.ts',
-          './src/dev/index.scss',
-        ],
+        : './src/autoload/index.ts',
     },
     mode: argv.mode,
     module: {
@@ -134,6 +132,7 @@ export default async (env: any, argv: { mode: string; }) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         inject: 'head',
+        chunks: ['main'],
         meta: {
           description: `Portfolio by ${config.data.first_name} ${config.data.last_name}`,
           robots: 'index, follow',
@@ -149,7 +148,7 @@ export default async (env: any, argv: { mode: string; }) => {
         } : false,
         template: isProd
           ? `!!ejs-loader!./src/templates/${config.global.template}/index.ejs`
-          : '!!ejs-loader!./src/main.ejs',
+          : '!!ejs-loader!./src/autoload/index.ejs',
         templateParameters: {
           isProd,
         },
@@ -272,6 +271,22 @@ export default async (env: any, argv: { mode: string; }) => {
         }],
         skipWaiting: true,
         swDest: 'sw.js',
+      }),
+    );
+  } else {
+    /*
+     * Display an additional page for custom settings
+     */
+    (webpackConfig.entry as any).dev = [
+      './src/dev/index.ts',
+      './src/dev/index.scss',
+    ];
+    webpackConfig.plugins.push(
+      new HtmlWebpackPlugin({
+        filename: 'dev.html',
+        inject: 'head',
+        chunks: ['dev'],
+        template: '!!ejs-loader!./src/dev/index.ejs',
       }),
     );
   }
