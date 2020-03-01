@@ -49,7 +49,7 @@
     "@types/node": "^12.12.0",
     "@types/shelljs": "^0.8.5",
     "@types/uikit": "^2.27.7",
-    "@types/webpack": "^4.39.5",
+    "@types/webpack": "^4.41.7",
     "@types/webpack-dev-server": "^3.4.0",
     "@types/webpack-env": "^1.14.1",
     "@types/workbox-webpack-plugin": "^4.1.0",
