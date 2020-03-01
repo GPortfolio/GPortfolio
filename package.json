@@ -78,7 +78,7 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0",
-    "webpack-pwa-manifest": "^4.1.1",
+    "webpack-pwa-manifest": "^4.2.0",
     "workbox-webpack-plugin": "^4.3.1"
   },
   "browserslist": [
