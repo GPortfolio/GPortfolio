@@ -1,0 +1,8 @@
+<%
+const { default: Config } = require('../../../Config')
+
+const config = Config.get()
+const lang = config.global.locale.split('_')[0]
+%>
+
+lang="<%= lang %>" data-template="<%= templateName %>" time-compiled="<%= Date.now() %>"

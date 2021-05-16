@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <%
-const { default: config } = require('../../../core/config')
-const safeQuotes = (str) => str.replace(/"/g, '&quot;')
+const { default: Config } = require('../../Config')
+const config = Config.get()
+const { safeQuotes } = require('../_common/scripts/template')
 
-/*
- * Github
- */
-const repositories = config.websites.github.repositories
-const repositoriesMore = config.templates.default.github_repositories_more
+const repositories = config.services.github.data.repositories
+const repositoriesMore = config.templates.default.configuration.githubRepositoriesMore
 const canShowMoreRepositories = repositoriesMore && repositoriesMore < repositories.length
 
 function generateRepositoriesHtml(repositories) {
@@ -40,23 +38,17 @@ function generateRepositoriesHtml(repositories) {
 
   return output;
 }
-
-/*
- * Dribbble
- */
-// TODO
 %>
 
-<html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
+<html <%= require('../_common/templates/html-attributes.ejs')({ templateName: 'default' }) %>>
 <head>
-  <%= require('ejs-loader!@src/parts/head.ejs')() %>
+  <%= require('../_common/templates/header/full.ejs')() %>
   <style>
     .avatar--image {
-      /* TODO Default avatar */
       background: url(<%= config.data.avatar_url %>);
     }
     .background--image {
-      background: url(<%= config.templates.default.background || require('@t/default/assets/background.png').default %>);
+      background: url(<%= config.templates.default.configuration.background.default %>);
     }
   </style>
 </head>
@@ -75,7 +67,7 @@ function generateRepositoriesHtml(repositories) {
       <div class="header__wrap__social">
         <% for (const link of config.data.links) { %>
           <a href="<%= link.link %>" title="<%= safeQuotes(link.name) %>" target="_blank" rel="noopener">
-            <%= require(`!!svg-inline-loader!@asset/icons/${link.icon}.svg`) %>
+            Icon
           </a>
         <% } %>
       </div>

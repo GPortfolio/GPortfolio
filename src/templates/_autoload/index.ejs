@@ -1,0 +1,7 @@
+<%
+const { default: Config } = require('../../Config')
+
+const config = Config.get()
+%>
+
+<%= require(`../${config.global.template}/index.ejs`)() %>

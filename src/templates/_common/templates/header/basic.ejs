@@ -1,0 +1,12 @@
+<%
+const { default: Config } = require('../../../../Config')
+const { default: global } = require('../../../../config/global')
+
+const config = Config.get()
+const template = Config.template()
+%>
+
+<meta charset="utf-8">
+<meta name="generator" content="<%= global.owner %>">
+<meta name="author" content="<%= template.info.github_author %>">
+<title><%= `${config.data.first_name} ${config.data.last_name}` %></title>

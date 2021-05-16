@@ -11,16 +11,7 @@
     "baseUrl": ".",
     "strict": true,
     "alwaysStrict": true,
-    "paths": {
-      "*": [
-        "node_modules/*"
-      ],
-      "@i/*": [
-        "core/interfaces/*"
-      ]
-    },
-    "lib": [
-      "esnext", "dom"
-    ]
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
 }
