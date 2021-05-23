@@ -1,7 +1,7 @@
 <%
-const { default: Config } = require('../../../Config')
+const { default: Application } = require('../../../Application')
 
-const config = Config.get()
+const config = Application.make().config()
 const lang = config.global.locale.split('_')[0]
 %>
 

@@ -1,6 +1,6 @@
-import Config from '../../Config';
+import Application from '../../Application';
 
-const config = Config.get();
+const config = Application.make().config();
 
-require(`../${config.global.template}/index`);
-require(`../${config.global.template}/index.scss`);
+require(`../${config.template}/index`);
+require(`../${config.template}/index.scss`);

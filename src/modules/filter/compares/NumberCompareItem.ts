@@ -1,19 +1,19 @@
-import IFilterCompareItem from "../interfaces/IFilterCompareItem"
+import IFilterCompareItem from '../interfaces/IFilterCompareItem';
 
 export default class NumberCompareItem implements IFilterCompareItem {
   isSupport(value: any): boolean {
-    return typeof value === 'number'
+    return typeof value === 'number';
   }
 
-  compare(value: number, compare: any, options: {[key: string]: any}): boolean {
+  compare(value: number, compare: any, options: { sign: string }): boolean {
     if (options.sign) {
-      return this.compareBySign(value, +compare, options.sign)
+      return this.compareBySign(value, +compare, options.sign);
     }
 
     return value === +compare;
   }
 
-  private compareBySign(value: number, compare: number, sign: string) {
+  protected compareBySign(value: number, compare: number, sign: string) {
     switch (sign) {
       case '>':
         return value > +compare;
@@ -24,7 +24,7 @@ export default class NumberCompareItem implements IFilterCompareItem {
       case '<=':
         return value <= +compare;
       default:
-        throw new Error(`Sign ${sign} not support`)
+        throw new Error(`Sign ${sign} not support`);
     }
   }
 }

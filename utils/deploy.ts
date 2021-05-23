@@ -10,10 +10,10 @@ import fs from 'fs';
 import path, { sep } from 'path';
 import shell from 'shelljs';
 import Logger from '../src/modules/logger/Logger';
-import Config from '../src/Config';
+import Application from '../src/Application';
 
 const logger = new Logger('Deploy')
-const config = Config.get()
+const config = Application.make().config()
 
 const BASE_DIST: string = path.resolve(__dirname, `..${sep}dist`);
 
@@ -36,9 +36,9 @@ logger.info(`cd ${BASE_DIST}`);
 shell.cd(BASE_DIST);
 
 // Create CNAME for support a custom domain
-if (config.global.customDomain) {
+if (config.global.www.domain) {
   logger.info(`Create ${BASE_DIST + sep}CNAME`);
-  fs.writeFileSync(`${BASE_DIST + sep}CNAME`, config.global.customDomain);
+  fs.writeFileSync(`${BASE_DIST + sep}CNAME`, config.global.www.domain);
 }
 
 // Git
@@ -51,8 +51,8 @@ shell.exec('git add .');
 logger.info('$ git commit -m deploy');
 shell.exec('git commit -m deploy');
 
-if (config.global.base) {
-  shell.exec(`git push --force git@github.com:${nickname}/${config.global.base}.git master:gh-pages`);
+if (config.global.www.path) {
+  shell.exec(`git push --force git@github.com:${nickname}/${config.global.www.path}.git master:gh-pages`);
 } else {
   shell.exec(`git push --force git@github.com:${nickname}/${nickname}.github.io.git master:gh-pages`);
 }

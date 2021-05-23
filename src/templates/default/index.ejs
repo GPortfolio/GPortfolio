@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <%
-const { default: Config } = require('../../Config')
-const config = Config.get()
-const { safeQuotes } = require('../_common/scripts/template')
+const { default: Application } = require('../../Application')
+const { safeQuotes, resolveFile } = require('../_common/scripts/template')
+
+const config = Application.make().config()
 
 const repositories = config.services.github.data.repositories
 const repositoriesMore = config.templates.default.configuration.githubRepositoriesMore
@@ -48,7 +49,7 @@ function generateRepositoriesHtml(repositories) {
       background: url(<%= config.data.avatar_url %>);
     }
     .background--image {
-      background: url(<%= config.templates.default.configuration.background.default %>);
+      background: url(<%= resolveFile(config.templates.default.configuration.background) %>);
     }
   </style>
 </head>
@@ -112,9 +113,6 @@ function generateRepositoriesHtml(repositories) {
 
 window.addEventListener('DOMContentLoaded', function () {
   <% if (canShowMoreRepositories) { %>
-    /*
-     * Github
-     */
     var btnMoreGithubRepsEl = document.querySelector('#github-more');
 
     if (btnMoreGithubRepsEl) {

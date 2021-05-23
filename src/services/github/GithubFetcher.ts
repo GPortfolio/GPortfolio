@@ -8,7 +8,7 @@ export default class GithubFetcher {
 
   public static REPOS_MAX_COUNT = 100;
 
-  private fetcher: IGithubFetcher;
+  protected fetcher: IGithubFetcher;
 
   constructor(fetcher: IGithubFetcher) {
     this.fetcher = fetcher;

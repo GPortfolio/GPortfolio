@@ -5,7 +5,7 @@ export default class Logger {
   private section: string;
 
   constructor(section: string) {
-    this.section = section
+    this.section = section;
   }
 
   success(msg: string) {

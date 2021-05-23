@@ -1,15 +1,24 @@
 import ObjectUtils from '../../utils/ObjectUtils';
+import ISorterItem from './interfaces/ISorterItem';
 
 export default class Sorter {
-  static asc(arr: any[], key: string, separator: string = '.') {
-    arr.sort(Sorter.compareValues(key, false, separator));
+  sort(arr: any[], rule: ISorterItem): void {
+    if (rule.sortByDesc) {
+      this.desc(arr, rule.attr);
+    } else {
+      this.asc(arr, rule.attr);
+    }
   }
 
-  static desc(arr: any[], key: string, separator: string = '.') {
-    arr.sort(Sorter.compareValues(key, true, separator));
+  asc(arr: any[], key: string, separator: string = '.'): void {
+    arr.sort(this.compareValues(key, false, separator));
   }
 
-  static compareValues(key: string, orderByDesc: boolean = false, separator: string = '.') {
+  desc(arr: any[], key: string, separator: string = '.'): void {
+    arr.sort(this.compareValues(key, true, separator));
+  }
+
+  protected compareValues(key: string, orderByDesc: boolean = false, separator: string = '.') {
     const parts = key.split(separator);
     const keysExceptLast = parts.slice(0, -1);
     const lastKey = parts[parts.length - 1];

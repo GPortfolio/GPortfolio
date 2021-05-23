@@ -5,34 +5,34 @@ import RegExpCompareItem from './compares/RegExpCompareItem';
 import ArrayCompareItem from './compares/ArrayCompareItem';
 
 export default class FilterCompare {
-  compares: IFilterCompareItem[];
+  items: IFilterCompareItem[];
 
-  constructor(compares: IFilterCompareItem[] | undefined = undefined) {
-    this.compares = compares || this.defaultCompares()
+  constructor(items: IFilterCompareItem[] | undefined = undefined) {
+    this.items = items || this.defaultCompares();
   }
 
-  compare(value: any, compare: any, options: {[key: string]: any}) {
-    for (const compare of this.compares) {
-      if (compare.isSupport(value)) {
-        return compare.compare(value, compare, options)
+  compare(value: any, compare: any, options: { [key: string]: any }) {
+    for (const item of this.items) {
+      if (item.isSupport(value)) {
+        return item.compare(value, compare, options);
       }
     }
 
-    return value === compare
+    return value === compare;
   }
 
-  setCompares(compares: IFilterCompareItem[]): void {
-    this.compares = compares
+  setCompareItems(items: IFilterCompareItem[]): void {
+    this.items = items;
   }
 
-  addCompare(compare: IFilterCompareItem): void {
-    if (!this.compares.includes(compare)) {
-      this.compares.push(compare)
+  addCompareItem(item: IFilterCompareItem): void {
+    if (!this.items.includes(item)) {
+      this.items.push(item);
     }
   }
 
-  clearCompares(): void {
-    this.compares = []
+  clearCompareItems(): void {
+    this.items = [];
   }
 
   defaultCompares() {
@@ -41,6 +41,6 @@ export default class FilterCompare {
       new BooleanCompareItem(),
       new NumberCompareItem(),
       new RegExpCompareItem(),
-    ]
+    ];
   }
 }

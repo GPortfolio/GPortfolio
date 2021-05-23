@@ -5,11 +5,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
+import fs from 'fs';
 import { WebpackPluginInstance, EntryObject } from 'webpack';
-import pages from './src/config/pages';
-import Config from './src/Config';
+import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import Server from './src/modules/server/Server';
+import Application from './src/Application';
 
-const config = Config.get()
+const config = Application.make().config();
 
 export default (env: any, argv: { mode: string; }) => {
   /** @type {boolean} */
@@ -18,21 +20,21 @@ export default (env: any, argv: { mode: string; }) => {
   const webpackConfig = {
     devServer: {
       index: 'index.html',
-      clientLogLevel: 'error',
-      // before: server,
+      clientLogLevel: 'info',
+      before: new Server().run,
       contentBase: [
         path.resolve(__dirname, './src/templates'),
       ],
       hot: true,
       inline: true,
       watchContentBase: true,
-    },
+    } as DevServerConfiguration,
     devtool: isProd ? false : 'source-map',
     entry: {
       main: isProd
         ? [
-          resolveTemplate(config.global.template, 'index.ts'),
-          resolveTemplate(config.global.template, 'index.scss'),
+          resolveTemplate(config.template, 'index.ts'),
+          resolveTemplate(config.template, 'index.scss'),
         ]
         : resolveTemplate('_autoload', 'index.ts'),
     } as EntryObject,
@@ -128,7 +130,7 @@ export default (env: any, argv: { mode: string; }) => {
           removeStyleLinkTypeAttributes: true,
         } : false,
         template: isProd
-          ? resolveTemplate(config.global.template, 'index.ejs')
+          ? resolveTemplate(config.template, 'index.ejs')
           : resolveTemplate('_autoload', 'index.ejs'),
         templateParameters: {
           isProd,
@@ -204,19 +206,29 @@ export default (env: any, argv: { mode: string; }) => {
     //   }),
     // );
   } else {
-    for (const page of pages) {
-      webpackConfig.entry[page.name()] = [
-        page.entryScript(), page.entryStyle(),
-      ];
-      webpackConfig.plugins.push(
-        new HtmlWebpackPlugin(page.htmlWebpackOptions())
-      );
-    }
+    fs.readdirSync(path.resolve(__dirname, './src/pages'))
+      .forEach((folder: string) => {
+        webpackConfig.entry[folder] = [
+          resolvePage(folder, 'index.ts'),
+          resolvePage(folder, 'index.scss'),
+        ];
+
+        webpackConfig.plugins.push(new HtmlWebpackPlugin({
+          filename: `${folder}.html`,
+          inject: 'head',
+          chunks: [folder],
+          template: resolvePage(folder, 'index.ejs'),
+        }));
+      });
   }
 
   return webpackConfig;
 };
 
+function resolvePage(name: string, file: string) {
+  return `./src/pages/${name}/${file}`;
+}
+
 function resolveTemplate(name: string, file: string) {
-  return `./src/templates/${name}/${file}`
+  return `./src/templates/${name}/${file}`;
 }

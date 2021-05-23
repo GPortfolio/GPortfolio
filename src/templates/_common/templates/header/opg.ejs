@@ -1,20 +1,20 @@
 <%
-const { default: Config } = require('../../../../Config')
+const { default: Application } = require('../../../../Application')
 
-const config = Config.get()
-const siteUrl = Config.siteUrl()
+const config = Application.make().config()
+const siteUrl = Application.make().siteUrl()
 %>
 
 <meta property="og:title" content="Portfolio by <%= `${config.data.first_name} ${config.data.last_name}` %>" />
 <meta property="og:type" content="profile" />
 <meta property="og:image" content="<%= config.data.avatar_url %>" />
 <meta property="og:url" content="<%= siteUrl %>" />
-<meta property="og:description" content="<%= config.data.bio %>" />
-<meta property="og:locale" content="<%= config.global.locale %>" />
-<meta property="profile:first_name" content="<%= config.data.first_name %>">
-<meta property="profile:last_name" content="<%= config.data.last_name %>">
-<meta property="profile:username" content="<%= config.data.login %>" />
-<meta property="profile:gender" content="<%= config.data.gender %>">
+<% if (config.data.bio) { %><meta property="og:description" content="<%= config.data.bio %>" /><% } %>
+<% if (config.global.locale) { %><meta property="og:locale" content="<%= config.global.locale %>" /><% } %>
+<% if (config.data.first_name) { %><meta property="profile:first_name" content="<%= config.data.first_name %>"><% } %>
+<% if (config.data.last_name) { %><meta property="profile:last_name" content="<%= config.data.last_name %>"><% } %>
+<% if (config.data.login) { %><meta property="profile:username" content="<%= config.data.login %>" /><% } %>
+<% if (config.data.gender) { %><meta property="profile:gender" content="<%= config.data.gender %>"><% } %>
 <% for (let [property, content] of Object.entries(config.global.opg)) { %>
     <meta property="<%= property %>" content="<%= content %>" />
 <% } %>

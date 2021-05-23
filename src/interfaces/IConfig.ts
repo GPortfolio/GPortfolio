@@ -1,27 +1,30 @@
-import IGithubService from 'src/services/github/interfaces/IGithubService';
+import IGithub from 'src/services/github/interfaces/IGithub';
 import IDefaultTemplate from 'src/templates/default/interfaces/IDefaultTemplate';
 import ITemplate from './ITemplate';
 
 export default interface IConfig {
+  template: string
   global: IConfigGlobal
   data: IConfigData
   services: {
-    github: IGithubService
+    github: IGithub
   }
   templates: {
-    [key: string]: ITemplate & any
+    [name: string]: ITemplate | any
     default: IDefaultTemplate
   }
 }
 
 export interface IConfigGlobal {
-  template: string
-  base: string
   locale: string
   opg: object
   pwa: object
-  customDomain: string
   meta: object
+  www: {
+    domain: string
+    path: string
+    https: boolean
+  }
 }
 
 export interface IConfigData {
@@ -29,8 +32,8 @@ export interface IConfigData {
   first_name: string
   last_name: string
   bio: string
-  avatar_url: string
-  gender: 'male' | 'female' | ''
+  avatar: string | Function
+  gender: string
   position: string
   company: string
   location: string
@@ -40,6 +43,5 @@ export interface IConfigData {
 
 export interface IConfigDataLink {
   url: string
-  name: string
-  icon: string
+  name: string // github, linkedin, twitter
 }

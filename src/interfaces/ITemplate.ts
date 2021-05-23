@@ -1,13 +1,12 @@
 export default interface ITemplate {
   info: {
-    /**
-     * Like folder name
-     */
+    // Template/folder name
     name: string
 
-    /**
-     * Github Login
-     */
-    github_author: string
+    // Github login
+    author: string
+  }
+  configuration: {
+    // Extends for template configuration
   }
 }
