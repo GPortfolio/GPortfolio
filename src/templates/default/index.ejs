@@ -46,7 +46,7 @@ function generateRepositoriesHtml(repositories) {
   <%= require('../_common/templates/header/full.ejs')() %>
   <style>
     .avatar--image {
-      background: url(<%= config.data.avatar_url %>);
+      background: url(<%= resolveFile(config.data.avatar) %>);
     }
     .background--image {
       background: url(<%= resolveFile(config.templates.default.configuration.background) %>);

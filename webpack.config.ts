@@ -23,7 +23,7 @@ export default (env: any, argv: { mode: string; }) => {
       clientLogLevel: 'info',
       before: new Server().run,
       contentBase: [
-        path.resolve(__dirname, './src/templates'),
+        path.resolve(__dirname, './src'),
       ],
       hot: true,
       inline: true,
@@ -109,7 +109,7 @@ export default (env: any, argv: { mode: string; }) => {
     plugins: [
       new CopyWebpackPlugin({
         patterns: [
-          { from: 'public', to: 'public' },
+          { from: 'public/export', to: 'public' },
         ],
       }),
       new HtmlWebpackPlugin({

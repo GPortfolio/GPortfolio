@@ -32,7 +32,7 @@ export interface IConfigData {
   first_name: string
   last_name: string
   bio: string
-  avatar: string | Function
+  avatar: (() => string) | string
   gender: string
   position: string
   company: string

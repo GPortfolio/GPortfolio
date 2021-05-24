@@ -23,8 +23,11 @@ export default class GithubPrivateFetcher implements IGithubFetcher {
   fetchRepositories(params: IGithubConfigRepository, page: number = 1, perPage: number = 100): Promise<AxiosResponse> {
     return this.axios.get(this.repositoriesUrl(), {
       params: {
-        ...params,
-        affiliation: params.affiliation.join(','),
+        affiliation: params.affiliation.length ? params.affiliation.join(',') : undefined,
+        visibility: params.visibility,
+        direction: params.direction,
+        type: params.affiliation.length || params.visibility ? undefined : params.type,
+        sort: params.sort,
         page,
         per_page: perPage,
       },

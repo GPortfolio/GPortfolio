@@ -2,7 +2,7 @@ import ITemplate from '../../../interfaces/ITemplate';
 
 export default interface IDefaultTemplate extends ITemplate {
   configuration: {
-    background: Function
+    background: (() => string) | string
 
     /**
      * Number of items to display, the rest will be hidden and displayed
