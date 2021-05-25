@@ -12,7 +12,7 @@ export default {
     },
   },
   filter: {
-    repositories: [],
+    repositories: [[]],
   },
   sort: {
     repositories: [],

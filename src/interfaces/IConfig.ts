@@ -41,6 +41,20 @@ export interface IConfigData {
   links: IConfigDataLink[]
 }
 
+export interface IConfigProxyData {
+  login: string | undefined
+  firstName: string | undefined
+  lastName: string | undefined
+  bio: string | undefined
+  avatar: (() => string) | string | undefined
+  gender: string | undefined
+  position: string | undefined
+  company: string | undefined
+  location: string | undefined
+  hireable: boolean | undefined
+  link: IConfigDataLink | undefined
+}
+
 export interface IConfigDataLink {
   url: string
   name: string // github, linkedin, twitter

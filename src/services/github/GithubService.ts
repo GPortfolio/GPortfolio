@@ -4,14 +4,16 @@ import IGithub from './interfaces/IGithub';
 import Application from '../../Application';
 import Sorter from '../../modules/sorter/Sorter';
 import Filter from '../../modules/filter/Filter';
+import GithubDataProxy from './GithubDataProxy';
+import { IConfigProxyData } from '../../interfaces/IConfig';
 
 export default class GithubService implements IService {
   protected filter: Filter;
   protected sorter: Sorter;
 
   constructor(filter: Filter | undefined = undefined, sorter: Sorter | undefined = undefined) {
-    this.filter = filter || new Filter()
-    this.sorter = sorter || new Sorter()
+    this.filter = filter || new Filter();
+    this.sorter = sorter || new Sorter();
   }
 
   name() {
@@ -23,19 +25,25 @@ export default class GithubService implements IService {
       configuration,
       data: {
         profile: this.load('profile.json', undefined),
-        repositories: this.load('repositories.json', [])
+        repositories: this.load('repositories.json', []),
       },
     };
   }
 
-  boot(app: Application) {
-    const { github } = app.config().services
+  boot(app: Application): void {
+    const { github } = app.config().services;
 
     for (const rule of github.configuration.sort.repositories) {
-      this.sorter.sort(github.data.repositories, rule)
+      this.sorter.sort(github.data.repositories, rule);
     }
 
-    github.data.repositories = this.filter.handle(github.data.repositories, github.configuration.filter.repositories)
+    github.data.repositories = this.filter.handle(github.data.repositories, github.configuration.filter.repositories);
+  }
+
+  proxy(app: Application): IConfigProxyData | undefined {
+    const { github } = app.config().services;
+
+    return github.data.profile && new GithubDataProxy(github.data.profile);
   }
 
   protected load(fileName: string, value: any): any {

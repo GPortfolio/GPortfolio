@@ -1,4 +1,5 @@
 import Application from '../Application';
+import { IConfigProxyData } from './IConfig';
 
 export default interface IService {
   name(): string
@@ -6,4 +7,6 @@ export default interface IService {
   register(): any
 
   boot(app: Application): void
+
+  proxy(app: Application): IConfigProxyData | undefined
 }

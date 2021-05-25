@@ -1,10 +1,12 @@
-import IConfig from './interfaces/IConfig';
+import IConfig, { IConfigData, IConfigGlobal } from './interfaces/IConfig';
 import StringUtils from './utils/StringUtils';
 import ITemplate from './interfaces/ITemplate';
 import listServices from './config/services';
 import listTemplates from './config/templates';
 import ObjectUtils from './utils/ObjectUtils';
 import configData from '../config';
+import global from './config/global';
+import IService from './interfaces/IService';
 
 export default class Application {
   protected static instance: Application;
@@ -12,35 +14,17 @@ export default class Application {
   protected data: IConfig;
 
   constructor() {
+    const services = this.registerServices()
+
     this.data = {
-      template: 'default',
-      global: {
-        locale: 'en_US',
-        opg: {},
-        pwa: {},
-        meta: {},
-        www: {
-          domain: '',
-          path: '',
-          https: true,
-        },
-      },
-      services: this.registerServices(),
-      data: {
-        login: '',
-        first_name: '',
-        last_name: '',
-        bio: '',
-        avatar: '',
-        gender: '',
-        position: '',
-        company: '',
-        location: '',
-        hireable: false,
-        links: [],
-      },
+      template: global.defaultTemplate,
+      global: this.dataGlobal(),
+      services,
+      data: this.collectData(),
       templates: this.resolveTemplates(),
     };
+
+    this.fillData(this.data.data, listServices)
 
     this.data = ObjectUtils.deepMerge(this.data, configData);
 
@@ -98,5 +82,60 @@ export default class Application {
     }
 
     return templates;
+  }
+
+  protected fillData(data: IConfigData, services: IService[]): void {
+    for (const service of services) {
+      const config = service.proxy(this)
+
+      if (config === undefined) {
+        continue
+      }
+
+      data.login = config.login === undefined ? data.login : config.login;
+      data.first_name = config.firstName === undefined ? data.first_name : config.firstName;
+      data.last_name = config.lastName === undefined ? data.last_name : config.lastName;
+      data.bio = config.bio === undefined ? data.bio : config.bio;
+      data.avatar = config.avatar === undefined ? data.avatar : config.avatar;
+      data.gender = config.gender === undefined ? data.gender : config.gender;
+      data.position = config.position === undefined ? data.position : config.position;
+      data.company = config.company === undefined ? data.company : config.company;
+      data.location = config.location === undefined ? data.location : config.location;
+      data.hireable = config.hireable === undefined ? data.hireable : config.hireable;
+
+      if (config.link) {
+        data.links.push(config.link)
+      }
+    }
+  }
+
+  private dataGlobal(): IConfigGlobal {
+    return {
+      locale: 'en_US',
+      opg: {},
+      pwa: {},
+      meta: {},
+      www: {
+        domain: '',
+        path: '',
+        https: true,
+      },
+    };
+  }
+
+  private collectData(): IConfigData {
+    return {
+      login: '',
+      first_name: '',
+      last_name: '',
+      bio: '',
+      avatar: '',
+      gender: '',
+      position: '',
+      company: '',
+      location: '',
+      hireable: false,
+      links: [],
+    }
   }
 }
