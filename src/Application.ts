@@ -30,11 +30,11 @@ export default class Application implements IApplication {
       data: this.defaultData,
       services: this.registerServices(),
       templates: this.registerTemplates(),
-    }
+    };
 
     this.mergeDataFromServices(this.data.data);
 
-    this.data = ObjectUtils.deepMerge(this.data, userData)
+    this.data = ObjectUtils.deepMerge(this.data, userData);
 
     this.bootServices();
   }
@@ -78,6 +78,7 @@ export default class Application implements IApplication {
       const config = service.proxy(this);
 
       if (config !== undefined) {
+        /* eslint-disable no-param-reassign */
         data.login = data.login || config.login;
         data.first_name = data.first_name || config.first_name;
         data.last_name = data.last_name || config.last_name;

@@ -2,3 +2,5 @@ dist/
 postcss.config.js
 webpack.config.ts
 .eslintrc.js
+jest.config.js
+coverage/
