@@ -26,7 +26,7 @@ export default class SiteUrlResolver {
   }
 
   get githubDomain() {
-    return `${this.app.config.services.github.configuration.nickname}.github.io`;
+    return `${this.app.config.services.github.configuration.nickname.toLowerCase()}.github.io`;
   }
 
   get path() {

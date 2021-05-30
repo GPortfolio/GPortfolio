@@ -98,7 +98,7 @@ export default class Application implements IApplication {
     return {
       locale: 'en_US',
       opg: {},
-      pwa: {},
+      pwa: null,
       meta: {},
       www: {
         domain: '',

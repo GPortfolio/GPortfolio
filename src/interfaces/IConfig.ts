@@ -1,3 +1,4 @@
+import { ManifestOptions } from 'webpack-pwa-manifest';
 import IGithub from '../services/github/interfaces/IGithub';
 import IDefaultTemplate from '../templates/default/interfaces/IDefaultTemplate';
 import ITemplate from './ITemplate';
@@ -17,9 +18,9 @@ export default interface IConfig {
 
 export interface IConfigGlobal {
   locale: string
-  opg: object
-  pwa: object
-  meta: object
+  opg: { [key: string]: string }
+  pwa: ManifestOptions | null
+  meta: { [key: string]: string }
   www: {
     domain: string
     path: string
