@@ -5,7 +5,7 @@ import IService from './interfaces/IService';
 import { TYPES } from './types';
 import IApplication from './interfaces/IApplication';
 import ObjectUtils from './utils/ObjectUtils';
-import configData from '../config';
+import userData from '../config';
 
 @injectable()
 export default class Application implements IApplication {
@@ -24,14 +24,17 @@ export default class Application implements IApplication {
     this.services = services;
     this.templates = templates;
 
-    this.data = ObjectUtils.deepMerge({
+    this.data = {
       template: Application.DEFAULT_TEMPLATE,
       global: this.defaultGlobalData,
+      data: this.defaultData,
       services: this.registerServices(),
       templates: this.registerTemplates(),
-    }, configData);
+    }
 
-    this.data.data = this.dataFromServices();
+    this.mergeDataFromServices(this.data.data);
+
+    this.data = ObjectUtils.deepMerge(this.data, userData)
 
     this.bootServices();
   }
@@ -70,9 +73,7 @@ export default class Application implements IApplication {
     });
   }
 
-  private dataFromServices(): IConfigData {
-    const data: IConfigData = this.defaultData;
-
+  private mergeDataFromServices(data: IConfigData): void {
     this.services.forEach((service) => {
       const config = service.proxy(this);
 
@@ -90,8 +91,6 @@ export default class Application implements IApplication {
         data.links.push(...config.links);
       }
     });
-
-    return data;
   }
 
   get defaultGlobalData(): IConfigGlobal {

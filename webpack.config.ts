@@ -26,7 +26,7 @@ function resolveTemplate(name: string, file: string) {
 const { config } = di.get<IApplication>(TYPES.Application);
 const siteUrl = di.get(SiteUrlResolver).handle();
 
-export default async (env: any, argv: { mode: string; }) => {
+export default (env: any, argv: { mode: string; }) => {
   /** @type {boolean} */
   const isProd: boolean = argv.mode === 'production';
 

@@ -22,7 +22,11 @@ export default {
     },
   },
   data: {
-    position: 'Software Developer',
+    position: 'PHP Developer',
+    links: [
+      { name: 'github', url: 'https://github.com/alexeykhr' },
+      { name: 'linkedin', url: 'https://linkedin.com/in/alexeykhr' },
+    ],
   },
   templates: {
     default: {
