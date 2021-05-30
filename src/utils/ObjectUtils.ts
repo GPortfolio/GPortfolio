@@ -4,62 +4,50 @@ export default class ObjectUtils {
   }
 
   static deepKeyFromString(data: any, keys: string, separator = '.'): any {
+    if (!keys) {
+      return data;
+    }
+
     return ObjectUtils.deepKey(data, keys.split(separator));
   }
 
-  static deepKeyFromArray(data: any, keys: string[]): any {
+  static deepKeyFromArray(data: any, keys: number[]|string[]): any {
     return ObjectUtils.deepKey(data, keys);
   }
 
-  static deepMerge(target: any, ...sources: any[]): any {
-    if (!sources.length) {
-      return target;
-    }
-
-    const source = sources.shift();
-
-    if (ObjectUtils.isObject(target) && ObjectUtils.isObject(source)) {
-      Object.keys(source).forEach((key) => {
-        if (ObjectUtils.isObject(source[key])) {
-          if (!target[key]) {
-            Object.assign(target, { [key]: {} });
-          }
-
-          ObjectUtils.deepMerge(target[key], source[key]);
-        } else {
-          Object.assign(target, { [key]: source[key] });
+  static deepMerge(target: { [key: string]: any }, source: { [key: string]: any }): void {
+    Object.keys(source).forEach((key) => {
+      if (ObjectUtils.isObject(source[key])) {
+        if (!ObjectUtils.isObject(target[key])) {
+          Object.assign(target, { [key]: {} });
         }
-      });
-    }
 
-    return ObjectUtils.deepMerge(target, ...sources);
+        ObjectUtils.deepMerge(target[key], source[key]);
+      } else {
+        Object.assign(target, { [key]: source[key] });
+      }
+    });
   }
 
   /**
    * @example
-   *  obj - { foo: { foo2: 'bar' } }
+   *  data - { foo: { foo2: 'bar' } }
    *  keys - 'foo.foo2'
-   *  result - 'bar'
+   *  return - 'bar'
    */
-  protected static deepKey(data: any, keys: string[], deep = 0): any {
-    if (!keys.length || keys.length === deep) {
+  protected static deepKey(data: any, keys: number[]|string[], deep = 0): any {
+    if (keys.length === deep) {
       return data;
+    }
+
+    if (Array.isArray(data)) {
+      return ObjectUtils.deepKey(data[+keys[deep]], keys, deep + 1);
     }
 
     if (!ObjectUtils.isObject(data)) {
       return undefined;
     }
 
-    const val = data[keys[deep]];
-
-    if (ObjectUtils.isObject(val)) {
-      return ObjectUtils.deepKey(val, keys, deep + 1);
-    }
-
-    if (keys.length !== deep + 1) {
-      return undefined;
-    }
-
-    return val;
+    return ObjectUtils.deepKey(data[keys[deep]], keys, deep + 1);
   }
 }

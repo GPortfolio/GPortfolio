@@ -34,7 +34,7 @@ export default class Application implements IApplication {
 
     this.mergeDataFromServices(this.data.data);
 
-    this.data = ObjectUtils.deepMerge(this.data, userData);
+    ObjectUtils.deepMerge(this.data, userData);
 
     this.bootServices();
   }

@@ -4,7 +4,7 @@ import ISorterItem from './interfaces/ISorterItem';
 
 @injectable()
 export default class Sorter {
-  sortByRule(arr: any[], rule: ISorterItem): void {
+  sortByRule(arr: { [key: string]: any }[], rule: ISorterItem): void {
     if (rule.sortByDesc) {
       this.desc(arr, rule.attr);
     } else {
@@ -12,11 +12,11 @@ export default class Sorter {
     }
   }
 
-  asc(arr: any[], key: string, separator = '.'): void {
+  asc(arr: { [key: string]: any }[], key: string, separator = '.'): void {
     arr.sort(this.compareValues(key, false, separator));
   }
 
-  desc(arr: any[], key: string, separator = '.'): void {
+  desc(arr: { [key: string]: any }[], key: string, separator = '.'): void {
     arr.sort(this.compareValues(key, true, separator));
   }
 
