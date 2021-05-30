@@ -1,25 +1,24 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "outDir": "dist",
-    "baseUrl": ".",
-    "strict": true,
-    "alwaysStrict": true,
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "src/types/*",
-        "core/interfaces/*"
-      ]
-    },
+    "target": "es5",
     "lib": [
-      "esnext", "dom"
-    ]
-  }
+      "es6",
+      "dom"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "strict": true,
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+  ],
+  "include": [
+    "src",
+    "tests",
+  ],
 }

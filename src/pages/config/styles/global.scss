@@ -1,0 +1,30 @@
+:root {
+  --primary: #232931;
+  --secondary: #393e46;
+  --active: #4ecca3;
+  --background: #eee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--primary);
+}
+
+body {
+  font-family: JetBrainsMono, monospace;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+input {
+  border: 0;
+  outline: 0;
+  padding: 7px 10px;
+  background-color: #393e46;
+  border-radius: 5px;
+  color: #fff;
+}

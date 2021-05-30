@@ -1,71 +1,56 @@
-/* tslint:disable:no-implicit-dependencies */
+import 'reflect-metadata';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import dotenv from 'dotenv';
-import fs from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
+import fs from 'fs';
+import { WebpackPluginInstance, EntryObject } from 'webpack';
+import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import { di } from './src/di';
+import Server from './src/modules/server/Server';
+import IApplication from './src/interfaces/IApplication';
+import TYPES from './src/types';
+import SiteUrlResolver from './src/modules/core/SiteUrlResolver';
 
-/**
- * Load .env file
- * @example
- *  process.env.GITHUB_TOKEN
- */
-if (fs.existsSync(path.resolve(__dirname, '.env'))) {
-  dotenv.config();
+function resolvePage(name: string, file: string) {
+  return `./src/pages/${name}/${file}`;
 }
 
-import config from './config';
-import transformConfigData from './core/helpers/transformConfigData';
-import validateConfig from './core/helpers/validateConfig';
-import collectModules from './core/modules';
-import variables from './core/variables';
+function resolveTemplate(name: string, file: string) {
+  return `./src/templates/${name}/${file}`;
+}
 
-export default async (env: any, argv: { mode: string; }) => {
+const { config } = di.get<IApplication>(TYPES.Application);
+const siteUrl = di.get(SiteUrlResolver).handle();
 
-  /**
-   * Check that the required data has been entered
-   * @throws
-   */
-  validateConfig();
-
-  /**
-   * Fetch data from all social media
-   * And then inject all data to .ejs
-   * @throws
-   */
-  const modules = await collectModules();
-
-  /**
-   * Change data from settings to data from social networks
-   * @see see docs/config.md #Data
-   */
-  transformConfigData(config.data, modules);
-
-  /** @type {string} */
-  const template: string = config.global.template || 'default';
-
+export default (env: any, argv: { mode: string; }) => {
   /** @type {boolean} */
   const isProd: boolean = argv.mode === 'production';
 
   const webpackConfig = {
     devServer: {
-      clientLogLevel: 'error',
-      contentBase: [path.resolve(__dirname, `./src/templates/${template}/index.ejs`)],
+      index: 'index.html',
+      clientLogLevel: 'info',
+      before: new Server().run,
+      contentBase: [
+        path.resolve(__dirname, './src'),
+      ],
       hot: true,
       inline: true,
       watchContentBase: true,
-    },
+    } as DevServerConfiguration,
     devtool: isProd ? false : 'source-map',
     entry: {
-      main: [
-        `./src/templates/${template}/index.ts`,
-        `./src/templates/${template}/index.scss`,
-      ],
-    },
+      main: isProd
+        ? [
+          resolveTemplate(config.template, 'index.ts'),
+          resolveTemplate(config.template, 'index.scss'),
+        ]
+        : resolveTemplate('_autoload', 'index.ts'),
+    } as EntryObject,
     mode: argv.mode,
     module: {
       rules: [
@@ -119,55 +104,36 @@ export default async (env: any, argv: { mode: string; }) => {
             },
           ],
         },
+        {
+          test: /\.ejs$/,
+          loader: 'ejs-loader',
+          options: {
+            esModule: false,
+          },
+        },
       ],
     },
     output: {
-      chunkFilename: 'static/js/[name].[hash].js',
-      filename: 'static/[name].[hash].js',
+      chunkFilename: 'static/js/[name].[fullhash].js',
+      filename: 'static/[name].[fullhash].js',
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
     },
     plugins: [
-      /**
-       * Remove build folder(s) before building.
-       * @see https://github.com/johnagan/clean-webpack-plugin
-       */
-      new CleanWebpackPlugin(),
-      /**
-       * Copies individual files or entire directories to the build directory.
-       * @see https://github.com/webpack-contrib/copy-webpack-plugin
-       */
-      new CopyWebpackPlugin((() => {
-        const output = [];
-
-        // Upload config.ts to dist folder for save all config data
-        if (process.env.UPLOAD_CONFIG === 'true') {
-          output.push({ from: 'config.ts', to: '_cache', ignore: [] });
-        }
-
-        return [
-          ...output,
-          { from: 'public', ignore: ['.gitignore'] },
-        ];
-      })()),
-      /**
-       * Simplifies creation of HTML files to serve your webpack bundles.
-       * @see https://github.com/jantimon/html-webpack-plugin
-       * @example
-       *  In the .ejs file you can get a profile and repositories from GitHub.
-       *    Example: htmlWebpackPlugin.options.modules.github.profile
-       *  Get a variable:
-       *    <% if (htmlWebpackPlugin.options.modules.github.profile.id === 1) { /\* code *\/ } %>
-       *  Insert data from a variable:
-       *    <%= htmlWebpackPlugin.options.modules.github.profile.id %>
-       */
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: 'public/export', to: 'public' },
+        ],
+      }),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         inject: 'head',
+        chunks: ['main'],
         meta: {
-          description: `Portfolio by ${modules.github.profile.name}`,
+          description: `Portfolio by ${config.data.first_name} ${config.data.last_name}`,
           robots: 'index, follow',
           viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+          ...config.global.meta,
         },
         minify: isProd ? {
           collapseWhitespace: true,
@@ -176,44 +142,23 @@ export default async (env: any, argv: { mode: string; }) => {
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true,
         } : false,
-        template: `./src/templates/${template}/index.ejs`,
+        template: isProd
+          ? resolveTemplate(config.template, 'index.ejs')
+          : resolveTemplate('_autoload', 'index.ejs'),
         templateParameters: {
-          config,
           isProd,
-          modules,
-          url: variables.siteUrl,
         },
       }),
-      /**
-       * Creates a CSS file per JS/TS file which contains CSS
-       * @see https://github.com/webpack-contrib/mini-css-extract-plugin
-       */
       new MiniCssExtractPlugin({
-        chunkFilename: 'static/css/[name].[hash].css',
-        filename: 'static/[name].[hash].css',
+        chunkFilename: 'static/css/[name].[fullhash].css',
+        filename: 'static/[name].[fullhash].css',
       }),
-    ],
+    ] as WebpackPluginInstance[],
     resolve: {
-      /**
-       * @see https://webpack.js.org/configuration/resolve/
-       * @example
-       *  Import from .ts files
-       *  - import '@/main' - get file './src/template/{template}/main.ts'
-       *  - import '@/styles/index.scss' - get file './src/template/{template}/styles/index.scss'
-       *  Import from .scss files
-       *  - @import "@/styles/index"; - get file './src/template/{template}/styles/index.scss'
-       *
-       *  {template} - insert the path of the current template, for example - default
-       */
       alias: {
-        '@': path.resolve(__dirname, `./src/templates/${template}/`),
-        '@asset': path.resolve(__dirname, './assets/'),
         '@root': __dirname,
         '@src': path.resolve(__dirname, './src'),
       },
-      /**
-       * Attempt to resolve these extensions in order
-       */
       extensions: [
         '.ts', '.js', '.json',
       ],
@@ -221,61 +166,34 @@ export default async (env: any, argv: { mode: string; }) => {
   };
 
   if (isProd) {
-    /**
-     * Add all folders and files to navigateFallbackWhitelist (PWA)
-     * @type {RegExp[]}
-     */
-    const ignorePublicFolder: RegExp[] = fs.readdirSync(path.resolve(__dirname, './public'))
-      .map((pathDir: string) => {
-        if (fs.lstatSync('./public/' + pathDir).isDirectory()) {
-          return new RegExp('^' + pathDir);
-        }
-
-        return new RegExp('^' + pathDir.replace(/\./g, '\\.') + '$');
-      });
-
     webpackConfig.plugins.push(
-      /**
-       * Progressive Web App Manifest Generator for Webpack,
-       * with auto icon resizing and fingerprinting support.
-       * @see https://github.com/arthurbergmz/webpack-pwa-manifest
-       */
+      // @ts-ignore
+      new CleanWebpackPlugin(),
       new WebpackPwaManifest({
-        ...{
-          background_color: '#fff',
-          description: `Portfolio by ${modules.github.profile.name}`,
-          filename: 'static/manifest.[hash].json',
-          icons: [
-            {
-              destination: 'static/icons',
-              sizes: [96, 128, 192, 256, 384, 512],
-              src: path.resolve('demo/icon.png'),
-            },
-          ],
-          name: `${modules.github.profile.name}`,
-          short_name: config.modules.github.username,
-          start_url: variables.siteUrl,
-          theme_color: '#fff',
-        },
+        background_color: '#fff',
+        description: `Portfolio by ${config.data.first_name} ${config.data.last_name}`,
+        filename: 'static/manifest.[hash].json',
+        icons: [
+          {
+            destination: 'static/icons',
+            sizes: [96, 128, 192, 256, 384, 512],
+            src: path.resolve(__dirname, './src/assets/project/icon.png'), // TODO config.data.avatar
+          },
+        ],
+        name: `${config.data.first_name} ${config.data.last_name}`,
+        short_name: `${config.data.first_name} ${config.data.last_name}`,
+        start_url: siteUrl,
+        theme_color: '#fff',
         ...config.global.pwa,
-      }),
-      /**
-       * Workbox is a collection of JavaScript libraries for Progressive Web Apps.
-       * @see https://github.com/googlechrome/workbox
-       */
+      }) as WebpackPluginInstance, // https://github.com/arthurbergmz/webpack-pwa-manifest/pull/151
       new GenerateSW({
         clientsClaim: true,
         exclude: [
-          /\.gitignore/, /_cache\//,
+          /\.gitignore/,
         ],
-        importWorkboxFrom: 'local',
-        importsDirectory: 'static/pwa',
         navigateFallback: '/index.html',
-        navigateFallbackWhitelist: [
-          // Output build
-          /^static/, /^sw\.js$/, /^index\.html$/, /^favicon\.ico$/,
-          // Public folder
-          ...ignorePublicFolder,
+        navigateFallbackAllowlist: [
+          /^static/, /^public/, /^sw\.js$/, /^index\.html$/, /^favicon\.ico$/,
         ],
         runtimeCaching: [{
           handler: 'StaleWhileRevalidate',
@@ -300,6 +218,21 @@ export default async (env: any, argv: { mode: string; }) => {
         swDest: 'sw.js',
       }),
     );
+  } else {
+    fs.readdirSync(path.resolve(__dirname, './src/pages'))
+      .forEach((folder: string) => {
+        webpackConfig.entry[folder] = [
+          resolvePage(folder, 'index.ts'),
+          resolvePage(folder, 'index.scss'),
+        ];
+
+        webpackConfig.plugins.push(new HtmlWebpackPlugin({
+          filename: `${folder}.html`,
+          inject: 'head',
+          chunks: [folder],
+          template: resolvePage(folder, 'index.ejs'),
+        }));
+      });
   }
 
   return webpackConfig;

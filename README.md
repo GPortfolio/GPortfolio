@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/GPortfolio/GPortfolio">
-    <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/logo.png" alt="GPortfolio">
+    <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/src/assets/project/logo.png" alt="GPortfolio">
   </a>
 </p>
 <p align="center">
@@ -13,28 +13,6 @@
   <a href="https://david-dm.org/GPortfolio/GPortfolio?type=dev" rel="nofollow"><img src="https://david-dm.org/GPortfolio/GPortfolio/dev-status.svg" alt="devDependency Status"></a>
   <a href="https://github.com/GPortfolio/GPortfolio" rel="nofollow"><img src="https://img.shields.io/github/license/GPortfolio/GPortfolio.svg" alt="License"></a>
 </p>
-
-## Plans
-Create ui, with which you can simply create your portfolio online without editing any files.
-After development is complete, major changes to this repository are possible.
-
-- More automation
-- More customization options
-- Get data from various sites in one click
-- Deploy to various sites or upload as html
-
-[Repository Server](https://github.com/GPortfolio/server/tree/dev)
-
-<table>
-  <tr>
-    <td>
-      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/1.png" width="500" alt="Server 1">
-    </td>
-    <td>
-      <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/server/2.png" width="500" alt="Server 2">
-    </td>
-  </tr>
-</table>
 
 ## Introducing
 
@@ -55,7 +33,6 @@ Automatically create a portfolio based on data from various social networks.
 - Progressive Web Apps (offline access)
 - The ability to obtain data from:
   - [Github](https://github.com/)
-  - [Dribbble](https://dribbble.com/)
 
 ## How to install
 
@@ -84,7 +61,7 @@ Automatically create a portfolio based on data from various social networks.
   <tr>
     <td>
       <a href="https://github.com/GPortfolio/GPortfolio/tree/master/src/templates/default" title="Default">
-        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/demo/templates/default.png" width="250" alt="Default">
+        <img src="https://raw.githubusercontent.com/GPortfolio/GPortfolio/master/src/assets/project/templates/default.png" width="250" alt="Default">
       </a>
     </td>
   </tr>
@@ -108,7 +85,6 @@ Automatically create a portfolio based on data from various social networks.
 - [How to make a new template?](#how-to-make-a-new-template)
 - [How to refresh data from API?](#how-to-refresh-data-from-api)
 - [How to change favicon?](#how-to-change-favicon)
-- [How to connect Dribbble or another?](#how-to-connect-dribbble-or-another)
 
 ### How to get your repositories from the organization?
 
@@ -151,10 +127,6 @@ But you can force to refresh the data by deleting the **cache** folder.
 
 Put the file **favicon.ico** in the **public** folder.
 
-### How to connect Dribbble or another?
-
-[See here](https://github.com/GPortfolio/GPortfolio/tree/master/docs)
-
 ## How to contribute
 
 Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/GPortfolio/blob/master/.github/CONTRIBUTING.md) before making a pull request.
@@ -170,16 +142,6 @@ Please make sure to read the [Contributing Guide](https://github.com/GPortfolio/
 - **public** - all files from this folder will be copied to the **dist** folder (user files).
 - **scripts** - small cli scripts.
 - **src** - source files.
-
-### How can you improve?
-
-- **Default** template
-  - Display data shots from **Dribbble** (`modules.dribbble.shots`)
-- Add more templates or improve existing.
-- Add more sites for parse data.
-- Add tests
-- Support merge config.example.ts to config.ts after update
-- Other improvements.
 
 ## Changelog
 

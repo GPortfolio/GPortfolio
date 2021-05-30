@@ -17,17 +17,17 @@
 To develop a template (selected in the config.js file), run the command:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
-To start creating a new template, run the command:
+Creating a new template:
 
 ```bash
-npm run template <name>
+yarn template <name>
 ```
 
-After completing development, run eslint:
+After completing development:
 
 ```bash
-npm run lint
+yarn lint
 ```

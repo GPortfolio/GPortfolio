@@ -1,15 +1,18 @@
+<% require('reflect-metadata'); %>
 <!DOCTYPE html>
 <%
-const safeQuotes = (str) => str.replace(/"/g, '&quot;')
-const headTemplate = require('ejs-loader!@src/parts/head.ejs')
-const imagesTemplate = require('ejs-loader!@src/parts/images.ejs')
+const { di } = require('../../di');
+const { TYPES } = require('../../types');
+const { safeQuotes, resolveFile } = require('../_common/scripts/template');
 
-/*
- * Github
- */
-const repositories = modules.github.repositories
-const repositoriesMore = config.templates.default.github_repositories_more
-const canShowMoreRepositories = repositoriesMore && repositoriesMore < repositories.length
+/** @type {IApplication} */
+const app = di.get(TYPES.Application);
+
+const { config } = app;
+
+const repositories = config.services.github.data.repositories;
+const repositoriesMore = config.templates.default.configuration.githubRepositoriesMore;
+const canShowMoreRepositories = repositoriesMore && repositoriesMore < repositories.length;
 
 function generateRepositoriesHtml(repositories) {
   var output = '';
@@ -17,21 +20,26 @@ function generateRepositoriesHtml(repositories) {
   for (var i = 0; i < repositories.length; i++) {
     output +=
       `<div>
-        <a href="${repositories[i].html_url}" class="repository uk-card uk-card-default uk-card-small uk-card-hover"
-            uk-scrollspy="cls: uk-animation-scale-up" target="_blank" rel="noopener">
-          <div class="repository__name uk-card-title">${repositories[i].full_name}</div>
+        <a href="${repositories[i].html_url}" class="repository" target="_blank" rel="noopener">
+          <div class="repository__name">${repositories[i].full_name}</div>
           <p class="repository__description">${repositories[i].description || '-'}</p>
           <div class="repository__bottom">
             <div class="repository__bottom__language">
-              <span uk-icon="code"></span>
+              <span>
+                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="code"><polyline fill="none" stroke="#000" stroke-width="1.01" points="13,4 19,10 13,16"></polyline><polyline fill="none" stroke="#000" stroke-width="1.01" points="7,4 1,10 7,16"></polyline></svg>
+              </span>
               <span>${repositories[i].language || '-'}</span>
             </div>
             <div class="repository__bottom__star">
-              <span uk-icon="star"></span>
+              <span>
+                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="star"><polygon fill="none" stroke="#000" stroke-width="1.01" points="10 2 12.63 7.27 18.5 8.12 14.25 12.22 15.25 18 10 15.27 4.75 18 5.75 12.22 1.5 8.12 7.37 7.27"></polygon></svg>
+              </span>
               <span>${repositories[i].stargazers_count}</span>
             </div>
             <div class="repository__bottom__forks">
-              <span uk-icon="git-fork"></span>
+              <span>
+                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="git-fork"><circle fill="none" stroke="#000" stroke-width="1.2" cx="5.79" cy="2.79" r="1.79"></circle><circle fill="none" stroke="#000" stroke-width="1.2" cx="14.19" cy="2.79" r="1.79"></circle><circle fill="none" stroke="#000" stroke-width="1.2" cx="10.03" cy="16.79" r="1.79"></circle><path fill="none" stroke="#000" stroke-width="2" d="M5.79,4.57 L5.79,6.56 C5.79,9.19 10.03,10.22 10.03,13.31 C10.03,14.86 10.04,14.55 10.04,14.55 C10.04,14.37 10.04,14.86 10.04,13.31 C10.04,10.22 14.2,9.19 14.2,6.56 L14.2,4.57"></path></svg>
+              </span>
               <span>${repositories[i].forks_count}</span>
             </div>
           </div>
@@ -41,38 +49,36 @@ function generateRepositoriesHtml(repositories) {
 
   return output;
 }
-
-/*
- * Dribbble
- */
-// TODO
 %>
 
-<html lang="en" data-template="default" data-compiled="<%= Date.now() %>">
+<html <%= require('../_common/templates/html-attributes.ejs')({ templateName: 'default' }) %>>
 <head>
-  <%= headTemplate({ github: modules.github, config, url }) %>
-  <%= imagesTemplate({
-    avatar: config.data.avatar_url,
-    background: config.templates.default.background,
-    defaultBackground: require('@/assets/background.png')
-  }) %>
+  <%= require('../_common/templates/header/full.ejs')() %>
+  <style>
+    .avatar--image {
+      background: url(<%= resolveFile(config.data.avatar) %>);
+    }
+    .background--image {
+      background: url(<%= resolveFile(config.templates.default.configuration.background) %>);
+    }
+  </style>
 </head>
 <body>
 <header>
-  <div class="header__background uk-background-cover background--image" uk-parallax="bgy: -100"></div>
+  <div class="header__background background--image"></div>
   <div class="header__wrap">
     <div class="header__wrap__image">
-      <div class="avatar--image uk-background-cover"></div>
+      <div class="avatar--image"></div>
     </div>
-    <h1 class="header__wrap__name uk-h1"><%= config.data.name %></h1>
+    <h1 class="header__wrap__name"><%= `${config.data.first_name} ${config.data.last_name}` %></h1>
     <% if (config.data.position) { %>
       <span class="header__wrap__position"><%= config.data.position %></span>
     <% } %>
-    <% if (config.data.socialMedia.length > 0) { %>
+    <% if (config.data.links.length > 0) { %>
       <div class="header__wrap__social">
-        <% for (const media of config.data.socialMedia) { %>
-          <a href="<%= media.link %>" title="<%= safeQuotes(media.name) %>" target="_blank" rel="noopener">
-            <%= require(`!!svg-inline-loader!@asset/icons/${media.icon}.svg`) %>
+        <% for (const link of config.data.links) { %>
+          <a href="<%= link.link %>" title="<%= safeQuotes(link.name) %>" target="_blank" rel="noopener">
+            Icon
           </a>
         <% } %>
       </div>
@@ -80,21 +86,23 @@ function generateRepositoriesHtml(repositories) {
   </div>
 </header>
 <main>
-  <% if (modules.github && modules.github.repositories.length > 0) { %>
-    <section class="repositories-section uk-section uk-section-default">
-      <div class="uk-container">
-        <h2 class="uk-heading-line">
+  <% if (repositories.length > 0) { %>
+    <section class="repositories-section">
+      <div class="container">
+        <h2>
           <span>
-            <span uk-icon="grid"></span>
+            <span class="icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="grid"><rect x="2" y="2" width="3" height="3"></rect><rect x="8" y="2" width="3" height="3"></rect><rect x="14" y="2" width="3" height="3"></rect><rect x="2" y="8" width="3" height="3"></rect><rect x="8" y="8" width="3" height="3"></rect><rect x="14" y="8" width="3" height="3"></rect><rect x="2" y="14" width="3" height="3"></rect><rect x="8" y="14" width="3" height="3"></rect><rect x="14" y="14" width="3" height="3"></rect></svg>
+            </span>
             <span>Repositories</span>
           </span>
         </h2>
-        <div class="repositories uk-child-width-1-3@l uk-child-width-1-2@m uk-grid-small" uk-grid="masonry: true">
+        <div class="repositories">
           <%= generateRepositoriesHtml(canShowMoreRepositories ? repositories.slice(0, repositoriesMore) : repositories) %>
         </div>
         <% if (canShowMoreRepositories) { %>
           <div class="show-more-wrap">
-            <button id="github-more" class="uk-button uk-button-default">Show more</button>
+            <button id="github-more">Show more</button>
           </div>
         <% } %>
       </div>
@@ -102,7 +110,7 @@ function generateRepositoriesHtml(repositories) {
   <% } %>
 </main>
 <footer>
-  <hr class="uk-divider-icon">
+  <hr class="divider-icon">
   <span><%= new Date().toLocaleDateString(undefined, {
     year: 'numeric',
     day: '2-digit',
@@ -112,20 +120,17 @@ function generateRepositoriesHtml(repositories) {
 
 <script type="text/javascript">
 <% if (canShowMoreRepositories) {%>
-  var repositories = <%= JSON.stringify(modules.github.repositories) %>;
+  var repositories = <%= JSON.stringify(repositories) %>;
 <% } %>
 
 window.addEventListener('DOMContentLoaded', function () {
   <% if (canShowMoreRepositories) { %>
-    /*
-     * Github
-     */
     var btnMoreGithubRepsEl = document.querySelector('#github-more');
 
     if (btnMoreGithubRepsEl) {
       var sectionGithubRepsEl = document.querySelector('.repositories');
       var per_page = <%= repositoriesMore %>;
-      var len = repositories.length;
+      var len = <%= repositories.length %>;
       var page = 1;
 
       btnMoreGithubRepsEl.addEventListener('click', function () {
@@ -150,9 +155,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
   <% } %>
 });
-</script>
 
-<script type="text/javascript">
 function htmlToElements(html) {
   var template = document.createElement('template');
   template.innerHTML = html;
