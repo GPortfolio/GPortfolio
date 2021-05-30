@@ -1,8 +1,10 @@
+import { injectable } from 'inversify';
 import ObjectUtils from '../../utils/ObjectUtils';
 import ISorterItem from './interfaces/ISorterItem';
 
+@injectable()
 export default class Sorter {
-  sort(arr: any[], rule: ISorterItem): void {
+  sortByRule(arr: any[], rule: ISorterItem): void {
     if (rule.sortByDesc) {
       this.desc(arr, rule.attr);
     } else {
@@ -10,15 +12,15 @@ export default class Sorter {
     }
   }
 
-  asc(arr: any[], key: string, separator: string = '.'): void {
+  asc(arr: any[], key: string, separator = '.'): void {
     arr.sort(this.compareValues(key, false, separator));
   }
 
-  desc(arr: any[], key: string, separator: string = '.'): void {
+  desc(arr: any[], key: string, separator = '.'): void {
     arr.sort(this.compareValues(key, true, separator));
   }
 
-  protected compareValues(key: string, orderByDesc: boolean = false, separator: string = '.') {
+  protected compareValues(key: string, orderByDesc = false, separator = '.') {
     const parts = key.split(separator);
     const keysExceptLast = parts.slice(0, -1);
     const lastKey = parts[parts.length - 1];

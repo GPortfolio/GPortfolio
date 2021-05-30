@@ -1,11 +1,12 @@
 .repositories {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
   flex-wrap: wrap;
 }
 
 .repository {
   display: block;
-  padding: 15px;
   color: rgba(0, 0, 0, .9);
   .repository__name {
     color: #474a73;

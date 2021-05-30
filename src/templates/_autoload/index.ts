@@ -1,6 +1,10 @@
-import Application from '../../Application';
+import 'reflect-metadata';
+import { di } from '../../di';
+import IApplication from '../../interfaces/IApplication';
+import { TYPES } from '../../types';
 
-const config = Application.make().config();
+/** @type {IApplication} */
+const app = di.get<IApplication>(TYPES.Application);
 
-require(`../${config.template}/index`);
-require(`../${config.template}/index.scss`);
+require(`../${app.config.template}/index`);
+require(`../${app.config.template}/index.scss`);

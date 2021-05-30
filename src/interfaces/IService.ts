@@ -1,12 +1,12 @@
-import Application from '../Application';
-import { IConfigProxyData } from './IConfig';
+import { IConfigData } from './IConfig';
+import IApplication from './IApplication';
 
 export default interface IService {
   name(): string
 
-  register(): any
+  configuration(): any
 
-  boot(app: Application): void
+  boot(app: IApplication): void
 
-  proxy(app: Application): IConfigProxyData | undefined
+  proxy(app: IApplication): IConfigData | undefined
 }

@@ -1,7 +1,3 @@
-.max--width {
-  max-width: 600px;
-}
-
 .mx--auto {
   margin-left: auto;
   margin-right: auto;
@@ -11,25 +7,34 @@
   text-align: center;
 }
 
-.background--image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  will-change: background-position;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, .3)
+.container {
+  box-sizing: content-box;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  @media only screen and (max-width: 960px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  @media only screen and (max-width: 640px) {
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
-.avatar--image {
-  border-radius: 20px;
+.icon {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  padding: 0;
+  background-color: transparent;
+  display: inline-block;
+  fill: currentcolor;
+  line-height: 0;
 }

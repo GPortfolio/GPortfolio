@@ -1,5 +1,5 @@
-import IGithub from 'src/services/github/interfaces/IGithub';
-import IDefaultTemplate from 'src/templates/default/interfaces/IDefaultTemplate';
+import IGithub from '../services/github/interfaces/IGithub';
+import IDefaultTemplate from '../templates/default/interfaces/IDefaultTemplate';
 import ITemplate from './ITemplate';
 
 export default interface IConfig {
@@ -39,20 +39,6 @@ export interface IConfigData {
   location: string
   hireable: boolean
   links: IConfigDataLink[]
-}
-
-export interface IConfigProxyData {
-  login: string | undefined
-  firstName: string | undefined
-  lastName: string | undefined
-  bio: string | undefined
-  avatar: (() => string) | string | undefined
-  gender: string | undefined
-  position: string | undefined
-  company: string | undefined
-  location: string | undefined
-  hireable: boolean | undefined
-  link: IConfigDataLink | undefined
 }
 
 export interface IConfigDataLink {

@@ -1,5 +1,5 @@
 export function safeQuotes(str: string): string {
-  return str.replace(/"/g, '&quot;')
+  return str.replace(/"/g, '&quot;');
 }
 
 /**
@@ -10,8 +10,8 @@ export function safeQuotes(str: string): string {
  */
 export function resolveFile(url: string | Function): string {
   if (typeof url === 'string') {
-    return url
+    return url;
   }
 
-  return url().default
+  return url().default;
 }

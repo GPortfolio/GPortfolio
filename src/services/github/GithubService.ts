@@ -1,56 +1,84 @@
+import { inject, injectable } from 'inversify';
 import IService from '../../interfaces/IService';
-import configuration from './config/configuration';
-import IGithub from './interfaces/IGithub';
-import Application from '../../Application';
 import Sorter from '../../modules/sorter/Sorter';
 import Filter from '../../modules/filter/Filter';
-import GithubDataProxy from './GithubDataProxy';
-import { IConfigProxyData } from '../../interfaces/IConfig';
+import GithubDataAdapter from './GithubDataAdapter';
+import { IConfigData } from '../../interfaces/IConfig';
+import IGithub from './interfaces/IGithub';
+import { TYPES } from '../../types';
+import IApplication from '../../interfaces/IApplication';
+import IGithubProfile from './interfaces/IGithubProfile';
+import IGithubRepository from './interfaces/IGithubRepository';
 
+@injectable()
 export default class GithubService implements IService {
-  protected filter: Filter;
-  protected sorter: Sorter;
+  private filter: Filter;
 
-  constructor(filter: Filter | undefined = undefined, sorter: Sorter | undefined = undefined) {
-    this.filter = filter || new Filter();
-    this.sorter = sorter || new Sorter();
+  private sorter: Sorter;
+
+  private profileData: IGithubProfile;
+
+  private repositoriesData: IGithubRepository[];
+
+  constructor(
+  @inject(Filter) filter: Filter,
+    @inject(Sorter) sorter: Sorter,
+    @inject(TYPES.GithubProfileData) profileData: IGithubProfile,
+    @inject(TYPES.GithubRepositoriesData) repositoriesData: IGithubRepository[],
+  ) {
+    this.filter = filter;
+    this.sorter = sorter;
+    this.profileData = profileData;
+    this.repositoriesData = repositoriesData;
   }
 
-  name() {
+  public name() {
     return 'github';
   }
 
-  register(): IGithub {
+  public configuration(): IGithub {
     return {
-      configuration,
+      configuration: {
+        nickname: '',
+        fetcher: {
+          repositories: {
+            type: 'owner',
+            sort: 'full_name',
+            direction: 'asc',
+            visibility: 'public',
+            affiliation: ['owner', 'collaborator', 'organization_member'],
+          },
+        },
+        filter: {
+          repositories: [[]],
+        },
+        sort: {
+          repositories: [],
+        },
+      },
       data: {
-        profile: this.load('profile.json', undefined),
-        repositories: this.load('repositories.json', []),
+        profile: this.profileData,
+        repositories: this.repositoriesData,
       },
     };
   }
 
-  boot(app: Application): void {
-    const { github } = app.config().services;
+  public boot(app: IApplication): void {
+    const { github } = app.config.services;
 
-    for (const rule of github.configuration.sort.repositories) {
-      this.sorter.sort(github.data.repositories, rule);
-    }
+    github.configuration.sort.repositories.forEach((rule) => {
+      this.sorter.sortByRule(github.data.repositories, rule);
+    });
 
-    github.data.repositories = this.filter.handle(github.data.repositories, github.configuration.filter.repositories);
+    github.data.repositories = this.filter.handle(
+      github.data.repositories,
+      github.configuration.filter.repositories,
+    );
   }
 
-  proxy(app: Application): IConfigProxyData | undefined {
-    const { github } = app.config().services;
+  public proxy(app: IApplication): IConfigData | undefined {
+    const { github } = app.config.services;
 
-    return github.data.profile && new GithubDataProxy(github.data.profile);
-  }
-
-  protected load(fileName: string, value: any): any {
-    try {
-      return require(`../../../data/github/${fileName}`) || value;
-    } catch {
-      return value;
-    }
+    return github.data.profile && new GithubDataAdapter(github.data.profile);
   }
 }

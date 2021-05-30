@@ -1,12 +1,14 @@
 <%
-const { default: Application } = require('../../../../Application')
-const { default: global } = require('../../../../config/global')
+const { di } = require('../../../../di');
+const { TYPES } = require('../../../../types');
 
-const config = Application.make().config()
-const template = Application.make().template()
+/** @type {IApplication} */
+const app = di.get(TYPES.Application)
+
+const { config, template } = app;
 %>
 
 <meta charset="utf-8">
-<meta name="generator" content="<%= global.owner %>">
+<meta name="generator" content="GPortfolio">
 <meta name="author" content="<%= template.info.author %>">
 <title><%= `${config.data.first_name} ${config.data.last_name}` %></title>

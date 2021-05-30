@@ -1,3 +1,3 @@
-import '../_common/scripts/index';
+import '../_common/scripts';
 
 console.log('default template');

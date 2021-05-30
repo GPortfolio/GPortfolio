@@ -6,10 +6,10 @@
     "dev": "webpack serve --hot --progress --mode=development",
     "build": "webpack --mode=production",
     "lint": "eslint --ext .js,.ts .",
-    "lint:fix": "npm run lint -- --fix",
-    "release": "npm run contributors && standard-version",
-    "github-profile": "ts-node ./src/services/github/utils/profile.ts",
-    "github-repositories": "ts-node ./src/services/github/utils/repositories.ts"
+    "lint:fix": "yarn lint --fix",
+    "release": "yarn standard-version",
+    "github:profile": "ts-node ./src/services/github/utils/profile.ts",
+    "github:repositories": "ts-node ./src/services/github/utils/repositories.ts"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,8 @@
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.1",
+    "inversify": "^5.1.1",
+    "reflect-metadata": "^0.1.13",
     "shelljs": "^0.8.4"
   },
   "devDependencies": {
@@ -52,12 +54,14 @@
     "@typescript-eslint/parser": "^4.22.1",
     "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.4",
     "ejs-loader": "^0.5.0",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.23.3",
     "file-loader": "^6.2.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.1",
@@ -70,7 +74,7 @@
     "style-loader": "^2.0.0",
     "svg-inline-loader": "^0.8.2",
     "ts-loader": "^9.1.2",
-    "ts-node": "^9.1.1",
+    "ts-node": "^10.0.0",
     "typescript": "^4.2.4",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.7.0",

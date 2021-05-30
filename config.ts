@@ -21,11 +21,14 @@ export default {
       },
     },
   },
+  data: {
+    position: 'Software Developer',
+  },
   templates: {
     default: {
       configuration: {
-        background: () => require('./public/background.jpg')
+        background: () => require('./public/background.jpg'),
       },
-    }
-  }
+    },
+  },
 } as IConfig;

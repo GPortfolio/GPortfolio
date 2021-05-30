@@ -1,10 +1,11 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import GithubFetcher from '../GithubFetcher';
+import GithubRequest from '../GithubRequest';
 import IGithubFetcher from '../interfaces/IGithubFetcher';
 import IGithubConfigRepository from '../interfaces/IGithubConfigRepository';
 
 export default class GithubPrivateFetcher implements IGithubFetcher {
   protected token: string;
+
   protected axios: AxiosInstance;
 
   constructor(token: string, instance: AxiosInstance | undefined = undefined) {
@@ -16,12 +17,16 @@ export default class GithubPrivateFetcher implements IGithubFetcher {
     });
   }
 
-  fetchProfile(): Promise<AxiosResponse> {
-    return this.axios.get(this.profileUrl());
+  public fetchProfile(): Promise<AxiosResponse> {
+    return this.axios.get(`${GithubRequest.API}/user`);
   }
 
-  fetchRepositories(params: IGithubConfigRepository, page: number = 1, perPage: number = 100): Promise<AxiosResponse> {
-    return this.axios.get(this.repositoriesUrl(), {
+  public fetchRepositories(
+    params: IGithubConfigRepository,
+    page = 1,
+    perPage: number = GithubRequest.REPOS_MAX_COUNT,
+  ): Promise<AxiosResponse> {
+    return this.axios.get(`${GithubRequest.API}/user/repos`, {
       params: {
         affiliation: params.affiliation.length ? params.affiliation.join(',') : undefined,
         visibility: params.visibility,
@@ -32,13 +37,5 @@ export default class GithubPrivateFetcher implements IGithubFetcher {
         per_page: perPage,
       },
     });
-  }
-
-  profileUrl(): string {
-    return `${GithubFetcher.API}/user`;
-  }
-
-  repositoriesUrl(): string {
-    return `${GithubFetcher.API}/user/repos`;
   }
 }

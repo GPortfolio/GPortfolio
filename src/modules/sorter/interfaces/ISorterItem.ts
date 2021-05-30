@@ -1,4 +1,4 @@
 export default interface ISorterItem {
-  attr: string;
-  sortByDesc: boolean;
+  attr: string
+  sortByDesc: boolean
 }

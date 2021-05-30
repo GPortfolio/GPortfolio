@@ -1,5 +1,7 @@
+import { injectable } from 'inversify';
 import IFilterCompareItem from '../interfaces/IFilterCompareItem';
 
+@injectable()
 export default class NumberCompareItem implements IFilterCompareItem {
   isSupport(value: any): boolean {
     return typeof value === 'number';
