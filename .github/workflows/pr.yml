@@ -24,10 +24,10 @@ jobs:
         run: yarn
 
       - name: Run eslint
-        run: yarn lint --coverage
+        run: yarn lint
 
       - name: Run tests
-        run: yarn test
+        run: yarn test --coverage
 
       - name: Build project
         run: yarn build
