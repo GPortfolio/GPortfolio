@@ -50,7 +50,7 @@
     "@types/webpack-dev-server": "^3.11.4",
     "@types/workbox-webpack-plugin": "^5.1.6",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
+    "@typescript-eslint/parser": "^4.26.0",
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
