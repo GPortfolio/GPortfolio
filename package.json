@@ -69,7 +69,7 @@
     "inversify": "^5.1.1",
     "jest": "^27.0.3",
     "mini-css-extract-plugin": "^1.6.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.0",
     "normalize.css": "^8.0.1",
     "postcss-loader": "^5.2.0",
     "reflect-metadata": "^0.1.13",
