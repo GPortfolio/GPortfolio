@@ -5,7 +5,7 @@ import ObjectUtils from '../../utils/ObjectUtils';
 
 @injectable()
 export default class Filter {
-  filterCompare: FilterCompare;
+  private filterCompare: FilterCompare;
 
   constructor(@inject(FilterCompare) filterCompare: FilterCompare) {
     this.filterCompare = filterCompare;

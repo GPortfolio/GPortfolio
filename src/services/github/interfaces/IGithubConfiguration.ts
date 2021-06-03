@@ -8,7 +8,7 @@ export default interface IGithubConfiguration {
     repositories: IGithubConfigRepository
   }
   filter: {
-    repositories: [IFilterItem[]]
+    repositories: IFilterItem[][]
   }
   sort: {
     repositories: ISorterItem[]

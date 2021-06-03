@@ -50,7 +50,7 @@ export default class GithubService implements IService {
           },
         },
         filter: {
-          repositories: [[]],
+          repositories: [],
         },
         sort: {
           repositories: [],

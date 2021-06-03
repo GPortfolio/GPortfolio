@@ -3,16 +3,16 @@ import IFilterCompareItem from '../interfaces/IFilterCompareItem';
 
 @injectable()
 export default class NumberCompareItem implements IFilterCompareItem {
-  isSupport(value: any): boolean {
-    return typeof value === 'number';
+  isSupport(filterValue: any): boolean {
+    return typeof filterValue === 'number';
   }
 
-  compare(value: number, compare: any, options: { sign: string }): boolean {
+  compare(filterValue: number, input: any, options: { sign: string }): boolean {
     if (options.sign) {
-      return this.compareBySign(value, +compare, options.sign);
+      return this.compareBySign(filterValue, +input, options.sign);
     }
 
-    return value === +compare;
+    return filterValue === +input;
   }
 
   protected compareBySign(value: number, compare: number, sign: string) {

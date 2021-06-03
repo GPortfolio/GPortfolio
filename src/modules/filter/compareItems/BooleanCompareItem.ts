@@ -3,11 +3,19 @@ import IFilterCompareItem from '../interfaces/IFilterCompareItem';
 
 @injectable()
 export default class BooleanCompareItem implements IFilterCompareItem {
-  isSupport(value: any): boolean {
-    return typeof value === 'boolean';
+  isSupport(filterValue: any): boolean {
+    return typeof filterValue === 'boolean';
   }
 
-  compare(value: boolean, compare: any): boolean {
-    return value === !!compare;
+  compare(filterValue: boolean, compare: any): boolean {
+    if (Array.isArray(compare)) {
+      return this.compareMultiple(filterValue, compare);
+    }
+
+    return filterValue === !!compare;
+  }
+
+  private compareMultiple(filterValue: boolean, compare: any[]) {
+    return compare.some((c) => filterValue === !!c);
   }
 }

@@ -1,5 +1,5 @@
 export default interface IFilterCompareItem {
-  isSupport(value: any): boolean
+  isSupport(filterValue: any): boolean
 
-  compare(value: any, compare: any, options: { [key: string]: any }): boolean
+  compare(filterValue: any, input: any, options: { [key: string]: any }): boolean
 }
