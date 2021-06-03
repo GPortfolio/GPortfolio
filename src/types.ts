@@ -1,6 +1,7 @@
 import githubService from './services/github/config/types';
 
 const TYPES = {
+  UserData: Symbol.for('user.data'),
   Application: Symbol.for('application'),
   Logger: Symbol.for('logger'),
   LoggerPrefix: Symbol.for('logger.prefix'),

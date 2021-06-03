@@ -1,11 +1,12 @@
-import { injectable, multiInject } from 'inversify';
+import { inject, injectable, multiInject } from 'inversify';
 import IConfig, { IConfigData, IConfigGlobal } from './interfaces/IConfig';
 import ITemplate from './interfaces/ITemplate';
 import IService from './interfaces/IService';
 import { TYPES } from './types';
 import IApplication from './interfaces/IApplication';
 import ObjectUtils from './utils/ObjectUtils';
-import userData from '../config';
+
+// TODO Refactoring
 
 @injectable()
 export default class Application implements IApplication {
@@ -18,7 +19,8 @@ export default class Application implements IApplication {
   private templates: ITemplate[];
 
   constructor(
-  @multiInject(TYPES.Services) services: IService[],
+  @inject(TYPES.UserData) userData: IConfig,
+    @multiInject(TYPES.Services) services: IService[],
     @multiInject(TYPES.Templates) templates: ITemplate[],
   ) {
     this.services = services;

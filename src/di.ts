@@ -17,11 +17,15 @@ import ConsoleLogger from './modules/logger/ConsoleLogger';
 import IPrefixLogger from './modules/logger/interfaces/IPrefixLogger';
 import IApplication from './interfaces/IApplication';
 import Application from './Application';
+import config from '../config';
+import IConfig from './interfaces/IConfig';
 
 const di = new Container();
 
 di.bind<IApplication>(TYPES.Application).to(Application);
 di.bind<SiteUrlResolver>(SiteUrlResolver).toSelf();
+
+di.bind<IConfig>(TYPES.UserData).toConstantValue(config);
 
 di.bind<Sorter>(Sorter).toSelf();
 

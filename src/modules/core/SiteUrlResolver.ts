@@ -11,25 +11,25 @@ export default class SiteUrlResolver {
     this.app = app;
   }
 
-  public handle() {
+  public resolve() {
     const url = `${this.protocol}://${this.domain}/${this.path}`;
 
     return StringUtils.removeLastSymbolIfPresent(url, '/');
   }
 
-  get protocol() {
+  get protocol(): string {
     return this.app.config.global.www.https ? 'https' : 'http';
   }
 
-  get domain() {
+  get domain(): string {
     return this.app.config.global.www.domain || this.githubDomain;
   }
 
-  get githubDomain() {
+  get githubDomain(): string {
     return `${this.app.config.services.github.configuration.nickname.toLowerCase()}.github.io`;
   }
 
-  get path() {
+  get path(): string {
     return this.app.config.global.www.path;
   }
 }

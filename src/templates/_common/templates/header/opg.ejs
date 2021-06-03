@@ -8,7 +8,7 @@ const { default: SiteUrlResolver } = require('../../../../modules/core/SiteUrlRe
 const app = di.get(TYPES.Application);
 
 const { config } = app;
-const url = di.get(SiteUrlResolver).handle();
+const url = di.get(SiteUrlResolver).resolve();
 %>
 
 <meta property="og:title" content="Portfolio by <%= `${config.data.first_name} ${config.data.last_name}` %>" />
