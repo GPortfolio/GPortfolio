@@ -6,7 +6,7 @@ export default (di: Container) => {
 
   di.bind(types.GithubProfileData).toConstantValue((() => {
     try {
-      return require('../../../../data/github/profile.json') || undefined;
+      return require('../../../../data/github-profile.json') || undefined;
     } catch {
       return undefined;
     }
@@ -14,7 +14,7 @@ export default (di: Container) => {
 
   di.bind(types.GithubRepositoriesData).toConstantValue((() => {
     try {
-      return require('../../../../data/github/repositories.json') || [];
+      return require('../../../../data/github-repositories.json') || [];
     } catch {
       return [];
     }

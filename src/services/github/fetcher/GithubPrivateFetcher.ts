@@ -12,7 +12,7 @@ export default class GithubPrivateFetcher implements IGithubFetcher {
     this.token = token;
     this.axios = instance || axios.create({
       headers: {
-        Authorization: `token ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   }

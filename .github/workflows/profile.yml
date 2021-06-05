@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.repository != 'Gportfolio/Gportfolio' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,10 +24,14 @@ jobs:
         run: yarn
 
       - name: Fetch Github profile
-        run: yarn github:profile ${{ secrets.GITHUB_TOKEN }}
+        run: yarn github:profile
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Fetch Github repositories
-        run: yarn github:repositories ${{ secrets.GITHUB_TOKEN }}
+        run: yarn github:repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Build project
         run: yarn build

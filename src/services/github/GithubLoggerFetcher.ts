@@ -31,8 +31,8 @@ export default class GithubLoggerFetcher extends GithubRequest {
         return repositories;
       })
       .catch((err) => {
-        this.logger.error(`Failed repositories: ${err.message}`);
-        return err;
+        this.logger.error(err.response.data || err.message);
+        throw err;
       });
   }
 
@@ -45,8 +45,8 @@ export default class GithubLoggerFetcher extends GithubRequest {
         return profile;
       })
       .catch((err) => {
-        this.logger.error(`Failed profile: ${err.message}`);
-        return err;
+        this.logger.error(err.response.data || err.message);
+        throw err;
       });
   }
 }
