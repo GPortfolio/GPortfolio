@@ -121,7 +121,8 @@ export default (env: any, argv: { mode: string; }) => {
     plugins: [
       new CopyWebpackPlugin({
         patterns: [
-          { from: 'public/export', to: 'public' },
+          { from: 'public/export/', to: 'public/' },
+          { from: 'public/favicon.ico', noErrorOnMissing: true },
         ],
       }),
       new HtmlWebpackPlugin({
