@@ -1,0 +1,14 @@
+<%
+const { di } = require('../../../../di');
+const { TYPES } = require('../../../../types');
+
+/** @type {IApplication} */
+const app = di.get(TYPES.Application)
+
+const { config, template } = app;
+%>
+
+<meta charset="utf-8">
+<meta name="generator" content="GPortfolio">
+<meta name="author" content="<%= template.info.author %>">
+<title><%= `${config.data.first_name} ${config.data.last_name}` %></title>

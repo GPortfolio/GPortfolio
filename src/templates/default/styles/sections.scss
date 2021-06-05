@@ -1,0 +1,38 @@
+.container {
+  box-sizing: content-box;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  &-title {
+    display: flex;
+    margin-bottom: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #474a73;
+    overflow: hidden;
+    > span {
+      position: relative;
+      display: flex;
+      align-items: center;
+      > .icon {
+        margin-right: 10px;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: calc(50% - ((.2px + .05em)/ 2));
+        left: 100%;
+        width: 2000px;
+        border-bottom: calc(.2px + .05em) solid #e5e5e5;
+        margin-left: calc(5px + .3em);
+      }
+    }
+  }
+}

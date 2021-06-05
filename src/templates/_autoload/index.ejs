@@ -1,0 +1,10 @@
+<%
+require('reflect-metadata');
+const { di } = require('../../di');
+const { TYPES } = require('../../types');
+
+/** @type {IApplication} */
+const app = di.get(TYPES.Application);
+%>
+
+<%= require(`../${app.config.template}/index.ejs`)() %>

@@ -1,62 +1,70 @@
 .repositories {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
   flex-wrap: wrap;
+  @media only screen and (max-width: 1440px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media only screen and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .repository {
-  display: block;
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
   color: rgba(0, 0, 0, .9);
-  .repository__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 15px 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+  &__name {
     color: #474a73;
+    font-size: 1rem;
+    font-weight: bold;
   }
-  .repository__name,
-  .repository__bottom {
+  &__description {
+    margin: 15px 0;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, .7);
+    height: 100%;
+    p {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+  &__footer {
+    display: flex;
+    color: rgba(0, 0, 0, .7);
+    font-size: .8rem;
+    > div {
+      display: flex;
+      align-items: center;
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+      svg {
+        width: 15px;
+        margin-right: 5px;
+      }
+    }
+  }
+  &__name,
+  &__footer {
     transition: .2s color;
   }
   &:hover {
     .repository__name,
-    .repository__bottom {
+    .repository__footer {
       color: #000;
-    }
-  }
-}
-
-.repository__name {
-  font-weight: bold;
-  font-size: 1.2rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.repository__description {
-  flex: 1 1 auto;
-  margin-top: 15px;
-  line-height: 1.5;
-  color: rgba(0, 0, 0, .8);
-  font-size: .9rem;
-}
-
-.repository__bottom {
-  display: flex;
-  color: rgba(0, 0, 0, .8);
-  > div {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    &:last-child {
-      margin-right: 0;
-    }
-    > span {
-      font-size: .8rem;
-      &.uk-icon {
-        width: 14px;
-        margin-right: 7px;
-        svg {
-          width: 100%;
-          height: 100%;
-        }
-      }
     }
   }
 }

@@ -1,0 +1,49 @@
+<%
+/** @var {string} templateName */
+
+const { di } = require('../../../di');
+const { TYPES } = require('../../../types');
+
+/** @type {IApplication} */
+const app = di.get(TYPES.Application);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const { config } = app;
+const lang = config.global.locale.split('_')[0];
+%>
+
+lang="<%= lang %>" data-template="<%= templateName %>" time-compiled="<%= Date.now() %>"

@@ -1,0 +1,54 @@
+name: Profile
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository != 'Gportfolio/Gportfolio' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install packages
+        run: yarn
+
+      - name: Fetch Github profile
+        run: yarn github:profile
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Fetch Github repositories
+        run: yarn github:repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Build project
+        run: yarn build
+
+      - name: Execute scripts
+        working-directory: ./dist
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git init
+          git add -A
+          git commit -m "deploy"
+
+      - name: Force push to gh-pages branch
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true
+          directory: ./dist

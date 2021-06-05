@@ -1,0 +1,89 @@
+<% require('reflect-metadata'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GPortfolio - Settings</title>
+    <style>
+    @font-face {
+        font-family: 'JetBrainsMono';
+        font-style: normal;
+        font-weight: normal;
+        src: url(<%= require('./fonts/JetBrainsMono-Regular.ttf').default %>)
+    }
+    @font-face {
+        font-family: 'JetBrainsMono';
+        font-style: normal;
+        font-weight: bold;
+        src: url(<%= require('./fonts/JetBrainsMono-Bold.ttf').default %>)
+    }
+    @font-face {
+        font-family: 'JetBrainsMono';
+        font-style: italic;
+        font-weight: normal;
+        src: url(<%= require('./fonts/JetBrainsMono-Italic.ttf').default %>)
+    }
+    </style>
+</head>
+<body>
+<!--<section>-->
+<!--    <div class="section&#45;&#45;name">-->
+<!--        Global-->
+<!--    </div>-->
+<!--    <div class="section&#45;&#45;items">-->
+<!--        <div class="block">-->
+<!--            <div class="block&#45;&#45;label">-->
+<!--                Template-->
+<!--            </div>-->
+<!--            <div class="block&#45;&#45;input">-->
+<!--                <input />-->
+<!--            </div>-->
+<!--            <div class="block&#45;&#45;description">-->
+<!--                Select an existing template-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="block">-->
+<!--            <div class="block&#45;&#45;label">-->
+<!--                Base-->
+<!--            </div>-->
+<!--            <div class="block&#45;&#45;input">-->
+<!--                <input />-->
+<!--            </div>-->
+<!--            <div class="block&#45;&#45;description">-->
+<!--                If the repository is called: &lt;username&gt;.github.io. Then the value is empty-->
+<!--                If the repository is called: portfolio, or any other name. Then the value of &lt;name of repository&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+<section>
+    <div class="section--name">
+        Global
+    </div>
+    <div class="section--items">
+        <div class="block">
+            <div class="block--label">
+                Template
+            </div>
+            <div class="block--input">
+                <input/>
+            </div>
+            <div class="block--description">
+                Select an existing template
+            </div>
+        </div>
+        <div class="block">
+            <div class="block--label">
+                Base
+            </div>
+            <div class="block--input">
+                <input/>
+            </div>
+            <div class="block--description">
+                If the repository is called: &lt;username&gt;.github.io. Then the value is empty
+                If the repository is called: portfolio, or any other name. Then the value of &lt;name of repository&gt;
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
