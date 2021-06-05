@@ -14,20 +14,27 @@
 
 ## Development Setup
 
-To develop a template (selected in the config.js file), run the command:
+Run project:
 
-```bash
-yarn dev
+```shell
+$ yarn dev
 ```
 
-Creating a new template:
+Run Javascript linter:
 
-```bash
-yarn template <name>
+```shell
+$ yarn lint
+$ yarn lint:fix
 ```
 
-After completing development:
+Run tests:
 
-```bash
-yarn lint
+```shell
+$ yarn test
+```
+
+Build project:
+
+```shell
+$ yarn build
 ```
