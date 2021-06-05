@@ -16,6 +16,8 @@
 
 Automatic portfolio creation based on Github profile.
 
+[Previous Version v3](https://github.com/GPortfolio/GPortfolio/tree/v3.4.1)
+
 **Example - Default theme**: [Github](https://github.com/Alexeykhr/alexeykhr.github.io) / [Website](https://alexeykhr.github.io)
 
 ## How to install
