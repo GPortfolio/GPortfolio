@@ -27,7 +27,7 @@ export default class GithubLoggerFetcher extends GithubRequest {
 
     return super.fetchRepositories(params, page, perPage)
       .then((repositories) => {
-        this.logger.success(`Complete repositories, count = ${repositories.length}`);
+        this.logger.log(`Complete repositories, count = ${repositories.length}`);
         return repositories;
       })
       .catch((err) => {
@@ -41,7 +41,7 @@ export default class GithubLoggerFetcher extends GithubRequest {
 
     return super.fetchProfile()
       .then((profile) => {
-        this.logger.success('Complete profile');
+        this.logger.log('Complete profile');
         return profile;
       })
       .catch((err) => {

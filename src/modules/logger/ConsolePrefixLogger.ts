@@ -12,12 +12,12 @@ export default class ConsolePrefixLogger extends ConsoleLogger implements IPrefi
     this.prefix = prefix;
   }
 
-  public success(message?: any, ...params: any[]): void {
-    super.success(chalk.bgGreen(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
+  public log(message?: any, ...params: any[]): void {
+    super.log(chalk.bgGreen(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
   }
 
   public warning(message?: any, ...params: any[]): void {
-    super.warning(chalk.bgGreen(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
+    super.warning(chalk.bgYellow(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
   }
 
   public error(message?: any, ...params: any[]): void {
@@ -25,11 +25,11 @@ export default class ConsolePrefixLogger extends ConsoleLogger implements IPrefi
   }
 
   public info(message?: any, ...params: any[]): void {
-    super.info(chalk.bgBlack(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
+    super.info(chalk.bgBlue(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
   }
 
   public debug(message?: any, ...params: any[]): void {
-    super.debug(chalk.bgBlack(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
+    super.debug(chalk.bgGrey(chalk.whiteBright(`[${this.prefix}]`)), message, ...params);
   }
 
   public setPrefix(prefix: string): void {

@@ -3,7 +3,7 @@ import ILogger from './interfaces/ILogger';
 
 @injectable()
 export default class ConsoleLogger implements ILogger {
-  public success(message?: any, ...params: any[]): void {
+  public log(message?: any, ...params: any[]): void {
     console.log(message, ...params);
   }
 
