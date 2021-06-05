@@ -15,16 +15,16 @@ export default class NumberCompareItem implements IFilterCompareItem {
     return filterValue === +input;
   }
 
-  protected compareBySign(value: number, compare: number, sign: string) {
+  protected compareBySign(filterValue: number, input: number, sign: string) {
     switch (sign) {
       case '>':
-        return value > +compare;
+        return +input > filterValue;
       case '<':
-        return value < +compare;
+        return +input < filterValue;
       case '>=':
-        return value >= +compare;
+        return +input >= filterValue;
       case '<=':
-        return value <= +compare;
+        return +input <= filterValue;
       default:
         throw new Error(`Sign ${sign} not support`);
     }

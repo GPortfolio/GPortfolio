@@ -7,15 +7,19 @@ export default class BooleanCompareItem implements IFilterCompareItem {
     return typeof filterValue === 'boolean';
   }
 
-  compare(filterValue: boolean, compare: any): boolean {
-    if (Array.isArray(compare)) {
-      return this.compareMultiple(filterValue, compare);
+  compare(filterValue: boolean, input: any): boolean {
+    if (Array.isArray(input)) {
+      return this.compareMultiple(filterValue, input);
     }
 
-    return filterValue === !!compare;
+    return filterValue === !!input;
   }
 
-  private compareMultiple(filterValue: boolean, compare: any[]) {
-    return compare.some((c) => filterValue === !!c);
+  private compareMultiple(filterValue: boolean, input: any[]): boolean {
+    if (!input.length) {
+      return true;
+    }
+
+    return input.some((item) => filterValue === !!item);
   }
 }
