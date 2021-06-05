@@ -46,5 +46,5 @@ export interface IConfigData {
 
 export interface IConfigDataLink {
   url: string
-  name: string // github, linkedin, twitter
+  name: 'facebook' | 'github' | 'instagram' | 'linkedin' | 'producthunt' | 'stackoverflow' | 'twitter'
 }

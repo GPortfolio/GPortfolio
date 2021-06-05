@@ -19,32 +19,26 @@ function generateRepositoriesHtml(repositories) {
 
   for (var i = 0; i < repositories.length; i++) {
     output +=
-      `<div>
-        <a href="${repositories[i].html_url}" class="repository" target="_blank" rel="noopener">
-          <div class="repository__name">${repositories[i].full_name}</div>
-          <p class="repository__description">${repositories[i].description || '-'}</p>
-          <div class="repository__bottom">
-            <div class="repository__bottom__language">
-              <span>
-                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="code"><polyline fill="none" stroke="#000" stroke-width="1.01" points="13,4 19,10 13,16"></polyline><polyline fill="none" stroke="#000" stroke-width="1.01" points="7,4 1,10 7,16"></polyline></svg>
-              </span>
-              <span>${repositories[i].language || '-'}</span>
-            </div>
-            <div class="repository__bottom__star">
-              <span>
-                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="star"><polygon fill="none" stroke="#000" stroke-width="1.01" points="10 2 12.63 7.27 18.5 8.12 14.25 12.22 15.25 18 10 15.27 4.75 18 5.75 12.22 1.5 8.12 7.37 7.27"></polygon></svg>
-              </span>
-              <span>${repositories[i].stargazers_count}</span>
-            </div>
-            <div class="repository__bottom__forks">
-              <span>
-                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="git-fork"><circle fill="none" stroke="#000" stroke-width="1.2" cx="5.79" cy="2.79" r="1.79"></circle><circle fill="none" stroke="#000" stroke-width="1.2" cx="14.19" cy="2.79" r="1.79"></circle><circle fill="none" stroke="#000" stroke-width="1.2" cx="10.03" cy="16.79" r="1.79"></circle><path fill="none" stroke="#000" stroke-width="2" d="M5.79,4.57 L5.79,6.56 C5.79,9.19 10.03,10.22 10.03,13.31 C10.03,14.86 10.04,14.55 10.04,14.55 C10.04,14.37 10.04,14.86 10.04,13.31 C10.04,10.22 14.2,9.19 14.2,6.56 L14.2,4.57"></path></svg>
-              </span>
-              <span>${repositories[i].forks_count}</span>
-            </div>
+      `<a href="${repositories[i].html_url}" class="repository" target="_blank">
+        <div class="repository__name">${repositories[i].full_name}</div>
+        <div class="repository__description">
+          <p>${repositories[i].description || '-'}</p>
+        </div>
+        <div class="repository__footer">
+          <div class="repository__footer__language">
+            <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="code"><polyline fill="none" stroke="#000" stroke-width="1.01" points="13,4 19,10 13,16"></polyline><polyline fill="none" stroke="#000" stroke-width="1.01" points="7,4 1,10 7,16"></polyline></svg>
+            <span>${repositories[i].language || '-'}</span>
           </div>
-        </a>
-      </div>`;
+          <div class="repository__footer__star">
+            <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="star"><polygon fill="none" stroke="#000" stroke-width="1.01" points="10 2 12.63 7.27 18.5 8.12 14.25 12.22 15.25 18 10 15.27 4.75 18 5.75 12.22 1.5 8.12 7.37 7.27"></polygon></svg>
+            <span>${repositories[i].stargazers_count}</span>
+          </div>
+          <div class="repository__footer__forks">
+            <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="git-fork"><circle fill="none" stroke="#000" stroke-width="1.2" cx="5.79" cy="2.79" r="1.79"></circle><circle fill="none" stroke="#000" stroke-width="1.2" cx="14.19" cy="2.79" r="1.79"></circle><circle fill="none" stroke="#000" stroke-width="1.2" cx="10.03" cy="16.79" r="1.79"></circle><path fill="none" stroke="#000" stroke-width="2" d="M5.79,4.57 L5.79,6.56 C5.79,9.19 10.03,10.22 10.03,13.31 C10.03,14.86 10.04,14.55 10.04,14.55 C10.04,14.37 10.04,14.86 10.04,13.31 C10.04,10.22 14.2,9.19 14.2,6.56 L14.2,4.57"></path></svg>
+            <span>${repositories[i].forks_count}</span>
+          </div>
+        </div>
+      </a>`;
   }
 
   return output;
@@ -64,12 +58,10 @@ function generateRepositoriesHtml(repositories) {
   </style>
 </head>
 <body>
-<header>
+<header class="header">
   <div class="header__background background--image"></div>
   <div class="header__wrap">
-    <div class="header__wrap__image">
-      <div class="avatar--image"></div>
-    </div>
+    <div class="header__wrap__image avatar--image"></div>
     <h1 class="header__wrap__name"><%= `${config.data.first_name} ${config.data.last_name}` %></h1>
     <% if (config.data.position) { %>
       <span class="header__wrap__position"><%= config.data.position %></span>
@@ -77,8 +69,8 @@ function generateRepositoriesHtml(repositories) {
     <% if (config.data.links.length > 0) { %>
       <div class="header__wrap__social">
         <% for (const link of config.data.links) { %>
-          <a href="<%= link.link %>" title="<%= safeQuotes(link.name) %>" target="_blank" rel="noopener">
-            Icon
+          <a href="<%= link.url %>" title="<%= safeQuotes(link.name) %>" rel="nofollow">
+            <%= require(`!!svg-inline-loader!../_common/assets/icons/${link.name}.svg`) %>
           </a>
         <% } %>
       </div>
@@ -87,9 +79,9 @@ function generateRepositoriesHtml(repositories) {
 </header>
 <main>
   <% if (repositories.length > 0) { %>
-    <section class="repositories-section">
+    <section class="repositories-section section">
       <div class="container">
-        <h2>
+        <h2 class="section-title">
           <span>
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="grid"><rect x="2" y="2" width="3" height="3"></rect><rect x="8" y="2" width="3" height="3"></rect><rect x="14" y="2" width="3" height="3"></rect><rect x="2" y="8" width="3" height="3"></rect><rect x="8" y="8" width="3" height="3"></rect><rect x="14" y="8" width="3" height="3"></rect><rect x="2" y="14" width="3" height="3"></rect><rect x="8" y="14" width="3" height="3"></rect><rect x="14" y="14" width="3" height="3"></rect></svg>
@@ -101,8 +93,8 @@ function generateRepositoriesHtml(repositories) {
           <%= generateRepositoriesHtml(canShowMoreRepositories ? repositories.slice(0, repositoriesMore) : repositories) %>
         </div>
         <% if (canShowMoreRepositories) { %>
-          <div class="show-more-wrap">
-            <button id="github-more">Show more</button>
+          <div class="text--center mt-50">
+            <div id="github-more" class="btn-more">Show more</div>
           </div>
         <% } %>
       </div>
@@ -118,42 +110,23 @@ function generateRepositoriesHtml(repositories) {
   }) %></span>
 </footer>
 
-<script type="text/javascript">
 <% if (canShowMoreRepositories) {%>
-  var repositories = <%= JSON.stringify(repositories) %>;
-<% } %>
+<script type="text/javascript">
+var repositories = <%= JSON.stringify(repositories.splice(repositoriesMore)) %>;
 
 window.addEventListener('DOMContentLoaded', function () {
-  <% if (canShowMoreRepositories) { %>
-    var btnMoreGithubRepsEl = document.querySelector('#github-more');
+  var githubRepositories = document.querySelector('.repositories');
 
-    if (btnMoreGithubRepsEl) {
-      var sectionGithubRepsEl = document.querySelector('.repositories');
-      var per_page = <%= repositoriesMore %>;
-      var len = <%= repositories.length %>;
-      var page = 1;
+  document.querySelector('#github-more').addEventListener('click', function () {
+    var html = generateRepositoriesHtml(repositories.splice(0, <%= repositoriesMore %>));
+    var nodes = htmlToElements(html);
 
-      btnMoreGithubRepsEl.addEventListener('click', function () {
-        var current = page * per_page;
-        var next = current + per_page;
-        var html = generateRepositoriesHtml(repositories.slice(current, next));
-
-        var nodes = htmlToElements(html);
-        for (var i = 0; i < nodes.length; i++) {
-          sectionGithubRepsEl.append(nodes[i]);
-        }
-
-        if (len <= next) {
-          var showMoreWrapEl = document.querySelector('.repositories-section .show-more-wrap');
-          if (showMoreWrapEl) {
-            showMoreWrapEl.remove();
-          }
-        }
-
-        page++;
-      });
+    if (nodes.length !== <%= repositoriesMore %>) {
+      document.querySelector('#github-more').parentNode.remove();
     }
-  <% } %>
+
+    githubRepositories.append(...nodes);
+  });
 });
 
 function htmlToElements(html) {
@@ -162,7 +135,8 @@ function htmlToElements(html) {
   return template.content.childNodes;
 }
 
-<%= canShowMoreRepositories ? generateRepositoriesHtml.toString() : '' %>
+<%= generateRepositoriesHtml.toString() %>
 </script>
+<% } %>
 </body>
 </html>

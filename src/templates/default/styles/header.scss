@@ -1,85 +1,83 @@
-.header__wrap {
-  text-align: center;
-}
-
-.header__wrap__name {
-  margin: 35px 0 5px;
-  color: #fff;
-  text-shadow: 0 0 5px #000;
-  font-weight: 600;
-  font-size: 2.4rem;
-  letter-spacing: 1px;
-}
-
-.header__wrap__position {
-  display: block;
-  margin-top: 20px;
-  color: rgba(255, 255, 255, .95);
-  font-size: 1.3rem;
-}
-
-.header__wrap__social {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 30px;
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    padding: 9px;
-    margin: 0 7px;
-    color: #fff;
-    transition: .2s;
-    min-width: 35px;
-    &:hover {
-      background: rgba(0, 0, 0, .5);
-      border-radius: 10px;
-    }
-    svg {
-      width: 100%;
-      height: 100%;
-      fill: #fff;
-    }
-  }
-}
-
-.header__background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  will-change: background-position;
-  &:before {
-    content: "";
+.header {
+  position: relative;
+  min-height: 500px;
+  padding: 70px 20px;
+  &__background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .3)
+    z-index: -1;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    will-change: background-position;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .3)
+    }
   }
-}
-
-.avatar--image {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  border-radius: 20px;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-@media only screen and (max-width: 768px) {
-  .header__wrap__name {
-    font-size: 1.8rem;
+  &__wrap {
+    text-align: center;
+    &__image {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      border-radius: 20px;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &__name {
+      margin: 35px 0 5px;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+      font-weight: 600;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      @media only screen and (max-width: 768px) {
+        font-size: 1.8rem;
+      }
+    }
+    &__position {
+      display: block;
+      margin-top: 20px;
+      color: rgba(255, 255, 255, .95);
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    &__social {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        padding: 9px;
+        margin: 0 7px;
+        color: #fff;
+        transition: .2s;
+        min-width: 35px;
+        &:hover {
+          background: rgba(0, 0, 0, .5);
+          border-radius: 10px;
+        }
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: #fff;
+      }
+    }
   }
 }
