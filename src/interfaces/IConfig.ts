@@ -21,11 +21,13 @@ export interface IConfigGlobal {
   opg: { [key: string]: string }
   pwa: ManifestOptions | null
   meta: { [key: string]: string }
-  www: {
-    domain: string
-    path: string
-    https: boolean
-  }
+  www: IConfigGlobalWww
+}
+
+export interface IConfigGlobalWww {
+  domain: string
+  path: string
+  protocol: 'https' | 'http'
 }
 
 export interface IConfigData {

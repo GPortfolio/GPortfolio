@@ -24,7 +24,6 @@ function resolveTemplate(name: string, file: string) {
 }
 
 const { config } = di.get<IApplication>(TYPES.Application);
-const siteUrl = di.get(SiteUrlResolver).resolve();
 
 export default (env: any, argv: { mode: string; }) => {
   /** @type {boolean} */
@@ -182,7 +181,7 @@ export default (env: any, argv: { mode: string; }) => {
         ],
         name: `${config.data.first_name} ${config.data.last_name}`,
         short_name: `${config.data.first_name} ${config.data.last_name}`,
-        start_url: siteUrl,
+        start_url: new SiteUrlResolver(config.global.www).resolve(),
         theme_color: '#fff',
         ...config.global.pwa,
       }) as WebpackPluginInstance, // https://github.com/arthurbergmz/webpack-pwa-manifest/pull/151

@@ -36,6 +36,10 @@ export default class Application implements IApplication {
 
     this.mergeDataFromServices(this.data.data);
 
+    if (!this.data.global.www.domain && this.data.services.github.configuration.nickname) {
+      this.data.global.www.domain = `${this.data.services.github.configuration.nickname}.github.io`;
+    }
+
     ObjectUtils.deepMerge(this.data, userData);
 
     this.bootServices();
@@ -105,7 +109,7 @@ export default class Application implements IApplication {
       www: {
         domain: '',
         path: '',
-        https: true,
+        protocol: 'https',
       },
     };
   }

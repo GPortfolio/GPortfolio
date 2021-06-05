@@ -1,35 +1,26 @@
-import { inject, injectable } from 'inversify';
 import StringUtils from '../../utils/StringUtils';
-import IApplication from '../../interfaces/IApplication';
-import { TYPES } from '../../types';
+import { IConfigGlobalWww } from '../../interfaces/IConfig';
 
-@injectable()
 export default class SiteUrlResolver {
-  private app: IApplication;
+  private www: IConfigGlobalWww;
 
-  constructor(@inject(TYPES.Application) app: IApplication) {
-    this.app = app;
+  constructor(www: IConfigGlobalWww) {
+    this.www = www;
   }
 
   public resolve() {
-    const url = `${this.protocol}://${this.domain}/${this.path}`;
-
-    return StringUtils.removeLastSymbolIfPresent(url, '/');
+    return StringUtils.rtrim(this.url, '/');
   }
 
-  get protocol(): string {
-    return this.app.config.global.www.https ? 'https' : 'http';
+  protected get url() {
+    return `${this.www.protocol}://${this.www.domain}${this.path}`;
   }
 
-  get domain(): string {
-    return this.app.config.global.www.domain || this.githubDomain;
-  }
+  protected get path() {
+    if (!this.www.path) {
+      return '';
+    }
 
-  get githubDomain(): string {
-    return `${this.app.config.services.github.configuration.nickname.toLowerCase()}.github.io`;
-  }
-
-  get path(): string {
-    return this.app.config.global.www.path;
+    return StringUtils.ltrim(`/${this.www.path}`, '/');
   }
 }

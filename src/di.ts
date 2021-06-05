@@ -10,7 +10,6 @@ import IFilterCompareItem from './modules/filter/interfaces/IFilterCompareItem';
 import Filter from './modules/filter/Filter';
 import Sorter from './modules/sorter/Sorter';
 import FilterCompare from './modules/filter/FilterCompare';
-import SiteUrlResolver from './modules/core/SiteUrlResolver';
 import githubService from './services/github/config/di';
 import defaultTemplate from './templates/default/config/di';
 import ConsoleLogger from './modules/logger/ConsoleLogger';
@@ -23,7 +22,6 @@ import IConfig from './interfaces/IConfig';
 const di = new Container();
 
 di.bind<IApplication>(TYPES.Application).to(Application);
-di.bind<SiteUrlResolver>(SiteUrlResolver).toSelf();
 
 di.bind<IConfig>(TYPES.UserData).toConstantValue(config);
 

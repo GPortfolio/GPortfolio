@@ -16,14 +16,14 @@ export default class GithubService implements IService {
 
   private sorter: Sorter;
 
-  private profileData: IGithubProfile;
+  private profileData: IGithubProfile | undefined;
 
   private repositoriesData: IGithubRepository[];
 
   constructor(
   @inject(Filter) filter: Filter,
     @inject(Sorter) sorter: Sorter,
-    @inject(TYPES.GithubProfileData) profileData: IGithubProfile,
+    @inject(TYPES.GithubProfileData) profileData: IGithubProfile | undefined,
     @inject(TYPES.GithubRepositoriesData) repositoriesData: IGithubRepository[],
   ) {
     this.filter = filter;
