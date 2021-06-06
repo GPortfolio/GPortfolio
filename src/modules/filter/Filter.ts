@@ -14,7 +14,7 @@ export default class Filter {
   handle(arr: any[], filters: IFilterItem[][], separator = '.'): any[] {
     return arr.filter((item) => filters.some((group) => group.every((filter) => {
       const values = ObjectUtils.deepKeyFromString(item, filter.attr, separator);
-      const res = this.filterCompare.compare(filter.values, values, filter.options);
+      const res = this.filterCompare.compare(filter.values, values, filter.options || {});
 
       return (res || filter.revert) && (!res || !filter.revert);
     })));

@@ -11,16 +11,16 @@ export default interface IConfig {
     github: IGithub
   }
   templates: {
-    [name: string]: ITemplate | any
+    [key: string]: ITemplate | any
     default: IDefaultTemplate
   }
 }
 
 export interface IConfigGlobal {
   locale: string
-  opg: { [key: string]: string }
+  opg: object
   pwa: ManifestOptions | null
-  meta: { [key: string]: string }
+  meta: object
   www: IConfigGlobalWww
 }
 
