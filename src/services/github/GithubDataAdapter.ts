@@ -42,7 +42,7 @@ export default class GithubDataAdapter implements IConfigData {
   }
 
   get links(): IConfigDataLink[] {
-    return [{ url: this.profile.url, name: 'github' }];
+    return [{ url: this.profile.html_url, name: 'github' }];
   }
 
   get location(): string {
