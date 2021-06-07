@@ -12,7 +12,12 @@ export default class Filter {
   }
 
   handle(arr: any[], filters: IFilterItem[][], separator = '.'): any[] {
-    return arr.filter((item) => filters.some((group) => group.every((filter) => {
+    const groupFilters = filters.filter((group) => group.length);
+    if (!groupFilters.length) {
+      return arr;
+    }
+
+    return arr.filter((item) => groupFilters.some((group) => group.every((filter) => {
       const values = ObjectUtils.deepKeyFromString(item, filter.attr, separator);
       const res = this.filterCompare.compare(filter.values, values, filter.options || {});
 
