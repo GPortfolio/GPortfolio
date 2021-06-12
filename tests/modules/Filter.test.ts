@@ -27,6 +27,40 @@ describe('Filter module', () => {
         { a: [1, 2] },
       ]);
     });
+
+    it('empty filters', () => {
+      const filter = new Filter(new FilterCompare());
+
+      const result = filter.handle([
+        { a: [1, 2, 3] },
+        { a: [1, 2] },
+        { b: [2, 3] },
+      ], []);
+
+      expect(result).toStrictEqual([
+        { a: [1, 2, 3] },
+        { a: [1, 2] },
+        { b: [2, 3] },
+      ]);
+    });
+
+    it('empty filter group', () => {
+      const filter = new Filter(new FilterCompare());
+
+      const result = filter.handle([
+        { a: [1, 2, 3] },
+        { a: [1, 2] },
+        { b: [2, 3] },
+      ], [
+        [],
+      ]);
+
+      expect(result).toStrictEqual([
+        { a: [1, 2, 3] },
+        { a: [1, 2] },
+        { b: [2, 3] },
+      ]);
+    });
   });
 
   describe('Compare Items', () => {

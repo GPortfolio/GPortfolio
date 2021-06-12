@@ -6,7 +6,7 @@ export default interface IService {
 
   configuration(): any
 
-  boot(app: IApplication): void
+  applyConfigurations(app: IApplication): void
 
-  proxy(app: IApplication): IConfigData | undefined
+  configDataAdapter(): IConfigData | undefined
 }

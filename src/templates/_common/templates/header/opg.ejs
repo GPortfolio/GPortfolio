@@ -2,14 +2,11 @@
 const { resolveFile } = require('../../scripts/template');
 const { di } = require('../../../../di');
 const { TYPES } = require('../../../../types');
-const { default: SiteUrlResolver } = require('../../../../modules/core/SiteUrlResolver');
 
 /** @type {IApplication} */
 const app = di.get(TYPES.Application);
 
-const { config } = app;
-
-const url = new SiteUrlResolver(config.global.www).resolve();
+const { config, url } = app;
 %>
 
 <meta property="og:title" content="Portfolio by <%= `${config.data.first_name} ${config.data.last_name}` %>" />

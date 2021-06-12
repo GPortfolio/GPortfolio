@@ -5,6 +5,7 @@ import IService from './interfaces/IService';
 import { TYPES } from './types';
 import IApplication from './interfaces/IApplication';
 import ObjectUtils from './utils/ObjectUtils';
+import SiteUrlResolver from './modules/core/SiteUrlResolver';
 
 // TODO Refactoring
 
@@ -17,6 +18,8 @@ export default class Application implements IApplication {
   private services: IService[];
 
   private templates: ITemplate[];
+
+  private siteUrl: string;
 
   constructor(
   @inject(TYPES.UserData) userData: IConfig,
@@ -32,17 +35,16 @@ export default class Application implements IApplication {
       data: this.defaultData,
       services: this.registerServices(),
       templates: this.registerTemplates(),
+      webpack: () => {},
     };
 
     this.mergeDataFromServices(this.data.data);
 
-    if (!this.data.global.www.domain && this.data.services.github.configuration.nickname) {
-      this.data.global.www.domain = `${this.data.services.github.configuration.nickname}.github.io`;
-    }
-
     ObjectUtils.deepMerge(this.data, userData);
 
-    this.bootServices();
+    this.services.forEach((service) => service.applyConfigurations(this));
+
+    this.siteUrl = new SiteUrlResolver(this.config.global.www).resolve();
   }
 
   get config(): IConfig {
@@ -51,6 +53,10 @@ export default class Application implements IApplication {
 
   get template(): ITemplate {
     return this.data.templates[this.data.template];
+  }
+
+  get url(): string {
+    return this.siteUrl;
   }
 
   protected registerServices(): any {
@@ -73,15 +79,9 @@ export default class Application implements IApplication {
     return templates;
   }
 
-  protected bootServices(): void {
-    this.services.forEach((service) => {
-      service.boot(this);
-    });
-  }
-
   private mergeDataFromServices(data: IConfigData): void {
     this.services.forEach((service) => {
-      const config = service.proxy(this);
+      const config = service.configDataAdapter();
 
       if (config !== undefined) {
         /* eslint-disable no-param-reassign */

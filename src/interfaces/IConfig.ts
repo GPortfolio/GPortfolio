@@ -7,6 +7,7 @@ export default interface IConfig {
   template: string
   global: IConfigGlobal
   data: IConfigData
+  webpack: ((config: any) => void),
   services: {
     github: IGithub
   }

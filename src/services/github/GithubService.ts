@@ -39,7 +39,7 @@ export default class GithubService implements IService {
   public configuration(): IGithub {
     return {
       configuration: {
-        nickname: '',
+        nickname: this.profileData ? this.profileData.login : '',
         fetcher: {
           repositories: {
             type: 'owner',
@@ -63,8 +63,12 @@ export default class GithubService implements IService {
     };
   }
 
-  public boot(app: IApplication): void {
-    const { github } = app.config.services;
+  public applyConfigurations(app: IApplication): void {
+    const { global, services: { github } } = app.config;
+
+    if (!global.www.domain && github.configuration.nickname) {
+      global.www.domain = `${github.configuration.nickname.toLowerCase()}.github.io`;
+    }
 
     github.configuration.sort.repositories.forEach((rule) => {
       this.sorter.sortByRule(github.data.repositories, rule);
@@ -76,9 +80,7 @@ export default class GithubService implements IService {
     );
   }
 
-  public proxy(app: IApplication): IConfigData | undefined {
-    const { github } = app.config.services;
-
-    return github.data.profile && new GithubDataAdapter(github.data.profile);
+  public configDataAdapter(): IConfigData | undefined {
+    return this.profileData && new GithubDataAdapter(this.profileData);
   }
 }

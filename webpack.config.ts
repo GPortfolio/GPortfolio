@@ -7,13 +7,12 @@ import path from 'path';
 import WebpackPwaManifest from 'webpack-pwa-manifest';
 import { GenerateSW } from 'workbox-webpack-plugin';
 import fs from 'fs';
-import { WebpackPluginInstance, EntryObject } from 'webpack';
+import { WebpackPluginInstance, Configuration } from 'webpack';
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import { di } from './src/di';
 import Server from './src/modules/server/Server';
 import IApplication from './src/interfaces/IApplication';
 import TYPES from './src/types';
-import SiteUrlResolver from './src/modules/core/SiteUrlResolver';
 
 function resolvePage(name: string, file: string) {
   return `./src/pages/${name}/${file}`;
@@ -23,13 +22,12 @@ function resolveTemplate(name: string, file: string) {
   return `./src/templates/${name}/${file}`;
 }
 
-const { config } = di.get<IApplication>(TYPES.Application);
+const { config, url } = di.get<IApplication>(TYPES.Application);
 
-export default (env: any, argv: { mode: string; }) => {
-  /** @type {boolean} */
+export default (env: any, argv: { mode: string; }): Configuration => {
   const isProd: boolean = argv.mode === 'production';
 
-  const webpackConfig = {
+  const webpackConfig: Configuration = {
     devServer: {
       index: 'index.html',
       clientLogLevel: 'info',
@@ -49,8 +47,8 @@ export default (env: any, argv: { mode: string; }) => {
           resolveTemplate(config.template, 'index.scss'),
         ]
         : resolveTemplate('_autoload', 'index.ts'),
-    } as EntryObject,
-    mode: argv.mode,
+    },
+    mode: isProd ? 'production' : 'development',
     module: {
       rules: [
         {
@@ -166,8 +164,8 @@ export default (env: any, argv: { mode: string; }) => {
   };
 
   if (isProd) {
+    // @ts-ignore
     webpackConfig.plugins.push(
-      // @ts-ignore
       new CleanWebpackPlugin(),
       new WebpackPwaManifest({
         background_color: '#fff',
@@ -182,7 +180,7 @@ export default (env: any, argv: { mode: string; }) => {
         ],
         name: `${config.data.first_name} ${config.data.last_name}`,
         short_name: `${config.data.first_name} ${config.data.last_name}`,
-        start_url: new SiteUrlResolver(config.global.www).resolve(),
+        start_url: url,
         theme_color: '#fff',
         ...config.global.pwa,
       }) as WebpackPluginInstance, // https://github.com/arthurbergmz/webpack-pwa-manifest/pull/151
@@ -221,18 +219,26 @@ export default (env: any, argv: { mode: string; }) => {
   } else {
     fs.readdirSync(path.resolve(__dirname, './src/pages'))
       .forEach((folder: string) => {
+        // @ts-ignore
         webpackConfig.entry[folder] = [
           resolvePage(folder, 'index.ts'),
           resolvePage(folder, 'index.scss'),
         ];
 
-        webpackConfig.plugins.push(new HtmlWebpackPlugin({
-          filename: `${folder}.html`,
-          inject: 'head',
-          chunks: [folder],
-          template: resolvePage(folder, 'index.ejs'),
-        }));
+        // @ts-ignore
+        webpackConfig.plugins.push(
+          new HtmlWebpackPlugin({
+            filename: `${folder}.html`,
+            inject: 'head',
+            chunks: [folder],
+            template: resolvePage(folder, 'index.ejs'),
+          }),
+        );
       });
+  }
+
+  if (config.webpack) {
+    config.webpack(webpackConfig);
   }
 
   return webpackConfig;

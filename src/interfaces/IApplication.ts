@@ -5,4 +5,6 @@ export default interface IApplication {
   config: IConfig
 
   template: ITemplate
+
+  url: string
 }
