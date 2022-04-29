@@ -1,77 +1,39 @@
 import IConfig from './src/interfaces/IConfig';
+
 export default {
-
-  global: {
-    // Format: language_TERRITORY
-    locale: 'en_US', // default value
-
-    // The Open Graph protocol
-    // https://ogp.me/
-    opg: {
-      // All settings have already been added, but if you want to expand with
-      // new values or replace, you can always do it here:
-      'og:image:alt': 'Profile image',
-    },
-
-  },
-
-  // This is the main property, the data from which fill the template
-  // If any services are used (like Github), then this data can be
-  // automatically filled in
-  data: {
-    // To replace generated values or add missing data
-    hireable: true,
-    gender: 'male',
-    position: 'Software Developer',
-    links: [
-      { name: 'github', url: 'https://github.com/rkcabell' }
-    ],
-    avatar: () => "https://avatars.githubusercontent.com/rkcabell",
-  },
-
-  // Here are the services from which you can automatically get the latest data
   services: {
     github: {
       configuration: {
-        // https://github.com/<nickname>
         nickname: 'rkcabell',
-        // This data is used when making requests to the Github API
-        fetcher: {
-          repositories: {
-            type: 'all',
-          },
-        },
-        // When generating a template, the received data is filtered,
-        // described in more detail in the [Filter] section
-        filter: {
-          repositories: [
-            [
-              { attr: 'owner.login', values: ['rkcabell', 'rkcabell.github.io'] },
-              { attr: 'id', values: 123456, options: { sign: '>' } },
-            ],
-            [
-              { attr: 'fork', values: false },
-            ],
-          ],
-        },
-        // Output data is also sorted in more detail in the [Sorter] section
         sort: {
           repositories: [
             { attr: 'created_at', sortByDesc: true },
             { attr: 'forks_count', sortByDesc: true },
+            { attr: 'stargazers_count', sortByDesc: true },
+          ],
+        },
+        filter: {
+          repositories: [
+            [
+              { attr: 'owner.login', values: ['rkcabell', 'portfolio'] },
+              { attr: 'name', values: ['awesome-vue', 'merge-conflict', 'github-pages-with-jekyll', 'markdown-portfolio'], revert: true },
+              { attr: 'fork', values: false },
+            ],
           ],
         },
       },
     },
   },
-
-  // Each template can have its own unique settings
+  data: {
+    position: 'PHP Developer',
+    links: [
+      { name: 'github', url: 'https://github.com/rkcabell' }
+    ],
+  },
   templates: {
-    // Template name
     default: {
       configuration: {
-        githubRepositoriesMore: 2,
-        background: () => require('./src/templates/default/assets/background.png'),
+        background: () => require('./public/background.jpg'),
       },
     },
   },
