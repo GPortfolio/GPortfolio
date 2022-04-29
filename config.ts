@@ -25,7 +25,7 @@ export default {
     },
   },
   data: {
-    position: 'PHP Developer',
+    position: 'Java Developer',
     links: [
       { name: 'github', url: 'https://github.com/rkcabell' }
     ],
@@ -33,7 +33,7 @@ export default {
   templates: {
     default: {
       configuration: {
-        background: () => require('./public/background.jpg'),
+        background: () => require('./src/templates/default/assets/background.png'),
       },
     },
   },
