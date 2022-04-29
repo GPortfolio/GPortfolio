@@ -44,7 +44,7 @@ export default {
     hireable: true,
     gender: 'male',
     position: 'Software Developer',
-    avatar: () => require('./src/assets/project/r.png'),
+    avatar: () => "https://avatars.githubusercontent.com/rkcabell"),
   },
 
   // Here are the services from which you can automatically get the latest data
