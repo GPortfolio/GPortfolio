@@ -1,7 +1,5 @@
 import IConfig from './src/interfaces/IConfig';
 export default {
-  // Choosing a template for generating a site, a list of available in the [Templates] section
-  template: 'default',
 
   global: {
     // Format: language_TERRITORY
@@ -15,25 +13,6 @@ export default {
       'og:image:alt': 'Profile image',
     },
 
-    // Progressive Web Apps
-    // https://web.dev/progressive-web-apps/
-    pwa: {
-      // If you want to change the data when generating manifest.json
-      description: 'My Portfolio',
-      theme_color: '#000',
-    },
-
-    // HTML Meta tags
-    // <meta name="<key>" content="<value>">
-    meta: {
-      description: 'My Portfolio',
-      viewport: 'width=device-width, initial-scale=1.0',
-    },
-
-    www: {
-      // If you are using your domain and not <username> .github.io
-      domain: '',
-    },
   },
 
   // This is the main property, the data from which fill the template
@@ -44,6 +23,9 @@ export default {
     hireable: true,
     gender: 'male',
     position: 'Software Developer',
+    links: [
+      { name: 'github', url: 'https://github.com/rkcabell' }
+    ],
     avatar: () => "https://avatars.githubusercontent.com/rkcabell",
   },
 
