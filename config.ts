@@ -44,7 +44,7 @@ export default {
     hireable: true,
     gender: 'male',
     position: 'Software Developer',
-    avatar: () => "https://avatars.githubusercontent.com/rkcabell"),
+    avatar: () => "https://avatars.githubusercontent.com/rkcabell",
   },
 
   // Here are the services from which you can automatically get the latest data
@@ -64,7 +64,7 @@ export default {
         filter: {
           repositories: [
             [
-              { attr: 'owner.login', values: ['rkcabell', 'orgName'] },
+              { attr: 'owner.login', values: ['rkcabell', 'rkcabell.github.io'] },
               { attr: 'id', values: 123456, options: { sign: '>' } },
             ],
             [
