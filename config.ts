@@ -17,7 +17,7 @@ export default {
             [
               { attr: 'owner.login', values: ['rkcabell', 'portfolio'] },
               { attr: 'fork', values: false },
-              { attr: 'language', values: ['HTML', 'JavaScript], revert: true },
+              { attr: 'language', values: ['HTML', 'JavaScript], revert: true }
             ],
           ],
         },
@@ -25,10 +25,11 @@ export default {
     },
   },
   data: {
-    position: 'Java Developer',
+    position: 'Software Developer',
     links: [
       { name: 'github', url: 'https://github.com/rkcabell' },
       { name: 'linkedin', url: 'https://www.linkedin.com/in/ryan-cabell-7548b5158/' }
+      { name: 'resume', image: () => require('./src/templates/default/assets/resume_icon.ico') }
     ],
   },
   templates: {
