@@ -27,7 +27,8 @@ export default {
   data: {
     position: 'Java Developer',
     links: [
-      { name: 'github', url: 'https://github.com/rkcabell' }
+      { name: 'github', url: 'https://github.com/rkcabell' },
+      { name: 'linkedin', url: 'https://www.linkedin.com/in/ryan-cabell-7548b5158/' }
     ],
   },
   templates: {
