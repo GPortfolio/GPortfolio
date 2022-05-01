@@ -17,6 +17,7 @@ export default {
             [
               { attr: 'owner.login', values: ['rkcabell', 'portfolio'] },
               { attr: 'fork', values: false },
+              { attr: 'language', values: ['HTML', 'JavaScript], revert: false },
             ],
           ],
         },
