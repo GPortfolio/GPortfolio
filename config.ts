@@ -16,7 +16,6 @@ export default {
           repositories: [
             [
               { attr: 'owner.login', values: ['rkcabell', 'portfolio'] },
-              { attr: 'name', values: ['awesome-vue', 'merge-conflict', 'github-pages-with-jekyll', 'markdown-portfolio'], revert: true },
               { attr: 'fork', values: false },
             ],
           ],
